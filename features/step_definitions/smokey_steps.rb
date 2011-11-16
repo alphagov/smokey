@@ -1,7 +1,7 @@
 require 'plek'
 
 Given /^I am testing "(.*)"$/ do |service|
-  p = Plek.new ENV['ENV'] || "production"
+  p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
   @host = p.find(service)
   puts @host
 end
