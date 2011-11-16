@@ -6,6 +6,7 @@ Feature: Smart Answers
       | Path       |
       | /maternity |
 
+  @pending
   Scenario: check smart answers lacks home page
     Given I am testing "smartanswers"
     When I visit "/"

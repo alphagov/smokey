@@ -13,7 +13,7 @@ end
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     visit @host + row["Path"]
-    webrat_session.response_code.should == status.to_i
+    webrat_session.response_code.should == 200
   end
 end
 
