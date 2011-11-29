@@ -1,4 +1,5 @@
 require 'plek'
+require 'rest_client'
 
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
@@ -8,6 +9,11 @@ end
 
 When /^I visit "(.*)"$/ do |path|
   visit @host + path
+end
+
+When /^I visit "(.*)" twice$/ do |path|
+  RestClient.get @host + path
+  @response = RestClient.get "http://www.dev.gov.uk:6081/"
 end
 
 Then /^I should be able to visit:$/ do |table|
@@ -23,4 +29,8 @@ end
 
 Then /^I should get a (\d+) status code$/ do |status|
   webrat_session.response_code.should == status.to_i
+end
+
+Then /^I should get content from the cache$/ do
+  @response.headers[:x_cache].should == "HIT"
 end
