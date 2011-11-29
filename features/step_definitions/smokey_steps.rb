@@ -8,7 +8,7 @@ Given /^I am testing "(.*)"$/ do |service|
 end
 
 When /^I visit "(.*)"$/ do |path|
-  visit @host + path
+  visit "#{@host}#{path}"
 end
 
 When /^I visit "(.*)" twice$/ do |path|
@@ -18,7 +18,7 @@ end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    visit @host + row["Path"]
+    visit "#{@host}#{row['Path']}"
     webrat_session.response_code.should == 200
   end
 end
