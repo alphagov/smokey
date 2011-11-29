@@ -12,8 +12,8 @@ When /^I visit "(.*)"$/ do |path|
 end
 
 When /^I visit "(.*)" twice$/ do |path|
-  RestClient.get @host + path
-  @response = RestClient.get @host + path
+  RestClient::Request.new(:url => @host + path, :method => 'get', :user => ENV['USERNAME'], :password => ENV['PASSWORD']).execute
+  @response = RestClient::Request.new(:url => @host + path, :method => 'get', :user => 'betademo', :password => 'nottobesharedout').execute
 end
 
 Then /^I should be able to visit:$/ do |table|
