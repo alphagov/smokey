@@ -34,7 +34,7 @@ Then /^I should see "(.*)"$/ do |text|
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
-  @response.code.should == 200
+  @response.code.should == status
 end
 
 Then /^I should get content from the cache$/ do
