@@ -13,7 +13,7 @@ end
 
 When /^I visit "(.*)"$/ do |path|
   url = "#{@host}#{path}"
-  response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
 end
 
 When /^I visit "(.*)" twice$/ do |path|
@@ -26,6 +26,7 @@ Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     url = "#{@host}#{row['Path']}"
     response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+    response.code.should == 200
   end
 end
 
@@ -33,6 +34,7 @@ Then /^I should see "(.*)"$/ do |text|
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
+  @response.code.should == 200
 end
 
 Then /^I should get content from the cache$/ do
