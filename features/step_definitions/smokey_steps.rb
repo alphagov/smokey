@@ -13,7 +13,7 @@ end
 
 When /^I visit "(.*)" twice$/ do |path|
   RestClient.get @host + path
-  @response = RestClient.get "http://www.dev.gov.uk:6081/"
+  @response = RestClient.get @host + path
 end
 
 Then /^I should be able to visit:$/ do |table|
