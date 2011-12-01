@@ -3,8 +3,8 @@ Feature: Smart Answers
   Scenario: check smart answers load
     Given I am testing "smartanswers"
     Then I should be able to visit:
-      | Path       |
-      | /maternity |
+      | Path                |
+      | /maternity-benefits |
 
   @pending
   Scenario: check smart answers lacks home page
