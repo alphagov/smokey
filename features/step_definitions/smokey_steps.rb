@@ -22,6 +22,12 @@ When /^I visit "(.*)" twice$/ do |path|
   @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
 end
 
+When /^I search for "(.*)"$/ do |term|
+  url = "#{@host}/search?q=#{term}"
+  RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+end
+
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     url = "#{@host}#{row['Path']}"
@@ -32,6 +38,10 @@ end
 
 Then /^I should see "(.*)"$/ do |text|
 end
+
+Then /^I should receive "(\d+)" result/ do |count|
+  @response.body.include?("There were <strong>#{count}</strong> result for").should == true
+end 
 
 Then /^I should get a (\d+) status code$/ do |status|
   @response.code.should == status
