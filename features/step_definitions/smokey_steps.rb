@@ -40,7 +40,7 @@ Then /^I should see "(.*)"$/ do |text|
 end
 
 Then /^I should receive "(\d+)" result/ do |count|
-  @response.body.include?("There were <strong>#{count}</strong> result for").should == true
+  @response.body.include?("#{count} result found").should == true
 end 
 
 Then /^I should get a (\d+) status code$/ do |status|
