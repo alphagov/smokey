@@ -1,3 +1,5 @@
+Some fairly basic smoke tests that test the deployed versions of the single domain apps.
+
 ## Running the tests
 
 The tests will run against the preview environment by default.  You can override that by setting the `TARGET_PLATFORM` environment variable.
