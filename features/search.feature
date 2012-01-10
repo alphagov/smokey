@@ -10,5 +10,5 @@ Feature: Search
   Scenario: check we don't get lots of results for cheese
     Given I am testing "search"
     When I search for "cheese"
-    Then I should receive "1" result
+    Then I should receive no results
 

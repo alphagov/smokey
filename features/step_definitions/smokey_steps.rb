@@ -41,7 +41,11 @@ end
 
 Then /^I should receive "(\d+)" result/ do |count|
   @response.body.include?("#{count} result found").should == true
-end 
+end
+
+Then /^I should receive no results/ do
+  @response.body.include?("find any results for").should == true
+end
 
 Then /^I should get a (\d+) status code$/ do |status|
   @response.code.should == status
