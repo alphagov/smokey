@@ -4,6 +4,7 @@ Feature: Whitehall
     Given I am testing "whitehall"
     Then I should be able to visit:
       | Path                          |
+      | /government/                  |
       | /government/news-and-speeches |
       | /government/policy-areas      |
       | /government/publications      |
