@@ -1,5 +1,6 @@
 Feature: MySQL
 
+  @pending
   @local-network
   Scenario: check we can talk directly to mysql
     Given I connect to "panopticon_production" on "rds.cluster"
