@@ -7,7 +7,7 @@ Given /^I am testing "(.*)"$/ do |service|
   @password = ENV['AUTH_PASSWORD']
   @username = ENV['AUTH_USERNAME']
 
-  @host = p.find(service)
+  @host = p.find(service).gsub("http", "https")
   puts @host
 end
 
