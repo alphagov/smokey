@@ -3,9 +3,11 @@ Feature: Search
   Scenario: check search loads
     Given I am testing "search"
     Then I should be able to visit:
-      | Path           |
-      | /search        |
-      | /search?q=tax  |
+      | Path            |
+      | /search         |
+      | /search?q=tax   |
+      | /browse         |
+      | /browse/driving |
 
   Scenario: check we don't get lots of results for cheese
     Given I am testing "search"
