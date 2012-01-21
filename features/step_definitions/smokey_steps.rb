@@ -1,4 +1,5 @@
 require 'plek'
+require 'mysql2'
 require 'rest_client'
 
 Given /^I am testing "(.*)"$/ do |service|
@@ -55,4 +56,12 @@ end
 
 Then /^I should get content from the cache$/ do
   @response.headers[:x_cache].should == "HIT"
+end
+
+Given /^I connect to "(.*)" on "(.*)"$/ do |database,host|
+  @client = Mysql2::Client.new(:host => host, :username => ENV['MYSQL_USERNAME'], :password => ENV['MYSQL_PASSWORD'], :database => database)
+end
+
+Then /^I should be able to make a successful query with "(.*)"$/ do |query|
+  @client.query(query)
 end
