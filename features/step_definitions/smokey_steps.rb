@@ -16,9 +16,11 @@ When /^I visit "(.*)"$/ do |path|
   @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
 end
 
-When /^I visit "(.*)" twice$/ do |path|
+When /^I visit "(.*)" (\d+) times$/ do |path, count|
   url = "#{@host}#{path}"
-  RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  (count.to_i-1).times {
+    RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  }
   @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
 end
 
