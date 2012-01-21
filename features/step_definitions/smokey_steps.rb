@@ -1,6 +1,7 @@
 require 'plek'
 require 'mysql2'
 require 'rest_client'
+require 'stomp'
 
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
@@ -64,4 +65,22 @@ end
 
 Then /^I should be able to make a successful query with "(.*)"$/ do |query|
   @client.query(query)
+end
+
+Given /^I connect to the queue on "(.*)"$/ do |host|
+  @host = host
+  @conn = Stomp::Connection.new("", "", host, 61613)
+end
+
+When /^I send a ping to "(.*)"$/ do |queue|
+  @queue = queue
+  @conn.publish(queue, "ping")
+  @conn.disconnect
+end
+
+Then /^I should be able to receive the message$/ do
+  consumer = Stomp::Connection.new("", "", @host, 61613)
+  consumer.subscribe(@queue)
+  consumer.receive.body.chomp.should == "ping"
+  consumer.disconnect
 end

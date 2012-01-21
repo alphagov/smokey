@@ -38,6 +38,7 @@ GEM
     rspec-expectations (2.7.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.7.0)
+    stomp (1.2.0)
     term-ansicolor (1.0.7)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
@@ -57,4 +58,5 @@ DEPENDENCIES
   rake
   rest-client
   rspec
+  stomp
   webrat
