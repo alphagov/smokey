@@ -2,6 +2,7 @@ require 'plek'
 require 'mysql2'
 require 'rest_client'
 require 'stomp'
+require 'mongo'
 
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
@@ -83,4 +84,12 @@ Then /^I should be able to receive the message$/ do
   consumer.subscribe(@queue)
   consumer.receive.body.chomp.should == "ping"
   consumer.disconnect
+end
+
+Given /^I connect to the mongo instance on "(.*)"$/ do |host|
+  @mongo = Mongo::Connection.new(host)
+end
+
+Then /^I should find the "(.*)" database$/ do |database|
+  @mongo.database_names.include?(database).should == true
 end

@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    bson (1.5.2)
     builder (3.0.0)
     cucumber (1.1.2)
       builder (>= 2.1.2)
@@ -18,6 +19,8 @@ GEM
       nokogiri (~> 1.4)
       webrobots (~> 0.0, >= 0.0.9)
     mime-types (1.17.2)
+    mongo (1.5.2)
+      bson (= 1.5.2)
     mysql2 (0.3.11)
     net-http-digest_auth (1.1.1)
     net-http-persistent (1.9)
@@ -53,6 +56,7 @@ PLATFORMS
 DEPENDENCIES
   cucumber
   mechanize
+  mongo
   mysql2
   plek
   rake
