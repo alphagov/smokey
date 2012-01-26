@@ -1,5 +1,6 @@
 Feature: Jobs
 
+  @pending
   Scenario: check jobs loads
     Given I am testing "jobs"
     Then I should be able to visit:

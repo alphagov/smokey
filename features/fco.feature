@@ -1,5 +1,6 @@
 Feature: FCO
 
+  @pending
   Scenario: check fco loads
     Given I am testing "fco"
     Then I should be able to visit:
