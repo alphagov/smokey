@@ -1,8 +1,8 @@
 require 'plek'
-#require 'mysql2'
+require 'mysql2'
 require 'rest_client'
-#require 'stomp'
-#require 'mongo'
+require 'stomp'
+require 'mongo'
 
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
