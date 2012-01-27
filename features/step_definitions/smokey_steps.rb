@@ -1,8 +1,8 @@
 require 'plek'
-require 'mysql2'
+#require 'mysql2'
 require 'rest_client'
-require 'stomp'
-require 'mongo'
+#require 'stomp'
+#require 'mongo'
 
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
@@ -11,7 +11,7 @@ Given /^I am testing "(.*)"$/ do |service|
   @username = ENV['AUTH_USERNAME']
 
   @host = p.find(service)
-  @host.gsub("http", "https") unless @host.include? "whitehall"
+  @host = @host.gsub("http", "https") unless @host.include? "whitehall"
   puts @host
 end
 
