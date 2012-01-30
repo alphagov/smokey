@@ -11,5 +11,4 @@ Feature: Whitehall
       | /government/consultations     |
       | /government/ministers         |
       | /government/organisations     |
-      | /government/countries         |
       | /government/search?q=foo      |
