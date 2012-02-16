@@ -6,7 +6,7 @@ Feature: Whitehall
       | Path                          |
       | /government/                  |
       | /government/news-and-speeches |
-      | /government/policy-areas      |
+      | /government/policy-topics     |
       | /government/publications      |
       | /government/consultations     |
       | /government/ministers         |
