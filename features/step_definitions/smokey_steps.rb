@@ -4,12 +4,6 @@ require 'rest_client'
 require 'stomp'
 require 'mongo'
 
-Given /^I am testing www\.gov\.uk$/ do
-  @password = ENV['AUTH_PASSWORD']
-  @username = ENV['AUTH_USERNAME']
-  @host = "https://www.gov.uk"
-end
-
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
 
@@ -46,13 +40,6 @@ Then /^I should be able to visit:$/ do |table|
     response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
     response.code.should == 200
   end
-end
-
-Then /^visting "([^"]*)" should respond with 404 Not Found$/ do |path|
-  url = "#{@host}#{path}"
-  lambda {
-    RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
-  }.should raise_error(RestClient::ResourceNotFound)
 end
 
 Then /^I should see "(.*)"$/ do |text|
