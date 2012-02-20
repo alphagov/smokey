@@ -4,10 +4,14 @@ require 'rest_client'
 require 'stomp'
 require 'mongo'
 
-Given /^I am testing www\.gov\.uk$/ do
+Given /^I am testing the single domain site$/ do
   @password = ENV['AUTH_PASSWORD']
   @username = ENV['AUTH_USERNAME']
-  @host = "https://www.gov.uk"
+  if ENV['TARGET_PLATFORM'] == 'production'
+    @host = "https://www.gov.uk"
+  else
+    @host = "https://www.preview.alphagov.co.uk"
+  end
 end
 
 Given /^I am testing "(.*)"$/ do |service|
@@ -48,11 +52,16 @@ Then /^I should be able to visit:$/ do |table|
   end
 end
 
-Then /^visting "([^"]*)" should respond with 404 Not Found$/ do |path|
+Then /^visting "([^"]*)" should respond with 404 Not Found \(ONLY TESTING PREVIEW\)$/ do |path|
   url = "#{@host}#{path}"
-  lambda {
-    RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
-  }.should raise_error(RestClient::ResourceNotFound)
+  # TODO This test needs to be turned on for all platforms once gov.uk/government
+  # has been opened up to the public.  Currently it cannot work as the HTTP Basic
+  # authentication protecting whitehall uses different credentials to the standard ones
+  unless ENV['TARGET_PLATFORM'] == 'production'
+    lambda {
+      RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+    }.should raise_error(RestClient::ResourceNotFound)
+  end
 end
 
 Then /^I should see "(.*)"$/ do |text|

@@ -14,5 +14,5 @@ Feature: Whitehall
       | /government/search?q=foo      |
 
   Scenario: Blocking admin access through the main site
-    Given I am testing www.gov.uk
-    When visting "/government/admin" should respond with 404 Not Found
+    Given I am testing the single domain site
+    Then visting "/government/admin" should respond with 404 Not Found (ONLY TESTING PREVIEW)
