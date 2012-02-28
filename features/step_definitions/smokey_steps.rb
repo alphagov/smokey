@@ -17,27 +17,27 @@ end
 
 When /^I visit "(.*)"$/ do |path|
   url = "#{@host}#{path}"
-  @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  @response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
 end
 
 When /^I visit "(.*)" (\d+) times$/ do |path, count|
   url = "#{@host}#{path}"
   (count.to_i-1).times {
-    RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+    RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
   }
-  @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  @response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
 end
 
 When /^I search for "(.*)"$/ do |term|
   url = "#{@host}/search?q=#{term}"
-  RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
-  @response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+  RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
+  @response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
 end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     url = "#{@host}#{row['Path']}"
-    response = RestClient::Request.new(:url => url, :method => 'get', :user => @username, :password => @password).execute
+    response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
     response.code.should == 200
   end
 end
