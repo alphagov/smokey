@@ -13,3 +13,4 @@ Feature: Whitehall
       | /government/organisations     |
       | /government/world             |
       | /government/search?q=foo      |
+      | /government/BIS               |
