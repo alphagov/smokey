@@ -3,6 +3,7 @@ require 'mysql2'
 require 'rest_client'
 require 'stomp'
 require 'mongo'
+require 'net/http'
 
 Given /^I am testing "(.*)"$/ do |service|
   p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
@@ -40,6 +41,18 @@ Then /^I should be able to visit:$/ do |table|
     response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
     response.code.should == 200
   end
+end
+
+Then /^I should not be able to access critical ports$/ do
+  ports_to_check = [17, 20, 21, 23, 25, 3306, 3724, 8080, 27017]
+  ports_to_check.each do |port|
+    puts "Attempting port #{port}.."
+    connect_to_port(URI.parse(@host).host, port).should be_false
+  end
+end
+
+Then /^I should be able to access port (.*)$/ do |port|
+  connect_to_port(URI.parse(@host).host, port).should be_true
 end
 
 Then /^I should see "(.*)"$/ do |text|
