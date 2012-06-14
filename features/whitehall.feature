@@ -1,7 +1,8 @@
 Feature: Whitehall
 
   Scenario: Visiting whitehall
-    Given I am testing through the full stack
+    Given the whitehall application has booted
+    And I am testing through the full stack
     Then I should be able to visit:
       | Path                          |
       | /government/                  |

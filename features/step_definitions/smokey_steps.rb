@@ -5,6 +5,12 @@ require 'stomp'
 require 'mongo'
 require 'net/http'
 
+Given /^the whitehall application has booted$/ do
+  platform = ENV['TARGET_PLATFORM'] || "preview"
+  url = "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
+  RestClient::Request.new(:url => url, :method => :head, :user => ENV['AUTH_USERNAME'], :password => ENV['AUTH_PASSWORD']).execute
+end
+
 Given /^I am testing through the full stack$/ do
   platform = ENV['TARGET_PLATFORM'] || "preview"
   @host = platform == 'production' ? 'https://www.gov.uk' : "https://www.#{platform}.alphagov.co.uk"
