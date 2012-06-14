@@ -1,7 +1,7 @@
 Feature: Search
 
   Scenario: check search loads
-    Given I am testing "search"
+    Given I am testing through the full stack
     Then I should be able to visit:
       | Path            |
       | /search         |
@@ -10,7 +10,7 @@ Feature: Search
       | /browse/driving |
 
   Scenario: check we don't get lots of results for cheese
-    Given I am testing "search"
+    Given I am testing through the full stack
     When I search for "cheese"
     Then I should receive no results
 

@@ -1,13 +1,13 @@
 Feature: Router
 
   Scenario: check router loads homepage
-    Given I am testing "www"
+    Given I am testing through the full stack
     Then I should be able to visit:
       | Path      |
       | /         |
 
   Scenario: check open ports on router
-    Given I am testing "www"
+    Given I am testing through the full stack
     Then I should not be able to access critical ports
     And I should be able to access port 80
     And I should be able to access port 443

@@ -5,15 +5,13 @@ require 'stomp'
 require 'mongo'
 require 'net/http'
 
-Given /^I am testing "(.*)"$/ do |service|
-  p = Plek.new ENV['TARGET_PLATFORM'] || "preview"
+Given /^I am testing through the full stack$/ do
+  platform = ENV['TARGET_PLATFORM'] || "preview"
+  @host = platform == 'production' ? 'https://www.gov.uk' : "https://www.#{platform}.alphagov.co.uk"
+  puts @host
 
   @password = ENV['AUTH_PASSWORD']
   @username = ENV['AUTH_USERNAME']
-
-  @host = p.find(service)
-  @host = @host.gsub("http", "https") unless @host.include? "whitehall"
-  puts @host
 end
 
 When /^I visit "(.*)"$/ do |path|
@@ -38,8 +36,14 @@ end
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     url = "#{@host}#{row['Path']}"
-    response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
-    response.code.should == 200
+    begin
+      response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
+      response.code.should == 200
+    rescue RestClient::Unauthorized => e
+      raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
+    rescue RestClient::Exception => e
+      raise "Unable to fetch '#{url}' due to '#{e}'"
+    end
   end
 end
 
@@ -53,9 +57,6 @@ end
 
 Then /^I should be able to access port (.*)$/ do |port|
   connect_to_port(URI.parse(@host).host, port).should be_true
-end
-
-Then /^I should see "(.*)"$/ do |text|
 end
 
 Then /^I should receive "(\d+)" result/ do |count|
