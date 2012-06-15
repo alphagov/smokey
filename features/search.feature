@@ -1,7 +1,8 @@
 Feature: Search
 
   Scenario: check search loads
-    Given I am testing through the full stack
+    Given the "search" application has booted
+    And I am testing through the full stack
     Then I should be able to visit:
       | Path            |
       | /search         |

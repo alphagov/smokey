@@ -1,7 +1,7 @@
 Feature: Whitehall
 
   Scenario: Visiting whitehall
-    Given the whitehall application has booted
+    Given the "whitehall" application has booted
     And I am testing through the full stack
     Then I should be able to visit:
       | Path                          |

@@ -1,55 +1,46 @@
 require 'plek'
 require 'mysql2'
-require 'rest_client'
 require 'stomp'
 require 'mongo'
-require 'net/http'
 
-Given /^the whitehall application has booted$/ do
+Given /^the "(.*)" application has booted$/ do |app_name|
   platform = ENV['TARGET_PLATFORM'] || "preview"
-  url = "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
-  RestClient::Request.new(:url => url, :method => :head, :user => ENV['AUTH_USERNAME'], :password => ENV['AUTH_PASSWORD']).execute
+  url = case app_name
+  when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
+  when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
+  when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
+  when 'search' then "https://search.#{platform}.alphagov.co.uk/search"
+  else
+    raise "Application '#{app_name}' not recognised, unable to boot it up"
+  end
+  puts url
+  head_request(url)
 end
 
 Given /^I am testing through the full stack$/ do
   platform = ENV['TARGET_PLATFORM'] || "preview"
   @host = platform == 'production' ? 'https://www.gov.uk' : "https://www.#{platform}.alphagov.co.uk"
   puts @host
-
-  @password = ENV['AUTH_PASSWORD']
-  @username = ENV['AUTH_USERNAME']
 end
 
 When /^I visit "(.*)"$/ do |path|
-  url = "#{@host}#{path}"
-  @response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
+  @response = get_request("#{@host}#{path}")
 end
 
 When /^I visit "(.*)" (\d+) times$/ do |path, count|
-  url = "#{@host}#{path}"
-  (count.to_i-1).times {
-    RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
+  count.to_i.times {
+    @response = get_request("#{@host}#{path}")
   }
-  @response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
 end
 
 When /^I search for "(.*)"$/ do |term|
-  url = "#{@host}/search?q=#{term}"
-  RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
-  @response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
+  @response = get_request("#{@host}/search?q=#{term}")
 end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    url = "#{@host}#{row['Path']}"
-    begin
-      response = RestClient::Request.new(:url => url, :method => :get, :user => @username, :password => @password).execute
-      response.code.should == 200
-    rescue RestClient::Unauthorized => e
-      raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
-    rescue RestClient::Exception => e
-      raise "Unable to fetch '#{url}' due to '#{e}'"
-    end
+    response = get_request("#{@host}#{row['Path']}")
+    response.code.should == 200
   end
 end
 
