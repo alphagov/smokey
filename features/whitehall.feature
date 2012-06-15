@@ -4,6 +4,7 @@ Feature: Whitehall
     Given the "whitehall" application has booted
     And I am testing through the full stack
     And I bypass the varnish cache
+    Then I should be able to view policies
     Then I should be able to visit:
       | Path                          |
       | /government/                  |
