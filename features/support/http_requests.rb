@@ -16,10 +16,8 @@ def cache_bust(url)
 end
 
 def do_http_request(url, method = :get, options = {})
-  url = options[:cache_bust] ? cache_bust(url) : url
-  puts url
   RestClient::Request.new(
-    url: url, 
+    url: options[:cache_bust] ? cache_bust(url) : url, 
     method: method, 
     user: ENV['AUTH_USERNAME'], 
     password: ENV['AUTH_PASSWORD']
