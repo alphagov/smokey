@@ -10,6 +10,7 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
   when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
   when 'search' then "https://search.#{platform}.alphagov.co.uk/search"
+  when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
   else
     raise "Application '#{app_name}' not recognised, unable to boot it up"
   end
