@@ -21,26 +21,31 @@ end
 Given /^I am testing through the full stack$/ do
   platform = ENV['TARGET_PLATFORM'] || "preview"
   @host = platform == 'production' ? 'https://www.gov.uk' : "https://www.#{platform}.alphagov.co.uk"
+  @bypass_varnish = false
   puts @host
 end
 
+Given /^I bypass the varnish cache$/ do
+  @bypass_varnish = true
+end
+
 When /^I visit "(.*)"$/ do |path|
-  @response = get_request("#{@host}#{path}")
+  @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
 end
 
 When /^I visit "(.*)" (\d+) times$/ do |path, count|
   count.to_i.times {
-    @response = get_request("#{@host}#{path}")
+    @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
   }
 end
 
 When /^I search for "(.*)"$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}")
+  @response = get_request("#{@host}/search?q=#{term}", cache_bust: @bypass_varnish)
 end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    response = get_request("#{@host}#{row['Path']}")
+    response = get_request("#{@host}#{row['Path']}", cache_bust: @bypass_varnish)
     response.code.should == 200
   end
 end

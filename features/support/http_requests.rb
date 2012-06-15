@@ -1,17 +1,25 @@
 require 'net/http'
 require 'rest_client'
 
-def head_request(url)
-  do_http_request(url, :head)
+def head_request(url, options = {})
+  do_http_request(url, :head, options)
 end
 
-def get_request(url)
-  do_http_request(url, :get)
+def get_request(url, options = {})
+  do_http_request(url, :get, options)
 end
 
-def do_http_request(url, method = :get)
+def cache_bust(url)
+  cache_bust = 'cache_bust=' + rand.to_s
+  separator = url.include?("?") ? "&" : "?"
+  "#{url}#{separator}#{cache_bust}"
+end
+
+def do_http_request(url, method = :get, options = {})
+  url = options[:cache_bust] ? cache_bust(url) : url
+  puts url
   RestClient::Request.new(
-    url: url,
+    url: url, 
     method: method, 
     user: ENV['AUTH_USERNAME'], 
     password: ENV['AUTH_PASSWORD']

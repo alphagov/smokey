@@ -3,6 +3,7 @@ Feature: Router
   Scenario: check router loads homepage
     Given the "frontend" application has booted
     And I am testing through the full stack
+    And I bypass the varnish cache
     Then I should be able to visit:
       | Path      |
       | /         |
