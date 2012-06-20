@@ -9,7 +9,7 @@ Feature: Calendars
       | /when-do-the-clocks-change |
       | /bank-holidays             |
 
-  Scenario: check alternative formts are available
+  Scenario: check alternative formats are available
     Given the "calendars" application has booted
     And I am testing through the full stack
     Then I should be able to visit:
