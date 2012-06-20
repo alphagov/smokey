@@ -6,6 +6,7 @@ Feature: Varnish Cache
     When I visit "/" 6 times
     Then I should get content from the cache
 
+  @pending
   Scenario: check all cache boxes are working
     When I visit some key urls on "<environment>-cache"
     And I visit some key urls on "<environment>-cache-1"
