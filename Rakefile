@@ -1,17 +1,27 @@
 require 'rubygems'
 require 'cucumber/rake/task'
 
-Cucumber::Rake::Task.new(:test) do |t|
-    t.cucumber_opts = %w{--format pretty -t ~@pending}
+Cucumber::Rake::Task.new("test:localnetwork",
+    "Run all tests including those which depend on being on " +
+    "the same local network as other production infrastructure") do |t|
+  t.cucumber_opts = %w{--format pretty -t ~@pending}
 end
 
-Cucumber::Rake::Task.new(:remote) do |t|
-    t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@notnagios}
+Cucumber::Rake::Task.new("test:notlocalnetwork",
+  "Run all tests except those which must be on " +
+  "the same local network as other production infrastructure") do |t|
+  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@local-network}
 end
 
-Cucumber::Rake::Task.new(:nagios) do |t|
-    t.cucumber_opts = %w{--format Cucumber::Formatter::Nagios -t ~@pending -t ~@notnagios}
+Cucumber::Rake::Task.new(:remote, "Excludes nagios tests") do |t|
+  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@notnagios}
 end
+
+Cucumber::Rake::Task.new(:nagios, "Output test results in a format consumable by Nagios monitoring system") do |t|
+  t.cucumber_opts = %w{--format Cucumber::Formatter::Nagios -t ~@pending -t ~@notnagios}
+end
+
+task :default => "test:notlocalnetwork"
 
 namespace :smokey do
 
