@@ -26,4 +26,16 @@ rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
 rescue RestClient::Exception => e
   raise "Unable to fetch '#{url}' due to '#{e}'"
-end  
+end
+
+def target_platform
+  ENV["TARGET_PLATFORM"] || "preview"
+end
+
+def base_url
+  if target_platform == "production"
+    "https://www.gov.uk"
+  else
+    "https://www.#{target_platform}.alphagov.co.uk"
+  end
+end

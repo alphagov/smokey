@@ -19,8 +19,7 @@ Given /^the "(.*)" application has booted$/ do |app_name|
 end
 
 Given /^I am testing through the full stack$/ do
-  platform = ENV['TARGET_PLATFORM'] || "preview"
-  @host = platform == 'production' ? 'https://www.gov.uk' : "https://www.#{platform}.alphagov.co.uk"
+  @host = base_url
   @bypass_varnish = false
   puts @host
 end
@@ -78,36 +77,3 @@ Then /^I should get content from the cache$/ do
   @response.headers[:x_cache].should == "HIT"
 end
 
-Given /^I connect to "(.*)" on "(.*)"$/ do |database,host|
-  @client = Mysql2::Client.new(:host => host, :username => ENV['MYSQL_USERNAME'], :password => ENV['MYSQL_PASSWORD'], :database => database)
-end
-
-Then /^I should be able to make a successful query with "(.*)"$/ do |query|
-  @client.query(query)
-end
-
-Given /^I connect to the queue on "(.*)"$/ do |host|
-  @host = host
-  @conn = Stomp::Connection.new("", "", host, 61613)
-end
-
-When /^I send a ping to "(.*)"$/ do |queue|
-  @queue = queue
-  @conn.publish(queue, "ping")
-  @conn.disconnect
-end
-
-Then /^I should be able to receive the message$/ do
-  consumer = Stomp::Connection.new("", "", @host, 61613)
-  consumer.subscribe(@queue)
-  consumer.receive.body.chomp.should == "ping"
-  consumer.disconnect
-end
-
-Given /^I connect to the mongo instance on "(.*)"$/ do |host|
-  @mongo = Mongo::Connection.new(host)
-end
-
-Then /^I should find the "(.*)" database$/ do |database|
-  @mongo.database_names.include?(database).should == true
-end
