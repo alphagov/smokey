@@ -8,3 +8,11 @@ Feature: Calendars
       | Path                       |
       | /when-do-the-clocks-change |
       | /bank-holidays             |
+
+  Scenario: check alternative formts are available
+    Given the "calendars" application has booted
+    And I am testing through the full stack
+    Then I should be able to visit:
+      | Path                            |
+      | /when-do-the-clocks-change.json |
+      | /when-do-the-clocks-change.ics  |
