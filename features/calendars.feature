@@ -14,5 +14,5 @@ Feature: Calendars
     And I am testing through the full stack
     Then I should be able to visit:
       | Path                            |
-      | /when-do-the-clocks-change.json |
-      | /when-do-the-clocks-change.ics  |
+      | /when-do-the-clocks-change/united-kingdom.json |
+      | /when-do-the-clocks-change/united-kingdom.ics |
