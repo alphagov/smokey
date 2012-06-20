@@ -26,7 +26,7 @@ def fetch_url_with_dns_override(url_string, ip)
     "-u '#{ENV['AUTH_USERNAME']}:#{ENV['AUTH_PASSWORD']}'"
   end
   dns_resolution_override = "--resolve #{url.host}:#{url.port}:#{ip}"
-  cmd = "curl --connect-timeout 5 --max-time 5 #{output_only_headers} #{authentication} #{dns_resolution_override} #{url.to_s} 2>/dev/null"
+  cmd = "curl --silent --connect-timeout 5 --max-time 5 #{output_only_headers} #{authentication} #{dns_resolution_override} #{url.to_s}"
   puts cmd
   Response.new(`#{cmd}`)
 end
