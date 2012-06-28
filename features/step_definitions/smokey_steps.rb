@@ -24,7 +24,7 @@ Given /^I am testing through the full stack$/ do
   puts @host
 end
 
-Given /^I bypass the varnish cache$/ do
+Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
 end
 

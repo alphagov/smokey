@@ -3,7 +3,7 @@ Feature: Search
   Scenario: check search loads
     Given the "search" application has booted
     And I am testing through the full stack
-    And I bypass the varnish cache
+    And I force a varnish cache miss
     Then I should be able to visit:
       | Path            |
       | /search         |
@@ -14,7 +14,7 @@ Feature: Search
   Scenario: check we don't get lots of results for cheese
     Given the "search" application has booted
     And I am testing through the full stack
-    And I bypass the varnish cache
+    And I force a varnish cache miss
     When I search for "cheese"
     Then I should receive no results
 
