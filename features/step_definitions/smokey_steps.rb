@@ -14,14 +14,12 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   else
     raise "Application '#{app_name}' not recognised, unable to boot it up"
   end
-  puts url
   head_request(url)
 end
 
 Given /^I am testing through the full stack$/ do
   @host = base_url
   @bypass_varnish = false
-  puts @host
 end
 
 Given /^I force a varnish cache miss$/ do
@@ -52,8 +50,7 @@ end
 Then /^I should not be able to access critical ports$/ do
   ports_to_check = [17, 20, 21, 23, 25, 3306, 3724, 8080, 27017]
   ports_to_check.each do |port|
-    puts "Attempting port #{port}.."
-    connect_to_port(URI.parse(@host).host, port).should be_false
+    connect_to_port(URI.parse(@host).host, port).should be_false, "Port #{port} appears to be open.  This shouldn't be the case."
   end
 end
 
