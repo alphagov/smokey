@@ -21,7 +21,10 @@ def do_http_request(url, method = :get, options = {})
     method: method,
     user: ENV['AUTH_USERNAME'],
     password: ENV['AUTH_PASSWORD'],
-    headers: { 'User-Agent' => 'Smokey Test / Ruby' }
+    headers: {
+      'User-Agent' => 'Smokey Test / Ruby',
+      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    }
   ).execute
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
