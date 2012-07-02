@@ -17,9 +17,9 @@ end
 
 def do_http_request(url, method = :get, options = {})
   RestClient::Request.new(
-    url: options[:cache_bust] ? cache_bust(url) : url, 
-    method: method, 
-    user: ENV['AUTH_USERNAME'], 
+    url: options[:cache_bust] ? cache_bust(url) : url,
+    method: method,
+    user: ENV['AUTH_USERNAME'],
     password: ENV['AUTH_PASSWORD']
   ).execute
 rescue RestClient::Unauthorized => e
