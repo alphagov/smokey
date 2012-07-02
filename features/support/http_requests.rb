@@ -20,7 +20,8 @@ def do_http_request(url, method = :get, options = {})
     url: options[:cache_bust] ? cache_bust(url) : url,
     method: method,
     user: ENV['AUTH_USERNAME'],
-    password: ENV['AUTH_PASSWORD']
+    password: ENV['AUTH_PASSWORD'],
+    headers: { 'User-Agent' => 'Smokey Test / Ruby' }
   ).execute
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
