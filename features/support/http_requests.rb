@@ -25,7 +25,10 @@ def do_http_request(url, method = :get, options = {})
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
 rescue RestClient::Exception => e
-  raise "Unable to fetch '#{url}' due to '#{e}'"
+  message = ["Unable to fetch '#{url}'"]
+  message += ["  Exception: '#{e}'"]
+  message += ["  Response headers: #{e.response.headers.inspect}"]
+  raise message.join("\n")
 end
 
 def target_platform
