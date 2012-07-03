@@ -16,6 +16,7 @@ def cache_bust(url)
 end
 
 def do_http_request(url, method = :get, options = {})
+  started_at = Time.now
   RestClient::Request.new(
     url: options[:cache_bust] ? cache_bust(url) : url,
     method: method,
@@ -29,9 +30,11 @@ def do_http_request(url, method = :get, options = {})
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
 rescue RestClient::Exception => e
+  finished_at = Time.now
   message = ["Unable to fetch '#{url}'"]
   message += ["  Exception: '#{e}'"]
   message += ["  Response headers: #{e.response.headers.inspect}"]
+  message += ["  Response time in seconds: #{finished_at - started_at}"]
   raise message.join("\n")
 end
 
