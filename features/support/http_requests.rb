@@ -17,8 +17,9 @@ end
 
 def do_http_request(url, method = :get, options = {})
   started_at = Time.now
+  url = options[:cache_bust] ? cache_bust(url) : url
   RestClient::Request.new(
-    url: options[:cache_bust] ? cache_bust(url) : url,
+    url: url,
     method: method,
     user: ENV['AUTH_USERNAME'],
     password: ENV['AUTH_PASSWORD'],
