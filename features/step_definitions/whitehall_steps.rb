@@ -6,6 +6,7 @@ def follow_link_to_first_policy_on_policies_page
   html = get_request("#{@host}/government/policies", cache_bust: @bypass_varnish)
   doc = Nokogiri::HTML(html)
   link_to_policy = doc.at('.policy a')
+  assert link_to_policy.present?, "No policy links found"
   href = link_to_policy.attributes['href'].value
   get_request("#{@host}#{href}", cache_bust: @bypass_varnish)
 end
