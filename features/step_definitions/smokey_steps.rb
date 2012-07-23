@@ -48,7 +48,7 @@ Then /^I should be able to visit:$/ do |table|
 end
 
 Then /^I should not be able to access critical ports$/ do
-  ports_to_check = [17, 20, 21, 23, 25, 3306, 3724, 8080, 27017]
+  ports_to_check = [17, 20, 21, 23, 25, 3306, 3724, 27017] # 8080 is open for puppetDB console; we should close this again at some point
   ports_to_check.each do |port|
     connect_to_port(URI.parse(@host).host, port).should be_false, "Port #{port} appears to be open.  This shouldn't be the case."
   end
