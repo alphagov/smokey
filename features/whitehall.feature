@@ -5,12 +5,12 @@ Feature: Whitehall
     And I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to view policies
+    And I should be able to view publications
     Then I should be able to visit:
       | Path                          |
       | /government/                  |
       | /government/news-and-speeches |
       | /government/policy-topics     |
-      | /government/publications      |
       | /government/consultations     |
       | /government/ministers         |
       | /government/organisations     |
