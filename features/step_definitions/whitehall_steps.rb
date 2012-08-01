@@ -15,7 +15,7 @@ end
 Then /^I should be able to view specialist search results for "([^"]*)"$/ do |term|
   html = get_request "#{@host}/specialist/search?q=#{term}", cache_bust: @bypass_varnish
   doc = Nokogiri::HTML(html)
-  assert doc.css('.search_results li').count > 0, "No search results returned from /specialist/search for '#{term}'"
+  assert doc.css('.search-results li').count > 0, "No search results returned from /specialist/search for '#{term}'"
 end
 
 def follow_link_to_first_policy_on_policies_page
