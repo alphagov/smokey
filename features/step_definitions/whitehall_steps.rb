@@ -30,8 +30,9 @@ end
 def follow_link_to_first_publication_on_publications_page
   html = get_request("#{@host}/government/publications", cache_bust: @bypass_varnish)
   doc = Nokogiri::HTML(html)
-  link_to_publication = doc.at('.publication a')
+  link_to_publication = doc.at('#publications-container .publication a')
   assert link_to_publication.present?, "No publication links found"
   href = link_to_publication.attributes['href'].value
+  p "requesting #{@host}#{href}"
   get_request("#{@host}#{href}", cache_bust: @bypass_varnish)
 end
