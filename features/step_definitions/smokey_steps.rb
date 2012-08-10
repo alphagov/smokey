@@ -11,6 +11,7 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   when 'planner' then "https://planner.#{platform}.alphagov.co.uk/maternity"
   when 'search' then "https://search.#{platform}.alphagov.co.uk/search"
   when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
+  when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
   when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
   when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
   else

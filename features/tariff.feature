@@ -1,6 +1,7 @@
 Feature: Trade Tariff
 
   Scenario: Visiting trade tariff
+    Given the "tariff-backend" application has booted
     Given the "tariff-frontend" application has booted
     And I am testing through the full stack
     And I force a varnish cache miss
@@ -14,6 +15,7 @@ Feature: Trade Tariff
 
 
   Scenario: Searching trade tariff
+    Given the "tariff-backend" application has booted
     Given the "tariff-frontend" application has booted
     And I am testing through the full stack
     And I force a varnish cache miss
