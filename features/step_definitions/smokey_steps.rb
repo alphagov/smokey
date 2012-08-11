@@ -6,12 +6,14 @@ require 'mongo'
 Given /^the "(.*)" application has booted$/ do |app_name|
   platform = ENV['TARGET_PLATFORM'] || "preview"
   url = case app_name
-  when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
-  when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
-  when 'search' then "https://search.#{platform}.alphagov.co.uk/search"
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
   when 'planner' then "https://planner.#{platform}.alphagov.co.uk/maternity"
+  when 'search' then "https://search.#{platform}.alphagov.co.uk/search"
+  when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
+  when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
+  when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
+  when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
   else
     raise "Application '#{app_name}' not recognised, unable to boot it up"
   end
