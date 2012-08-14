@@ -1,5 +1,6 @@
 Feature: Planner
-
+  
+  @notnagios
   Scenario: check planner loads
     Given the "planner" application has booted
     And I am testing through the full stack
