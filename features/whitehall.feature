@@ -8,8 +8,9 @@ Feature: Whitehall
     And I should be able to view publications
     Then I should be able to visit:
       | Path                          |
+      | /specialist/                  |
       | /government/                  |
-      | /government/news-and-speeches |
+      | /government/announcements     |
       | /government/policy-topics     |
       | /government/consultations     |
       | /government/ministers         |
