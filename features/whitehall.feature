@@ -19,6 +19,13 @@ Feature: Whitehall
       | /government/search?q=foo      |
       | /BIS                          |
 
+  Scenario: Quickly loading the whitehall home page
+    Given the "whitehall" application has booted
+    And I am benchmarking
+    And I am testing through the full stack
+    When I visit "/government/"
+    Then the elapsed time should be less than 2 seconds
+
   Scenario: Searching government and specialist guides
     Given the "whitehall" application has booted
     And I am testing through the full stack
