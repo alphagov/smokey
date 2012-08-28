@@ -4,7 +4,7 @@ require 'stomp'
 require 'mongo'
 
 Given /^the "(.*)" application has booted$/ do |app_name|
-  platform = ENV['TARGET_PLATFORM'] || "preview"
+  platform = target_platform
   url = case app_name
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
