@@ -7,6 +7,7 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   platform = target_platform
   url = case app_name
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
+  when 'EFG' then efg_base_url
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
   when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
   when 'planner' then "https://planner.#{platform}.alphagov.co.uk/maternity"
