@@ -8,6 +8,7 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   url = case app_name
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
+  when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
   when 'planner' then "https://planner.#{platform}.alphagov.co.uk/maternity"
   when 'search' then "https://search.#{platform}.alphagov.co.uk/search"
   when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
