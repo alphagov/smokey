@@ -74,8 +74,3 @@ end
 Then /^I should get a (\d+) status code$/ do |status|
   @response.code.should == status.to_i
 end
-
-Then /^I should get content from the cache$/ do
-  @response.headers[:x_cache].should == "HIT"
-end
-

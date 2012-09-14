@@ -1,12 +1,5 @@
 Feature: Varnish Cache
 
-  @notnagios
-  Scenario: check cache is working
-    Given the "frontend" application has booted
-    And I am testing through the full stack
-    When I visit "/" 6 times
-    Then I should get content from the cache
-
   @pending
   Scenario: check all cache boxes are working
     When I visit some key urls on "<environment>-cache"
