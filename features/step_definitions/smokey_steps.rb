@@ -74,3 +74,7 @@ end
 Then /^I should get a (\d+) status code$/ do |status|
   @response.code.should == status.to_i
 end
+
+Then /^I should see "(.*)"$/ do |content|
+  @response.body.include?(content).should == true
+end
