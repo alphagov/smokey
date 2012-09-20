@@ -1,6 +1,5 @@
 Feature: Trade Tariff
 
-  @pending
   Scenario: Visiting trade tariff
     Given the "tariff-backend" application has booted
     Given the "tariff-frontend" application has booted
@@ -14,7 +13,6 @@ Feature: Trade Tariff
       | /trade-tariff/headings/0101           |
       | /trade-tariff/commodities/0101210000  |
 
-  @pending
   Scenario: Searching trade tariff
     Given the "tariff-backend" application has booted
     Given the "tariff-frontend" application has booted
