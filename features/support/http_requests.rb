@@ -9,13 +9,31 @@ def get_request(url, options = {})
   do_http_request(url, :get, options)
 end
 
+# Make a POST.
+# Options is expected to contain a :payload key which contains the payload for the POST request.
+def post_request(url, options = {})
+  do_http_request(url, :post, options) { |response, request, result, &block|
+
+    # 303 should have already been followed, 301, 302 and 307 don't get followed for post requests.
+    if [301, 302, 307].include? response.code
+
+      # Clone the existing request, but change the method to GET. This feels messy.
+      args = request.args
+      args[:method] = :get
+      response.follow_redirection(RestClient::Request.new(args), result, &block)
+    else
+      response.return!(request, result, &block)
+    end
+  }
+end
+
 def cache_bust(url)
   cache_bust = 'cache_bust=' + rand.to_s
   separator = url.include?("?") ? "&" : "?"
   "#{url}#{separator}#{cache_bust}"
 end
 
-def do_http_request(url, method = :get, options = {})
+def do_http_request(url, method = :get, options = {}, &block)
   started_at = Time.now
   url = options[:cache_bust] ? cache_bust(url) : url
   RestClient::Request.new(
@@ -26,8 +44,9 @@ def do_http_request(url, method = :get, options = {})
     headers: {
       'User-Agent' => 'Smokey Test / Ruby',
       'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-    }
-  ).execute
+    },
+    payload: options[:payload]
+  ).execute &block
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
 rescue RestClient::Exception => e
