@@ -3,5 +3,5 @@ When /^I try to visit the contracts finder home page$/ do
 end
 
 Then /^I should be on the contracts finder home page$/ do
-  @response.body.include? "Welcome"
+  @response.body.include?("Welcome").should == true
 end
