@@ -11,3 +11,8 @@ Feature: EFG
     When I visit the EFG home page
     Then the elapsed time should be less than 1 seconds
 
+  Scenario: Can log in
+    Given the "EFG" application has booted
+    When I try to login as a lender user
+    Then I should be on the EFG lender user home page
+
