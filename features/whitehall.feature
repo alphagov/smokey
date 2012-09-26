@@ -7,16 +7,18 @@ Feature: Whitehall
     Then I should be able to view policies
     And I should be able to view publications
     Then I should be able to visit:
-      | Path                          |
-      | /specialist/                  |
-      | /government/                  |
-      | /government/announcements     |
-      | /government/policy-topics     |
-      | /government/consultations     |
-      | /government/ministers         |
-      | /government/organisations     |
-      | /government/world             |
-      | /BIS                          |
+      | Path                             |
+      | /specialist/                     |
+      | /specialist/search?q=search-term |
+      | /government/                     |
+      | /government/search?q=search-term |
+      | /government/announcements        |
+      | /government/policy-topics        |
+      | /government/consultations        |
+      | /government/ministers            |
+      | /government/organisations        |
+      | /government/world                |
+      | /BIS                             |
 
   Scenario: Quickly loading the whitehall home page
     Given the "whitehall" application has booted
