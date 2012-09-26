@@ -24,11 +24,3 @@ Feature: Whitehall
     And I am testing through the full stack
     When I visit "/government/"
     Then the elapsed time should be less than 2 seconds
-
-  @ignore
-  Scenario: Searching government and specialist guides
-    Given the "whitehall" application has booted
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    Then I should be able to view government search results for "revenue"
-    And I should be able to view specialist search results for "revenue"
