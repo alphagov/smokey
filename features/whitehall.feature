@@ -16,7 +16,6 @@ Feature: Whitehall
       | /government/ministers         |
       | /government/organisations     |
       | /government/world             |
-      | /government/search?q=foo      |
       | /BIS                          |
 
   Scenario: Quickly loading the whitehall home page
@@ -26,6 +25,7 @@ Feature: Whitehall
     When I visit "/government/"
     Then the elapsed time should be less than 2 seconds
 
+  @ignore
   Scenario: Searching government and specialist guides
     Given the "whitehall" application has booted
     And I am testing through the full stack
