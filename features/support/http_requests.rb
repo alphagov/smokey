@@ -13,11 +13,18 @@ end
 # Options is expected to contain a :payload key which contains the payload for the POST request.
 def post_request(url, options = {})
   do_http_request(url, :post, options) { |response, request, result, &block|
-    if [301, 302, 303, 307].include? response.code
+
+    # This happens for a 303 already - https://github.com/archiloque/rest-client/commit/1b97ddeb74
+    if [301, 302, 307].include? response.code
 
       # Clone the existing request, but change POST to GET a la standard browser behaviour. I know.
       args = request.args
-      args[:method] = :get if args[:method] == :post
+
+      if args[:method] == :post
+        args[:method] = :get
+        args.delete :payload  
+      end
+
       response.follow_redirection(RestClient::Request.new(args), result, &block)
     else
       response.return!(request, result, &block)

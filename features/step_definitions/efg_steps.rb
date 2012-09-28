@@ -12,9 +12,17 @@ When /^I visit the EFG home page$/ do
 end
 
 Then /^I should be on the EFG home page$/ do
-  @response.body.include?("Sign In").should be_true
+  steps %Q{
+    Then I should see "user_username"
+    And I should see "user_password"
+    And I should see "Sign In"
+  }
 end
 
 Then /^I should be on the EFG lender user home page$/ do
-  @response.body.include?("Start New Loan Application").should be_true
+  steps %Q{
+    Then I should see "alert-success"
+    And I should see "loan_alerts"
+    And I should see "utilisation_dashboard"
+  }
 end
