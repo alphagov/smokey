@@ -13,8 +13,6 @@ end
 # Options is expected to contain a :payload key which contains the payload for the POST request.
 def post_request(url, options = {})
   do_http_request(url, :post, options) { |response, request, result, &block|
-
-    # 303 should have already been followed, 301, 302 and 307 don't get followed for post requests.
     if [301, 302, 303, 307].include? response.code
 
       # Clone the existing request, but change POST to GET a la standard browser behaviour. I know.
