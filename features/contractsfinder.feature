@@ -1,9 +1,11 @@
 Feature: Contracts Finder
 
+  @low
   Scenario: is available
     When I try to visit the contracts finder home page
     Then I should be on the contracts finder home page
 
+  @low
   Scenario: Quickly loading the contracts finder home page
     Given I am benchmarking
     When I try to visit the contracts finder home page
