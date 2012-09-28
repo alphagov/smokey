@@ -15,11 +15,11 @@ def post_request(url, options = {})
   do_http_request(url, :post, options) { |response, request, result, &block|
 
     # 303 should have already been followed, 301, 302 and 307 don't get followed for post requests.
-    if [301, 302, 307].include? response.code
+    if [301, 302, 303, 307].include? response.code
 
-      # Clone the existing request, but change the method to GET. This feels messy.
+      # Clone the existing request, but change POST to GET a la standard browser behaviour. I know.
       args = request.args
-      args[:method] = :get
+      args[:method] = :get if args[:method] == :post
       response.follow_redirection(RestClient::Request.new(args), result, &block)
     else
       response.return!(request, result, &block)
