@@ -21,6 +21,10 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   head_request(url)
 end
 
+Given /^I am testing "(.*)"/ do |host|
+  @host = host
+end
+
 Given /^I am testing through the full stack$/ do
   @host = base_url
   @bypass_varnish = false
@@ -76,4 +80,16 @@ end
 
 Then /^I should see "(.*)"$/ do |content|
   @response.body.include?(content).should == true
+end
+
+When /^I do a search for consultancy in the See Live Opportunities Section$/ do
+  @response = get_request("#{@host}/Search%20Contracts/Search%20Contracts%20Results.aspx?site=1002&lang=en&sc=095268e8-030d-4ad6-a7d9-81827a64f32c")
+end
+
+When /^I do a search for computer in the what's being bought by government$/ do
+  @response = get_request("#{@host}/Search%20Contracts/Search%20Contracts%20Results.aspx?site=1002&lang=en&sc=fdd1df44-c8e8-4f2b-b990-e3a0fdd28ae2")
+end
+
+Then /^I should see some results$/ do
+  @response.body.include?("No results found").should == false
 end

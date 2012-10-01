@@ -1,13 +1,22 @@
 Feature: Contracts Finder
 
-  @low
-  Scenario: is available
-    When I try to visit the contracts finder home page
-    Then I should be on the contracts finder home page
+@medium
+Scenario: contracts finder availability
+  Given I am testing "http://www.contractsfinder.businesslink.gov.uk"
+  Then I should be able to visit:
+    | Path    |
+    | /       |
+    | /help   |
+    | /search |
 
-  @low
-  Scenario: Quickly loading the contracts finder home page
-    Given I am benchmarking
-    When I try to visit the contracts finder home page
-    Then the elapsed time should be less than 3 seconds
+@medium
+Scenario: contracts finder search
+  Given I am testing "http://www.contractsfinder.businesslink.gov.uk"
+  When I do a search for consultancy in the See Live Opportunities Section
+  Then I should see some results
 
+@medium
+Scenario: contracts finder government purchases
+  Given I am testing "http://www.contractsfinder.businesslink.gov.uk/"
+  When I do a search for computer in the what's being bought by government
+  Then I should see some results
