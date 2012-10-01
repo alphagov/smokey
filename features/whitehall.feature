@@ -18,7 +18,7 @@ Feature: Whitehall
       | /government/ministers            |
       | /government/organisations        |
       | /government/world                |
-      | /BIS                             |
+      | /bis                             |
 
   Scenario: Quickly loading the whitehall home page
     Given the "whitehall" application has booted
