@@ -22,7 +22,7 @@ test features/apollo.feature is added to nagios like this:
       #other feature tests
     }
 
-## Prioritsing scenarios
+## Prioritising scenarios
 
 Each scenario can and should be prioritised by using the @high, @medium or 
 @low cucumber tags. For example, the frontend.feature scenario "check guides 
