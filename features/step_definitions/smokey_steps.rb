@@ -10,7 +10,6 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   when 'EFG' then efg_base_url
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
   when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
-  when 'planner' then "https://planner.#{platform}.alphagov.co.uk/maternity"
   when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
   when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
   when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
