@@ -9,7 +9,6 @@ Feature: Whitehall
     Then I should be able to visit:
       | Path                             |
       | /specialist/                     |
-      | /specialist/search?q=search-term |
       | /government/                     |
       | /government/search?q=search-term |
       | /government/announcements        |
