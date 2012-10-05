@@ -22,7 +22,7 @@ def post_request(url, options = {})
 
       if args[:method] == :post
         args[:method] = :get
-        args.delete :payload  
+        args.delete :payload
       end
 
       response.follow_redirection(RestClient::Request.new(args), result, &block)
@@ -73,4 +73,8 @@ def base_url
   else
     "https://www.#{target_platform}.alphagov.co.uk"
   end
+end
+
+def plek
+  Plek.new(target_platform)
 end

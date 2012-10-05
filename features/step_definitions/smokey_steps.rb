@@ -38,7 +38,7 @@ When /^I visit "(.*)"$/ do |path|
 end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
-  application_host = Plek.current.find(application)
+  application_host = plek.find(application)
   @response = get_request("#{application_host}#{path}", cache_bust: @bypass_varnish)
 end
 
