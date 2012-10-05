@@ -8,7 +8,6 @@ Feature: Whitehall
     And I should be able to view publications
     Then I should be able to visit:
       | Path                             |
-      | /specialist/                     |
       | /government/                     |
       | /government/search?q=search-term |
       | /government/announcements        |
