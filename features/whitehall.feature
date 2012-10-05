@@ -25,3 +25,10 @@ Feature: Whitehall
     And I am testing through the full stack
     When I visit "/government/"
     Then the elapsed time should be less than 2 seconds
+
+  Scenario: Whitehall can connect to the database
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    When I visit "/healthcheck"
+    Then I should get a 200 status code
