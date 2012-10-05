@@ -1,5 +1,6 @@
 Feature: Whitehall
 
+  @notnagios
   Scenario: Visiting whitehall
     Given the "whitehall" application has booted
     And I am testing through the full stack
@@ -18,6 +19,7 @@ Feature: Whitehall
       | /government/world                |
       | /bis                             |
 
+  @notnagios
   Scenario: Quickly loading the whitehall home page
     Given the "whitehall" application has booted
     And I am benchmarking
@@ -25,6 +27,7 @@ Feature: Whitehall
     When I visit "/government/"
     Then the elapsed time should be less than 2 seconds
 
+  @local-network
   Scenario: Whitehall frontend can connect to the database
     Given the "whitehall" application has booted
     And I am testing through the full stack
@@ -32,6 +35,7 @@ Feature: Whitehall
     When I visit "/healthcheck" on the "whitehall-frontend" application
     Then I should get a 200 status code
 
+  @local-network
   Scenario: Whitehall admin can connect to the database
     Given the "whitehall" application has booted
     And I am testing through the full stack
