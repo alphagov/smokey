@@ -37,6 +37,11 @@ When /^I visit "(.*)"$/ do |path|
   @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
 end
 
+When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
+  application_host = Plek.current.find(application)
+  @response = get_request("#{application_host}#{path}", cache_bust: @bypass_varnish)
+end
+
 When /^I visit "(.*)" (\d+) times$/ do |path, count|
   count.to_i.times {
     @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
