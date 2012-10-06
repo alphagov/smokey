@@ -5,26 +5,44 @@ Feature: Frontend
     And I am testing through the full stack
     And I force a varnish cache miss
 
+  @normal
   Scenario: check quick answers load
     When I visit "/vat-rates"
     Then I should see "VAT rates"
 
+  @normal
   Scenario: check guides load
     When I visit "/getting-an-mot/overview"
     Then I should see "Getting an MOT"
 
+  @normal
   Scenario: check transactions load
     When I visit "/apply-renew-passport"
     Then I should see "UK passport"
 
+  @normal
   Scenario: check benefit schemes load
     When I visit "/pension-credit"
     Then I should see "Pension Credit"
 
+  @normal
   Scenario: check licences load
     When I visit "/busking-licence"
     Then I should see "Busking licence"
 
+  @normal
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
+
+  @normal
+  Scenario: check find my nearest (places) load
+    When I visit "/uk-online-centre-internet-access-computer-training"
+    Then I should get a 200 status code
+    And I should see "UK online centres"
+
+  @normal
+  Scenario: check campaign pages load
+    When I visit "/workplacepensions"
+    Then I should get a 200 status code
+    And I should see "Automatic enrolment into a workplace pension"
