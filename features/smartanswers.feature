@@ -8,15 +8,13 @@ Feature: Smart Answers
     Then I should be able to visit:
       | Path                                        |
       | /additional-commodity-code                  |
-      | /am-i-getting-minimum-wage                  |
-      | /appeal-a-benefits-decision                 |
-      | /apply-for-probate                          |
-      | /auto-enrolled-into-workplace-pension       |
       | /become-a-driving-instructor                |
       | /become-a-motorcycle-instructor             |
-      | /benefits-if-you-are-abroad                 |
-      | /calculate-agricultural-holiday-entitlement |
+      | /calculate-employee-redundancy-pay          |
+      | /calculate-married-couples-allowance        |
+      | /legal-right-to-work-in-the-uk              |
       | /maternity-benefits                         |
+      | /register-a-death                           |
 
     @normal
     Scenario: step through a smart answer
