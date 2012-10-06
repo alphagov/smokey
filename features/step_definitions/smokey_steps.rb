@@ -14,6 +14,7 @@ Given /^the "(.*)" application has booted$/ do |app_name|
   when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
   when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
   when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
+  when 'signon' then signon_base_url
   else
     raise "Application '#{app_name}' not recognised, unable to boot it up"
   end
