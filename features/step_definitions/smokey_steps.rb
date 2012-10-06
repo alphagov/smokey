@@ -6,6 +6,7 @@ require 'mongo'
 Given /^the "(.*)" application has booted$/ do |app_name|
   platform = target_platform
   url = case app_name
+  when 'businesssupportfinder' then "https://businesssupportfinder.#{platform}.alphagov.co.uk/business-finance-support-finder"
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
   when 'EFG' then efg_base_url
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
