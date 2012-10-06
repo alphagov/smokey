@@ -46,3 +46,8 @@ Feature: Frontend
     When I visit "/workplacepensions"
     Then I should get a 200 status code
     And I should see "Automatic enrolment into a workplace pension"
+
+  @normal
+  Scenario: check related links box is present
+    When I visit "/vat-rates"
+    Then I should see "Other relevant links"
