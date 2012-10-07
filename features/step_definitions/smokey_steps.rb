@@ -4,20 +4,7 @@ require 'stomp'
 require 'mongo'
 
 Given /^the "(.*)" application has booted$/ do |app_name|
-  platform = target_platform
-  url = case app_name
-  when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
-  when 'EFG' then efg_base_url
-  when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
-  when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
-  when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
-  when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
-  when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
-  when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
-  when 'signon' then signon_base_url
-  else
-    raise "Application '#{app_name}' not recognised, unable to boot it up"
-  end
+  url = application_base_url(app_name)
   head_request(url)
 end
 
@@ -32,6 +19,11 @@ end
 
 Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
+end
+
+When /^I go to the "([^"]*)" landing page$/ do |app_name|
+  url = application_base_url(app_name)
+  @response = get_request(url, cache_busy: @bypass_varnish)
 end
 
 When /^I visit "(.*)"$/ do |path|
