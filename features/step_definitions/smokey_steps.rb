@@ -78,8 +78,8 @@ end
 Then /^I should see "(.*)"$/ do |content|
   if @response
     @response.body.include?(content).should == true
-  elsif webrat.response
-    webrat.response.body.include?(content).should == true
+  elsif page
+    page.body.include?(content).should == true
   end
 end
 
