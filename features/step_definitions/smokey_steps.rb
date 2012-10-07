@@ -84,7 +84,11 @@ Then /^I should get a (\d+) status code$/ do |status|
 end
 
 Then /^I should see "(.*)"$/ do |content|
-  @response.body.include?(content).should == true
+  if @response
+    @response.body.include?(content).should == true
+  elsif webrat.response
+    webrat.response.body.include?(content).should == true
+  end
 end
 
 When /^I do a search for consultancy in the See Live Opportunities Section$/ do
