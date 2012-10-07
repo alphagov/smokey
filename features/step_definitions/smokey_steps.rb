@@ -23,7 +23,12 @@ end
 
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
   url = application_base_url(app_name)
-  @response = get_request(url, cache_busy: @bypass_varnish)
+  parsed_url = URI.parse(url)
+  base_host = "#{parsed_url.scheme}://#{parsed_url.host}"
+
+  page.driver.browser.agent.add_auth(base_host, ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD'])
+
+  visit url
 end
 
 When /^I visit "(.*)"$/ do |path|

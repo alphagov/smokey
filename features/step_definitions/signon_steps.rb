@@ -6,9 +6,5 @@ When /^I try to login as a user$/ do
   fill_in "Email", :with => ENV["SIGNON_EMAIL"]
   fill_in "Passphrase", :with => ENV["SIGNON_PASSWORD"]
   click_button "Sign in"
-
-  # Explicitly go back to the homepage as webrat/mechanize aren't
-  # following redirects
-  visit signon_base_url
 end
 
