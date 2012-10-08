@@ -42,3 +42,19 @@ Feature: Whitehall
     And I force a varnish cache miss
     When I visit "/healthcheck" on the "whitehall-admin" application
     Then I should get a 200 status code
+
+  @local-network
+  Scenario: Whitehall frontend database should be fast
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    When I visit "/healthcheck" on the "whitehall-frontend" application
+    Then the elapsed time should be less than 1 second
+
+  @local-network
+  Scenario: Whitehall admin database should be fast
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    When I visit "/healthcheck" on the "whitehall-admin" application
+    Then the elapsed time should be less than 1 second
