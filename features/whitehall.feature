@@ -19,15 +19,8 @@ Feature: Whitehall
       | /government/world                |
       | /bis                             |
 
-  @notnagios
-  Scenario: Quickly loading the whitehall home page
-    Given the "whitehall" application has booted
-    And I am benchmarking
-    And I am testing through the full stack
-    When I visit "/government/"
-    Then the elapsed time should be less than 2 seconds
-
   @local-network
+  @high
   Scenario: Whitehall frontend can connect to the database
     Given the "whitehall" application has booted
     And I am testing through the full stack
@@ -36,6 +29,7 @@ Feature: Whitehall
     Then I should get a 200 status code
 
   @local-network
+  @medium
   Scenario: Whitehall admin can connect to the database
     Given the "whitehall" application has booted
     And I am testing through the full stack
@@ -44,16 +38,30 @@ Feature: Whitehall
     Then I should get a 200 status code
 
   @local-network
+  @medium
   Scenario: Whitehall frontend database should be fast
     Given the "whitehall" application has booted
+    And I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
     When I visit "/healthcheck" on the "whitehall-frontend" application
     Then the elapsed time should be less than 1 second
 
   @local-network
+  @low
+  Scenario: Whitehall frontend website should be fast
+    Given the "whitehall" application has booted
+    And I am benchmarking
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    When I visit "/government/" on the "whitehall-frontend" application
+    Then the elapsed time should be less than 2 seconds
+
+  @local-network
+  @low
   Scenario: Whitehall admin database should be fast
     Given the "whitehall" application has booted
+    And I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
     When I visit "/healthcheck" on the "whitehall-admin" application
