@@ -10,6 +10,7 @@ def application_base_url(app_name)
   platform = target_platform
   case app_name
   when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
+    when 'businesssupportfinder' then "https://businesssupportfinder.#{platform}.alphagov.co.uk/business-finance-support-finder"
   when 'EFG' then "https://efg.#{target_platform}.alphagov.co.uk"
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
   when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
