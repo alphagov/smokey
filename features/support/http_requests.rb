@@ -63,18 +63,6 @@ rescue RestClient::Exception => e
   raise message.join("\n")
 end
 
-def target_platform
-  ENV["TARGET_PLATFORM"] || "preview"
-end
-
-def base_url
-  if target_platform == "production"
-    "https://www.gov.uk"
-  else
-    "https://www.#{target_platform}.alphagov.co.uk"
-  end
-end
-
 def plek
   Plek.new(target_platform)
 end

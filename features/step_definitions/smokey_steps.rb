@@ -4,20 +4,7 @@ require 'stomp'
 require 'mongo'
 
 Given /^the "(.*)" application has booted$/ do |app_name|
-  platform = target_platform
-  url = case app_name
-  when 'businesssupportfinder' then "https://businesssupportfinder.#{platform}.alphagov.co.uk/business-finance-support-finder"
-  when 'calendars' then "http://calendars.#{platform}.alphagov.co.uk/bank-holidays"
-  when 'EFG' then efg_base_url
-  when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
-  when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
-  when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
-  when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
-  when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
-  when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
-  else
-    raise "Application '#{app_name}' not recognised, unable to boot it up"
-  end
+  url = application_base_url(app_name)
   head_request(url)
 end
 
@@ -32,6 +19,16 @@ end
 
 Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
+end
+
+When /^I go to the "([^"]*)" landing page$/ do |app_name|
+  url = application_base_url(app_name)
+  parsed_url = URI.parse(url)
+  base_host = "#{parsed_url.scheme}://#{parsed_url.host}"
+
+  page.driver.browser.agent.add_auth(base_host, ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD'])
+
+  visit url
 end
 
 When /^I visit "(.*)"$/ do |path|
@@ -84,7 +81,11 @@ Then /^I should get a (\d+) status code$/ do |status|
 end
 
 Then /^I should see "(.*)"$/ do |content|
-  @response.body.include?(content).should == true
+  if @response
+    @response.body.include?(content).should == true
+  elsif page
+    page.body.include?(content).should == true
+  end
 end
 
 When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
