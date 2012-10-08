@@ -44,13 +44,13 @@ Feature: Frontend
 
   @normal
   Scenario: check find my nearest returns results
-    When I try to post to "/uk-online-centre-internet-access-computer-training.json" with "lat=51.51502281807959&lon=-0.12151737435844158"
+    When I try to post to "/ukonline-centre-internet-access-computer-training.json" with "lat=51.51502281807959&lon=-0.12151737435844158"
     Then I should get a 200 status code
     And I should see "Holborn Library"
 
   @normal
   Scenario: check find my nearest (places) load
-    When I visit "/uk-online-centre-internet-access-computer-training"
+    When I visit "/ukonline-centre-internet-access-computer-training"
     Then I should get a 200 status code
     And I should see "UK online centres"
 
