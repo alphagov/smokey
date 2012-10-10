@@ -63,6 +63,12 @@ rescue RestClient::Exception => e
   raise message.join("\n")
 end
 
+def single_http_request(url)
+  started_at = Time.now
+  uri = URI(url)
+  Net::HTTP::get_response(uri)
+end
+
 def plek
   Plek.new(target_platform)
 end
