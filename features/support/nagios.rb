@@ -10,8 +10,8 @@ module Cucumber
         @warning = []
         @io = io
       end
-  
-      def after_step_result(keyword, step_match, multiline_arg, status, exception, source_indent, background)
+
+      def after_step_result(keyword, step_match, multiline_arg, status, exception, source_indent, background, file_colon_line)
         case status
         when :passed
           @passed << step_match
