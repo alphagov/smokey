@@ -35,6 +35,10 @@ When /^I visit "(.*)"$/ do |path|
   @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
 end
 
+When /^I visit "(.*)" without following redirects$/ do |path|
+  @response = single_http_request("#{@host}#{path}")
+end
+
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
   application_host = plek.find(application)
   @response = get_request("#{application_host}#{path}", cache_bust: @bypass_varnish)
@@ -77,7 +81,11 @@ Then /^I should receive no results/ do
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
-  @response.code.should == status.to_i
+  @response.code.to_i.should == status.to_i
+end
+
+Then /^I should get a location of "(.*)"$/ do |location|
+  @response['location'].should == location
 end
 
 Then /^I should see "(.*)"$/ do |content|
