@@ -17,7 +17,7 @@ Feature: Frontend
 
   @normal
   Scenario: check transactions load
-    When I visit "/apply-renew-passport"
+    When I visit "/track-your-passport-application"
     Then I should see "UK passport"
 
   @normal
