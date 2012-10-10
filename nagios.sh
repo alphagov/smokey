@@ -5,7 +5,7 @@ cd /opt/smokey;
 source /etc/smokey.sh
 
 if [ x$2 = xunprio ]; then
-  ARG="-t ~@urgent ~@high -t ~@normal -t ~@low"
+  ARG="-t ~@urgent -t ~@high -t ~@normal -t ~@low"
 else
   ARG="-t @$2"
 fi
