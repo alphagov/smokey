@@ -19,4 +19,5 @@ esac
 
 for server in $DEPLOY_TO; do
     rsync -av --delete --exclude='.git' "$(pwd)/" "deploy@${server}":/opt/smokey
+    ssh deploy@${server} 'cd /opt/smokey && bundle install'
 done 
