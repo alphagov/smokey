@@ -17,7 +17,7 @@ else
 fi
 
 for i in `find features -name "*.feature"`; do
-  for priority in high medium low unprio; do
+  for priority in urgent high medium normal low unprio; do
     if [ "x${priority}" != "xunprio" ]; then
       runpriority="-t @${priority}";
     else
