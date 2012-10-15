@@ -13,8 +13,8 @@ fi
 MTIME=`stat -c %Y "$CHECKFILE"`
 NOW=`date +%s`
 let AGE=NOW-MTIME
-if [ $AGE -gt 300 ]; then
-  echo "UNKNOWN: Cache file $CHECKFILE older than 300s ($AGE)"
+if [ $AGE -gt 600 ]; then
+  echo "UNKNOWN: Cache file $CHECKFILE older than 600s ($AGE)"
   exit 3
 fi
 
