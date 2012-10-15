@@ -21,10 +21,11 @@ for i in `find features -name "*.feature"`; do
     if [ "x${priority}" != "xunprio" ]; then
       runpriority="-t @${priority}";
     else
-      runpriority="-t ~@high -t ~@medium -t ~@low";
+      runpriority="-t ~@urgent -t ~@high -t ~@normal -t ~@medium -t ~@low";
     fi
     tmpfeature=${i##*/}
     feature=${tmpfeature%%.*}
+    echo "smokey run $feature $priority"
     bundle exec cucumber $i --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notnagios $runpriority > /tmp/smokey_${feature}_${priority}
   done;
 done;
