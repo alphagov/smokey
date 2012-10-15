@@ -12,7 +12,7 @@ Feature: Frontend
 
   @normal
   Scenario: check guides load
-    When I visit "/getting-an-mot/overview"
+    When I visit "/getting-an-mot"
     Then I should see "Getting an MOT"
 
   @normal
