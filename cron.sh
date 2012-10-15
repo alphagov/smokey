@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ -f /tmp/smokey_running ]; then
+  echo "Smokey is already running"
+  exit 1
+fi
+
+touch /tmp/smokey_running
 cd /opt/smokey;
 
 source /etc/smokey.sh
@@ -22,3 +28,5 @@ for i in `find features -name "*.feature"`; do
     bundle exec cucumber $i --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notnagios $runpriority > /tmp/smokey_${feature}_${priority}
   done;
 done;
+
+rm /tmp/smokey_running
