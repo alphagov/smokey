@@ -11,8 +11,9 @@ Feature: Business Support Finder
       | /business-finance-support-finder/sectors                                                                                    |
       | /business-finance-support-finder/stage?sectors=education                                                                    |
       | /business-finance-support-finder/structure?sectors=education&stage=pre-startup                                              |
-      | /business-finance-support-finder/location?sectors=education&stage=start-up&structure=private-company                        |
-      | /business-finance-support-finder/support-options?location=wales&sectors=education&stage=start-up&structure=private-company  |
+      | /business-finance-support-finder/types?sectors=education&stage=pre-startup&structure=private-company                        |
+      | /business-finance-support-finder/location?sectors=education&stage=start-up&structure=private-company&types=finance          |
+      | /business-finance-support-finder/support-options?location=wales&sectors=education&stage=start-up&structure=private-company&types=finance  |
 
   @low
   Scenario: Quickly loading the business support finder home page
