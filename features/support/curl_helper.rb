@@ -21,7 +21,7 @@ end
 def fetch_url_with_dns_override(url_string, ip)
   url = URI(url_string)
 
-  rate_limiting_busting_headers = %Q('X-Forwarded-For: 10.0.0.#{rand(256)}')
+  rate_limiting_busting_headers = %Q(-H 'X-Forwarded-For: 10.0.0.#{rand(256)}')
 
   output_only_headers = "-I"
   authentication = if ENV['AUTH_USERNAME'] && ENV['AUTH_PASSWORD']
