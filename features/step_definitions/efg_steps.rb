@@ -21,17 +21,12 @@ When /^I visit the EFG home page$/ do
 end
 
 Then /^I should be on the EFG home page$/ do
-  steps %Q{
-    Then I should see "user_username"
-    And I should see "user_password"
-    And I should see "Sign In"
-  }
+  page.has_selector? "#user_username"
+  page.has_selector? "#user_password"
 end
 
 Then /^I should be on the EFG lender user home page$/ do
-  steps %Q{
-    Then I should see "alert-success"
-    And I should see "loan_alerts"
-    And I should see "utilisation_dashboard"
-  }
+  page.has_selector? "#alert-success"
+  page.has_selector? "#loan_alerts"
+  page.has_selector? "#utilisation_dashboard"
 end
