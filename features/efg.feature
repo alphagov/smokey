@@ -16,6 +16,6 @@ Feature: EFG
   @normal @pending
   Scenario: Can log in
     Given the "EFG" application has booted
-    When I try to login as a valid EFG user
-    Then I should be on the EFG post-login page
+    When I try to login as a lender user
+    Then I should be on the EFG lender user home page
 
