@@ -14,6 +14,7 @@ def application_base_url(app_name)
   when 'EFG' then "https://efg.#{target_platform}.alphagov.co.uk"
   when 'frontend' then "https://frontend.#{platform}.alphagov.co.uk/"
   when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
+  when 'licensing' then "https://licensify.#{platform}.alphagov.co.uk/apply-for-a-licence"
   when 'panopticon' then "https://panopticon.#{platform}.alphagov.co.uk/"
   when 'publisher' then "https://publisher.#{platform}.alphagov.co.uk/admin"
   when 'signon' then "https://signon.#{target_platform}.alphagov.co.uk/"
