@@ -8,6 +8,5 @@ gem "capybara-mechanize"
 
 gem "rspec"
 gem "rest-client"
-gem "mysql2"
 gem "stomp"
 gem "nokogiri"
