@@ -10,7 +10,6 @@ Feature: Whitehall
     Then I should be able to visit:
       | Path                             |
       | /government/                     |
-      | /government/search?q=search-term |
       | /government/announcements        |
       | /government/policy-topics        |
       | /government/consultations        |
