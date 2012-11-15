@@ -17,6 +17,22 @@ Feature: Whitehall
       | /government/organisations        |
       | /government/world                |
       | /bis                             |
+      | /brac                            |
+      | /cabinetoffice                   |
+      | /communities                     |
+      | /dclg                            |
+      | /defra                           |
+      | /dfid                            |
+      | /dft                             |
+      | /dh                              |
+      | /dsa                             |
+      | /fco                             |
+      | /hmrc                            |
+      | /mod                             |
+      | /moj                             |
+      | /pins                            |
+      | /planning-inspectorate           |
+      | /transport                       |
 
   @local-network
   @high
