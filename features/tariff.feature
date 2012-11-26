@@ -1,6 +1,7 @@
 Feature: Trade Tariff
 
   @normal
+  @pending
   Scenario: Visiting trade tariff
     Given the "tariff-backend" application has booted
     Given the "tariff-frontend" application has booted
@@ -15,6 +16,7 @@ Feature: Trade Tariff
       | /trade-tariff/commodities/0101210000  |
 
   @normal
+  @pending
   Scenario: Displaying Grouped headings
     Given the "tariff-backend" application has booted
       And the "tariff-frontend" application has booted
@@ -25,6 +27,7 @@ Feature: Trade Tariff
     Then I should see "6309000000"
 
   @normal
+  @pending
   Scenario: Searching trade tariff
     Given the "tariff-backend" application has booted
     Given the "tariff-frontend" application has booted
