@@ -16,23 +16,29 @@ Feature: Whitehall
       | /government/ministers            |
       | /government/organisations        |
       | /government/world                |
-      | /bis                             |
-      | /brac                            |
-      | /cabinetoffice                   |
-      | /communities                     |
-      | /dclg                            |
-      | /defra                           |
-      | /dfid                            |
-      | /dft                             |
-      | /dh                              |
-      | /dsa                             |
-      | /fco                             |
-      | /hmrc                            |
-      | /mod                             |
-      | /moj                             |
-      | /pins                            |
-      | /planning-inspectorate           |
-      | /transport                       |
+
+  @medium
+  Scenario: Department short URLs work correctly
+    Given I am testing through the full stack
+    Then I should be able to visit:
+          | Path                   |
+          | /bis                   |
+          | /brac                  |
+          | /cabinetoffice         |
+          | /communities           |
+          | /dclg                  |
+          | /defra                 |
+          | /dfid                  |
+          | /dft                   |
+          | /dh                    |
+          | /dsa                   |
+          | /fco                   |
+          | /hmrc                  |
+          | /mod                   |
+          | /moj                   |
+          | /pins                  |
+          | /planning-inspectorate |
+          | /transport             |
 
   @local-network
   @high
