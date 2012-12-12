@@ -22,6 +22,7 @@ Feature: Whitehall
     Given I am testing through the full stack
     Then I should be able to visit:
           | Path                   |
+          | /ago                   |
           | /bis                   |
           | /brac                  |
           | /cabinetoffice         |
