@@ -34,7 +34,6 @@ Feature: Whitehall
           | /dh                    |
           | /dsa                   |
           | /fco                   |
-          | /g8                    |
           | /hmrc                  |
           | /mod                   |
           | /moj                   |
