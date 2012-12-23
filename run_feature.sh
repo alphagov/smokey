@@ -9,6 +9,8 @@ fi
 
 touch /tmp/smokey_running_${feature}
 
+sleep $(($RANDOM/1000))
+
 for priority in urgent high medium normal low unprio; do
     if [ "x${priority}" != "xunprio" ]; then
       runpriority="-t @${priority}";
