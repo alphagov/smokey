@@ -11,6 +11,7 @@ source /etc/smokey.sh
 
 for i in `find features -name "*.feature"`; do
   bundle exec ./run_feature.sh $i &
+  sleep 5
 done;
 # Let all the subcommands spin up
 sleep 10
