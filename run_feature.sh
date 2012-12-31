@@ -11,14 +11,13 @@ touch /tmp/smokey_running_${feature}
 
 sleep $(($RANDOM/1000))
 
-for priority in urgent high normal low unprio; do
-    if [ "x${priority}" != "xunprio" ]; then
-      runpriority="-t @${priority}";
+for priority in urgent high normal low; do
+    tests=`grep -c "@${priority}" $1`
+    if [ $tests > 0 ]; then
+      cucumber $1 --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios -t @${priority} > /tmp/smokey_${feature}_${priority}
     else
-      runpriority="-t ~@urgent -t ~@high -t ~@normal -t ~@medium -t ~@low";
+      echo "Critical: 0, Warning: 0, 0 okay | No tests at this priority" >/tmp/smokey_${feature}_${priority}
     fi
-    #echo "running $feature $runpriority"
-    cucumber $1 --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios $runpriority > /tmp/smokey_${feature}_${priority}
 done;
 
 rm /tmp/smokey_running_${feature}
