@@ -1,5 +1,6 @@
 Feature: Search
 
+  @high
   Scenario: check search loads
     Given I am testing through the full stack
     And the "frontend" application has booted
