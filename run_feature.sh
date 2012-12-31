@@ -13,7 +13,7 @@ sleep $(($RANDOM/1000))
 
 for priority in urgent high normal low; do
     tests=`grep -c "@${priority}" $1`
-    if [ $tests > 0 ]; then
+    if [ $tests -gt 0 ]; then
       cucumber $1 --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios -t @${priority} > /tmp/smokey_${feature}_${priority}
     else
       echo "Critical: 0, Warning: 0, 0 okay | No tests at this priority" >/tmp/smokey_${feature}_${priority}
