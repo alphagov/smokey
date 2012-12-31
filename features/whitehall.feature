@@ -17,7 +17,7 @@ Feature: Whitehall
       | /government/organisations        |
       | /government/world                |
 
-  @medium
+  @normal
   Scenario: Department short URLs work correctly
     Given I am testing through the full stack
     Then I should be able to visit:
@@ -51,7 +51,7 @@ Feature: Whitehall
     Then I should get a 200 status code
 
   @local-network
-  @medium
+  @normal
   Scenario: Whitehall admin can connect to the database
     Given the "whitehall" application has booted
     And I am testing through the full stack
@@ -60,7 +60,7 @@ Feature: Whitehall
     Then I should get a 200 status code
 
   @local-network
-  @medium
+  @normal
   Scenario: Whitehall frontend database should be fast
     Given the "whitehall" application has booted
     And I am benchmarking
