@@ -26,23 +26,19 @@ fi
 CHECKOUTPUT=`cat $CHECKFILE`
 CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
 WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
-if [ "${CRITICAL}${WARNING}" -ne "00" ]; then
-  bundle exec cucumber features/$1.feature --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios -t @${2} > /tmp/smokey_${1}_${2}
-else
-  echo "OK: $CHECKOUTPUT"
-  exit 0
-fi
-
-
-CHECKOUTPUT=`cat $CHECKFILE`
-CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
-WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
-if [ $CRITICAL -gt 0 ]; then
-  echo "CRITICAL: $CHECKOUTPUT"
-  exit 2
-elif [ $WARNING -gt 0 ]; then
-  echo "WARNING: $CHECKOUTPUT"
-  exit 1
+if [ "${CRITICAL}${WARNING}" != "00" ]; then
+  CHECKOUTPUT=`bundle exec cucumber features/$1.feature --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios -t @${2}`
+  EXITCODE=$?
+  CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
+  WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
+  if [ $CRITICAL -gt 0 ]; then
+    echo "CRITICAL: $CHECKOUTPUT"
+  elif [ $WARNING -gt 0 ]; then
+    echo "WARNING: $CHECKOUTPUT"
+  else
+    echo "OK: $CHECKOUTPUT"
+  fi
+  exit $EXITCODE 
 else
   echo "OK: $CHECKOUTPUT"
   exit 0
