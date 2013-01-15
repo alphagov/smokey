@@ -2,10 +2,12 @@
 
 set -x
 
-if [ "$FACTER_govuk_provider" = "sky" ]; then
-  MYTASK="test:skyscapenetwork"
-else
-  MYTASK="test:localnetwork"
+if [ -z $MYTASK ]; then
+  if [ "$FACTER_govuk_provider" = "sky" ]; then
+    MYTASK="test:skyscapenetwork"
+  else
+    MYTASK="test:localnetwork"
+  fi
 fi
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment --quiet
