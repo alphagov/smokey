@@ -2,7 +2,7 @@
 
 set -x
 
-if [ "$FACTER_govuk_provider" = "skyscape" ]; then
+if [ "$FACTER_govuk_provider" = "sky" ]; then
   MYTASK="test:skyscapenetwork"
 else
   MYTASK="test:localnetwork"

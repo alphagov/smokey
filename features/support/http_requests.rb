@@ -39,13 +39,23 @@ def cache_bust(url)
 end
 
 def do_http_request(url, method = :get, options = {}, &block)
+  defaults = {
+    :auth => true,
+  }
+  options = defaults.merge(options)
+
   started_at = Time.now
   url = options[:cache_bust] ? cache_bust(url) : url
+  if options[:auth]
+    user     = ENV['AUTH_USERNAME']
+    password = ENV['AUTH_PASSWORD']
+  end
+
   RestClient::Request.new(
     url: url,
     method: method,
-    user: ENV['AUTH_USERNAME'],
-    password: ENV['AUTH_PASSWORD'],
+    user: user,
+    password: password,
     headers: {
       'User-Agent' => 'Smokey Test / Ruby',
       'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
