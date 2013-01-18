@@ -2,10 +2,12 @@
 
 set -x
 
-if [ "$FACTER_govuk_provider" = "sky" ]; then
-  MYTASK="test:skyscapenetwork"
-else
-  MYTASK="test:localnetwork"
+if [ -z $MYTASK ]; then
+  if [ "$FACTER_govuk_provider" = "sky" ]; then
+    MYTASK="test:skyscapenetwork"
+  else
+    MYTASK="test:localnetwork"
+  fi
 fi
 
 export GOVUK_APP_DOMAIN=test.gov.uk
