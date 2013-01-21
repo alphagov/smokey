@@ -12,10 +12,15 @@ end
 Given /^I am testing through the full stack$/ do
   @host = base_url
   @bypass_varnish = false
+  @authenticated = true
 end
 
 Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
+end
+
+Given /^I am not an authenticated user$/ do
+  @authenticated = false 
 end
 
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
@@ -29,7 +34,8 @@ When /^I go to the "([^"]*)" landing page$/ do |app_name|
 end
 
 When /^I visit "(.*)"$/ do |path|
-  @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
+  @response = get_request("#{@host}#{path}", :cache_bust=>@bypass_varnish )
+
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
@@ -53,7 +59,7 @@ end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    response = get_request("#{@host}#{row['Path']}", cache_bust: @bypass_varnish)
+    response = get_request("#{@host}#{row['Path']}", { auth: @authenticated, cache_bust: @bypass_varnish })
     response.code.should == 200
   end
 end

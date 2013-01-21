@@ -10,7 +10,7 @@ end
 Cucumber::Rake::Task.new("test:skyscapepreview",
     "Run all tests including those which depend on being on " +
     "the same local network as other production infrastructure") do |t|
-  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notskyscape -t ~@notskyscapepreview}
+  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notskyscape -t ~@notpreview -t ~@notskyscapepreview}
 end
 
 Cucumber::Rake::Task.new("test:skyscapenetwork",
@@ -22,7 +22,7 @@ end
 Cucumber::Rake::Task.new("test:notlocalnetwork",
   "Run all tests except those which must be on " +
   "the same local network as other production infrastructure") do |t|
-  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@local-network}
+  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@local-network -t ~@notpreview}
 end
 
 Cucumber::Rake::Task.new(:remote, "Excludes nagios tests") do |t|
