@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 CHECKFILE="/tmp/smokey_${1}_${2}"
 
 if [ $# -ne 2 ]; then

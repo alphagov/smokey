@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd /opt/smokey;
 
 source /etc/smokey.sh

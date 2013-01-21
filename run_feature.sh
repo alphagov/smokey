@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 tmpfeature=${1##*/}
 feature=${tmpfeature%%.*}
 
