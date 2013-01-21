@@ -30,6 +30,7 @@ CHECKOUTPUT=`cat $CHECKFILE`
 CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
 WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
 if [ "${CRITICAL}${WARNING}" != "00" ]; then
+  . /etc/smokey.sh
   CHECKOUTPUT=`bundle exec cucumber features/$1.feature --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios -t @${2}`
   CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
   WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
