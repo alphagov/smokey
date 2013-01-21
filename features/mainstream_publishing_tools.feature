@@ -21,3 +21,13 @@ Feature: Mainstream Publishing Tools
       And I should see "Signed in"
       And I should see "Artefacts"
 
+  @high
+  Scenario: Can log in to imminence
+    Given the "signon" application has booted
+      And the "imminence" application has booted
+    When I go to the "imminence" landing page
+      And I try to login as a user
+      And I go to the "imminence" landing page
+    Then I should see "GOV.UK Imminence
+      And I should see "Signed in"
+      And I should see "Services"
