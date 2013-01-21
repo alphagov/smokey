@@ -5,6 +5,7 @@ gem "rake"
 gem "cucumber"
 gem "capybara"
 gem "capybara-mechanize"
+gem "timestamped-scenarios"
 
 gem "rspec"
 gem "rest-client"
