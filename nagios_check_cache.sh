@@ -21,9 +21,14 @@ if test $(find "$CHECKFILE" -mmin +30); then
   exit 3
 fi
 
+fail_parse () {
+  echo "UNKNOWN: Could not parse ${CHECKFILE}"
+  exit 3
+}
+
 CHECKOUTPUT=$(cat $CHECKFILE)
-CRITICAL=$(echo $CHECKOUTPUT | grep -Eo 'Critical: [0-9]+' | grep -Eo '[0-9]+')
-WARNING=$(echo $CHECKOUTPUT | grep -Eo 'Warning: [0-9]+' | grep -Eo '[0-9]+')
+CRITICAL=$(echo $CHECKOUTPUT | grep -Eo 'Critical: [0-9]+' | grep -Eo '[0-9]+') || fail_parse
+WARNING=$(echo $CHECKOUTPUT | grep -Eo 'Warning: [0-9]+' | grep -Eo '[0-9]+') || fail_parse
 
 if [ "$CRITICAL" -gt "0" ]; then
   echo "CRITICAL: ${CHECKOUTPUT}"
@@ -31,7 +36,9 @@ if [ "$CRITICAL" -gt "0" ]; then
 elif [ "$WARNING" -gt "0" ]; then
   echo "WARNING: ${CHECKOUTPUT}"
   exit 1
-else
+elif [ "$CRITICAL" -eq "0" -a "$WARNING" -eq "0" ]; then
   echo "OK: ${CHECKOUTPUT}"
   exit 0
+else
+  fail_parse
 fi
