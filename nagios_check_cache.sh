@@ -1,50 +1,37 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
-CHECKFILE="/tmp/smokey_${1}_${2}"
+cd $(dirname "$0")
 
 if [ $# -ne 2 ]; then
-   echo "UNKNOWN: Usage: ./nagios_check feature <high|medium|low|unprio>"
-   exit 3
-fi
-if [ ! -f /tmp/smokey_${1}_${2} ]; then
-   echo "UNKNOWN: Cache file $CHECKFILE does not exist"
-   exit 3
-fi
-
-MTIME=`stat -c %Y "$CHECKFILE"`
-NOW=`date +%s`
-let AGE=NOW-MTIME
-if [ $AGE -gt 1800 ]; then
-  echo "UNKNOWN: Cache file $CHECKFILE older than 30mins ($AGE)"
+  echo "UNKNOWN: Usage: nagios_check_cache.sh feature <high|medium|low|unprio>"
   exit 3
 fi
 
-if [ -f /tmp/smokey_running_${1} ]; then
-  echo "OK: Smokey run in progress"
-  exit 0
+CHECKFILE="/tmp/smokey_${1}_${2}"
+
+if [ ! -f "$CHECKFILE" ]; then
+  echo "UNKNOWN: Cache file ${CHECKFILE} does not exist"
+  exit 3
 fi
 
-CHECKOUTPUT=`cat $CHECKFILE`
-CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
-WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
-if [ "${CRITICAL}${WARNING}" != "00" ]; then
-  . /etc/smokey.sh
-  CHECKOUTPUT=`cd /opt/smokey ; bundle exec cucumber features/$1.feature --format Cucumber::Formatter::Nagios -t ~@pending -t ~@notskyscape -t ~@notnagios -t @${2}`
-  CRITICAL=`echo $CHECKOUTPUT | cut -d, -f1 | cut -d\  -f2 | sed 's/ //g' `
-  WARNING=`echo $CHECKOUTPUT | cut -d, -f2 | cut -d\  -f3 | sed 's/ //g'`
-  if [ $CRITICAL -gt 0 ]; then
-    echo "CRITICAL: $CHECKOUTPUT"
-    exit 2 
-  elif [ $WARNING -gt 0 ]; then
-    echo "WARNING: $CHECKOUTPUT"
-    exit 1 
-  else
-    echo "OK: $CHECKOUTPUT"
-    exit 0 
-  fi
+if test $(find "$CHECKFILE" -mmin +30); then
+  echo "UNKNOWN: Cache file ${CHECKFILE} last modified more than 30 minutes ago"
+  exit 3
+fi
+
+CHECKOUTPUT=$(cat $CHECKFILE)
+CRITICAL=$(echo $CHECKOUTPUT | grep -Eo 'Critical: [0-9]+' | grep -Eo '[0-9]+')
+WARNING=$(echo $CHECKOUTPUT | grep -Eo 'Warning: [0-9]+' | grep -Eo '[0-9]+')
+
+if [ "$CRITICAL" -gt "0" ]; then
+  echo "CRITICAL: ${CHECKOUTPUT}"
+  exit 2
+elif [ "$WARNING" -gt "0" ]; then
+  echo "WARNING: ${CHECKOUTPUT}"
+  exit 1
 else
-  echo "OK: $CHECKOUTPUT"
+  echo "OK: ${CHECKOUTPUT}"
   exit 0
 fi
