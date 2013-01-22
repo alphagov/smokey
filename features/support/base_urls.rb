@@ -17,6 +17,7 @@ def application_base_url(app_name)
   when 'licencefinder' then "https://licencefinder.#{platform}.alphagov.co.uk/licence-finder"
   when 'licensing' then "https://licensify.#{platform}.alphagov.co.uk/apply-for-a-licence"
   when 'panopticon' then "https://panopticon.#{platform}.alphagov.co.uk/"
+  when 'public-contentapi' then "https://www.#{platform}.alphagov.co.uk/api/tags.json" # this should be changed to a Content API 'homepage' when we have one
   when 'publisher' then "https://publisher.#{platform}.alphagov.co.uk/admin"
   when 'signon' then "https://signon.#{target_platform}.alphagov.co.uk/"
   when 'smartanswers' then "http://smartanswers.#{platform}.alphagov.co.uk/maternity-benefits"
