@@ -23,6 +23,7 @@ def application_base_url(app_name)
   when 'tariff-backend' then "https://tariff-api.#{platform}.alphagov.co.uk/"
   when 'tariff-frontend' then "https://tariff.#{platform}.alphagov.co.uk/trade-tariff"
   when 'whitehall' then "http://whitehall-frontend.#{platform}.alphagov.co.uk/government"
+  when 'imminence' then "http://imminence.#{platform}.alphagov.co.uk/admin"
   else
     raise "Application '#{app_name}' not recognised, unable to boot it up"
   end
