@@ -1,5 +1,22 @@
 Feature: Whitehall
 
+  @notpreview
+  Scenario: There should be no authentication for Whitehall
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    And I am not an authenticated user
+    Then I should be able to view policies
+    And I should be able to view publications
+    Then I should be able to visit:
+      | Path                             |
+      | /government/|
+      | /government/announcements        |
+      | /government/policy-topics        |
+      | /government/consultations        |
+      | /government/ministers            |
+      | /government/organisations        |
+
   @notnagios
   Scenario: Visiting whitehall
     Given the "whitehall" application has booted

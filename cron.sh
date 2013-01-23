@@ -1,17 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 
-cd /opt/smokey;
-source /etc/smokey.sh
+#
+# Smokey cronjob. This should be run with suitable mutex protection, e.g.
+#
+#     /usr/local/bin/lockrun -L /var/run/smokey.lock -q -- /opt/smokey/cron.sh
+#
 
-for i in `find features -name "*.feature"`; do
-  bundle exec ./run_feature.sh $i &
-  sleep 5
-done;
-# Let all the subcommands spin up
-sleep 10
+set -e
 
-while [ "`find /tmp -name 'smokey_running_*' 2>/dev/null`" != "" ]; do
-  sleep 10;
+cd $(dirname "$0")
+
+[ -e /etc/smokey.sh ] && . /etc/smokey.sh
+
+for feature in $(find features -name "*.feature"); do
+  bundle exec ./run_feature.sh "$feature" >/dev/null 2>&1
 done
 
-rm -f /tmp/smokey_running

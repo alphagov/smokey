@@ -66,6 +66,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     stomp (1.2.6)
+    timestamped-scenarios (0.1.0)
+      cucumber
     unf (0.0.5)
       unf_ext
     unf_ext (0.0.5)
@@ -86,3 +88,4 @@ DEPENDENCIES
   rest-client
   rspec
   stomp
+  timestamped-scenarios

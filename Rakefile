@@ -4,7 +4,13 @@ require 'cucumber/rake/task'
 Cucumber::Rake::Task.new("test:localnetwork",
     "Run all tests including those which depend on being on " +
     "the same local network as other production infrastructure") do |t|
-  t.cucumber_opts = %w{--format progress -t ~@pending}
+  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notpreview}
+end
+
+Cucumber::Rake::Task.new("test:skyscapepreview",
+    "Run all tests including those which depend on being on " +
+    "the same local network as other production infrastructure") do |t|
+  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notskyscape -t ~@notpreview -t ~@notskyscapepreview}
 end
 
 Cucumber::Rake::Task.new("test:skyscapenetwork",
