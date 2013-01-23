@@ -2,14 +2,27 @@
 import json, sys, os
 from pprint import pprint
 from time import gmtime, strftime
-json_data=open("tests/fixtures/smokey.json").read()
+
+logroot = 'log/'
+
+if len(sys.argv) != 4:
+  print "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile"
+  sys.exit(2)
+
+jsonfile = sys.argv[3]
+if os.path.exists(jsonfile) == False:
+  print "UNKNOWN: %s does not exist"
+  sys.exit(2)
+
+json_data=open(jsonfile).read()
 data = json.loads(json_data)
 priority = "@" + sys.argv[2]
 feature_name  = sys.argv[1]
 feature_uri = 'features/' + feature_name + '.feature'
 feature_found = False
-logfile = 'log/' + feature_name + '_' + sys.argv[2] + '.log'
+logfile = logroot + feature_name + '_' + sys.argv[2] + '.log'
 logdir = os.path.dirname(logfile)
+
 if not os.path.exists(logdir):
   os.makedirs(logdir)
 
