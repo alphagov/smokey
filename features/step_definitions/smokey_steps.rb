@@ -33,9 +33,13 @@ When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit url
 end
 
-When /^I visit "(.*)"$/ do |path|
-  @response = get_request("#{@host}#{path}", :cache_bust=>@bypass_varnish )
-
+When /^I visit "(.*)"$/ do |path_or_url|
+  url = if path_or_url.start_with?("http")
+    path_or_url
+  else
+    "#{@host}#{path_or_url}"
+  end
+  @response = get_request(url, :cache_bust=>@bypass_varnish )
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
@@ -97,6 +101,12 @@ Then /^I should see "(.*)"$/ do |content|
   elsif page
     page.body.include?(content).should == true
   end
+end
+
+When /^I click "(.*?)"$/ do |link_text|
+  link_href = Nokogiri::HTML.parse(@response.body).at_xpath("//a[text()='#{link_text}']/@href")
+  link_href.should_not == nil
+  step "I visit \"#{link_href.value}\""
 end
 
 When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
