@@ -83,6 +83,11 @@ for feature in data:
             # A blank line to make our log pretty
             fh.write("%s:\n" % runtime)
 
+# We didn't even find this feature in the steps!
+if not feature_found:
+  print "OK: But feature %s was not found" % (feature_name)
+  sys.exit(0)
+
 # Check the output of our tests
 if failed > 0:
   status = "CRITICAL"
@@ -104,9 +109,8 @@ if exitcode != 99:
 
 # We had no steps, but did the feature at least exist?
 if feature_found:
-  print "OK: no %s tests for %s found" % (priority, feature_name)
+  print "OK: But no %s tests for %s found" % (priority, feature_name)
   sys.exit(0)
-# We didn't even find this feature in the steps!
 else:
-  print "OK: Feature %s not found" % (feature_name)
-  sys.exit(0)
+  print "UNKNOWN: Something went very wrong"
+  sys.exit(3)
