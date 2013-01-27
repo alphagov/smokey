@@ -67,7 +67,7 @@ for feature in data:
     else:
       exitcode = 99
     if exitcode != 99:
-      print "%s: %s failed, %s skipped, %s passed" % ( status, failed, skipped, passed )
+      print "%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, failed, skipped, passed, logfile)
       sys.exit(exitcode)
 if feature_found:
   print "OK: no %s tests for %s found" % (priority, feature_name)
