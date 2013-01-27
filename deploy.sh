@@ -18,6 +18,7 @@ case $GOVUK_PROVIDER in
 esac
 
 for server in $DEPLOY_TO; do
+    chmod 777 log
     rsync -av --delete --exclude='.git' "$(pwd)/" "deploy@${server}":/opt/smokey
     ssh deploy@${server} 'cd /opt/smokey && bundle install --path $HOME/.bundle/gems --deployment'
 done 
