@@ -5,7 +5,7 @@
 for featurefile in `ls features/*.feature`; do
   feature=${featurefile%%.feature}
   feature=${feature##features/}
-  for priority in urgent high medium low; do
+  for priority in urgent high normal low; do
   echo -n "$feature/$priority: "
     ./nagios_check_cache.py $feature $priority $1
   done
