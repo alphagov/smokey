@@ -5,21 +5,24 @@ from time import gmtime, strftime, time
 
 logroot = 'log/'
 
+# Exit if usage is wrong
 if len(sys.argv) != 4:
   print "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile"
   sys.exit(2)
 
+# Check whether the json file exists and issue UNKNOWN if not
 jsonfile = sys.argv[3]
 if os.path.exists(jsonfile) == False:
   print "UNKNOWN: %s does not exist" % jsonfile
   sys.exit(2)
 
+# Check the age of the json file is less than 30m and issue UNKNOWN if not
 json_age = time() - os.stat(jsonfile).st_mtime
-
 if json_age > 1800:
   print "UNKNOWN: %s is older than 30m" % jsonfile
   sys.exit(2)
 
+# Parse the json and set some variables
 json_data = open(jsonfile).read()
 data = json.loads(json_data)
 priority = "@" + sys.argv[2]
@@ -28,24 +31,30 @@ feature_uri = 'features/' + feature_name + '.feature'
 feature_found = False
 logfile = logroot + feature_name + '_' + sys.argv[2] + '.log'
 logdir = os.path.dirname(logfile)
+runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
+# Check the log directory exists and open the logfile
 if not os.path.exists(logdir):
   os.makedirs(logdir)
-
 fh = open(logfile,"a")
 
+# Walk the json tree of features
 for feature in data:
   if feature['uri'] == feature_uri:
+    # Yay, we have found the right feature
     feature_found = True
     passed  = 0
     skipped = 0
     failed  = 0
     failed_tests = ""
+    # Walk through the scenarios in the feature
     for scenario in feature['elements']:
       if 'tags' in scenario:
         for tag in scenario['tags']:
+          # If the scenario matches our tag, then check the output
           if tag['name'] == priority:
-            fh.write("%s:  Scenario: %s (%s/%s)\n" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()),scenario['name'],feature['uri'], priority))
+            # Write out a header to our log
+            fh.write("%s:  Scenario: %s (%s/%s)\n" % (runtime,scenario['name'],feature['uri'], priority))
             for step in scenario['steps']:
               message = ""
               if step['result']['status'] == 'passed':
@@ -54,17 +63,24 @@ for feature in data:
                 skipped += 1
               else:
                 failed += 1
+                # Only failures have messages
                 message = step['result']['error_message']
-              fh.write("%s:    Step: %s - %s\n" % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()),step['name'], step['result']['status'] ))
+              # Write out the step description and the status
+              fh.write("%s:    Step: %s - %s\n" % (runtime,step['name'], step['result']['status']))
+              # If we have any rows (e.g. perhaps lists of URLs to visit, write them too)
               if 'rows' in step:
                 for row in step['rows']:
-                  fh.write("%s:              " % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()) ))
+                  fh.write("%s:              " % runtime)
                   for cell in row['cells']:
                     fh.write("%s " % cell)
                   fh.write("\n")
+              # If we encountered a failure, write out the error
               if message != "":
-                fh.write("%s:      Error: %s\n" % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()), message.partition('\n')[0] ))
-            fh.write("%s:\n" % strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+                fh.write("%s:      Error: %s\n" % (runtime,message.partition('\n')[0]))
+            # A blank line to make our log pretty
+            fh.write("%s:\n" % runtime)
+
+# Check the output of our tests
 if failed > 0:
   status = "CRITICAL"
   exitcode = 2
@@ -75,15 +91,19 @@ elif passed > 0:
   status = "OK"
   exitcode = 0
 else:
+  # We use this exitcode later
   exitcode = 99
 
+# Assuming we had a non-zero number of checks, lets spit out Nagios output
 if exitcode != 99:
   print "%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, failed, skipped, passed, logfile)
   sys.exit(exitcode)
 
+# We had no steps, but did the feature at least exist?
 if feature_found:
   print "OK: no %s tests for %s found" % (priority, feature_name)
   sys.exit(0)
+# We didn't even find this feature in the steps!
 else:
   print "OK: Feature %s not found" % (feature_name)
   sys.exit(0)
