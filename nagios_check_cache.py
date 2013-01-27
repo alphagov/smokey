@@ -48,7 +48,7 @@ for feature in data:
     failed  = 0
     failed_tests = ""
     # Walk through the scenarios in the feature
-    if elements not in feature:
+    if 'elements' not in feature:
       print "OK: Feature %s has no steps at any priority" % (feature_name)
       sys.exit(0)
     for scenario in feature['elements']:
