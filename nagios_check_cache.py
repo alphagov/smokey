@@ -37,16 +37,15 @@ fh = open(logfile,"a")
 for feature in data:
   if feature['uri'] == feature_uri:
     feature_found = True
-    fh.write("%s: Feature: %s\n" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()),feature['uri']))
     passed  = 0
     skipped = 0
     failed  = 0
     failed_tests = ""
     for scenario in feature['elements']:
-      fh.write("%s:  Scenario: %s\n" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()),scenario['name']))
       if 'tags' in scenario:
         for tag in scenario['tags']:
           if tag['name'] == priority:
+            fh.write("%s:  Scenario: %s (%s/%s)\n" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()),scenario['name'],feature['uri'], priority))
             for step in scenario['steps']:
               message = ""
               if step['result']['status'] == 'passed':
@@ -65,20 +64,23 @@ for feature in data:
                   fh.write("\n")
               if message != "":
                 fh.write("%s:      Error: %s\n" % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()), message.partition('\n')[0] ))
-    if failed > 0:
-      status = "CRITICAL"
-      exitcode = 2
-    elif skipped > 0:
-      status = "WARNING"
-      exitcode = 1
-    elif passed > 0:
-      status = "OK"
-      exitcode = 0
-    else:
-      exitcode = 99
-    if exitcode != 99:
-      print "%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, failed, skipped, passed, logfile)
-      sys.exit(exitcode)
+            fh.write("%s:\n" % strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+if failed > 0:
+  status = "CRITICAL"
+  exitcode = 2
+elif skipped > 0:
+  status = "WARNING"
+  exitcode = 1
+elif passed > 0:
+  status = "OK"
+  exitcode = 0
+else:
+  exitcode = 99
+
+if exitcode != 99:
+  print "%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, failed, skipped, passed, logfile)
+  sys.exit(exitcode)
+
 if feature_found:
   print "OK: no %s tests for %s found" % (priority, feature_name)
   sys.exit(0)
