@@ -3,7 +3,7 @@ import json, sys, os
 from pprint import pprint
 from time import gmtime, strftime, time
 
-logroot = 'log/'
+logroot = '/opt/smokey/log/'
 
 # Exit if usage is wrong
 if len(sys.argv) != 4:
