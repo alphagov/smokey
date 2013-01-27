@@ -4,7 +4,7 @@ from pprint import pprint
 from time import gmtime, strftime, time
 
 smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
-logroot = smokeydir + '/log/'
+logdir = smokeydir + '/log/'
 
 # Exit if usage is wrong
 if len(sys.argv) != 4:
@@ -30,14 +30,12 @@ priority = "@" + sys.argv[2]
 feature_name  = sys.argv[1]
 feature_uri = 'features/' + feature_name + '.feature'
 feature_found = False
-logfile = logroot + feature_name + '_' + sys.argv[2] + '.log'
-logdir = os.path.dirname(logfile)
+logfile = logdir + feature_name + '_' + sys.argv[2] + '.log'
 runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
 # Check the log directory exists and open the logfile
 if not os.path.exists(logdir):
   os.makedirs(logdir)
-fh = codecs.open(logfile,"a","utf-8-sig")
 
 # Walk the json tree of features
 for feature in data:
@@ -57,6 +55,8 @@ for feature in data:
         for tag in scenario['tags']:
           # If the scenario matches our tag, then check the output
           if tag['name'] == priority:
+            # Only open the logfile if we are going to write to it
+            fh = codecs.open(logfile,"a","utf-8-sig")
             # Write out a header to our log
             fh.write("%s:  Scenario: %s (%s/%s)\n" % (runtime,scenario['name'],feature['uri'], priority))
             for step in scenario['steps']:
@@ -83,6 +83,7 @@ for feature in data:
                 fh.write("%s:      Error: %s\n" % (runtime,message.partition('\n')[0]))
             # A blank line to make our log pretty
             fh.write("%s:\n" % runtime)
+            fh.close()
 
 # We didn't even find this feature in the steps!
 if not feature_found:
