@@ -48,14 +48,24 @@ for feature in data:
         for tag in scenario['tags']:
           if tag['name'] == priority:
             for step in scenario['steps']:
+              message = ""
               if step['result']['status'] == 'passed':
                 passed += 1
               elif step['result']['status'] == 'skipped':
                 skipped += 1
               else:
                 failed += 1
+                message = step['result']['error_message']
               fh.write("%s:    Step: %s - %s\n" % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()),step['name'], step['result']['status'] ))
-    if failed > 0: 
+              if 'rows' in step:
+                for row in step['rows']:
+                  fh.write("%s:              " % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()) ))
+                  for cell in row['cells']:
+                    fh.write("%s " % cell)
+                  fh.write("\n")
+              if message != "":
+                fh.write("%s:      Error: %s\n" % ( strftime("%Y-%m-%d %H:%M:%S", gmtime()), message.partition('\n')[0] ))
+    if failed > 0:
       status = "CRITICAL"
       exitcode = 2
     elif skipped > 0:
