@@ -3,7 +3,8 @@ import json, sys, os, codecs
 from pprint import pprint
 from time import gmtime, strftime, time
 
-logroot = '/opt/smokey/log/'
+smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
+logroot = smokeydir + '/log/'
 
 # Exit if usage is wrong
 if len(sys.argv) != 4:
