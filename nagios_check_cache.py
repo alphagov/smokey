@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import json, sys, os
 from pprint import pprint
-from time import gmtime, strftime
+from time import gmtime, strftime, time
 
 logroot = 'log/'
 
@@ -11,10 +11,16 @@ if len(sys.argv) != 4:
 
 jsonfile = sys.argv[3]
 if os.path.exists(jsonfile) == False:
-  print "UNKNOWN: %s does not exist"
+  print "UNKNOWN: %s does not exist" % jsonfile
   sys.exit(2)
 
-json_data=open(jsonfile).read()
+json_age = time() - os.stat(jsonfile).st_mtime
+
+if json_age > 1800:
+  print "UNKNOWN: %s is older than 30m" % jsonfile
+  sys.exit(2)
+
+json_data = open(jsonfile).read()
 data = json.loads(json_data)
 priority = "@" + sys.argv[2]
 feature_name  = sys.argv[1]
