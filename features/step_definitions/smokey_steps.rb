@@ -1,5 +1,3 @@
-require 'plek'
-
 Given /^the "(.*)" application has booted$/ do |app_name|
   url = application_base_url(app_name)
   head_request(url)
@@ -47,7 +45,7 @@ When /^I visit "(.*)" without following redirects$/ do |path|
 end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
-  application_host = plek.find(application)
+  application_host = application_base_url(application)
   @response = get_request("#{application_host}#{path}", cache_bust: @bypass_varnish)
 end
 

@@ -79,7 +79,3 @@ def single_http_request(url)
   uri = URI(url)
   Net::HTTP::get_response(uri)
 end
-
-def plek
-  Plek.new(target_platform)
-end

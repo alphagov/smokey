@@ -1,6 +1,4 @@
 require 'nokogiri'
-require 'capybara/cucumber'
-require 'capybara/mechanize'
 
 def target_platform
   ENV["TARGET_PLATFORM"] || "preview"
@@ -13,6 +11,3 @@ def base_url
     "https://www.#{target_platform}.alphagov.co.uk"
   end
 end
-
-Capybara.default_driver = :mechanize
-Capybara.app_host = base_url
