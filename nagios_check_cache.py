@@ -41,7 +41,7 @@ fh = open(logfile,"a")
 # Walk the json tree of features
 for feature in data:
   if feature['uri'] == feature_uri:
-    # Yay, we have found the right feature
+    # Yay, we have found the right feature
     feature_found = True
     passed  = 0
     skipped = 0
@@ -66,7 +66,7 @@ for feature in data:
                 # Only failures have messages
                 message = step['result']['error_message']
               # Write out the step description and the status
-              fh.write("%s:    Step: %s - %s\n" % (runtime,step['name'], step['result']['status']))
+              fh.write("%s:    Step: [%s] %s%s\n" % (runtime,step['result']['status'].upper()[:4],step['keyword'],step['name']))
               # If we have any rows (e.g. perhaps lists of URLs to visit, write them too)
               if 'rows' in step:
                 for row in step['rows']:
