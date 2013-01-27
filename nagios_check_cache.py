@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import json, sys, os
+import json, sys, os, codecs
 from pprint import pprint
 from time import gmtime, strftime, time
 
@@ -36,7 +36,7 @@ runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 # Check the log directory exists and open the logfile
 if not os.path.exists(logdir):
   os.makedirs(logdir)
-fh = open(logfile,"a")
+fh = codecs.open(logfile,"a","utf-8-sig")
 
 # Walk the json tree of features
 for feature in data:
