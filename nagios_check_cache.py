@@ -9,19 +9,19 @@ logdir = smokeydir + '/log/'
 # Exit if usage is wrong
 if len(sys.argv) != 4:
   print "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile"
-  sys.exit(2)
+  sys.exit(3)
 
 # Check whether the json file exists and issue UNKNOWN if not
 jsonfile = sys.argv[3]
 if os.path.exists(jsonfile) == False:
   print "UNKNOWN: %s does not exist" % jsonfile
-  sys.exit(2)
+  sys.exit(3)
 
 # Check the age of the json file is less than 30m and issue UNKNOWN if not
 json_age = time() - os.stat(jsonfile).st_mtime
 if json_age > 1800:
   print "UNKNOWN: %s is older than 30m" % jsonfile
-  sys.exit(2)
+  sys.exit(3)
 
 # Parse the json and set some variables
 json_data = open(jsonfile).read()
