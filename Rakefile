@@ -29,10 +29,6 @@ Cucumber::Rake::Task.new(:remote, "Excludes nagios tests") do |t|
   t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@notnagios}
 end
 
-Cucumber::Rake::Task.new(:nagios, "Output test results in a format consumable by Nagios monitoring system") do |t|
-  t.cucumber_opts = %w{--format Cucumber::Formatter::Nagios -t ~@pending -t ~@notnagios}
-end
-
 task :default => "test:notlocalnetwork"
 
 namespace :smokey do
