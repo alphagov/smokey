@@ -9,6 +9,10 @@ def get_request(url, options = {})
   do_http_request(url, :get, options)
 end
 
+def default_request_options
+  { auth: @authenticated, cache_bust: @bypass_varnish }
+end
+
 # Make a POST.
 # Options is expected to contain a :payload key which contains the payload for the POST request.
 def post_request(url, options = {})

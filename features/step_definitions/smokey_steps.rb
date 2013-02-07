@@ -37,7 +37,7 @@ When /^I visit "(.*)"$/ do |path_or_url|
   else
     "#{@host}#{path_or_url}"
   end
-  @response = get_request(url, :cache_bust=>@bypass_varnish )
+  @response = get_request(url, default_request_options)
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
@@ -46,22 +46,22 @@ end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
   application_host = application_base_url(application)
-  @response = get_request("#{application_host}#{path}", cache_bust: @bypass_varnish)
+  @response = get_request("#{application_host}#{path}", default_request_options)
 end
 
 When /^I visit "(.*)" (\d+) times$/ do |path, count|
   count.to_i.times {
-    @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
+    @response = get_request("#{@host}#{path}", default_request_options)
   }
 end
 
 When /^I search for "(.*)"$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}", cache_bust: @bypass_varnish)
+  @response = get_request("#{@host}/search?q=#{term}", default_request_options)
 end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    response = get_request("#{@host}#{row['Path']}", { auth: @authenticated, cache_bust: @bypass_varnish })
+    response = get_request("#{@host}#{row['Path']}", default_request_options)
     response.code.should == 200
   end
 end
