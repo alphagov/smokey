@@ -4,7 +4,11 @@ Given /^the "(.*)" application has booted$/ do |app_name|
 end
 
 Given /^I am testing "(.*)"/ do |host|
-  @host = host
+  if host.include? "://"
+    @host = host
+  else
+    @host = application_base_url(host)
+  end
 end
 
 Given /^I am testing through the full stack$/ do
@@ -31,13 +35,14 @@ When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit url
 end
 
-When /^I visit "(.*)"$/ do |path_or_url|
+When /^I (try to )?visit "(.*)"$/ do |attempt_only, path_or_url|
   url = if path_or_url.start_with?("http")
     path_or_url
   else
     "#{@host}#{path_or_url}"
   end
-  @response = get_request(url, default_request_options)
+  request_method = attempt_only ? :try_get_request : :get_request
+  @response = send(request_method, url, default_request_options)
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
