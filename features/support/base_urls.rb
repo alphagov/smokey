@@ -16,6 +16,7 @@ def application_base_url(app_name)
   when 'businesssupportfinder' then "https://businesssupportfinder.#{app_domain}/business-finance-support-finder"
   when 'EFG' then "https://efg.#{app_domain}"
   when 'frontend' then "https://frontend.#{app_domain}/"
+  when 'private-frontend' then "https://private-frontend.#{app_domain}/"
   when 'imminence' then "https://imminence.#{app_domain}/"
   when 'licencefinder' then "https://licencefinder.#{app_domain}/licence-finder"
   when 'licensing' then "https://licensify.#{app_domain}/apply-for-a-licence"
