@@ -50,7 +50,7 @@ Feature: Whitehall
           | /ago                   |
           | /bis                   |
           | /brac                  |
-          | /cabinetoffice         |
+          | /cabinet-office        |
           | /communities           |
           | /dclg                  |
           | /defra                 |
