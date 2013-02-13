@@ -17,6 +17,14 @@ Feature: Whitehall
       | /government/ministers            |
       | /government/organisations        |
 
+  @normal
+  Scenario: Searching for an exisiting consulation on whitehall via elastic search
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    When I do a whitehall search for consultations from DECC on energy after april 2011
+    Then I should see "Assessing radioactive waste disposal sites"
+
   @notnagios
   Scenario: Visiting whitehall
     Given the "whitehall" application has booted
