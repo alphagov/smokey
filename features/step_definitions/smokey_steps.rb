@@ -4,7 +4,11 @@ Given /^the "(.*)" application has booted$/ do |app_name|
 end
 
 Given /^I am testing "(.*)"/ do |host|
-  @host = host
+  if host.include? "://"
+    @host = host
+  else
+    @host = application_base_url(host)
+  end
 end
 
 Given /^I am testing through the full stack$/ do
@@ -31,13 +35,14 @@ When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit url
 end
 
-When /^I visit "(.*)"$/ do |path_or_url|
+When /^I (try to )?visit "(.*)"$/ do |attempt_only, path_or_url|
   url = if path_or_url.start_with?("http")
     path_or_url
   else
     "#{@host}#{path_or_url}"
   end
-  @response = get_request(url, :cache_bust=>@bypass_varnish )
+  request_method = attempt_only ? :try_get_request : :get_request
+  @response = send(request_method, url, default_request_options)
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
@@ -46,22 +51,22 @@ end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
   application_host = application_base_url(application)
-  @response = get_request("#{application_host}#{path}", cache_bust: @bypass_varnish)
+  @response = get_request("#{application_host}#{path}", default_request_options)
 end
 
 When /^I visit "(.*)" (\d+) times$/ do |path, count|
   count.to_i.times {
-    @response = get_request("#{@host}#{path}", cache_bust: @bypass_varnish)
+    @response = get_request("#{@host}#{path}", default_request_options)
   }
 end
 
 When /^I search for "(.*)"$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}", cache_bust: @bypass_varnish)
+  @response = get_request("#{@host}/search?q=#{term}", default_request_options)
 end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    response = get_request("#{@host}#{row['Path']}", { auth: @authenticated, cache_bust: @bypass_varnish })
+    response = get_request("#{@host}#{row['Path']}", default_request_options)
     response.code.should == 200
   end
 end
