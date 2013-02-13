@@ -36,15 +36,8 @@ Feature: Frontend
     Then I should see "Pay your Council Tax"
 
   @normal
-  Scenario: check locator.json works
-    When I try to post to "/locator.json" with "postcode=WC2B 6NH"
-    Then I should get a 200 status code
-    And I should see "Camden, London"
-    And I should see "00AG"
-
-  @normal
   Scenario: check find my nearest returns results
-    When I try to post to "/ukonline-centre-internet-access-computer-training.json" with "lat=51.51502281807959&lon=-0.12151737435844158"
+    When I try to post to "/ukonline-centre-internet-access-computer-training.json" with "postcode=WC2B+6NH"
     Then I should get a 200 status code
     And I should see "Holborn Library"
 
