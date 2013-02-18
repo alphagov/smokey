@@ -132,7 +132,7 @@ Smoke tests
     And I should get a location of "https://www.gov.uk"
     And the elapsed time should be less than 2 seconds
 
-  @urgent
+  @high
   Scenario: Redirect for businesslink from www.businesslink.gov.uk
     Given I am benchmarking
     When I visit "http://www.businesslink.gov.uk/" without following redirects
@@ -180,7 +180,7 @@ Smoke tests
     And I should get a location of "https://www.gov.uk/government/organisations/attorney-generals-office"
     And the elapsed time should be less than 2 seconds
 
-  @urgent
+  @high
   Scenario: Redirect for mod from www.mod.uk
     Given I am benchmarking
     When I visit "http://www.mod.uk/" without following redirects
