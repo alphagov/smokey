@@ -36,14 +36,6 @@ Smoke tests
     And I should get a location of "https://www.gov.uk/growing-your-business"
     And the elapsed time should be less than 2 seconds
 
-  @high
-  Scenario: Redirect for lrc from lrc.businesslink.gov.uk
-    Given I am benchmarking
-    When I visit "http://lrc.businesslink.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/browse/business"
-    And the elapsed time should be less than 2 seconds
-
   @normal
   Scenario: Redirect for businesslink from msn.businesslink.gov.uk
     Given I am benchmarking
@@ -160,14 +152,6 @@ Smoke tests
   Scenario: Redirect for communities from www.communities.gov.uk
     Given I am benchmarking
     When I visit "http://www.communities.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-communities-and-local-government"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for communities from www.dclg.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.dclg.gov.uk/" without following redirects
     Then I should get a 301 status code
     And I should get a location of "https://www.gov.uk/government/organisations/department-for-communities-and-local-government"
     And the elapsed time should be less than 2 seconds
