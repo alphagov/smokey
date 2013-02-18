@@ -80,7 +80,7 @@ rescue RestClient::Exception => e
   finished_at = Time.now
   message = ["Unable to fetch '#{url}'"]
   message += ["  Exception: '#{e}'"]
-  message += ["  Response headers: #{e.response.headers.inspect}"]
+  message += ["  Response headers: #{e.response.headers.inspect if e.response}"]
   message += ["  Response time in seconds: #{finished_at - started_at}"]
   raise message.join("\n")
 end
