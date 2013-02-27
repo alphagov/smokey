@@ -7,6 +7,7 @@ Feature: Whitehall
     And I force a varnish cache miss
     And I am not an authenticated user
     Then I should be able to view policies
+    And I should be able to view announcements
     And I should be able to view publications
     Then I should be able to visit:
       | Path                             |
@@ -31,6 +32,7 @@ Feature: Whitehall
     And I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to view policies
+    And I should be able to view announcements
     And I should be able to view publications
     Then I should be able to visit:
       | Path                             |

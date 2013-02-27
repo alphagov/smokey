@@ -6,6 +6,10 @@ Then /^I should be able to view publications$/ do
   follow_link_to_first_publication_on_publications_page
 end
 
+Then /^I should be able to view announcements$/ do
+  follow_link_to_first_announcement_on_announcements_page
+end
+
 Then /^I should be able to view government search results for "([^"]*)"$/ do |term|
   html = get_request "#{@host}/government/search?q=#{term}", cache_bust: @bypass_varnish
   doc = Nokogiri::HTML(html)
@@ -29,6 +33,15 @@ def follow_link_to_first_policy_on_policies_page
   link_to_policy = doc.at('.document-row a')
   assert ! link_to_policy.nil?, "No policy links found"
   href = link_to_policy.attributes['href'].value
+  get_request("#{@host}#{href}", cache_bust: @bypass_varnish)
+end
+
+def follow_link_to_first_announcement_on_announcements_page
+  html = get_request("#{@host}/government/announcements", cache_bust: @bypass_varnish)
+  doc = Nokogiri::HTML(html)
+  link_to_announcement = doc.at('.document-row a')
+  assert ! link_to_announcement.nil?, "No announcement links found"
+  href = link_to_announcement.attributes['href'].value
   get_request("#{@host}#{href}", cache_bust: @bypass_varnish)
 end
 
