@@ -3,7 +3,7 @@ def app_domain
 end
 
 def efg_base_url
-  application_base_url('EFG')
+  ENV["EFG_DOMAIN"] || "https://efg.#{app_domain}"
 end
 
 def signon_base_url
