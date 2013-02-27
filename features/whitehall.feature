@@ -10,13 +10,12 @@ Feature: Whitehall
     And I should be able to view announcements
     And I should be able to view publications
     Then I should be able to visit:
-      | Path                             |
-      | /government/|
-      | /government/announcements        |
-      | /government/policy-topics        |
-      | /government/consultations        |
-      | /government/ministers            |
-      | /government/organisations        |
+      | Path                      |
+      | /government/              |
+      | /government/policy-topics |
+      | /government/consultations |
+      | /government/ministers     |
+      | /government/organisations |
 
   @normal
   Scenario: Searching for an exisiting consulation on whitehall via elastic search
@@ -35,38 +34,51 @@ Feature: Whitehall
     And I should be able to view announcements
     And I should be able to view publications
     Then I should be able to visit:
-      | Path                             |
-      | /government/                     |
-      | /government/announcements        |
-      | /government/policy-topics        |
-      | /government/consultations        |
-      | /government/ministers            |
-      | /government/organisations        |
-      | /government/world                |
+      | Path                      |
+      | /government/              |
+      | /government/policy-topics |
+      | /government/consultations |
+      | /government/ministers     |
+      | /government/organisations |
+      | /government/world         |
 
   @normal
   Scenario: Department short URLs work correctly
     Given I am testing through the full stack
     Then I should be able to visit:
-          | Path                   |
-          | /ago                   |
-          | /bis                   |
-          | /brac                  |
-          | /cabinet-office        |
-          | /communities           |
-          | /dclg                  |
-          | /defra                 |
-          | /dfid                  |
-          | /dft                   |
-          | /dh                    |
-          | /dsa                   |
-          | /fco                   |
-          | /hmrc                  |
-          | /mod                   |
-          | /moj                   |
-          | /pins                  |
-          | /planning-inspectorate |
-          | /transport             |
+      | Path                      |
+      | /ago                      |
+      | /airports-commission      |
+      | /bis                      |
+      | /brac                     |
+      | /cabinetoffice            |
+      | /cabinet-office           |
+      | /communities              |
+      | /dclg                     |
+      | /dcms                     |
+      | /decc                     |
+      | /defra                    |
+      | /dfe                      |
+      | /dfid                     |
+      | /dft                      |
+      | /dh                       |
+      | /dsa                      |
+      | /dwp                      |
+      | /fco                      |
+      | /hmrc                     |
+      | /home-office              |
+      | /mod                      |
+      | /moj                      |
+      | /nio                      |
+      | /oag                      |
+      | /office-for-life-sciences |
+      | /phe                      |
+      | /pins                     |
+      | /planning-inspectorate    |
+      | /scotland-office          |
+      | /transport                |
+      | /treasury                 |
+      | /wales-office             |
 
   @local-network
   @high
