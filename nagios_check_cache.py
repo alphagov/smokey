@@ -83,7 +83,7 @@ for feature in data:
                 message = step['result']['error_message']
               # Write out the step description and the status
               fh.write("%s:    Step: [%s] %s%s\n" % (runtime,step['result']['status'].upper()[:4],step['keyword'],step['name']))
-              syslog(LOG_NOTICE,"%s/%s/%s %s%s Status: %s" % (scenario['name'],feature['uri'], priority,step['keyword'],step['name'],step['result']['status'].upper()[:4]))
+              syslog(LOG_NOTICE,"%s | %s%s | %s | %s%s" % (step['result']['status'].upper()[:4],feature['uri'].split('/')[1].split('.')[0],priority,scenario['name'],step['keyword'],step['name']))
               # If we have any rows (e.g. perhaps lists of URLs to visit, write them too)
               if 'rows' in step:
                 for row in step['rows']:
@@ -94,7 +94,7 @@ for feature in data:
               # If we encountered a failure, write out the error
               if message != "":
                 fh.write("%s:      Error: %s\n" % (runtime,message.partition('\n')[0]))
-                syslog(LOG_NOTICE,"%s/%s/%s %s%s Error: %s" % (scenario['name'],feature['uri'], priority,step['keyword'],step['name'],message.partition('\n')[0]))
+                syslog(LOG_NOTICE,"%s | %s%s | %s | %s%s Error: %s" % (step['result']['status'].upper()[:4],feature['uri'].split('/')[1].split('.')[0],priority,scenario['name'],step['keyword'],step['name'],message.partition('\n')[0]))
             # A blank line to make our log pretty
             fh.write("%s:\n" % runtime)
             fh.close()
