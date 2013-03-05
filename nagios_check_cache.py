@@ -2,26 +2,38 @@
 import json, sys, os, codecs
 from pprint import pprint
 from time import gmtime, strftime, time
+from syslog import *
 
 smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
 logdir = smokeydir + '/log/'
+openlog("smokey ",LOG_PID,LOG_DAEMON)
 
-# Exit if usage is wrong
+def logprintexit(exitcode,message):
+    print message
+    if exitcode == 3:
+        priority = LOG_ERR
+    elif exitcode == 2:
+        priority = LOG_CRIT
+    elif exitcode == 1:
+        priority = LOG_WARN
+    else:
+        priority = LOG_NOTICE
+        syslog(priority,"%s" % message)
+    sys.exit(exitcode)
+
+# Exit if Usage is wrong
 if len(sys.argv) != 4:
-  print "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile"
-  sys.exit(3)
+  logprintexit(3,"UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile")
 
 # Check whether the json file exists and issue UNKNOWN if not
 jsonfile = sys.argv[3]
 if os.path.exists(jsonfile) == False:
-  print "UNKNOWN: %s does not exist" % jsonfile
-  sys.exit(3)
+  logprintexit(3,"UNKNOWN: %s does not exist" % jsonfile)
 
 # Check the age of the json file is less than 30m and issue UNKNOWN if not
 json_age = time() - os.stat(jsonfile).st_mtime
 if json_age > 1800:
-  print "UNKNOWN: %s is older than 30m" % jsonfile
-  sys.exit(3)
+  logprintexit(3,"UNKNOWN: %s is older than 30m" % jsonfile)
 
 # Parse the json and set some variables
 json_data = open(jsonfile).read()
@@ -48,8 +60,8 @@ for feature in data:
     failed_tests = ""
     # Walk through the scenarios in the feature
     if 'elements' not in feature:
-      print "OK: Feature %s has no steps at any priority" % (feature_name)
-      sys.exit(0)
+      logprintexit(0,"OK: Feature %s has no steps at any priority" % feature_name)
+
     for scenario in feature['elements']:
       if 'tags' in scenario:
         for tag in scenario['tags']:
@@ -71,6 +83,7 @@ for feature in data:
                 message = step['result']['error_message']
               # Write out the step description and the status
               fh.write("%s:    Step: [%s] %s%s\n" % (runtime,step['result']['status'].upper()[:4],step['keyword'],step['name']))
+              syslog(LOG_NOTICE,"%s/%s/%s %s%s Status: %s" % (scenario['name'],feature['uri'], priority,step['keyword'],step['name'],step['result']['status'].upper()[:4]))
               # If we have any rows (e.g. perhaps lists of URLs to visit, write them too)
               if 'rows' in step:
                 for row in step['rows']:
@@ -81,14 +94,14 @@ for feature in data:
               # If we encountered a failure, write out the error
               if message != "":
                 fh.write("%s:      Error: %s\n" % (runtime,message.partition('\n')[0]))
+                syslog(LOG_NOTICE,"%s/%s/%s %s%s Error: %s" % (scenario['name'],feature['uri'], priority,step['keyword'],step['name'],message.partition('\n')[0]))
             # A blank line to make our log pretty
             fh.write("%s:\n" % runtime)
             fh.close()
 
 # We didn't even find this feature in the steps!
 if not feature_found:
-  print "OK: But feature %s was not found" % (feature_name)
-  sys.exit(0)
+  logprintexit(0,"OK: But feature %s was not found" % feature_name)
 
 # Check the output of our tests
 if failed > 0:
@@ -106,13 +119,10 @@ else:
 
 # Assuming we had a non-zero number of checks, lets spit out Nagios output
 if exitcode != 99:
-  print "%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, failed, skipped, passed, logfile)
-  sys.exit(exitcode)
+  logprintexit(exitcode,"%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, failed, skipped, passed, logfile))
 
 # We had no steps, but did the feature at least exist?
 if feature_found:
-  print "OK: But no %s tests for %s found" % (priority, feature_name)
-  sys.exit(0)
+  logprintexit(0,"OK: But no %s tests for %s found" % (priority, feature_name))
 else:
-  print "UNKNOWN: Something went very wrong"
-  sys.exit(3)
+  logprintexit(3,"UNKNOWN: Something went very wrong")
