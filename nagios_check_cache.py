@@ -6,7 +6,7 @@ from syslog import *
 
 smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
 logdir = smokeydir + '/log/'
-openlog("smokey ",LOG_PID,LOG_DAEMON)
+openlog("smokey",0,LOG_DAEMON)
 
 def logprintexit(exitcode,message):
     print message
