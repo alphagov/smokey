@@ -18,7 +18,7 @@ def logprintexit(exitcode,message):
         priority = LOG_WARN
     else:
         priority = LOG_NOTICE
-        syslog(priority,"CHCK | %s@%s | %s" % (sys.argv[1],sys.argv[2],message))
+    syslog(priority,"CHCK | %s@%s | %s" % (sys.argv[1],sys.argv[2],message))
     sys.exit(exitcode)
 
 # Exit if Usage is wrong
