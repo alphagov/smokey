@@ -94,7 +94,7 @@ for feature in data:
               # If we encountered a failure, write out the error
               if message != "":
                 fh.write("%s:      Error: %s\n" % (runtime,message.partition('\n')[0]))
-                syslog(LOG_NOTICE,"%s | %s%s | %s | %s%s Error: %s" % (step['result']['status'].upper()[:4],feature['uri'].split('/')[1].split('.')[0],priority,scenario['name'],step['keyword'],step['name'],message.partition('\n')[0]))
+                syslog(LOG_NOTICE,"%s | %s%s | %s | %s%s | Error - %s" % (step['result']['status'].upper()[:4],feature['uri'].split('/')[1].split('.')[0],priority,scenario['name'],step['keyword'],step['name'],message.partition('\n')[0]))
             # A blank line to make our log pretty
             fh.write("%s:\n" % runtime)
             fh.close()
