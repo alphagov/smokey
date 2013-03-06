@@ -34,7 +34,6 @@ Feature: Whitehall
       | Path                           |
       | /government/announcements.atom |
       | /government/publications.atom  |
-      | /government/policies.atom      |
 
   @notnagios
   Scenario: Visiting whitehall
