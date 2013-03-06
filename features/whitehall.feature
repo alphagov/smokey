@@ -26,6 +26,17 @@ Feature: Whitehall
     Then I should see "Assessing radioactive waste disposal sites"
 
   @notnagios
+  Scenario: Feeds should be available for documents
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    Then I should be able to visit:
+      | Path                           |
+      | /government/announcements.atom |
+      | /government/publications.atom  |
+      | /government/policies.atom      |
+
+  @notnagios
   Scenario: Visiting whitehall
     Given the "whitehall" application has booted
     And I am testing through the full stack
