@@ -24,7 +24,7 @@ def application_base_url(app_name)
   when 'public-contentapi' then "https://www.#{app_domain}/api/tags.json" # this should be changed to a Content API 'homepage' when we have one
   when 'publisher' then "https://publisher.#{app_domain}/admin"
   when 'signon' then "https://signon.#{app_domain}/"
-  when 'smartanswers' then "http://smartanswers.#{app_domain}/maternity-benefits"
+  when 'smartanswers' then "http://smartanswers.#{app_domain}/calculate-your-maternity-pay"
   when 'tariff-backend' then "https://tariff-api.#{app_domain}/"
   when 'tariff-frontend' then "https://tariff.#{app_domain}/trade-tariff"
   when 'whitehall' then "http://whitehall-frontend.#{app_domain}/government"

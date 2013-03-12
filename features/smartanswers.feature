@@ -13,7 +13,7 @@ Feature: Smart Answers
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
       | /legal-right-to-work-in-the-uk              |
-      | /maternity-benefits                         |
+      | /calculate-your-maternity-pay               |
       | /register-a-death                           |
 
     @normal
