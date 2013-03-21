@@ -35,7 +35,7 @@ Feature: Whitehall
       | /government/announcements.atom |
       | /government/publications.atom  |
 
-  @notnagios
+  @normal
   Scenario: Visiting whitehall
     Given the "whitehall" application has booted
     And I am testing through the full stack
