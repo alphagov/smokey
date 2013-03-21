@@ -31,3 +31,13 @@ Feature: Mainstream Publishing Tools
     Then I should see "GOV.UK Imminence"
       And I should see "Signed in"
       And I should see "Services"
+
+  Scenario: Can log in to travel-advice-publisher
+    Given the "signon" application has booted
+    And the "travel-advice-publisher" application has booted
+    When I go to the "travel-advice-publisher" landing page
+    And I try to login as a user
+    And I go to the "travel-advice-publisher" landing page
+    Then I should see "GOV.UK Travel Advice Publisher"
+    And I should see "Signed in"
+    And I should see "Services"
