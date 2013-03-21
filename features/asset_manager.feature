@@ -1,10 +1,10 @@
 Feature: Asset Manager
 
   @local-network
-  @pending
   @normal
   Scenario: check an asset can be loaded
-    Given the "asset-manager" application has booted
+    Given I am testing "asset-manager"
+    And I am an authenticated API client
     When I visit "/assets/513a0efbed915d425e000002"
     Then I should get a 200 status code
     And I should see "120613_Albania_Travel_Advice_WEB_Ed2_jpeg.jpg"
