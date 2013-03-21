@@ -25,7 +25,7 @@ Given /^I am not an authenticated user$/ do
   @authenticated = false
 end
 
-Given /^I am an authenticated client$/ do
+Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
 
