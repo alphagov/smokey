@@ -17,7 +17,7 @@ def try_get_request(url, options = {})
 end
 
 def default_request_options
-  { auth: @authenticated, cache_bust: @bypass_varnish }
+  { auth: @authenticated, cache_bust: @bypass_varnish, client_auth: @authenticated_as_client }
 end
 
 # Make a POST.
@@ -54,6 +54,11 @@ def do_http_request(url, method = :get, options = {}, &block)
     :auth => true,
   }
   options = defaults.merge(options)
+  headers = {
+    'User-Agent' => 'Smokey Test / Ruby',
+    'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'X-Forwarded-For' => "10.0.0.#{rand(256)}",
+  }
 
   started_at = Time.now
   url = options[:cache_bust] ? cache_bust(url) : url
@@ -61,17 +66,16 @@ def do_http_request(url, method = :get, options = {}, &block)
     user     = ENV['AUTH_USERNAME']
     password = ENV['AUTH_PASSWORD']
   end
+  if options[:client_auth]
+    headers["Authorization"] = "Bearer #{ENV['BEARER_TOKEN']}"
+  end
 
   RestClient::Request.new(
     url: url,
     method: method,
     user: user,
     password: password,
-    headers: {
-      'User-Agent' => 'Smokey Test / Ruby',
-      'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'X-Forwarded-For' => "10.0.0.#{rand(256)}",
-    },
+    headers: headers,
     payload: options[:payload]
   ).execute &block
 rescue RestClient::Unauthorized => e
