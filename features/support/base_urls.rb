@@ -12,7 +12,7 @@ end
 
 def application_base_url(app_name)
   case app_name
-  when 'asset-manager' then "http://asset-manager.#{app_domain}/"
+  when 'asset-manager' then "https://asset-manager.#{app_domain}/"
   when 'calendars' then "http://calendars.#{app_domain}/bank-holidays"
   when 'businesssupportfinder' then "https://businesssupportfinder.#{app_domain}/business-finance-support-finder"
   when 'EFG' then "https://efg.#{app_domain}"
@@ -26,7 +26,7 @@ def application_base_url(app_name)
   when 'publisher' then "https://publisher.#{app_domain}/admin"
   when 'signon' then "https://signon.#{app_domain}/"
   when 'smartanswers' then "http://smartanswers.#{app_domain}/calculate-your-maternity-pay"
-  when 'static' then "http://static.#{app_domain}/"
+  when 'static' then "https://static.#{app_domain}/"
   when 'tariff-backend' then "https://tariff-api.#{app_domain}/"
   when 'tariff-frontend' then "https://tariff.#{app_domain}/trade-tariff"
   when 'whitehall' then "http://whitehall-frontend.#{app_domain}/government"
