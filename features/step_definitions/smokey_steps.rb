@@ -87,6 +87,10 @@ Then /^I should get a location of "(.*)"$/ do |location|
   @response['location'].should == location
 end
 
+Then /I should get a content length of "(\d+)"/ do |length|
+  @response.net_http_res['content-length'].should == length
+end
+
 Then /^I should see "(.*)"$/ do |content|
   if @response
     @response.body.include?(content).should == true
