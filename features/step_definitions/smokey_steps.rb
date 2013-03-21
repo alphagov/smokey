@@ -22,7 +22,11 @@ Given /^I force a varnish cache miss$/ do
 end
 
 Given /^I am not an authenticated user$/ do
-  @authenticated = false 
+  @authenticated = false
+end
+
+Given /^I am an authenticated client$/ do
+  @authenticated_as_client = true
 end
 
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
