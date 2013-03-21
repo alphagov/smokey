@@ -68,6 +68,7 @@ def do_http_request(url, method = :get, options = {}, &block)
   end
   if options[:client_auth]
     headers["Authorization"] = "Bearer #{ENV['BEARER_TOKEN']}"
+    headers["Accept"] = "application/json"
   end
 
   RestClient::Request.new(
