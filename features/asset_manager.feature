@@ -1,6 +1,7 @@
 Feature: Asset Manager
 
   @local-network
+  @pending
   @normal
   Scenario: check an asset can be loaded
     Given the "asset-manager" application has booted
