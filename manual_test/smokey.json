@@ -1,0 +1,1421 @@
+[
+    {
+        "keyword": "Feature",
+        "name": "Travel Advice",
+        "line": 1,
+        "description": "",
+        "id": "travel-advice",
+        "uri": "features/travel_advice.feature",
+        "elements": [
+            {
+                "keyword": "Background",
+                "name": "",
+                "line": 3,
+                "description": "",
+                "type": "background",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"frontend\" application has booted",
+                        "line": 4,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 5,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 6,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "check index loads",
+                "line": 9,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@normal",
+                        "line": 8
+                    }
+                ],
+                "id": "travel-advice;check-index-loads",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"frontend\" application has booted",
+                        "line": 4,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 5,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 6,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/foreign-travel-advice\"",
+                        "line": 10,
+                        "match": {
+                            "arguments": [
+                                {},
+                                {
+                                    "offset": 9,
+                                    "val": "/foreign-travel-advice"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:42"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should see \"Foreign travel advice\"",
+                        "line": 11,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 14,
+                                    "val": "Foreign travel advice"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:98"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should see \"Afghanistan\"",
+                        "line": 12,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 14,
+                                    "val": "Afghanistan"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:98"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should see \"Luxembourg\"",
+                        "line": 13,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 14,
+                                    "val": "Luxembourg"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:98"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "check a country page loads",
+                "line": 16,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@normal",
+                        "line": 15
+                    }
+                ],
+                "id": "travel-advice;check-a-country-page-loads",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"frontend\" application has booted",
+                        "line": 4,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 5,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 6,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/foreign-travel-advice/luxembourg\"",
+                        "line": 17,
+                        "match": {
+                            "arguments": [
+                                {},
+                                {
+                                    "offset": 9,
+                                    "val": "/foreign-travel-advice/luxembourg"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:42"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should see \"Luxembourg\"",
+                        "line": 18,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 14,
+                                    "val": "Luxembourg"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:98"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should see \"Current travel advice\"",
+                        "line": 19,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 14,
+                                    "val": "Current travel advice"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:98"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Feeds should be available for index and countries",
+                "line": 22,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@normal",
+                        "line": 21
+                    }
+                ],
+                "id": "travel-advice;feeds-should-be-available-for-index-and-countries",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"frontend\" application has booted",
+                        "line": 4,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 5,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 6,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should be able to visit:",
+                        "line": 23,
+                        "rows": [
+                            {
+                                "cells": ["Path"],
+                                "line": 24
+                            },
+                            {
+                                "cells": ["/foreign-travel-advice.atom"],
+                                "line": 25
+                            },
+                            {
+                                "cells": ["/foreign-travel-advice/luxembourg.atom"],
+                                "line": 26
+                            }
+                        ],
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:71"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "keyword": "Feature",
+        "name": "Whitehall",
+        "line": 1,
+        "description": "",
+        "id": "whitehall",
+        "uri": "features/whitehall.feature",
+        "elements": [
+            {
+                "keyword": "Scenario",
+                "name": "There should be no authentication for Whitehall",
+                "line": 4,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@notpreview",
+                        "line": 3
+                    }
+                ],
+                "id": "whitehall;there-should-be-no-authentication-for-whitehall",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 5,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 6,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 7,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am not an authenticated user",
+                        "line": 8,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:24"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should be able to view policies",
+                        "line": 9,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should be able to view announcements",
+                        "line": 10,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:9"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should be able to view publications",
+                        "line": 11,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:5"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should be able to visit:",
+                        "line": 12,
+                        "rows": [
+                            {
+                                "cells": ["Path"],
+                                "line": 13
+                            },
+                            {
+                                "cells": ["/government/"],
+                                "line": 14
+                            },
+                            {
+                                "cells": ["/government/policy-topics"],
+                                "line": 15
+                            },
+                            {
+                                "cells": ["/government/consultations"],
+                                "line": 16
+                            },
+                            {
+                                "cells": ["/government/ministers"],
+                                "line": 17
+                            },
+                            {
+                                "cells": ["/government/organisations"],
+                                "line": 18
+                            }
+                        ],
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:71"
+                        },
+                        "result": {
+                            "status": "failed",
+                            "error_message": "Unable to fetch 'https://www.sausage.com/government/?cache_bust=0.5512723236840832' due to '401 Unauthorized'. "
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Searching for an exisiting consulation on whitehall via elastic search",
+                "line": 21,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@normal",
+                        "line": 20
+                    }
+                ],
+                "id": "whitehall;searching-for-an-exisiting-consulation-on-whitehall-via-elastic-search",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 22,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 23,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 24,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I do a whitehall search for consultations from DECC on energy after april 2011",
+                        "line": 25,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:25"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should see \"Assessing radioactive waste disposal sites\"",
+                        "line": 26,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 14,
+                                    "val": "Assessing radioactive waste disposal sites"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:98"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Visiting whitehall",
+                "line": 39,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@normal",
+                        "line": 38
+                    }
+                ],
+                "id": "whitehall;visiting-whitehall",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 40,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 41,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 42,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should be able to view policies",
+                        "line": 43,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should be able to view announcements",
+                        "line": 44,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:9"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I should be able to view publications",
+                        "line": 45,
+                        "match": {
+                            "location": "features/step_definitions/whitehall_steps.rb:5"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should be able to visit:",
+                        "line": 46,
+                        "rows": [
+                            {
+                                "cells": ["Path"],
+                                "line": 47
+                            },
+                            {
+                                "cells": ["/government/"],
+                                "line": 48
+                            },
+                            {
+                                "cells": ["/government/policy-topics"],
+                                "line": 49
+                            },
+                            {
+                                "cells": ["/government/consultations"],
+                                "line": 50
+                            },
+                            {
+                                "cells": ["/government/ministers"],
+                                "line": 51
+                            },
+                            {
+                                "cells": ["/government/organisations"],
+                                "line": 52
+                            },
+                            {
+                                "cells": ["/government/world"],
+                                "line": 53
+                            }
+                        ],
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:71"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Department short URLs work correctly",
+                "line": 56,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@normal",
+                        "line": 55
+                    }
+                ],
+                "id": "whitehall;department-short-urls-work-correctly",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "I am testing through the full stack",
+                        "line": 57,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should be able to visit:",
+                        "line": 58,
+                        "rows": [
+                            {
+                                "cells": ["Path"],
+                                "line": 59
+                            },
+                            {
+                                "cells": ["/ago"],
+                                "line": 60
+                            },
+                            {
+                                "cells": ["/airports-commission"],
+                                "line": 61
+                            },
+                            {
+                                "cells": ["/bis"],
+                                "line": 62
+                            },
+                            {
+                                "cells": ["/brac"],
+                                "line": 63
+                            },
+                            {
+                                "cells": ["/cabinetoffice"],
+                                "line": 64
+                            },
+                            {
+                                "cells": ["/cabinet-office"],
+                                "line": 65
+                            },
+                            {
+                                "cells": ["/communities"],
+                                "line": 66
+                            },
+                            {
+                                "cells": ["/dclg"],
+                                "line": 67
+                            },
+                            {
+                                "cells": ["/dcms"],
+                                "line": 68
+                            },
+                            {
+                                "cells": ["/decc"],
+                                "line": 69
+                            },
+                            {
+                                "cells": ["/defra"],
+                                "line": 70
+                            },
+                            {
+                                "cells": ["/dfe"],
+                                "line": 71
+                            },
+                            {
+                                "cells": ["/dfid"],
+                                "line": 72
+                            },
+                            {
+                                "cells": ["/dft"],
+                                "line": 73
+                            },
+                            {
+                                "cells": ["/dh"],
+                                "line": 74
+                            },
+                            {
+                                "cells": ["/dsa"],
+                                "line": 75
+                            },
+                            {
+                                "cells": ["/dwp"],
+                                "line": 76
+                            },
+                            {
+                                "cells": ["/fco"],
+                                "line": 77
+                            },
+                            {
+                                "cells": ["/hmrc"],
+                                "line": 78
+                            },
+                            {
+                                "cells": ["/home-office"],
+                                "line": 79
+                            },
+                            {
+                                "cells": ["/mod"],
+                                "line": 80
+                            },
+                            {
+                                "cells": ["/moj"],
+                                "line": 81
+                            },
+                            {
+                                "cells": ["/nio"],
+                                "line": 82
+                            },
+                            {
+                                "cells": ["/oag"],
+                                "line": 83
+                            },
+                            {
+                                "cells": ["/office-for-life-sciences"],
+                                "line": 84
+                            },
+                            {
+                                "cells": ["/phe"],
+                                "line": 85
+                            },
+                            {
+                                "cells": ["/pins"],
+                                "line": 86
+                            },
+                            {
+                                "cells": ["/planning-inspectorate"],
+                                "line": 87
+                            },
+                            {
+                                "cells": ["/scotland-office"],
+                                "line": 88
+                            },
+                            {
+                                "cells": ["/transport"],
+                                "line": 89
+                            },
+                            {
+                                "cells": ["/treasury"],
+                                "line": 90
+                            },
+                            {
+                                "cells": ["/wales-office"],
+                                "line": 91
+                            }
+                        ],
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:71"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Whitehall frontend can connect to the database",
+                "line": 95,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@local-network",
+                        "line": 93
+                    },
+                    {
+                        "name": "@high",
+                        "line": 94
+                    }
+                ],
+                "id": "whitehall;whitehall-frontend-can-connect-to-the-database",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 96,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "failed",
+                            "error_message": "Connection refused - connect(2) (Errno::ECONNREFUSED)\napplication has booted'"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 97,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "skipped"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 98,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/healthcheck\" on the \"whitehall-frontend\" application",
+                        "line": 99,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 9,
+                                    "val": "/healthcheck"
+                                },
+                                {
+                                    "offset": 31,
+                                    "val": "whitehall-frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:56"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should get a 200 status code",
+                        "line": 100,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 15,
+                                    "val": "200"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:86"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Whitehall admin can connect to the database",
+                "line": 104,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@local-network",
+                        "line": 102
+                    },
+                    {
+                        "name": "@normal",
+                        "line": 103
+                    }
+                ],
+                "id": "whitehall;whitehall-admin-can-connect-to-the-database",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 105,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 106,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 107,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/healthcheck\" on the \"whitehall-admin\" application",
+                        "line": 108,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 9,
+                                    "val": "/healthcheck"
+                                },
+                                {
+                                    "offset": 31,
+                                    "val": "whitehall-admin"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:56"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "I should get a 200 status code",
+                        "line": 109,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 15,
+                                    "val": "200"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:86"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Whitehall frontend database should be fast",
+                "line": 113,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@local-network",
+                        "line": 111
+                    },
+                    {
+                        "name": "@normal",
+                        "line": 112
+                    }
+                ],
+                "id": "whitehall;whitehall-frontend-database-should-be-fast",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 114,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am benchmarking",
+                        "line": 115,
+                        "match": {
+                            "location": "features/step_definitions/benchmark_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 116,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 117,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/healthcheck\" on the \"whitehall-frontend\" application",
+                        "line": 118,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 9,
+                                    "val": "/healthcheck"
+                                },
+                                {
+                                    "offset": 31,
+                                    "val": "whitehall-frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:56"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "the elapsed time should be less than 1 second",
+                        "line": 119,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 37,
+                                    "val": "1"
+                                }
+                            ],
+                            "location": "features/step_definitions/benchmark_steps.rb:5"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Whitehall frontend website should be fast",
+                "line": 123,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@local-network",
+                        "line": 121
+                    },
+                    {
+                        "name": "@low",
+                        "line": 122
+                    }
+                ],
+                "id": "whitehall;whitehall-frontend-website-should-be-fast",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 124,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am benchmarking",
+                        "line": 125,
+                        "match": {
+                            "location": "features/step_definitions/benchmark_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 126,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 127,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/government/\" on the \"whitehall-frontend\" application",
+                        "line": 128,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 9,
+                                    "val": "/government/"
+                                },
+                                {
+                                    "offset": 31,
+                                    "val": "whitehall-frontend"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:56"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "the elapsed time should be less than 2 seconds",
+                        "line": 129,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 37,
+                                    "val": "2"
+                                }
+                            ],
+                            "location": "features/step_definitions/benchmark_steps.rb:5"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            },
+            {
+                "keyword": "Scenario",
+                "name": "Whitehall admin database should be fast",
+                "line": 133,
+                "description": "",
+                "tags": [
+                    {
+                        "name": "@local-network",
+                        "line": 131
+                    },
+                    {
+                        "name": "@low",
+                        "line": 132
+                    }
+                ],
+                "id": "whitehall;whitehall-admin-database-should-be-fast",
+                "type": "scenario",
+                "steps": [
+                    {
+                        "keyword": "Given ",
+                        "name": "the \"whitehall\" application has booted",
+                        "line": 134,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 5,
+                                    "val": "whitehall"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am benchmarking",
+                        "line": 135,
+                        "match": {
+                            "location": "features/step_definitions/benchmark_steps.rb:1"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I am testing through the full stack",
+                        "line": 136,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:14"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "And ",
+                        "name": "I force a varnish cache miss",
+                        "line": 137,
+                        "match": {
+                            "location": "features/step_definitions/smokey_steps.rb:20"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "When ",
+                        "name": "I visit \"/healthcheck\" on the \"whitehall-admin\" application",
+                        "line": 138,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 9,
+                                    "val": "/healthcheck"
+                                },
+                                {
+                                    "offset": 31,
+                                    "val": "whitehall-admin"
+                                }
+                            ],
+                            "location": "features/step_definitions/smokey_steps.rb:56"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    },
+                    {
+                        "keyword": "Then ",
+                        "name": "the elapsed time should be less than 1 second",
+                        "line": 139,
+                        "match": {
+                            "arguments": [
+                                {
+                                    "offset": 37,
+                                    "val": "1"
+                                }
+                            ],
+                            "location": "features/step_definitions/benchmark_steps.rb:5"
+                        },
+                        "result": {
+                            "status": "passed"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
