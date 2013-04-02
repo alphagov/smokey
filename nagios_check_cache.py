@@ -5,10 +5,6 @@ from time import gmtime, strftime, time
 from syslog import *
 from cStringIO import StringIO
 
-smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
-logdir = smokeydir + '/log/'
-openlog("smokey",0,LOG_DAEMON)
-
 def log_result_to_syslog(exitcode, message):
     if exitcode == 3:
         log_priority = LOG_ERR
@@ -104,40 +100,44 @@ class FeatureTestRun(object):
         pplog.close()
 
 
-def entry_sanity_checks(num_of_args, jsonfile):
-    # Exit if Usage is wrong
-    if num_of_args != 4:
+def argument_check():
+    if len(sys.argv) != 4:
         log_result_and_exit(3, "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile")
 
-    # Check whether the json file exists and issue UNKNOWN if not
 
-    if os.path.exists(jsonfile) == False:
-        log_result_and_exit(3, "UNKNOWN: %s does not exist" % jsonfile)
+def argument_sanity_checks(json_file):
+    # Check whether the json file exists and issue UNKNOWN if not
+    if os.path.exists(json_file) == False:
+        log_result_and_exit(3, "UNKNOWN: %s does not exist" % json_file)
 
     # Check the age of the json file is less than 30m and issue UNKNOWN if not
-    json_age = time() - os.stat(jsonfile).st_mtime
+    json_age = time() - os.stat(json_file).st_mtime
     if json_age > 1800:
-        log_result_and_exit(3, "UNKNOWN: %s is older than 30m" % jsonfile)
+        log_result_and_exit(3, "UNKNOWN: %s is older than 30m" % json_file)
 
 
-def ensure_log_directory_exists():
-    if not os.path.exists(logdir):
-        os.makedirs(logdir)
+def ensure_log_directory_exists(log_dir):
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
 
 
+argument_check()
 
 feature_name  = sys.argv[1]
 priority = "@" + sys.argv[2]
-jsonfile = sys.argv[3]
-entry_sanity_checks(len(sys.argv), jsonfile)
+json_file = sys.argv[3]
+argument_sanity_checks(json_file)
+
+smokey_log_dir = os.path.dirname(os.path.abspath(sys.argv[0])) + '/log/'
+openlog("smokey",0,LOG_DAEMON)
 
 #  set some variables
-smokey_json = json.loads(open(jsonfile).read())
+smokey_json = json.loads(open(json_file).read())
 feature_uri = 'features/' + feature_name + '.feature'
-logfile = logdir + feature_name + '_' + sys.argv[2] + '.log'
+logfile = smokey_log_dir + feature_name + '_' + sys.argv[2] + '.log'
 runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-ensure_log_directory_exists()
+ensure_log_directory_exists(smokey_log_dir)
 
 # Parse the json into valuble information
 feature_test_run = FeatureTestRun(feature_uri, smokey_json, priority);
