@@ -8,31 +8,38 @@ smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
 logdir = smokeydir + '/log/'
 openlog("smokey",0,LOG_DAEMON)
 
-def logprintexit(exitcode,message):
-    print message
+def log_result_to_syslog(exitcode, message):
     if exitcode == 3:
-        priority = LOG_ERR
+        log_priority = LOG_ERR
     elif exitcode == 2:
-        priority = LOG_CRIT
+        log_priority = LOG_CRIT
     elif exitcode == 1:
-         priority = LOG_WARN
+        log_priority = LOG_WARN
     else:
-        priority = LOG_NOTICE
-    syslog(priority,"CHCK | %s@%s | %s" % (sys.argv[1],sys.argv[2],message))
+        log_priority = LOG_NOTICE
+    syslog(log_priority, "CHCK | %s@%s | %s" % (sys.argv[1], sys.argv[2], message))
+
+
+def log_result_and_exit(exitcode,message):
+    log_result_to_syslog(exitcode, message)
+
+    # nagios reads the printed msg for status
+    # (http://nagios.sourceforge.net/docs/3_0/pluginapi.html)
+    print message
     sys.exit(exitcode)
 
 class FeatureTestRun(object):
 
-    def __init__(self):
-        self.feature_found = True
+    def __init__(self, feature_uri, json_data, priority):
+        self.feature_found = False
         self.passed = 0
         self.skipped = 0
         self.failed = 0
-        self.walk_json_tree_of_features()
+        self.walk_json_tree_of_features(feature_uri, json_data, priority)
 
     # Walk the json tree of features
-    def walk_json_tree_of_features(self):
-        for feature in data:
+    def walk_json_tree_of_features(self, feature_uri, json_data, priority):
+        for feature in json_data:
             if feature['uri'] == feature_uri:
                 # Yay, we have found the right feature
                 self.feature_found = True
@@ -41,7 +48,7 @@ class FeatureTestRun(object):
                 self.failed = 0
                 # Walk through the scenarios in the feature
                 if 'elements' not in feature:
-                    logprintexit(0, "OK: Feature %s has no steps at any priority" % feature_name)
+                    log_result_and_exit(0, "OK: Feature %s has no steps at any priority" % feature_name)
 
                 for scenario in feature['elements']:
                     if 'tags' in scenario:
@@ -88,41 +95,48 @@ class FeatureTestRun(object):
                                 fh.close()
 
 
-# Exit if Usage is wrong
-if len(sys.argv) != 4:
-  logprintexit(3,"UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile")
+def entry_sanity_checks(num_of_args, jsonfile):
+    # Exit if Usage is wrong
+    if num_of_args != 4:
+        log_result_and_exit(3, "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile")
 
-# Check whether the json file exists and issue UNKNOWN if not
-jsonfile = sys.argv[3]
-if os.path.exists(jsonfile) == False:
-  logprintexit(3,"UNKNOWN: %s does not exist" % jsonfile)
+    # Check whether the json file exists and issue UNKNOWN if not
 
-# Check the age of the json file is less than 30m and issue UNKNOWN if not
-json_age = time() - os.stat(jsonfile).st_mtime
-if json_age > 1800:
-  logprintexit(3,"UNKNOWN: %s is older than 30m" % jsonfile)
+    if os.path.exists(jsonfile) == False:
+        log_result_and_exit(3, "UNKNOWN: %s does not exist" % jsonfile)
 
-# Parse the json and set some variables
-json_data = open(jsonfile).read()
-data = json.loads(json_data)
-priority = "@" + sys.argv[2]
+    # Check the age of the json file is less than 30m and issue UNKNOWN if not
+    json_age = time() - os.stat(jsonfile).st_mtime
+    if json_age > 1800:
+        log_result_and_exit(3, "UNKNOWN: %s is older than 30m" % jsonfile)
+
+
+def ensure_log_directory_exists():
+    if not os.path.exists(logdir):
+        os.makedirs(logdir)
+
+
+
 feature_name  = sys.argv[1]
+priority = "@" + sys.argv[2]
+jsonfile = sys.argv[3]
+entry_sanity_checks(len(sys.argv), jsonfile)
+
+#  set some variables
+smokey_json = json.loads(open(jsonfile).read())
 feature_uri = 'features/' + feature_name + '.feature'
-feature_found = False
 logfile = logdir + feature_name + '_' + sys.argv[2] + '.log'
 runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-# Check the log directory exists and open the logfile
-if not os.path.exists(logdir):
-  os.makedirs(logdir)
+ensure_log_directory_exists()
 
-
-feature_test_run = FeatureTestRun();
+# Parse the json into valuble information
+feature_test_run = FeatureTestRun(feature_uri, smokey_json, priority);
 
 
 # We didn't even find this feature in the steps!
 if not feature_test_run.feature_found:
-  logprintexit(0,"OK: But feature %s was not found" % feature_name)
+  log_result_and_exit(0,"OK: But feature %s was not found" % feature_name)
 
 # Check the output of our tests
 if feature_test_run.failed > 0:
@@ -140,10 +154,10 @@ else:
 
 # Assuming we had a non-zero number of checks, lets spit out Nagios output
 if exitcode != 99:
-  logprintexit(exitcode,"%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, logfile))
+  log_result_and_exit(exitcode,"%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, logfile))
 
 # We had no steps, but did the feature at least exist?
 if feature_test_run.feature_found:
-  logprintexit(0,"OK: But no %s tests for %s found" % (priority, feature_name))
+  log_result_and_exit(0,"OK: But no %s tests for %s found" % (priority, feature_name))
 else:
-  logprintexit(3,"UNKNOWN: Something went very wrong")
+  log_result_and_exit(3,"UNKNOWN: Something went very wrong")
