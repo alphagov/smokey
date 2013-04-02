@@ -3,6 +3,7 @@ import json, sys, os, codecs
 from pprint import pprint
 from time import gmtime, strftime, time
 from syslog import *
+from cStringIO import StringIO
 
 smokeydir = os.path.dirname(os.path.abspath(sys.argv[0]))
 logdir = smokeydir + '/log/'
@@ -35,10 +36,14 @@ class FeatureTestRun(object):
         self.passed = 0
         self.skipped = 0
         self.failed = 0
+        self.log = ""
         self.walk_json_tree_of_features(feature_uri, json_data, priority)
+        self.write_pretty_log()
 
     # Walk the json tree of features
     def walk_json_tree_of_features(self, feature_uri, json_data, priority):
+        result_details = StringIO()
+
         for feature in json_data:
             if feature['uri'] == feature_uri:
                 # Yay, we have found the right feature
@@ -55,10 +60,8 @@ class FeatureTestRun(object):
                         for tag in scenario['tags']:
                             # If the scenario matches our tag, then check the output
                             if tag['name'] == priority:
-                                # Only open the logfile if we are going to write to it
-                                fh = codecs.open(logfile, "a", "utf-8-sig")
                                 # Write out a header to our log
-                                fh.write(
+                                result_details.write(
                                     "%s:  Scenario: %s (%s/%s)\n" % (runtime, scenario['name'], feature['uri'], priority))
                                 for step in scenario['steps']:
                                     message = ""
@@ -71,7 +74,7 @@ class FeatureTestRun(object):
                                         # Only failures have messages
                                         message = step['result']['error_message']
                                         # Write out the step description and the status
-                                    fh.write("%s:    Step: [%s] %s%s\n" % (
+                                    result_details.write("%s:    Step: [%s] %s%s\n" % (
                                         runtime, step['result']['status'].upper()[:4], step['keyword'], step['name']))
                                     syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s" % (
                                         step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
@@ -79,20 +82,26 @@ class FeatureTestRun(object):
                                     # If we have any rows (e.g. perhaps lists of URLs to visit, write them too)
                                     if 'rows' in step:
                                         for row in step['rows']:
-                                            fh.write("%s:              " % runtime)
+                                            result_details.write("%s:              " % runtime)
                                             for cell in row['cells']:
-                                                fh.write("%s " % cell)
-                                            fh.write("\n")
+                                                result_details.write("%s " % cell)
+                                            result_details.write("\n")
                                             # If we encountered a failure, write out the error
                                     if message != "":
-                                        fh.write("%s:      Error: %s\n" % (runtime, message.partition('\n')[0]))
+                                        result_details.write("%s:      Error: %s\n" % (runtime, message.partition('\n')[0]))
                                         syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" % (
                                             step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
                                             priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore"),
                                             message.partition('\n')[0]))
-                                        # A blank line to make our log pretty
-                                fh.write("%s:\n" % runtime)
-                                fh.close()
+                                # A blank line to make our log pretty
+                                result_details.write("%s:\n" % runtime)
+                                self.log = result_details.getvalue()
+
+
+    def write_pretty_log(self):
+        pplog = codecs.open(logfile, "a", "utf-8-sig")
+        pplog.write(self.log)
+        pplog.close()
 
 
 def entry_sanity_checks(num_of_args, jsonfile):
@@ -154,7 +163,7 @@ else:
 
 # Assuming we had a non-zero number of checks, lets spit out Nagios output
 if exitcode != 99:
-  log_result_and_exit(exitcode,"%s: %s failed, %s skipped, %s passed; see %s for more details" % ( status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, logfile))
+  log_result_and_exit(exitcode,"%s: %s failed, %s skipped, %s passed; \n\n%s" % ( status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
 
 # We had no steps, but did the feature at least exist?
 if feature_test_run.feature_found:
