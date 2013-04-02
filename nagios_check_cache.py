@@ -27,14 +27,14 @@ def log_result_and_exit(exitcode,message):
 
 class FeatureTestRun(object):
 
-    def __init__(self, feature_uri, json_data, priority):
+    def __init__(self, feature_uri, json_data, priority, logfile):
         self.feature_found = False
         self.passed = 0
         self.skipped = 0
         self.failed = 0
         self.log = ""
         self.walk_json_tree_of_features(feature_uri, json_data, priority)
-        self.write_pretty_log()
+        self.write_pretty_log(logfile)
 
     # Walk the json tree of features
     def walk_json_tree_of_features(self, feature_uri, json_data, priority):
@@ -94,7 +94,7 @@ class FeatureTestRun(object):
                                 self.log = result_details.getvalue()
 
 
-    def write_pretty_log(self):
+    def write_pretty_log(self, logfile):
         pplog = codecs.open(logfile, "a", "utf-8-sig")
         pplog.write(self.log)
         pplog.close()
@@ -121,52 +121,52 @@ def ensure_log_directory_exists(log_dir):
         os.makedirs(log_dir)
 
 
-argument_check()
+def main():
+    argument_check()
+    feature_name = sys.argv[1]
+    priority = "@" + sys.argv[2]
+    json_file = sys.argv[3]
+    argument_sanity_checks(json_file)
+    smokey_log_dir = os.path.dirname(os.path.abspath(sys.argv[0])) + '/log/'
+    openlog("smokey", 0, LOG_DAEMON)
 
-feature_name  = sys.argv[1]
-priority = "@" + sys.argv[2]
-json_file = sys.argv[3]
-argument_sanity_checks(json_file)
+    #  set some variables
+    smokey_json = json.loads(open(json_file).read())
+    feature_uri = 'features/' + feature_name + '.feature'
+    logfile = smokey_log_dir + feature_name + '_' + sys.argv[2] + '.log'
+    ensure_log_directory_exists(smokey_log_dir)
+    # Parse the json into valuble information
+    feature_test_run = FeatureTestRun(feature_uri, smokey_json, priority, logfile);
+    # We didn't even find this feature in the steps!
+    if not feature_test_run.feature_found:
+        log_result_and_exit(0, "OK: But feature %s was not found" % feature_name)
 
-smokey_log_dir = os.path.dirname(os.path.abspath(sys.argv[0])) + '/log/'
-openlog("smokey",0,LOG_DAEMON)
+    # Check the output of our tests
+    if feature_test_run.failed > 0:
+        status = "CRITICAL"
+        exitcode = 2
+    elif feature_test_run.skipped > 0:
+        status = "WARNING"
+        exitcode = 1
+    elif feature_test_run.passed > 0:
+        status = "OK"
+        exitcode = 0
+    else:
+        # We use this exitcode later
+        exitcode = 99
 
-#  set some variables
-smokey_json = json.loads(open(json_file).read())
-feature_uri = 'features/' + feature_name + '.feature'
-logfile = smokey_log_dir + feature_name + '_' + sys.argv[2] + '.log'
-runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    # Assuming we had a non-zero number of checks, lets spit out Nagios output
+    if exitcode != 99:
+        log_result_and_exit(exitcode, "%s: %s failed, %s skipped, %s passed; \n\n%s" % (
+        status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
 
-ensure_log_directory_exists(smokey_log_dir)
+    # We had no steps, but did the feature at least exist?
+    if feature_test_run.feature_found:
+        log_result_and_exit(0, "OK: But no %s tests for %s found" % (priority, feature_name))
+    else:
+        log_result_and_exit(3, "UNKNOWN: Something went very wrong")
 
-# Parse the json into valuble information
-feature_test_run = FeatureTestRun(feature_uri, smokey_json, priority);
 
-
-# We didn't even find this feature in the steps!
-if not feature_test_run.feature_found:
-  log_result_and_exit(0,"OK: But feature %s was not found" % feature_name)
-
-# Check the output of our tests
-if feature_test_run.failed > 0:
-  status = "CRITICAL"
-  exitcode = 2
-elif feature_test_run.skipped > 0:
-  status = "WARNING"
-  exitcode = 1
-elif feature_test_run.passed > 0:
-  status = "OK"
-  exitcode = 0
-else:
-  # We use this exitcode later
-  exitcode = 99
-
-# Assuming we had a non-zero number of checks, lets spit out Nagios output
-if exitcode != 99:
-  log_result_and_exit(exitcode,"%s: %s failed, %s skipped, %s passed; \n\n%s" % ( status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
-
-# We had no steps, but did the feature at least exist?
-if feature_test_run.feature_found:
-  log_result_and_exit(0,"OK: But no %s tests for %s found" % (priority, feature_name))
-else:
-  log_result_and_exit(3,"UNKNOWN: Something went very wrong")
+if __name__ == '__main__':
+    runtime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    main()
