@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import json, sys, os, codecs
-from pprint import pprint
 from time import gmtime, strftime, time
 from syslog import *
 from cStringIO import StringIO
@@ -17,7 +16,7 @@ def log_result_to_syslog(exitcode, message):
     syslog(log_priority, "CHCK | %s@%s | %s" % (sys.argv[1], sys.argv[2], message))
 
 
-def log_result_and_exit(exitcode,message):
+def log_result_and_exit(exitcode, message):
     log_result_to_syslog(exitcode, message)
 
     # nagios reads the printed msg for status
@@ -25,8 +24,8 @@ def log_result_and_exit(exitcode,message):
     print message
     sys.exit(exitcode)
 
-class FeatureTestRun(object):
 
+class FeatureTestRun(object):
     def __init__(self, feature_name, json_data, priority, logfile):
         self.feature_found = False
         self.passed = 0
@@ -49,8 +48,7 @@ class FeatureTestRun(object):
         return failure_message
 
     def write_step_description_and_status(self, result_details, feature, priority, scenario, step):
-        result_details.write("%s:    Step: [%s] %s%s\n" % (
-            runtime, step['result']['status'].upper()[:4], step['keyword'], step['name']))
+        result_details.add("    Step: [%s] %s%s\n" % (step['result']['status'].upper()[:4], step['keyword'], step['name']))
         syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s" % (
             step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
             priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore")))
@@ -58,20 +56,21 @@ class FeatureTestRun(object):
     def write_row_data(self, result_details, step):
         if 'rows' in step:
             for row in step['rows']:
-                result_details.write("%s:              " % runtime)
+                row_data = "              "
                 for cell in row['cells']:
-                    result_details.write("%s " % cell)
-                result_details.write("\n")
+                    row_data += " " + cell
+                row_data += "\n"
+                result_details.add(row_data)
 
     def write_failure_message(self, result_details, failure_message, feature, priority, scenario, step):
-        result_details.write("%s:      Error: %s\n" % (runtime, failure_message.partition('\n')[0]))
+        result_details.add("      Error: %s\n" % (failure_message.partition('\n')[0]))
         syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" % (
             step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
             priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore"),
             failure_message.partition('\n')[0]))
 
     def log_details_and_set_status_for_scenario(self, result_details, feature, priority, scenario):
-        result_details.write("%s:  Scenario: %s (%s/%s)\n" % (runtime, scenario['name'], feature['uri'], priority))
+        result_details.add("  Scenario: %s (%s/%s)\n" % (scenario['name'], feature['uri'], priority))
 
         for step in scenario['steps']:
             failure_message = self.increment_status_and_capture_failure_message(step)
@@ -81,7 +80,7 @@ class FeatureTestRun(object):
                 self.write_failure_message(result_details, failure_message, feature, priority, scenario, step)
 
         # A blank line to make our log pretty
-        result_details.write("%s:\n" % runtime)
+        result_details.add("\n")
         self.log = result_details.getvalue()
 
     def set_status_for_scenarios_in_feature(self, feature, priority, result_details):
@@ -95,7 +94,7 @@ class FeatureTestRun(object):
 
     def set_status_for_feature(self, feature_name, json_data, priority):
         feature_uri = 'features/' + feature_name + '.feature'
-        result_details = StringIO()
+        result_details = ResultsLog()
 
         for feature in json_data:
             if feature['uri'] == feature_uri:
@@ -111,6 +110,16 @@ class FeatureTestRun(object):
         pplog.write(self.log)
         pplog.close()
 
+
+class ResultsLog(object):
+    def __init__(self):
+        self.results_stream = StringIO()
+
+    def add(self, message):
+        self.results_stream.write("%s:%s" % (runtime, message))
+
+    def getvalue(self):
+        return self.results_stream.getvalue()
 
 def argument_check():
     if len(sys.argv) != 4:
@@ -131,7 +140,6 @@ def argument_sanity_checks(json_file):
 def ensure_log_directory_exists(log_dir):
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
-
 
 def main():
     argument_check()
@@ -169,7 +177,7 @@ def main():
     # Assuming we had a non-zero number of checks, lets spit out Nagios output
     if exitcode != 99:
         log_result_and_exit(exitcode, "%s: %s failed, %s skipped, %s passed; \n\n%s" % (
-        status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
+            status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
 
     # We had no steps, but did the feature at least exist?
     if feature_test_run.feature_found:
