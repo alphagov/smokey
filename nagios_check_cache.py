@@ -19,8 +19,7 @@ def log_result_to_syslog(exitcode, message):
 def log_result_and_exit(exitcode, message):
     log_result_to_syslog(exitcode, message)
 
-    # nagios reads the printed msg for status
-    # (http://nagios.sourceforge.net/docs/3_0/pluginapi.html)
+    # nagios reads the printed msg for status  (http://nagios.sourceforge.net/docs/3_0/pluginapi.html)
     print message
     sys.exit(exitcode)
 
@@ -47,11 +46,20 @@ class FeatureTestRun(object):
 
         return failure_message
 
+    def ascii_step_name(self, step):
+        return step['name'].encode("ascii", "ignore")
+
+    def feature_name(self, feature):
+        return feature['uri'].split('/')[1].split('.')[0]
+
+    def step_status(self, step):
+        return step['result']['status'].upper()[:4]
+
     def write_step_description_and_status(self, result_details, feature, priority, scenario, step):
-        result_details.add("    Step: [%s] %s%s\n" % (step['result']['status'].upper()[:4], step['keyword'], step['name']))
+        result_details.add("    Step: [%s] %s%s\n" % ((self.step_status(step)), step['keyword'], step['name']))
         syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s" % (
-            step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
-            priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore")))
+            (self.step_status(step)), (self.feature_name(feature)), priority, scenario['name'],
+            step['keyword'], self.ascii_step_name(step)))
 
     def write_row_data(self, result_details, step):
         if 'rows' in step:
@@ -64,10 +72,9 @@ class FeatureTestRun(object):
 
     def write_failure_message(self, result_details, failure_message, feature, priority, scenario, step):
         result_details.add("      Error: %s\n" % (failure_message.partition('\n')[0]))
-        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" % (
-            step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
-            priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore"),
-            failure_message.partition('\n')[0]))
+        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" %
+                           (self.step_status(step), self.feature_name(feature), priority, scenario['name'],
+                            step['keyword'], self.ascii_step_name(step), failure_message.partition('\n')[0]))
 
     def log_details_and_set_status_for_scenario(self, result_details, feature, priority, scenario):
         result_details.add("  Scenario: %s (%s/%s)\n" % (scenario['name'], feature['uri'], priority))
@@ -79,9 +86,8 @@ class FeatureTestRun(object):
             if failure_message != "":
                 self.write_failure_message(result_details, failure_message, feature, priority, scenario, step)
 
-        # A blank line to make our log pretty
+        # To make our log pretty
         result_details.add("\n")
-        self.log = result_details.getvalue()
 
     def set_status_for_scenarios_in_feature(self, feature, priority, result_details):
         if 'elements' not in feature:
@@ -94,7 +100,7 @@ class FeatureTestRun(object):
 
     def set_status_for_feature(self, feature_name, json_data, priority):
         feature_uri = 'features/' + feature_name + '.feature'
-        result_details = ResultsLog()
+        result_details = ResultBuffer()
 
         for feature in json_data:
             if feature['uri'] == feature_uri:
@@ -104,6 +110,8 @@ class FeatureTestRun(object):
                 self.failed = 0
                 self.set_status_for_scenarios_in_feature(feature, priority, result_details)
 
+        self.log = result_details.getvalue()
+
 
     def write_pretty_log(self, logfile):
         pplog = codecs.open(logfile, "a", "utf-8-sig")
@@ -111,15 +119,16 @@ class FeatureTestRun(object):
         pplog.close()
 
 
-class ResultsLog(object):
+class ResultBuffer(object):
     def __init__(self):
-        self.results_stream = StringIO()
+        self.buffer = StringIO()
 
     def add(self, message):
-        self.results_stream.write("%s:%s" % (runtime, message))
+        self.buffer.write("%s:%s" % (runtime, message))
 
     def getvalue(self):
-        return self.results_stream.getvalue()
+        return self.buffer.getvalue()
+
 
 def argument_check():
     if len(sys.argv) != 4:
@@ -140,6 +149,7 @@ def argument_sanity_checks(json_file):
 def ensure_log_directory_exists(log_dir):
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
+
 
 def main():
     argument_check()
