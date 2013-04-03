@@ -27,71 +27,83 @@ def log_result_and_exit(exitcode,message):
 
 class FeatureTestRun(object):
 
-    def __init__(self, feature_uri, json_data, priority, logfile):
+    def __init__(self, feature_name, json_data, priority, logfile):
         self.feature_found = False
         self.passed = 0
         self.skipped = 0
         self.failed = 0
         self.log = ""
-        self.walk_json_tree_of_features(feature_uri, json_data, priority)
+        self.set_status_for_feature(feature_name, json_data, priority)
         self.write_pretty_log(logfile)
 
-    # Walk the json tree of features
-    def walk_json_tree_of_features(self, feature_uri, json_data, priority):
+    def increment_status_and_capture_failure_message(self, step):
+        failure_message = ""
+        if step['result']['status'] == 'passed':
+            self.passed += 1
+        elif step['result']['status'] == 'skipped':
+            self.skipped += 1
+        else:
+            self.failed += 1
+            failure_message = step['result']['error_message']
+
+        return failure_message
+
+    def write_step_description_and_status(self, result_details, feature, priority, scenario, step):
+        result_details.write("%s:    Step: [%s] %s%s\n" % (
+            runtime, step['result']['status'].upper()[:4], step['keyword'], step['name']))
+        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s" % (
+            step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
+            priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore")))
+
+    def write_row_data(self, result_details, step):
+        if 'rows' in step:
+            for row in step['rows']:
+                result_details.write("%s:              " % runtime)
+                for cell in row['cells']:
+                    result_details.write("%s " % cell)
+                result_details.write("\n")
+
+    def write_failure_message(self, result_details, failure_message, feature, priority, scenario, step):
+        result_details.write("%s:      Error: %s\n" % (runtime, failure_message.partition('\n')[0]))
+        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" % (
+            step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
+            priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore"),
+            failure_message.partition('\n')[0]))
+
+    def log_details_and_set_status_for_scenario(self, result_details, feature, priority, scenario):
+        result_details.write("%s:  Scenario: %s (%s/%s)\n" % (runtime, scenario['name'], feature['uri'], priority))
+
+        for step in scenario['steps']:
+            failure_message = self.increment_status_and_capture_failure_message(step)
+            self.write_step_description_and_status(result_details, feature, priority, scenario, step)
+            self.write_row_data(result_details, step)
+            if failure_message != "":
+                self.write_failure_message(result_details, failure_message, feature, priority, scenario, step)
+
+        # A blank line to make our log pretty
+        result_details.write("%s:\n" % runtime)
+        self.log = result_details.getvalue()
+
+    def set_status_for_scenarios_in_feature(self, feature, priority, result_details):
+        if 'elements' not in feature:
+            log_result_and_exit(0, "OK: Feature %s has no steps at any priority" % feature['id'])
+        for scenario in feature['elements']:
+            if 'tags' in scenario:
+                for tag in scenario['tags']:
+                    if tag['name'] == priority:
+                        self.log_details_and_set_status_for_scenario(result_details, feature, priority, scenario)
+
+    def set_status_for_feature(self, feature_name, json_data, priority):
+        feature_uri = 'features/' + feature_name + '.feature'
         result_details = StringIO()
 
         for feature in json_data:
             if feature['uri'] == feature_uri:
-                # Yay, we have found the right feature
                 self.feature_found = True
                 self.passed = 0
                 self.skipped = 0
                 self.failed = 0
-                # Walk through the scenarios in the feature
-                if 'elements' not in feature:
-                    log_result_and_exit(0, "OK: Feature %s has no steps at any priority" % feature_name)
-
-                for scenario in feature['elements']:
-                    if 'tags' in scenario:
-                        for tag in scenario['tags']:
-                            # If the scenario matches our tag, then check the output
-                            if tag['name'] == priority:
-                                # Write out a header to our log
-                                result_details.write(
-                                    "%s:  Scenario: %s (%s/%s)\n" % (runtime, scenario['name'], feature['uri'], priority))
-                                for step in scenario['steps']:
-                                    message = ""
-                                    if step['result']['status'] == 'passed':
-                                        self.passed += 1
-                                    elif step['result']['status'] == 'skipped':
-                                        self.skipped += 1
-                                    else:
-                                        self.failed += 1
-                                        # Only failures have messages
-                                        message = step['result']['error_message']
-                                        # Write out the step description and the status
-                                    result_details.write("%s:    Step: [%s] %s%s\n" % (
-                                        runtime, step['result']['status'].upper()[:4], step['keyword'], step['name']))
-                                    syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s" % (
-                                        step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
-                                        priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore")))
-                                    # If we have any rows (e.g. perhaps lists of URLs to visit, write them too)
-                                    if 'rows' in step:
-                                        for row in step['rows']:
-                                            result_details.write("%s:              " % runtime)
-                                            for cell in row['cells']:
-                                                result_details.write("%s " % cell)
-                                            result_details.write("\n")
-                                            # If we encountered a failure, write out the error
-                                    if message != "":
-                                        result_details.write("%s:      Error: %s\n" % (runtime, message.partition('\n')[0]))
-                                        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" % (
-                                            step['result']['status'].upper()[:4], feature['uri'].split('/')[1].split('.')[0],
-                                            priority, scenario['name'], step['keyword'], step['name'].encode("ascii", "ignore"),
-                                            message.partition('\n')[0]))
-                                # A blank line to make our log pretty
-                                result_details.write("%s:\n" % runtime)
-                                self.log = result_details.getvalue()
+                self.set_status_for_scenarios_in_feature(feature, priority, result_details)
 
 
     def write_pretty_log(self, logfile):
@@ -132,11 +144,10 @@ def main():
 
     #  set some variables
     smokey_json = json.loads(open(json_file).read())
-    feature_uri = 'features/' + feature_name + '.feature'
     logfile = smokey_log_dir + feature_name + '_' + sys.argv[2] + '.log'
     ensure_log_directory_exists(smokey_log_dir)
     # Parse the json into valuble information
-    feature_test_run = FeatureTestRun(feature_uri, smokey_json, priority, logfile);
+    feature_test_run = FeatureTestRun(feature_name, smokey_json, priority, logfile);
     # We didn't even find this feature in the steps!
     if not feature_test_run.feature_found:
         log_result_and_exit(0, "OK: But feature %s was not found" % feature_name)

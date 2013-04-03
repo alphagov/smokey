@@ -1,6 +1,14 @@
 [
     {
         "keyword": "Feature",
+        "name": "Licensing",
+        "line": 1,
+        "description": "",
+        "id": "licensing",
+        "uri": "features/licensing.feature"
+    },
+    {
+        "keyword": "Feature",
         "name": "Travel Advice",
         "line": 1,
         "description": "",
