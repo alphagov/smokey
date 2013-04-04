@@ -124,7 +124,7 @@ class ResultBuffer(object):
         self.buffer = StringIO()
 
     def add(self, message):
-        self.buffer.write("%s:%s" % (runtime, message))
+        self.buffer.write("%s:%s" % (runtime, message.encode('ascii', 'ignore')))
 
     def getvalue(self):
         return self.buffer.getvalue()
