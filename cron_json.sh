@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#  This LANG declaration is needed for Gherkin
+#  without it, we get "invalid byte sequence in US-ASCII" errors
+#  https://github.com/cucumber/gherkin#troubleshooting
+export LANG=en_US.UTF-8
+
 set -e
 
 cd $(dirname "$0")
