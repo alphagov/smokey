@@ -1,5 +1,6 @@
 Feature: Limelight
 	
+	@notproduction
 	@normal
 	Scenario: Limelight application is up
 	    Given I am testing "limelight"
