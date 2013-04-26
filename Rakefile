@@ -16,7 +16,7 @@ end
 Cucumber::Rake::Task.new("test:skyscapenetwork",
     "Run all tests including those which depend on being on " +
     "the same local network as other production infrastructure") do |t|
-  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notskyscape}
+  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notskyscape -t ~@notproduction}
 end
 
 Cucumber::Rake::Task.new("test:notlocalnetwork",
