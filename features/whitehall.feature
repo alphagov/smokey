@@ -18,7 +18,7 @@ Feature: Whitehall
       | /government/organisations |
 
   @normal
-  Scenario: Searching for an exisiting consulation on whitehall via elastic search
+  Scenario: Searching for an existing consultation on whitehall via elastic search
     Given the "whitehall" application has booted
     And I am testing through the full stack
     And I force a varnish cache miss
