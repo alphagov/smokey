@@ -29,14 +29,6 @@ Smoke tests
     And the elapsed time should be less than 2 seconds
 
   @normal
-  Scenario: Redirect for dfe from archive.education.gov.uk
-    Given I am benchmarking
-    When I visit "http://archive.education.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-education"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
   Scenario: Redirect for fco_britishantarcticterritory from britishantarcticterritory.fco.gov.uk
     Given I am benchmarking
     When I visit "http://britishantarcticterritory.fco.gov.uk/" without following redirects
@@ -85,14 +77,6 @@ Smoke tests
     And the elapsed time should be less than 2 seconds
 
   @normal
-  Scenario: Redirect for fco_foi from foi.fco.gov.uk
-    Given I am benchmarking
-    When I visit "http://foi.fco.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/foreign-commonwealth-office"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
   Scenario: Redirect for dh_immunisation from immunisation.dh.gov.uk
     Given I am benchmarking
     When I visit "http://immunisation.dh.gov.uk/" without following redirects
@@ -114,14 +98,6 @@ Smoke tests
     When I visit "http://lrc.businesslink.gov.uk/" without following redirects
     Then I should get a 301 status code
     And I should get a location of "https://www.gov.uk/browse/business"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for dfe_media from media.education.gov.uk
-    Given I am benchmarking
-    When I visit "http://media.education.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-education"
     And the elapsed time should be less than 2 seconds
 
   @normal
@@ -181,14 +157,6 @@ Smoke tests
     And the elapsed time should be less than 2 seconds
 
   @normal
-  Scenario: Redirect for dwp_research from research.dwp.gov.uk
-    Given I am benchmarking
-    When I visit "http://research.dwp.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-work-pensions"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
   Scenario: Redirect for businesslink from sagestartup.businesslink.gov.uk
     Given I am benchmarking
     When I visit "http://sagestartup.businesslink.gov.uk/" without following redirects
@@ -202,14 +170,6 @@ Smoke tests
     When I visit "http://simplybusiness.businesslink.gov.uk/" without following redirects
     Then I should get a 301 status code
     And I should get a location of "https://www.gov.uk"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for dwp_statistics from statistics.dwp.gov.uk
-    Given I am benchmarking
-    When I visit "http://statistics.dwp.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-work-pensions"
     And the elapsed time should be less than 2 seconds
 
   @normal
@@ -1569,7 +1529,7 @@ Smoke tests
     Given I am benchmarking
     When I visit "http://www.dclg.gov.uk/" without following redirects
     Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-communities-and-local-government"
+    And I should get a location of "http://www.communities.gov.uk"
     And the elapsed time should be less than 2 seconds
 
   @normal
@@ -1586,22 +1546,6 @@ Smoke tests
     When I visit "http://www.decc.gov.uk/" without following redirects
     Then I should get a 301 status code
     And I should get a location of "https://www.gov.uk/government/organisations/department-of-energy-climate-change"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for defra from www.defra.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.defra.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for dfe from www.dfe.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.dfe.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-education"
     And the elapsed time should be less than 2 seconds
 
   @normal
@@ -1645,27 +1589,11 @@ Smoke tests
     And the elapsed time should be less than 2 seconds
 
   @normal
-  Scenario: Redirect for dwp from www.dwp.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.dwp.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-work-pensions"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
   Scenario: Redirect for ukef from www.ecgd.gov.uk
     Given I am benchmarking
     When I visit "http://www.ecgd.gov.uk/" without following redirects
     Then I should get a 301 status code
     And I should get a location of "https://www.gov.uk/government/organisations/export-credit-guarantee-department"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for dfe from www.education.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.education.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/department-for-education"
     And the elapsed time should be less than 2 seconds
 
   @normal
@@ -1677,35 +1605,11 @@ Smoke tests
     And the elapsed time should be less than 2 seconds
 
   @normal
-  Scenario: Redirect for treasury from www.hm-treasury.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.hm-treasury.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/hm-treasury"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for hmrc from www.hmrc.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.hmrc.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/hm-revenue-customs"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
   Scenario: Redirect for homeoffice from www.homeoffice.gov.uk
     Given I am benchmarking
     When I visit "http://www.homeoffice.gov.uk/" without following redirects
     Then I should get a 301 status code
     And I should get a location of "https://www.gov.uk/government/organisations/home-office"
-    And the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Redirect for moj from www.justice.gov.uk
-    Given I am benchmarking
-    When I visit "http://www.justice.gov.uk/" without following redirects
-    Then I should get a 301 status code
-    And I should get a location of "https://www.gov.uk/government/organisations/ministry-of-justice"
     And the elapsed time should be less than 2 seconds
 
   @normal
