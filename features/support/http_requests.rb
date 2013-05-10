@@ -91,7 +91,12 @@ rescue RestClient::Exception => e
 end
 
 def single_http_request(url)
-  started_at = Time.now
   uri = URI(url)
-  Net::HTTP::get_response(uri)
+  started_at = Time.now
+  req, data = Net::HTTP::Get.new(uri.path, {
+    'User-Agent' => 'Smokey Test / Ruby'
+  })
+  Net::HTTP.start(uri.host, uri.port) do |http|
+     http.request(req)
+  end
 end
