@@ -137,3 +137,12 @@ Feature: Whitehall
     And I force a varnish cache miss
     When I visit "/healthcheck" on the "whitehall-admin" application
     Then the elapsed time should be less than 1 second
+
+  @normal
+  Scenario: Whitehall offers a world location API
+    Given the "whitehall" application has booted
+    And I am benchmarking
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    When I visit "/api/world-locations" on the "whitehall-admin" application
+    Then the elapsed time should be less than 2 seconds
