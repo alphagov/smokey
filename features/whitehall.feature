@@ -16,6 +16,7 @@ Feature: Whitehall
       | /government/consultations |
       | /government/ministers     |
       | /government/organisations |
+      | /government/world         |
 
   @normal
   Scenario: Searching for an existing consultation on whitehall via elastic search
