@@ -54,10 +54,13 @@ def do_http_request(url, method = :get, options = {}, &block)
     :auth => true,
   }
   options = defaults.merge(options)
+
+  ip_last_octet = rand(256)
   headers = {
     'User-Agent' => 'Smokey Test / Ruby',
     'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'X-Forwarded-For' => "10.0.0.#{rand(256)}",
+    'X-Forwarded-For' => "10.0.0.#{ip_last_octet}",
+    'True-Client-Ip' => "10.0.0.#{ip_last_octet}",
   }
 
   started_at = Time.now
