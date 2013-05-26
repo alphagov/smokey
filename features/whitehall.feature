@@ -110,16 +110,6 @@ Feature: Whitehall
     Then I should get a 200 status code
 
   @local-network
-  @normal
-  Scenario: Whitehall frontend database should be fast
-    Given the "whitehall" application has booted
-    And I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/healthcheck" on the "whitehall-frontend" application
-    Then the elapsed time should be less than 1 second
-
-  @local-network
   @low
   Scenario: Whitehall frontend website should be fast
     Given the "whitehall" application has booted
