@@ -4,7 +4,7 @@ Feature: Backdrop
   Scenario: Grouping queries are allowed on all buckets
     Given I am testing "backdrop"
       And I am testing through the full stack
-     Then I should get a 200 response when I try to visit:
+    Then I should get a 200 response when I try to visit:
       | Path                                                 |
       | /performance/licensing/api/application?group_by=foo  |
       | /performance/licensing/api/journey?group_by=foo      |
@@ -13,7 +13,7 @@ Feature: Backdrop
   Scenario: Raw queries are forbidden by default
     Given I am testing "backdrop"
       And I am testing through the full stack
-     Then I should get a 400 response when I try to visit:
+    Then I should get a 400 response when I try to visit:
       | Path                                   |
       | /performance/licensing/api/application |
 
@@ -21,6 +21,6 @@ Feature: Backdrop
   Scenario: Raw queries are allowed on some buckets
     Given I am testing "backdrop"
       And I am testing through the full stack
-     Then I should get a 200 response when I try to visit:
+    Then I should get a 200 response when I try to visit:
       | Path                               |
       | /performance/licensing/api/journey |
