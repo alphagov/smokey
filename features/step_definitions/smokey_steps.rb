@@ -75,6 +75,13 @@ Then /^I should be able to visit:$/ do |table|
   end
 end
 
+Then /^I should get a (\d+) response when I try to visit:$/ do |status, table|
+  table.hashes.each do |row|
+    response = try_get_request("#{@host}#{row['Path']}", default_request_options)
+    response.code.should == status.to_i
+  end
+end
+
 Then /^I should receive "(\d+)" result/ do |count|
   @response.body.include?("#{count} result found").should == true
 end
