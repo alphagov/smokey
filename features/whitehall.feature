@@ -1,4 +1,6 @@
 Feature: Whitehall
+  This is the Inside Government application that powers
+  www.gov.uk/government and the detailed guidance format type.
 
   @notpreview
   Scenario: There should be no authentication for Whitehall
