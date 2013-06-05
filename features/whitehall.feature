@@ -45,13 +45,15 @@ Feature: Whitehall
     And I should be able to view announcements
     And I should be able to view publications
     Then I should be able to visit:
-      | Path                      |
-      | /government/              |
-      | /government/topics        |
-      | /government/consultations |
-      | /government/ministers     |
-      | /government/organisations |
-      | /government/world         |
+      | Path                             |
+      | /government/                     |
+      | /government/how-government-works |
+      | /government/get-involved         |
+      | /government/topics               |
+      | /government/consultations        |
+      | /government/ministers            |
+      | /government/organisations        |
+      | /government/world                |
 
   @normal
   Scenario: Department short URLs work correctly
