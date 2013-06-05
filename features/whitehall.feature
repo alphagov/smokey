@@ -12,7 +12,7 @@ Feature: Whitehall
     Then I should be able to visit:
       | Path                      |
       | /government/              |
-      | /government/policy-topics |
+      | /government/topics        |
       | /government/consultations |
       | /government/ministers     |
       | /government/organisations |
@@ -47,7 +47,7 @@ Feature: Whitehall
     Then I should be able to visit:
       | Path                      |
       | /government/              |
-      | /government/policy-topics |
+      | /government/topics        |
       | /government/consultations |
       | /government/ministers     |
       | /government/organisations |
