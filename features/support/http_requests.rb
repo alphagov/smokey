@@ -1,5 +1,8 @@
 require 'net/http'
 require 'rest_client'
+require 'phantomjs'
+require 'uri'
+require 'tinder'
 
 def head_request(url, options = {})
   do_http_request(url, :head, options)
@@ -73,6 +76,24 @@ def do_http_request(url, method = :get, options = {}, &block)
     headers["Authorization"] = "Bearer #{ENV['BEARER_TOKEN']}"
     headers["Accept"] = "application/json"
   end
+
+  if method == :get && !options[:client_auth]
+    Capybara.current_driver = :poltergeist
+
+    page.driver.headers = headers
+    uri = URI(url)
+    visit("#{uri.scheme}://#{user}:#{password}@#{uri.host}#{uri.path}?#{uri.query}#{uri.fragment}")
+    path = "screenshots/#{uri.host}#{uri.path}.png"
+    page.save_screenshot(path, :full => true)
+    if ENV['CAMPFIRE']
+      campfire = Tinder::Campfire.new 'govuk', token: ENV['CAMPFIRE']
+      room = campfire.find_room_by_id(448141)
+      room.upload(path, "image/png", "#{uri.path}?#{uri.query}#{uri.path}.png")
+    end
+
+    Capybara.use_default_driver
+  end
+
 
   RestClient::Request.new(
     url: url,
