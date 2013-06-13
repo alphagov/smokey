@@ -4,10 +4,10 @@ Feature: Contracts Finder
 Scenario: contracts finder availability
   Given I am testing "http://www.contractsfinder.businesslink.gov.uk"
   Then I should be able to visit:
-    | Path    |
-    | /       |
-    | /help   |
-    | /search |
+    | Path                                            |
+    | /                                               |
+    | /Help%20and%20Resources.aspx?site=1000&lang=en  |
+    | /Search%20Contracts.aspx?site=1000&lang=en      |
 
 @low
 Scenario: contracts finder search
