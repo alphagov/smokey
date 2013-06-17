@@ -1,11 +1,11 @@
-Feature: Search
+Feature: Browse
 
   @high
-  Scenario: check search loads
+  Scenario: check browse pages load
     Given I am testing through the full stack
     And the "frontend" application has booted
     And I force a varnish cache miss
     Then I should be able to visit:
       | Path            |
-      | /search         |
-      | /search?q=tax   |
+      | /browse         |
+      | /browse/driving |
