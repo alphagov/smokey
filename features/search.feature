@@ -9,5 +9,17 @@ Feature: Search
       | Path            |
       | /search         |
       | /search?q=tax   |
-      | /browse         |
-      | /browse/driving |
+
+  Scenario: check search results
+    Given I am testing through the full stack
+    And the "frontend" application has booted
+    And I force a varnish cache miss
+    When I search for "tax"
+    Then I should see some GOV.UK results
+
+  Scenario: check organisation filtering
+    Given I am testing through the full stack
+    And the "frontend" application has booted
+    And I force a varnish cache miss
+    When I search for "policy"
+    Then I should see organisations in the organisation filter
