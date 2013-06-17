@@ -128,6 +128,16 @@ When /^I do a search for computer in the what's being bought by government$/ do
   @response = get_request("#{@host}/Search%20Contracts/Search%20Contracts%20Results.aspx?site=1002&lang=en&sc=fdd1df44-c8e8-4f2b-b990-e3a0fdd28ae2")
 end
 
-Then /^I should see some results$/ do
+Then /^I should see some contracts finder results$/ do
   @response.body.include?("No results found").should == false
+end
+
+Then /^I should see some GOV.UK results$/ do
+  result_links = Nokogiri::HTML.parse(@response.body).css("ul.results-list li a")
+  result_links.count.should >= 1
+end
+
+Then /^I should see organisations in the organisation filter$/ do
+  organisation_options = Nokogiri::HTML.parse(@response.body).css("select[name=organisation] option")
+  organisation_options.count.should >= 10
 end
