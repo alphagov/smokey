@@ -11,6 +11,11 @@ Given /^I am testing "(.*)"/ do |host|
   end
 end
 
+Given /^I am testing the "(.*)" FCO service$/ do |slug|
+  @host = fco_service_url(slug)
+  @authenticated = true if @host =~ /\/www-preview\./
+end
+
 Given /^I am testing through the full stack$/ do
   @host = base_url
   @bypass_varnish = false
