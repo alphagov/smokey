@@ -48,3 +48,12 @@ Feature: FCO services
     When I visit "/start"
     Then I should get a 200 status code
     And I should see "How many birth certificates do you need?"
+
+  @normal
+  Scenario: Accessing the EPDQ template
+    Given I am testing the "pay-legalisation-post" FCO service
+    And I am not an authenticated user
+    And I force a varnish cache miss
+    When I visit "/assets/barclays_epdq.html"
+    Then I should get a 200 status code
+    And I should see "$$$PAYMENT ZONE$$$"
