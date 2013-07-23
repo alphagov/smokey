@@ -31,7 +31,7 @@ def application_base_url(app_name)
   when 'static' then "https://static.#{app_domain}/"
   when 'tariff-backend' then "https://tariff-api.#{app_domain}/"
   when 'tariff-frontend' then "https://tariff.#{app_domain}/trade-tariff"
-  when 'whitehall' then "http://whitehall-frontend.#{app_domain}/government"
+  when 'whitehall' then "http://whitehall-frontend.#{app_domain}/government/how-government-works"
   when 'whitehall-frontend' then "http://whitehall-frontend.#{app_domain}"
   when 'whitehall-admin' then "https://whitehall-admin.#{app_domain}"
   when 'imminence' then "http://imminence.#{app_domain}/admin"
