@@ -13,7 +13,6 @@ Feature: Whitehall
     And I should be able to view publications
     Then I should be able to visit:
       | Path                      |
-      | /government/              |
       | /government/topics        |
       | /government/consultations |
       | /government/ministers     |
@@ -48,7 +47,6 @@ Feature: Whitehall
     And I should be able to view publications
     Then I should be able to visit:
       | Path                             |
-      | /government/                     |
       | /government/how-government-works |
       | /government/get-involved         |
       | /government/topics               |
@@ -130,7 +128,7 @@ Feature: Whitehall
     And I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "/government/" on the "whitehall-frontend" application
+    When I visit "/government/how-government-works" on the "whitehall-frontend" application
     Then the elapsed time should be less than 2 seconds
 
   @local-network
