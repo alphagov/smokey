@@ -1,3 +1,9 @@
+Then /^I should see the departments and policies section on the homepage$/ do
+  html = get_request "#{@host}/", cache_bust: @bypass_varnish
+  doc = Nokogiri::HTML(html)
+  assert doc.css('#departments-and-policy')
+end
+
 Then /^I should be able to view policies$/ do
   follow_link_to_first_policy_on_policies_page
 end

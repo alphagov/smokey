@@ -2,6 +2,13 @@ Feature: Whitehall
   This is the Inside Government application that powers
   www.gov.uk/government and the detailed guidance format type.
 
+  @normal
+  Scenario: Government publishing section on GOV.UK homepage
+    Given the "frontend" application has booted
+    And I am testing through the full stack
+    And I force a varnish cache miss
+    Then I should see the departments and policies section on the homepage
+
   @notpreview
   Scenario: There should be no authentication for Whitehall
     Given the "whitehall" application has booted
