@@ -156,3 +156,10 @@ Feature: Whitehall
     And I force a varnish cache miss
     When I visit "/api/world-locations" on the "whitehall-admin" application
     Then the elapsed time should be less than 2 seconds
+
+  @normal
+  Scenario: Whitehall assets are served
+    Given the "whitehall" application has booted
+    And I am testing through the full stack
+    When I visit "/government/uploads/system/uploads/attachment_data/file/32409/11-944-higher-education-students-at-heart-of-system.pdf"
+    Then I should get a 200 status code
