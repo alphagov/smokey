@@ -6,14 +6,14 @@ Feature: Business Support Finder
     And I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to visit:
-      | Path                                                                                                                        |
-      | /business-finance-support-finder                                                                                            |
-      | /business-finance-support-finder/sectors                                                                                    |
-      | /business-finance-support-finder/stage?sectors=education                                                                    |
-      | /business-finance-support-finder/structure?sectors=education&stage=start-up                                              |
-      | /business-finance-support-finder/types?sectors=education&stage=start-up&structure=private-company                        |
-      | /business-finance-support-finder/location?sectors=education&stage=start-up&structure=private-company&types=finance          |
-      | /business-finance-support-finder/support-options?location=wales&sectors=education&stage=start-up&structure=private-company&types=finance  |
+      | Path                                                                                                                          |
+      | /business-finance-support-finder                                                                                              |
+      | /business-finance-support-finder/sectors                                                                                      |
+      | /business-finance-support-finder/stage?sectors=education                                                                      |
+      | /business-finance-support-finder/size?sectors=education&stage=start-up                                                        |
+      | /business-finance-support-finder/types?sectors=education&stage=start-up&size=under-10                                         |
+      | /business-finance-support-finder/location?sectors=education&stage=start-up&size=under-10&types=finance                        |
+      | /business-finance-support-finder/support-options?location=wales&sectors=education&stage=start-up&size=under-10&types=finance  |
 
   @low
   Scenario: Quickly loading the business support finder home page
