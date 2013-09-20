@@ -53,7 +53,6 @@ Feature: Frontend
   Scenario: check campaign pages load
     When I visit "/workplacepensions"
     Then I should get a 200 status code
-    And I should see "Automatic enrolment into a workplace pension"
 
   @normal
   Scenario: check browse page load, and links
