@@ -8,4 +8,4 @@ Feature: Transition management tools
       And I try to login as a user
       And I go to the "transition" landing page
     Then I should see "Signed in"
-      And I should see "Organisations are live"
+      And I should see "Organisations"
