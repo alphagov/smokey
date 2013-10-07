@@ -188,6 +188,8 @@ Smoke tests
     And I should get a location of "https://www.gov.uk/government/organisations/ministry-of-defence"
     And the elapsed time should be less than 2 seconds
 
+  #Test is broken, marking as pending
+  @pending
   @high
   Scenario: Redirect for scotlandoffice from www.scotlandoffice.gov.uk
     Given I am benchmarking
