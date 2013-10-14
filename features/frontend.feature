@@ -6,6 +6,12 @@ Feature: Frontend
     And I force a varnish cache miss
 
   @normal
+  Scenario: check robots.txt
+    When I visit "/robots.txt"
+    Then I should get a 200 status code
+    Then I should see "User-agent:"
+
+  @normal
   Scenario: check quick answers load
     When I visit "/vat-rates"
     Then I should see "VAT rates"
