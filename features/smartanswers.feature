@@ -25,5 +25,5 @@ Feature: Smart Answers
       | Path                                              |
       | /student-finance-calculator                       |
       | /student-finance-calculator/y                     |
-      | /student-finance-calculator/y/2012-2013           |
-      | /student-finance-calculator/y/2012-2013/full-time |
+      | /student-finance-calculator/y/2013-2014           |
+      | /student-finance-calculator/y/2013-2014/full-time |
