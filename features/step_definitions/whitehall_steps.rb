@@ -33,6 +33,11 @@ When /^I do a whitehall search for consultations from DECC on energy after april
   @response = get_request(url, cache_bust: @bypass_varnish )
 end
 
+When /^I do a whitehall search for "([^"]*)"$/ do |term|
+  url = "#{@host}/government/publications?keywords=#{uri_escape(term)}"
+  @response = get_request(url, cache_bust: @bypass_varnish)
+end
+
 def follow_link_to_first_policy_on_policies_page
   html = get_request("#{@host}/government/policies", cache_bust: @bypass_varnish)
   doc = Nokogiri::HTML(html)

@@ -1,5 +1,6 @@
 require 'net/http'
 require 'rest_client'
+require 'cgi'
 
 def head_request(url, options = {})
   do_http_request(url, :head, options)
@@ -14,6 +15,10 @@ def try_get_request(url, options = {})
   do_http_request(url, :get, options) { |response, request, result|
     response
   }
+end
+
+def uri_escape(s)
+  CGI.escape(s)
 end
 
 def default_request_options

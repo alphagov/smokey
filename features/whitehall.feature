@@ -31,7 +31,7 @@ Feature: Whitehall
     Given the "whitehall" application has booted
     And I am testing through the full stack
     And I force a varnish cache miss
-    When I do a whitehall search for consultations from DECC on energy after april 2011
+    When I do a whitehall search for "Assessing radioactive waste disposal sites"
     Then I should see "Assessing radioactive waste disposal sites"
 
   @notnagios
