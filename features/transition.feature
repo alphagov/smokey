@@ -7,5 +7,5 @@ Feature: Transition management tools
     When I go to the "transition" landing page
       And I try to login as a user
       And I go to the "transition" landing page
-    Then I should see "Signed in"
+    Then I should see "Sign out"
       And I should see "Organisations"
