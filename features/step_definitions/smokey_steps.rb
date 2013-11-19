@@ -73,6 +73,15 @@ When /^I search for "(.*)"$/ do |term|
   @response = get_request("#{@host}/search?q=#{term}", default_request_options)
 end
 
+When /^I request "(.*)" from Bouncer$/ do |url|
+  parsed_url = URI.parse(url)
+  bouncer_url = "#{@host}#{parsed_url.path}"
+  bouncer_url += "?#{parsed_url.query}" if parsed_url.query
+  request_host = parsed_url.host
+
+  @response = try_get_request(bouncer_url, host_header: request_host)
+end
+
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     response = get_request("#{@host}#{row['Path']}", default_request_options)
@@ -101,6 +110,10 @@ end
 
 Then /^I should get a location of "(.*)"$/ do |location|
   @response['location'].should == location
+end
+
+Then /^I should get a location header of "(.*)"$/ do |location|
+  @response.headers[:location].should == location
 end
 
 Then /I should get a content length of "(\d+)"/ do |length|
