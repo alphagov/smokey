@@ -73,7 +73,7 @@ When /^I search for "(.*)"$/ do |term|
   @response = get_request("#{@host}/search?q=#{term}", default_request_options)
 end
 
-When /^I request "(.*)" from Bouncer$/ do |url|
+When /^I request "(.*)" from Bouncer directly$/ do |url|
   parsed_url = URI.parse(url)
   bouncer_url = "#{@host}#{parsed_url.path}"
   bouncer_url += "?#{parsed_url.query}" if parsed_url.query
