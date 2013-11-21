@@ -78,6 +78,9 @@ def do_http_request(url, method = :get, options = {}, &block)
     headers["Authorization"] = "Bearer #{ENV['BEARER_TOKEN']}"
     headers["Accept"] = "application/json"
   end
+  if options[:host_header]
+    headers["Host"] = options[:host_header]
+  end
 
   RestClient::Request.new(
     url: url,
