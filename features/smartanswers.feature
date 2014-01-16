@@ -12,7 +12,7 @@ Feature: Smart Answers
       | /become-a-motorcycle-instructor             |
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
-      | /legal-right-work-uk                        |
+      | /overseas-passports                         |
       | /calculate-your-maternity-pay               |
       | /register-a-death                           |
 
