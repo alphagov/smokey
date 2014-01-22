@@ -19,7 +19,7 @@ Feature: Mainstream Publishing Tools
       And I go to the "panopticon" landing page
     Then I should see "GOV.UK Panopticon"
       And I should see "Signed in"
-      And I should see "Artefacts"
+      And I should see "artefacts"
 
   @high
   Scenario: Can log in to imminence
