@@ -9,11 +9,11 @@ Feature: Smart Answers
       | Path                                        |
       | /additional-commodity-code                  |
       | /become-a-driving-instructor                |
-      | /become-a-motorcycle-instructor             |
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
-      | /overseas-passports                         |
       | /calculate-your-maternity-pay               |
+      | /marriage-abroad                            |
+      | /overseas-passports                         |
       | /register-a-death                           |
 
     @normal
