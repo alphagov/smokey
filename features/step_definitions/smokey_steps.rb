@@ -149,6 +149,6 @@ Then /^I should see organisations in the organisation filter$/ do
 end
 
 Then /^I should see Publisher's publication index$/ do
-  page.body.include?("publications").should == true
-  page.body.include?("publication-list-container").should == true
+  page.should have_content("publications")
+  page.should have_selector("#publication-list-container")
 end
