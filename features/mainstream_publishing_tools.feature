@@ -8,7 +8,7 @@ Feature: Mainstream Publishing Tools
       And I go to the "publisher" landing page
     Then I should see "GOV.UK Publisher"
       And I should see "Signed in"
-      And I should see "“Lined up” publications"
+      And I should see Publisher's publication index
 
   @high
   Scenario: Can log in to panopticon
