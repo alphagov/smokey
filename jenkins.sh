@@ -3,11 +3,7 @@
 set -x
 
 if [ -z $MYTASK ]; then
-  if [ "$FACTER_govuk_provider" = "sky" ]; then
-    MYTASK="test:skyscapenetwork"
-  else
-    MYTASK="test:localnetwork"
-  fi
+  MYTASK="test:skyscapenetwork"
 fi
 
 # This removes rbenv shims from the PATH where there is no
