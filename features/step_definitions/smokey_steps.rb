@@ -147,3 +147,8 @@ Then /^I should see organisations in the organisation filter$/ do
   organisation_options = Nokogiri::HTML.parse(@response.body).css("select[name=organisation] option")
   organisation_options.count.should >= 10
 end
+
+Then /^I should see Publisher's publication index$/ do
+  page.should have_content("publications")
+  page.should have_selector("#publication-list-container")
+end
