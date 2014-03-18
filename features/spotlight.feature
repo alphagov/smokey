@@ -1,3 +1,4 @@
+@notproduction
 Feature: Spotlight
 
   @high
