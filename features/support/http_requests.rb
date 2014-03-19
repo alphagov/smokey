@@ -88,6 +88,7 @@ def do_http_request(url, method = :get, options = {}, &block)
     user: user,
     password: password,
     headers: headers,
+    timeout: 10,
     payload: options[:payload]
   ).execute &block
 rescue RestClient::Unauthorized => e
