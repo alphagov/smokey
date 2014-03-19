@@ -1,4 +1,3 @@
-@notproduction
 Feature: Backdrop
 
   @normal
