@@ -15,3 +15,11 @@ Feature: Spotlight
     When I visit "/performance/carers-allowance"
     Then I should get a 200 status code
       And I should see "Carer's Allowance"
+
+  @high
+  Scenario: Transaction explorer content is available
+    Given I am testing through the full stack
+      And I force a varnish cache miss
+    When I visit "/performance/transactions-explorer"
+    Then I should get a 200 status code
+      And I should see "Transactions Explorer"
