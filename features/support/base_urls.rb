@@ -44,8 +44,3 @@ def application_base_url(app_name)
     raise "Application '#{app_name}' not recognised, unable to boot it up"
   end
 end
-
-def fco_service_url(slug)
-  prefix = ENV['FCO_SERVICES_DOMAIN_PREFIX'] or raise "ENV['FCO_SERVICES_DOMAIN_PREFIX'] undefined"
-  "https://#{prefix}.#{slug}.service.gov.uk"
-end
