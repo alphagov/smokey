@@ -105,5 +105,8 @@ end
 def single_http_request(url)
   started_at = Time.now
   uri = URI(url)
-  Net::HTTP::get_response(uri)
+
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = uri.scheme == 'https'
+  http.start { |agent| response = agent.get(uri.path) }
 end
