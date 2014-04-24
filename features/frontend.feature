@@ -69,3 +69,8 @@ Feature: Frontend
     When I click "Teaching people to drive"
     Then I should get a 200 status code
     And I should see "Apply to become a driving instructor"
+
+  @high
+  Scenario: check google analytics custom vars added through slimmer are present
+    When I visit "/jobseekers-allowance"
+    Then google analytics custom vars set by slimmer exist
