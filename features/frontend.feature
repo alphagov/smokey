@@ -61,6 +61,35 @@ Feature: Frontend
     Then I should get a 200 status code
 
   @normal
+  Scenario: check special tax disc start page
+    When I visit "/tax-disc"
+    Then I should get a 200 status code
+    And I should see "Renew a tax disc"
+    And I should see "Apply now"
+    And I should see "Apply using the new service"
+    And I should see "https://www.taxdisc.service.gov.uk"
+
+  @normal
+  Scenario: check special view driving licence start page
+    When I visit "/view-driving-licence"
+    Then I should get a 200 status code
+    And I should see "View your driving licence information"
+    And I should see "View the new service"
+    And I should see "View using the original service"
+    And I should see "View now"
+    And I should see "https://www.viewdrivingrecord.service.gov.uk"
+
+  @normal
+  Scenario: check special check vehicle tax status start page
+    When I visit "/check-vehicle-tax"
+    Then I should get a 200 status code
+    And I should see "Check if a vehicle is taxed"
+    And I should see "Check using the new service"
+    And I should see "Check using the original service"
+    And I should see "Check now"
+    And I should see "https://www.vehicleenquiry.service.gov.uk"
+
+  @normal
   Scenario: check browse page load, and links
     When I visit "/browse/driving"
     Then I should get a 200 status code
