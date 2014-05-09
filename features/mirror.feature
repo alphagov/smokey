@@ -1,6 +1,6 @@
 Feature: Mirror
 
-    @medium
+    @high
     Scenario Outline: Test mirror response profile
       Given there are 2 mirrors and 2 providers
       Then I should get a <Status> response from "<Page>" on the mirrors
