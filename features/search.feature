@@ -10,19 +10,38 @@ Feature: Search
       | /search         |
       | /search?q=tax   |
 
-  Scenario: check search results
+  # Scenarios for tabbed search
+  # TODO: remove these once unified search has been released
+  
+  Scenario: check search results on tabbed search
     Given I am testing through the full stack
     And the "frontend" application has booted
     And I force a varnish cache miss
-    When I search for "tax"
+    When I search for "tax" using tabbed search
     Then I should see some GOV.UK results
 
-  Scenario: check organisation filtering
+  Scenario: check organisation filtering on tabbed search
     Given I am testing through the full stack
     And the "frontend" application has booted
     And I force a varnish cache miss
-    When I search for "policy"
+    When I search for "policy" using tabbed search
     Then I should see organisations in the organisation filter
+
+  # Scenarios for unified search
+
+  Scenario: check search results on unified search
+    Given I am testing through the full stack
+    And the "frontend" application has booted
+    And I force a varnish cache miss
+    When I search for "tax" using unified search
+    Then I should see some GOV.UK results
+
+  Scenario: check organisation filtering on unified search
+    Given I am testing through the full stack
+    And the "frontend" application has booted
+    And I force a varnish cache miss
+    When I search for "policy" using unified search
+    Then I should see organisations in the unified organisation filter
 
   Scenario: check sitemap
     Given I am testing through the full stack
