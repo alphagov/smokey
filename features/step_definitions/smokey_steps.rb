@@ -64,8 +64,12 @@ When /^I visit "(.*)" (\d+) times$/ do |path, count|
   }
 end
 
-When /^I search for "(.*)"$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}", default_request_options)
+When /^I search for "(.*)" using tabbed search$/ do |term|
+  @response = get_request("#{@host}/search?q=#{term}&ui=old", default_request_options)
+end
+
+When /^I search for "(.*)" using unified search$/ do |term|
+  @response = get_request("#{@host}/search?q=#{term}&ui=unified", default_request_options)
 end
 
 When /^I request "(.*)" from Bouncer directly$/ do |url|
@@ -140,6 +144,11 @@ end
 
 Then /^I should see organisations in the organisation filter$/ do
   organisation_options = Nokogiri::HTML.parse(@response.body).css("select[name=organisation] option")
+  organisation_options.count.should >= 10
+end
+
+Then /^I should see organisations in the unified organisation filter$/ do
+  organisation_options = Nokogiri::HTML.parse(@response.body).css("#organisations-filter input")
   organisation_options.count.should >= 10
 end
 
