@@ -30,8 +30,8 @@ Feature: Trade Tariff
     Given the "tariff-frontend" application has booted
     And I am testing through the full stack
     And I force a varnish cache miss
-    Then I should be able to visit:
-      | Path                                        |
-      | /trade-tariff/search?search%5Bq%5D=horse    |
-      | /trade-tariff/search?search%5Bq%5D=bovine   |
-      | /trade-tariff/search?search%5Bq%5D=leggings |
+    Then I should be able to visit and see:
+      | Path                            | See                          |
+      | /trade-tariff/search?t=horse    | Headings containing horse    |
+      | /trade-tariff/search?t=bovine   | Headings containing bovine   |
+      | /trade-tariff/search?t=leggings | Headings containing leggings |
