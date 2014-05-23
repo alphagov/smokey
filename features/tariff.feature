@@ -3,9 +3,9 @@ Feature: Trade Tariff
   @normal
   Scenario: Visiting trade tariff
     Given the "tariff-backend" application has booted
-    Given the "tariff-frontend" application has booted
-    And I am testing through the full stack
-    And I force a varnish cache miss
+      And the "tariff-frontend" application has booted
+      And I am testing through the full stack
+      And I force a varnish cache miss
     Then I should be able to visit:
       | Path                                  |
       | /trade-tariff/                        |
@@ -27,9 +27,9 @@ Feature: Trade Tariff
   @normal
   Scenario: Searching trade tariff
     Given the "tariff-backend" application has booted
-    Given the "tariff-frontend" application has booted
-    And I am testing through the full stack
-    And I force a varnish cache miss
+      And the "tariff-frontend" application has booted
+      And I am testing through the full stack
+      And I force a varnish cache miss
     Then I should be able to visit and see:
       | Path                            | See                          |
       | /trade-tariff/search?t=horse    | Headings containing horse    |
