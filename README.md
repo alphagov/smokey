@@ -13,12 +13,12 @@ You'll need to configure the http auth credentials by setting the
 
 ## Adding new tests
 
-Tests that are supposed to be run by nagios also have to be added to the file 
-modules/nagios/manifests/config.pp in the puppet repository. For example, the 
-test features/apollo.feature is added to nagios like this:
+Tests that are supposed to be run by icinga also have to be added to the file
+modules/monitoring/manifests/checks/smokey.pp in the puppet repository. For
+example, the test features/frontend.feature is added to icinga like this:
 
-    nagios::check_feature {
-      'check_apollo':          feature => 'apollo';
+    icinga::check_feature {
+      'check_frontend':          feature => 'frontend';
       #other feature tests
     }
 
