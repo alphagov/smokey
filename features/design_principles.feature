@@ -23,6 +23,12 @@ Feature: Design Principles
     And I should see "Government Service Design Manual"
 
   @normal
+  Scenario: check Service Manual search
+    When I visit "/service-manual/search?q=alpha"
+    Then I should get a 200 status code
+    And I should see "alpha"
+
+  @normal
   Scenario: check Transformation dashboard
     When I visit "/transformation"
     Then I should get a 200 status code
