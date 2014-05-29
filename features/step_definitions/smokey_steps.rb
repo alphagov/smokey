@@ -130,6 +130,10 @@ Then /^I should get a location header of "(.*)"$/ do |location|
   @response.headers[:location].should == location
 end
 
+Then /^I should get a cache control header of "(.*)"$/ do |cache_control|
+  @response.headers[:cache_control].should == cache_control
+end
+
 Then /I should get a content length of "(\d+)"/ do |length|
   @response.net_http_res['content-length'].should == length
 end
