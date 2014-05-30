@@ -15,7 +15,7 @@ Feature: Search
     And the "frontend" application has booted
     And I force a varnish cache miss
     When I search for "tax" using unified search
-    Then I should see some GOV.UK results
+    Then I should see some search results
 
   Scenario: check organisation filtering on unified search
     Given I am testing through the full stack

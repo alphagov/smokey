@@ -156,7 +156,7 @@ When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}"
 end
 
-Then /^I should see some GOV.UK results$/ do
+Then /^I should see some search results$/ do
   result_links = Nokogiri::HTML.parse(@response.body).css("ul.results-list li a")
   result_links.count.should >= 1
 end

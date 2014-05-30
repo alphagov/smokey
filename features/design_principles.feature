@@ -27,7 +27,7 @@ Feature: Design Principles
     When I visit "/service-manual/search?q=alpha"
     Then I should get a 200 status code
     And I should see "alpha"
-    And I should see some GOV.UK results
+    And I should see some search results
 
   @normal
   Scenario: check Transformation dashboard
