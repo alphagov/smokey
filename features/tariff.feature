@@ -31,7 +31,7 @@ Feature: Trade Tariff
       And I am testing through the full stack
       And I force a varnish cache miss
     Then I should be able to visit and see:
-      | Path                            | See                          |
-      | /trade-tariff/search?t=horse    | Headings containing horse    |
-      | /trade-tariff/search?t=bovine   | Headings containing bovine   |
-      | /trade-tariff/search?t=leggings | Headings containing leggings |
+      | Path                             | See                           |
+      | /trade-tariff/search?t=animal    | Sections containing animal    |
+      | /trade-tariff/search?t=mineral   | Sections containing mineral   |
+      | /trade-tariff/search?t=vegetable | Sections containing vegetable |
