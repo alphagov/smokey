@@ -40,4 +40,4 @@ Feature: Mainstream Publishing Tools
     And I go to the "travel-advice-publisher" landing page
     Then I should see "GOV.UK Travel Advice Publisher"
     And I should see "Sign out"
-    And I should see "Services"
+    And I should see "All countries"
