@@ -1,9 +1,11 @@
 #!/bin/sh
-set -eu
+set -e
 
 if [ "$DEPLOY_TO" == "" ]; then
     DEPLOY_TO="monitoring.management.production"
 fi
+
+set -u
 
 chmod 777 log
 rsync -av --delete --exclude='.git' --exclude 'log/*' "$(pwd)/" "deploy@${DEPLOY_TO}":/opt/smokey
