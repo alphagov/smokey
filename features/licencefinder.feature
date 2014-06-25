@@ -2,8 +2,7 @@ Feature: Licence Finder
 
   @normal
   Scenario: check licence finder loads
-    Given the "licencefinder" application has booted
-    And I am testing through the full stack
+    Given I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to visit:
       | Path                                                              |
@@ -16,16 +15,14 @@ Feature: Licence Finder
 
   @normal
   Scenario: check licence finder returns licences
-    Given the "licencefinder" application has booted
-    And I am testing through the full stack
+    Given I am testing through the full stack
     And I force a varnish cache miss
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
 
   @low
   Scenario: Quickly loading the licence finder home page
-    Given the "licencefinder" application has booted
-    And I am benchmarking
+    Given I am benchmarking
     And I am testing through the full stack
     When I visit "/licence-finder"
     Then the elapsed time should be less than 1 seconds

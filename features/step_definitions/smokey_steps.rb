@@ -1,8 +1,3 @@
-Given /^the "(.*)" application has booted$/ do |app_name|
-  url = application_base_url(app_name)
-  head_request(url)
-end
-
 Given /^I am testing "(.*)"/ do |host|
   if host.include? "://"
     @host = host
