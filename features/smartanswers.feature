@@ -2,8 +2,7 @@ Feature: Smart Answers
 
   @normal
   Scenario: check smart answers load
-    Given the "smartanswers" application has booted
-    And I am testing through the full stack
+    Given I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to visit:
       | Path                                        |
@@ -18,8 +17,7 @@ Feature: Smart Answers
 
     @normal
     Scenario: step through a smart answer
-      Given the "smartanswers" application has booted
-      And I am testing through the full stack
+      Given I am testing through the full stack
       And I force a varnish cache miss
       Then I should be able to visit:
       | Path                                              |

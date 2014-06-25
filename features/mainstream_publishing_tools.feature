@@ -1,8 +1,6 @@
 Feature: Mainstream Publishing Tools
   @high
   Scenario: Can log in to publisher
-    Given the "signon" application has booted
-      And the "publisher" application has booted
     When I go to the "publisher" landing page
       And I try to login as a user
       And I go to the "publisher" landing page
@@ -12,8 +10,6 @@ Feature: Mainstream Publishing Tools
 
   @high
   Scenario: Can log in to panopticon
-    Given the "signon" application has booted
-      And the "panopticon" application has booted
     When I go to the "panopticon" landing page
       And I try to login as a user
       And I go to the "panopticon" landing page
@@ -23,8 +19,6 @@ Feature: Mainstream Publishing Tools
 
   @high
   Scenario: Can log in to imminence
-    Given the "signon" application has booted
-      And the "imminence" application has booted
     When I go to the "imminence" landing page
       And I try to login as a user
       And I go to the "imminence" landing page
@@ -33,8 +27,6 @@ Feature: Mainstream Publishing Tools
       And I should see "Services"
 
   Scenario: Can log in to travel-advice-publisher
-    Given the "signon" application has booted
-    And the "travel-advice-publisher" application has booted
     When I go to the "travel-advice-publisher" landing page
     And I try to login as a user
     And I go to the "travel-advice-publisher" landing page

@@ -1,3 +1,4 @@
+@local-network
 Feature: Mirror
 
     @high

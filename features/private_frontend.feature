@@ -1,8 +1,7 @@
 Feature: Private Frontend
 
   Background:
-    Given the "private-frontend" application has booted
-    And I am testing "private-frontend"
+    Given I am testing "private-frontend"
     And I am not an authenticated user
 
   @normal
