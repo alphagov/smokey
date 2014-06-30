@@ -1,9 +1,9 @@
 #!/bin/sh
 set -eu
 
-if [ "$DEPLOY_TO" == "" ]; then
-    DEPLOY_TO="monitoring.management.production"
-fi
+# Check if DEPLOY_TO is not empty. The starting colon is not an accident
+# See: http://stackoverflow.com/questions/307503/whats-the-best-way-to-check-that-environment-variables-are-set-in-unix-shellscr
+: ${DEPLOY_TO:?"Need to set DEPLOY_TO env var to non-empty"}
 
 chmod 777 log
 rsync -av --delete --exclude='.git' --exclude 'log/*' "$(pwd)/" "deploy@${DEPLOY_TO}":/opt/smokey
