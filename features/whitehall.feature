@@ -151,3 +151,9 @@ Feature: Whitehall
     Given I am testing through the full stack
     When I visit "/government/uploads/system/uploads/attachment_data/file/32409/11-944-higher-education-students-at-heart-of-system.pdf"
     Then I should get a 200 status code
+
+  @normal
+  Scenario: Whitehall related google analytics custom vars added through slimmer are present
+    Given I am testing through the full stack
+    When I visit "/government/organisations/prime-ministers-office-10-downing-street"
+    Then google analytics custom vars set by slimmer exist
