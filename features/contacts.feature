@@ -5,6 +5,6 @@ Feature: Contacts
     Given I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to visit:
-      | Path                                      |
-      | /contact/hm-revenue-customs               |
-      | /contact/hm-revenue-customs/child-benefit |
+      | Path                                                               |
+      | /government/organisations/hm-revenue-customs/contact               |
+      | /government/organisations/hm-revenue-customs/contact/child-benefit |
