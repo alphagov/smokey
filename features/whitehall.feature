@@ -96,31 +96,6 @@ Feature: Whitehall
       | /wales-office             |
 
   @local-network
-  @high
-  Scenario: Whitehall frontend can connect to the database
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/healthcheck" on the "whitehall-frontend" application
-    Then I should get a 200 status code
-
-  @local-network
-  @normal
-  Scenario: Whitehall admin can connect to the database
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/healthcheck" on the "whitehall-admin" application
-    Then I should get a 200 status code
-
-  @local-network
-  @normal
-  Scenario: Whitehall frontend database should be fast
-    Given I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/healthcheck" on the "whitehall-frontend" application
-    Then the elapsed time should be less than 1 second
-
-  @local-network
   @low
   Scenario: Whitehall frontend website should be fast
     Given I am benchmarking
@@ -128,15 +103,6 @@ Feature: Whitehall
     And I force a varnish cache miss
     When I visit "/government/how-government-works" on the "whitehall-frontend" application
     Then the elapsed time should be less than 2 seconds
-
-  @local-network
-  @low
-  Scenario: Whitehall admin database should be fast
-    Given I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/healthcheck" on the "whitehall-admin" application
-    Then the elapsed time should be less than 1 second
 
   @normal
   Scenario: Whitehall offers a world location API
