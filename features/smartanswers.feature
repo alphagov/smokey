@@ -7,6 +7,7 @@ Feature: Smart Answers
     Then I should be able to visit:
       | Path                                        |
       | /additional-commodity-code                  |
+      | /apply-tier-4-visa                          |
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
       | /calculate-your-maternity-pay               |
