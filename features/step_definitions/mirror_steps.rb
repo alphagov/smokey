@@ -1,3 +1,11 @@
+Given /^there are (\d) mirror providers/ do |providers|
+  @hosts = Array.new()
+  provider_max = providers.to_i - 1
+  for p in 0..provider_max do
+    @hosts.push("https://www-origin.mirror.provider#{p}.production.govuk.service.gov.uk")
+  end
+end
+
 Given /^there are (\d) mirrors and (\d) providers/ do |mirrors,providers|
   @hosts = Array.new()
   mirror_max = mirrors.to_i - 1
