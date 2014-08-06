@@ -63,8 +63,7 @@ Feature: Frontend
   Scenario: check browse page load, and links
     When I visit "/browse/driving"
     Then I should get a 200 status code
-    And I should see "Book your driving test or get a tax disc online"
     And I should see "Teaching people to drive"
-    When I click "Teaching people to drive"
+    When I click on the section "Teaching people to drive"
     Then I should get a 200 status code
     And I should see "Apply to become a driving instructor"
