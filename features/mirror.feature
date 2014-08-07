@@ -2,6 +2,16 @@
 Feature: Mirror
 
     @high
+    Scenario: Check homepage is served by the load-balanced mirrors
+      Given there are 2 mirror providers
+      Then I should get a 200 response from "/" on the mirrors
+
+    @high
+    Scenario: Check that search returns an error on the load-balanced mirrors
+      Given there are 2 mirror providers
+      Then I should get a 503 response from "/search" on the mirrors
+
+    @high
     Scenario: Check homepage is served by all the mirrors
       Given there are 2 mirrors and 2 providers
       Then I should get a 200 response from "/" on the mirrors
