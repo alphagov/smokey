@@ -1,5 +1,4 @@
-Some fairly basic smoke tests that test the deployed versions of the single 
-domain apps.
+Smoke tests that verify the applications that run GOV.UK are working as expected.
 
 ## Running the tests
 
@@ -14,8 +13,9 @@ You'll need to configure the http auth credentials by setting the
 ## Adding new tests
 
 Tests that are supposed to be run by icinga also have to be added to the file
-modules/monitoring/manifests/checks/smokey.pp in the puppet repository. For
-example, the test features/frontend.feature is added to icinga like this:
+`modules/monitoring/manifests/checks/smokey.pp` in our Puppet repository. For
+example, the test [frontend.feature](/features/frontend.feature)
+is added to icinga like this:
 
     icinga::check_feature {
       'check_frontend':          feature => 'frontend';
@@ -24,12 +24,11 @@ example, the test features/frontend.feature is added to icinga like this:
 
 ## Prioritising scenarios
 
-Each scenario can and should be prioritised by using the @urgent, @high, 
-@normal or @low cucumber tags. For example, the frontend.feature scenario "check 
+Each scenario can and should be prioritised by using the `@urgent`, `@high`,
+`@normal` or `@low` cucumber tags. For example, the frontend scenario "check
 guides load" can be prioritised like this:
 
     @low
     Scenario: check guides load
       When I visit "/getting-an-mot/overview"
       Then I should see "Getting an MOT"
-
