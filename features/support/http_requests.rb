@@ -60,12 +60,9 @@ def do_http_request(url, method = :get, options = {}, &block)
   }
   options = defaults.merge(options)
 
-  ip_last_octet = rand(256)
   headers = {
     'User-Agent' => 'Smokey Test / Ruby',
     'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'X-Forwarded-For' => "10.0.0.#{ip_last_octet}",
-    'True-Client-Ip' => "10.0.0.#{ip_last_octet}",
   }
 
   started_at = Time.now
@@ -80,6 +77,10 @@ def do_http_request(url, method = :get, options = {}, &block)
   end
   if options[:host_header]
     headers["Host"] = options[:host_header]
+  end
+  rate_limit_token = ENV['RATE_LIMIT_TOKEN']
+  if rate_limit_token
+    headers["Rate-Limit-Token"] = rate_limit_token
   end
 
   RestClient::Request.new(
