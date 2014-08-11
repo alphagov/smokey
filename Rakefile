@@ -8,7 +8,7 @@ end
 
 Cucumber::Rake::Task.new("test:skyscapenetwork",
     "Run all tests that are valid in our production environment") do |t|
-  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notproduction}
+  t.cucumber_opts = %w{--format progress -t ~@pending}
 end
 
 Cucumber::Rake::Task.new("test:notlocalnetwork",
