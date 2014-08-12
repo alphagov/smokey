@@ -23,6 +23,5 @@ TMP_FILE="${CACHE_FILE}.tmp"
 rm -f ${TMP_FILE}
 /usr/local/bin/govuk_setenv default \
     bundle exec cucumber --format json \
-        -t ~@pending -t ~@notnagios \
-        -t ~@notskyscape -t ~@notproduction > ${TMP_FILE} || true
+        -t ~@pending -t ~@notnagios > ${TMP_FILE} || true
 mv ${TMP_FILE} ${CACHE_FILE}
