@@ -152,7 +152,7 @@ When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
 end
 
 Then /^I should see some search results$/ do
-  result_links = Nokogiri::HTML.parse(@response.body).css("ol.results-list li a")
+  result_links = Nokogiri::HTML.parse(@response.body).css(".results-list li a")
   result_links.count.should >= 1
 end
 
