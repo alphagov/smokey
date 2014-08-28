@@ -14,7 +14,7 @@ Feature: Mainstream Publishing Tools
       And I try to login as a user
       And I go to the "panopticon" landing page
     Then I should see "GOV.UK Panopticon"
-      And I should see "Signed in"
+      And I should see "Sign out"
       And I should see "artefacts"
 
   @high
