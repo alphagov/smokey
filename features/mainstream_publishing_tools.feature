@@ -23,8 +23,8 @@ Feature: Mainstream Publishing Tools
       And I try to login as a user
       And I go to the "imminence" landing page
     Then I should see "GOV.UK Imminence"
-      And I should see "Signed in"
-      And I should see "Services"
+      And I should see "Sign out"
+      And I should see "All services"
 
   Scenario: Can log in to travel-advice-publisher
     When I go to the "travel-advice-publisher" landing page
