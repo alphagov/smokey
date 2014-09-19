@@ -1,4 +1,4 @@
-Feature: redirector
+Feature: Redirect of gov.uk to www.gov.uk
 
 Smoke tests
 
