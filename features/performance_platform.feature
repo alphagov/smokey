@@ -1,4 +1,4 @@
-Feature: Spotlight
+Feature: Performance Platform
 
   @high
   Scenario: Performance Platform homepage is available
@@ -11,7 +11,7 @@ Feature: Spotlight
     And the elapsed time should be less than 2 seconds
 
   @high
-  Scenario: Spotlight application is up and running
+  Scenario: Performance Platform dashboards are available
     Given I am testing through the full stack
     And I force a varnish cache miss
     And I am benchmarking
