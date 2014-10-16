@@ -7,7 +7,7 @@ Feature: Limelight
         And I force a varnish cache miss
       Then I should be able to visit:
         | Path                                        |
-        | /performance/licensing/                     |
+        | /performance/licensing                      |
         | /performance/licensing/licences             |
         | /performance/licensing/licences/childminder |
         | /performance/licensing/authorities          |
