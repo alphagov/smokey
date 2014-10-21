@@ -38,7 +38,6 @@ def application_base_url(app_name)
   when 'whitehall-admin' then "https://whitehall-admin.#{app_domain}"
   when 'imminence' then "https://imminence.#{app_domain}/admin"
   when 'travel-advice-publisher' then "https://travel-advice-publisher.#{app_domain}/admin"
-  when 'fact-cave' then "https://fact-cave.#{app_domain}"
   when 'transition' then "https://transition.#{app_domain}"
   else
     raise "Application '#{app_name}' not recognised, unable to boot it up"
