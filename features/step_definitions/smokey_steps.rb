@@ -167,6 +167,5 @@ Then /^I should see organisations in the unified organisation filter$/ do
 end
 
 Then /^I should see Publisher's publication index$/ do
-  page.should have_content("publications")
   page.should have_selector("#publication-list-container")
 end
