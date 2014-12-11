@@ -11,12 +11,6 @@ Feature: Design Principles
     And I should see "Start with needs"
 
   @normal
-  Scenario: check Style Guide
-    When I visit "/design-principles/style-guide"
-    Then I should get a 200 status code
-    And I should see "Content style guide"
-
-  @normal
   Scenario: check Service Manual
     When I visit "/service-manual"
     Then I should get a 200 status code
