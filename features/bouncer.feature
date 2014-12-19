@@ -1,6 +1,6 @@
 Feature: Bouncer
 
-  @normal
+  @high
   Scenario: Bouncer application is up
     Given I am testing "bouncer"
     And I am benchmarking
