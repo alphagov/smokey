@@ -116,3 +116,12 @@ Feature: Whitehall
     Given I am testing through the full stack
     When I visit "/government/uploads/system/uploads/attachment_data/file/32409/11-944-higher-education-students-at-heart-of-system.pdf"
     Then I should get a 200 status code
+
+  @normal
+  Scenario: National statistics release calendar is served
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    And I am benchmarking
+    When I visit "/government/statistics/announcements"
+    Then I should get a 200 status code
+    And the elapsed time should be less than 2 seconds
