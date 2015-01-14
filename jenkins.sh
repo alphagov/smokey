@@ -2,6 +2,10 @@
 
 set -x
 
+# Clean up untracked files. This is mainly to remove `smokey-rest-client.log`,
+# otherwise it builds up between jobs.
+git clean -fdx
+
 if [ -z $MYTASK ]; then
   MYTASK="test:skyscapenetwork"
 fi
