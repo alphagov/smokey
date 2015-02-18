@@ -7,7 +7,7 @@ Feature: Performance Platform
     And I am benchmarking
     When I visit "/performance"
     Then I should get a 200 status code
-    And I should see "Our performance"
+    And I should see "Performance"
     And the elapsed time should be less than 2 seconds
 
   @high
