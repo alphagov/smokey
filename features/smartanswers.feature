@@ -10,9 +10,9 @@ Feature: Smart Answers
       | /apply-tier-4-visa                          |
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
-      | /calculate-your-maternity-pay               |
       | /marriage-abroad                            |
       | /overseas-passports                         |
+      | /pay-leave-for-parents                      |
       | /register-a-death                           |
 
     @normal
