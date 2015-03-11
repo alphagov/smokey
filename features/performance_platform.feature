@@ -8,7 +8,6 @@ Feature: Performance Platform
     When I visit "/performance"
     Then I should get a 200 status code
     And I should see "Performance"
-    And the elapsed time should be less than 5 seconds
 
   @high
   Scenario: Performance Platform dashboards are available
@@ -18,4 +17,3 @@ Feature: Performance Platform
     When I visit "/performance/carers-allowance"
     Then I should get a 200 status code
     And I should see "Carer's Allowance"
-    And the elapsed time should be less than 5 seconds
