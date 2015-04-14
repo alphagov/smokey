@@ -1,15 +1,6 @@
 Feature: Search
 
   @high
-  Scenario: check search loads
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-    Then I should be able to visit:
-      | Path            |
-      | /search         |
-      | /search?q=tax   |
-
-  @high
   Scenario: check search results on unified search
     Given I am testing through the full stack
     And I force a varnish cache miss
