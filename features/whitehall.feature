@@ -58,9 +58,9 @@ Feature: Whitehall
       | /government/world                |
 
   @normal
-  Scenario: Department short URLs work correctly
+  Scenario: Department short URLs redirect correctly
     Given I am testing through the full stack
-    Then I should be able to visit:
+    Then I should get a 301 response when I try to visit:
       | Path                      |
       | /ago                      |
       | /airports-commission      |
