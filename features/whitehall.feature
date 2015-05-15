@@ -31,7 +31,7 @@ Feature: Whitehall
     When I do a whitehall search for "Assessing radioactive waste disposal sites"
     Then I should see "Assessing radioactive waste disposal sites"
 
-  @notnagios
+  @disabled_in_icinga
   Scenario: Feeds should be available for documents
     Given I am testing through the full stack
     And I force a varnish cache miss
