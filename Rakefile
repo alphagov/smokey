@@ -22,7 +22,7 @@ Cucumber::Rake::Task.new("test:wip",
 end
 
 Cucumber::Rake::Task.new(:remote, "Excludes nagios tests") do |t|
-  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@notnagios}
+  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@disabled_in_icinga}
 end
 
 task :default => "test:notlocalnetwork"
