@@ -14,7 +14,6 @@ def application_base_url(app_name)
   case app_name
   when 'asset-manager' then "https://asset-manager.#{app_domain}/"
   when 'bouncer' then "https://bouncer.#{app_domain}/"
-  when 'backdrop' then "https://www.#{app_domain}"
   when 'calendars' then "https://calendars.#{app_domain}/bank-holidays"
   when 'contacts' then "https://www.#{app_domain}/contact/hm-revenue-customs"
   when 'businesssupportfinder' then "https://businesssupportfinder.#{app_domain}/business-finance-support-finder"
@@ -24,7 +23,6 @@ def application_base_url(app_name)
   when 'imminence' then "https://imminence.#{app_domain}/"
   when 'licencefinder' then "https://licencefinder.#{app_domain}/licence-finder"
   when 'licensing' then "https://licensify.#{app_domain}/apply-for-a-licence"
-  when 'limelight' then "https://www.#{app_domain}/performance/licensing"
   when 'panopticon' then "https://panopticon.#{app_domain}/"
   when 'public-contentapi' then "https://www.#{app_domain}/api/tags.json" # this should be changed to a Content API 'homepage' when we have one
   when 'publisher' then "https://publisher.#{app_domain}/admin"
