@@ -1,5 +1,6 @@
 Feature: Contacts
 
+  @draft
   @normal
   Scenario: check contacts app can be reached
     Given I am testing through the full stack
