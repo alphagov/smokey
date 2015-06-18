@@ -1,11 +1,16 @@
 Feature: Contacts
 
-  @draft
   @normal
-  Scenario: check contacts app can be reached
+  Scenario: viewing contacts finder
     Given I am testing through the full stack
     And I force a varnish cache miss
-    Then I should be able to visit:
-      | Path                                                               |
-      | /government/organisations/hm-revenue-customs/contact               |
-      | /government/organisations/hm-revenue-customs/contact/child-benefit |
+    When I visit "/government/organisations/hm-revenue-customs/contact"
+    Then I should see "HM Revenue & Customs Contacts"
+
+  @draft
+  @normal
+  Scenario: viewing a contact
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I visit "/government/organisations/hm-revenue-customs/contact/child-benefit"
+    Then I should see "Child Benefit"
