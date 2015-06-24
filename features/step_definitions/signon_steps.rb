@@ -1,3 +1,11 @@
+
+Given /^I have a valid signon session$/ do
+  visit signon_base_url
+  fill_in "Email", :with => ENV["SIGNON_EMAIL"]
+  fill_in "Passphrase", :with => ENV["SIGNON_PASSWORD"]
+  click_button "Sign in"
+end
+
 When /^I try to login as a user$/ do
   assert ENV["SIGNON_EMAIL"] && ENV["SIGNON_PASSWORD"], "Please ensure that the signon user credentials are available in the environment"
 
@@ -7,4 +15,3 @@ When /^I try to login as a user$/ do
   fill_in "Passphrase", :with => ENV["SIGNON_PASSWORD"]
   click_button "Sign in"
 end
-
