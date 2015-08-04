@@ -16,7 +16,7 @@ Cucumber::Rake::Task.new("test:preview_draft",
   t.cucumber_opts = %w{-t @draft-only -t ~@pending -t ~@notpreview}
 end
 
-Cucumber::Rake::Task.new("test:skyscapenetwork",
+Cucumber::Rake::Task.new("test:production",
     "Run all tests that are valid in our production environment") do |t|
   t.cucumber_opts = %w{--format progress -t ~@pending -t ~@draft-only}
 end

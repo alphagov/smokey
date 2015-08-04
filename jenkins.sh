@@ -7,7 +7,7 @@ set -x
 git clean -fdx
 
 if [ -z $MYTASK ]; then
-  MYTASK="test:skyscapenetwork"
+  MYTASK="test:production"
 fi
 
 # This removes rbenv shims from the PATH where there is no
