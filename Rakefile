@@ -16,7 +16,7 @@ Cucumber::Rake::Task.new("test:preview_draft",
   t.cucumber_opts = %w{-t @draft-only -t ~@pending -t ~@notpreview}
 end
 
-Cucumber::Rake::Task.new("test:skyscapenetwork",
+Cucumber::Rake::Task.new("test:production",
     "Run all tests that are valid in our production environment") do |t|
   t.cucumber_opts = %w{--format progress -t ~@pending -t ~@draft-only}
 end
@@ -36,20 +36,3 @@ Cucumber::Rake::Task.new(:remote, "Excludes nagios tests") do |t|
 end
 
 task :default => "test:notlocalnetwork"
-
-namespace :smokey do
-
-  desc "Deploy smokey for use by nagios to $HOST"
-  task :deploy do
-    command = "ssh -l ubuntu #{ENV['HOST']} -i #{ENV['HOME']}/.ssh/beta.pem sudo mkdir /opt/smokey"
-    puts command
-    system command
-    command = "ssh -l ubuntu #{ENV['HOST']} -i #{ENV['HOME']}/.ssh/beta.pem sudo chown -R ubuntu:root /opt/smokey"
-    puts command
-    system command
-    command = "rsync --exclude .git --compress --verbose --recursive --delete . -e 'ssh -i #{ENV['HOME']}/.ssh/beta.pem' ubuntu@#{ENV['HOST']}:/opt/smokey"
-    puts command
-    system command
-  end
-
-end
