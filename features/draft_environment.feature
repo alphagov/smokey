@@ -12,12 +12,12 @@ Feature: Draft environment
 
   @draft-only
   Scenario: visiting a page served by government-frontend
-    Given I have a valid signon session
+    When I try to login as a user
     When I attempt to visit "government/case-studies/epic-cic"
     Then I should see "Case study"
 
   @draft-only
   Scenario: visiting a page served by contacts-frontend
-    Given I have a valid signon session
+    When I try to login as a user
     When I attempt to visit "government/organisations/hm-revenue-customs/contact/child-benefit"
     Then I should see "Child Benefit"

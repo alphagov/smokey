@@ -19,3 +19,9 @@ Feature: Licensing
       And I force a varnish cache miss
     When I visit "/apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1"
     Then the elapsed time should be less than 10 seconds
+
+  @normal
+  Scenario: Signing in to licensify-admin
+     When I try to login as a user
+      And I login to Licensify
+     Then I should see "Tacit?"
