@@ -6,6 +6,14 @@ When /^I attempt to visit "(.*?)"$/ do |path|
   visit path
 end
 
+When /^I attempt to visit a CMA case$/ do
+  visit "cma-cases/japan-tobacco-international-e-lites"
+end
+
+When /^I attempt to visit a manual$/ do
+  visit "guidance/content-design"
+end
+
 Then /^I should be prompted to log in$/ do
   page.should have_content('Sign in')
 end
