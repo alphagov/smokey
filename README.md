@@ -30,6 +30,12 @@ bundle exec cucumber features/frontend.feature
 The tests will run against the preview environment by default.  You can
 override that by setting the `GOVUK_WEBSITE_ROOT` environment variable.
 
+You may also specify the domain of the draft website root using
+`GOVUK_DRAFT_WEBSITE_ROOT`. By default this will be derived from
+`GOVUK_WEBSITE_ROOT` by replacing the first element of the hostname with
+`draft-origin` (so `https://www.preview.alphagov.co.uk` becomes `https
+://draft-origin.preview.alphagov.co.uk`).
+
 You'll need to configure the http auth credentials by setting the
 `AUTH_USERNAME` and `AUTH_PASSWORD` environment variables.
 
