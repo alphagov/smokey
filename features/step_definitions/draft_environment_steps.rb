@@ -20,3 +20,7 @@ Then /^I should be on the case study page$/ do
   page.current_path.should eq("/government/case-studies/epic-cic")
   page.should have_content('Case study')
 end
+
+Then /^the page should contain the draft watermark$/ do
+  page.should have_css('body.draft')
+end
