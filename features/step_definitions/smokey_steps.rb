@@ -7,7 +7,7 @@ Given /^I am testing "(.*)"/ do |host|
 end
 
 Given /^I am testing through the full stack$/ do
-  @host = base_url
+  @host = ENV["GOVUK_WEBSITE_ROOT"]
   @bypass_varnish = false
   @authenticated = true
 end
