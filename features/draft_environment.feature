@@ -11,14 +11,14 @@ Feature: Draft environment
     Then I should be on the case study page
     And the page should contain the draft watermark
 
-  @draft @high
+  @draft
   Scenario: visiting a page served by government-frontend
     When I try to login as a user
     When I attempt to visit "government/case-studies/epic-cic"
     Then I should see "Case study"
     And the page should contain the draft watermark
 
-  @draft @normal
+  @draft
   Scenario: visiting a page served by contacts-frontend
     When I try to login as a user
     When I attempt to visit "government/organisations/hm-revenue-customs/contact/child-benefit"
