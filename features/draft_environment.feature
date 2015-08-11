@@ -19,6 +19,21 @@ Feature: Draft environment
     And the page should contain the draft watermark
 
   @draft
+  Scenario: visiting a specialist document served by specialist-frontend
+    When I try to login as a user
+    And I attempt to visit a CMA case
+    Then I should see "Competition and Markets Authority case"
+    And the page should contain the draft watermark
+
+  @draft
+  Scenario: visiting a manual served by specialist-frontend
+    When I try to login as a user
+    And I attempt to visit a manual
+    Then I should see "Content design"
+    And I should see "Search this manual"
+    And the page should contain the draft watermark
+
+  @draft
   Scenario: visiting a page served by contacts-frontend
     When I try to login as a user
     When I attempt to visit "government/organisations/hm-revenue-customs/contact/child-benefit"
