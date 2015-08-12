@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "plek"
 gem "rake"
 gem "rspec"
 gem "cucumber"

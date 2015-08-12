@@ -43,6 +43,7 @@ GEM
     net-http-persistent (2.7)
     nokogiri (1.5.5)
     ntlm-http (0.1.1)
+    plek (1.11.0)
     rack (1.4.1)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -78,6 +79,10 @@ DEPENDENCIES
   capybara-mechanize
   cucumber
   nokogiri
+  plek
   rake
   rest-client
   rspec
+
+BUNDLED WITH
+   1.10.4
