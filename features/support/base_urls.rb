@@ -13,6 +13,7 @@ end
 def application_base_url(app_name)
   case app_name
   when 'asset-manager' then "https://asset-manager.#{app_domain}/"
+  when 'assets' then "https://assets-origin.#{app_domain}/"
   when 'bouncer' then "https://bouncer.#{app_domain}/"
   when 'calendars' then "https://calendars.#{app_domain}/bank-holidays"
   when 'contacts' then "https://www.#{app_domain}/contact/hm-revenue-customs"
