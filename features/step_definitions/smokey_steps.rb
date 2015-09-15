@@ -169,3 +169,10 @@ end
 Then /^I should see Publisher's publication index$/ do
   page.should have_selector("#publication-list-container")
 end
+
+Then(/^I should be able to visit a (first|second) level topic at random$/) do |level|
+  topics = Nokogiri::HTML.parse(@response.body).css("nav.topics li a")
+  topic_path = topics.map { |t| t.attributes["href"].value }.sample(1).first
+  puts "Level: #{level}, Path: #{topic_path}, Topic Count: #{topics.count}"
+  should_visit(topic_path)
+end
