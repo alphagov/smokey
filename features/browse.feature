@@ -7,4 +7,4 @@ Feature: Browse
     Then I should be able to visit:
       | Path            |
       | /browse         |
-      | /browse/driving |
+    And I should be able to navigate the browse pages
