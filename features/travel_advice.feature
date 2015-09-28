@@ -23,3 +23,8 @@ Feature: Travel Advice
       | Path                                   |
       | /foreign-travel-advice.atom            |
       | /foreign-travel-advice/luxembourg.atom |
+
+  @normal
+  Scenario: Country feed should contain correct website root
+    When I visit "/foreign-travel-advice/ireland.atom"
+    Then the XML ID is formed from the correct URL
