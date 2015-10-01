@@ -151,6 +151,11 @@ When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}"
 end
 
+Then /^the logo should link to the homepage$/ do
+  logo = Nokogiri::HTML.parse(@response.body).at_css('#logo')
+  logo.attributes['href'].value.should == ENV['EXPECTED_GOVUK_WEBSITE_ROOT']
+end
+
 Then /^I should see some search results$/ do
   result_links = Nokogiri::HTML.parse(@response.body).css(".results-list li a")
   result_links.count.should >= 1
