@@ -178,11 +178,9 @@ end
 Then /^I should be able to navigate the topic hierarchy$/ do
   topics = Nokogiri::HTML.parse(@response.body).css("nav.topics li a")
   random_path_selection(anchor_tags: topics).each do |path|
-    log_traversal_info(path, level: 1, links: topics)
     should_visit(path)
     subtopics = Nokogiri::HTML.parse(@response.body).css("nav.topics li a")
     random_path_selection(anchor_tags: subtopics).each do |path|
-      log_traversal_info(path, level: 2, links: subtopics)
       should_visit(path)
     end
   end
@@ -191,11 +189,9 @@ end
 Then /^I should be able to navigate the browse pages$/ do
   categories = Nokogiri::HTML.parse(@response.body).css(".browse-panes ul li a")
   random_path_selection(anchor_tags: categories).each do |path|
-    log_traversal_info(path, level: 1, links: categories)
     should_visit(path)
     subcategories = Nokogiri::HTML.parse(@response.body).css(".pane-inner ul li a")
     random_path_selection(anchor_tags: subcategories).each do |path|
-      log_traversal_info(path, level: 2, links: subcategories)
       should_visit(path)
     end
   end
@@ -206,8 +202,3 @@ def random_path_selection(opts={})
   anchor_tags = opts[:anchor_tags] || []
   anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(size)
 end
-
-def log_traversal_info(path, opts={})
-  puts "Level: #{opts.fetch(:level)} | Available links: #{opts.fetch(:links).count} | Visited path: #{path}"
-end
-
