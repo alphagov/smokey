@@ -111,3 +111,13 @@ def single_http_request(url)
   http.use_ssl = uri.scheme == 'https'
   http.start { |agent| response = agent.get(uri.path) }
 end
+
+# Mechanize doesn't seem to be adding the referer automatically, so this is
+# necessary to force it.
+def mechanize_with_referer(referer = current_url)
+  original_headers = page.driver.browser.agent.request_headers
+  page.driver.browser.agent.request_headers = original_headers.merge('Referer' => referer)
+  yield
+ensure
+  page.driver.browser.agent.request_headers = original_headers
+end
