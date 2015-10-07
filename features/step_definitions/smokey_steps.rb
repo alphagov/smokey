@@ -105,14 +105,6 @@ Then /^I should get a (\d+) response when I try to visit:$/ do |status, table|
   end
 end
 
-Then /^I should receive "(\d+)" result/ do |count|
-  @response.body.include?("#{count} result found").should == true
-end
-
-Then /^I should receive no results/ do
-  @response.body.include?("find any results for").should == true
-end
-
 Then /^I should get a (\d+) status code$/ do |status|
   @response.code.to_i.should == status.to_i
 end
@@ -159,11 +151,6 @@ end
 Then /^I should see some search results$/ do
   result_links = Nokogiri::HTML.parse(@response.body).css(".results-list li a")
   result_links.count.should >= 1
-end
-
-Then /^I should see organisations in the organisation filter$/ do
-  organisation_options = Nokogiri::HTML.parse(@response.body).css("select[name=organisation] option")
-  organisation_options.count.should >= 10
 end
 
 Then /^I should see organisations in the unified organisation filter$/ do
