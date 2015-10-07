@@ -34,6 +34,10 @@ Feature: Frontend
   Scenario: check licences load
     When I visit "/busking-licence"
     Then I should see "Busking licence"
+     And I should see "Enter your postcode"
+    When I try to post to "/busking-licence" with "postcode=E20+2ST"
+    Then I should get a 200 status code
+     And I should see "Busking licence"
 
   @normal
   Scenario: check local transactions load
