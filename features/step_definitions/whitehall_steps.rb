@@ -16,23 +16,6 @@ Then /^I should be able to view announcements$/ do
   follow_link_to_first_announcement_on_announcements_page
 end
 
-Then /^I should be able to view government search results for "([^"]*)"$/ do |term|
-  html = get_request "#{@host}/government/search?q=#{term}", cache_bust: @bypass_varnish
-  doc = Nokogiri::HTML(html)
-  assert doc.css('.search_results li').count > 0, "No search results returned from /government/search for '#{term}'"
-end
-
-Then /^I should be able to view specialist search results for "([^"]*)"$/ do |term|
-  html = get_request "#{@host}/specialist/search?q=#{term}", cache_bust: @bypass_varnish
-  doc = Nokogiri::HTML(html)
-  assert doc.css('.search-results li').count > 0, "No search results returned from /specialist/search for '#{term}'"
-end
-
-When /^I do a whitehall search for consultations from DECC on energy after april 2011$/ do
-  url = "#{@host}/government/publications?keywords=&publication_filter_option=consultations&topics%5B%5D=energy&departments%5B%5D=department-of-energy-climate-change&direction=after&date=2011-04-01"
-  @response = get_request(url, cache_bust: @bypass_varnish )
-end
-
 When /^I do a whitehall search for "([^"]*)"$/ do |term|
   url = "#{@host}/government/publications?keywords=#{uri_escape(term)}"
   @response = get_request(url, cache_bust: @bypass_varnish)
