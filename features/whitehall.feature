@@ -125,3 +125,13 @@ Feature: Whitehall
     When I visit "/government/statistics/announcements"
     Then I should get a 200 status code
     And the elapsed time should be less than 2 seconds
+
+  # Speak to Brad Wright or Neil Williams before editing this test
+  @high
+  Scenario: Banknote feature works
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    And I am benchmarking
+    When I visit "/banknote"
+    # Redirects are transparently followed, so the end status code is 200
+    Then I should get a 200 status code
