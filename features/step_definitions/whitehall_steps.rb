@@ -13,7 +13,7 @@ Then /^I should be able to view publications$/ do
 end
 
 Then /^I should be able to view announcements$/ do
-  follow_link_to_first_announcement_on_announcements_page
+  follow_link_to_first_announcement_on_announcements_page(2)
 end
 
 When /^I do a whitehall search for "([^"]*)"$/ do |term|
@@ -30,8 +30,8 @@ def follow_link_to_first_policy_on_policies_page
   get_request("#{@host}#{href}", cache_bust: @bypass_varnish)
 end
 
-def follow_link_to_first_announcement_on_announcements_page
-  html = get_request("#{@host}/government/announcements", cache_bust: @bypass_varnish)
+def follow_link_to_first_announcement_on_announcements_page(page=1)
+  html = get_request("#{@host}/government/announcements?page=#{page}", cache_bust: @bypass_varnish)
   doc = Nokogiri::HTML(html)
   link_to_announcement = doc.at('.document-row a')
   assert ! link_to_announcement.nil?, "No announcement links found"
