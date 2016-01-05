@@ -8,7 +8,7 @@ Feature: Whitehall
     And I force a varnish cache miss
     Then I should see the departments and policies section on the homepage
 
-  @notpreview
+  @notintegration
   Scenario: There should be no authentication for Whitehall
     Given I am testing through the full stack
     And I force a varnish cache miss
