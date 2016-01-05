@@ -1,5 +1,5 @@
 def app_domain
-  ENV["GOVUK_APP_DOMAIN"] || "preview.alphagov.co.uk"
+  ENV["GOVUK_APP_DOMAIN"] || "integration.publishing.service.gov.uk"
 end
 
 def efg_base_url
