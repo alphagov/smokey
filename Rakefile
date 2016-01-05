@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'cucumber/rake/task'
 
-Cucumber::Rake::Task.new("test:preview",
-    "Run all tests that are valid in our preview environment") do |t|
-  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notpreview}
+Cucumber::Rake::Task.new("test:integration",
+    "Run all tests that are valid in our integration environment") do |t|
+  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@notintegration}
 end
 
 Cucumber::Rake::Task.new("test:production",

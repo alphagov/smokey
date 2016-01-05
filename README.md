@@ -27,7 +27,7 @@ or against a single `feature`:
 bundle exec cucumber features/frontend.feature
 ```
 
-The tests will run against the preview environment by default.  You can
+The tests will run against the integration environment by default.  You can
 override that by setting the `GOVUK_WEBSITE_ROOT` environment variable.
 
 You may also specify the domain of the draft website root using
