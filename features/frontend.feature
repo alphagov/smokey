@@ -31,6 +31,16 @@ Feature: Frontend
     Then I should see "Pension Credit"
 
   @normal
+  Scenario: check homepage content type & charset
+    When I visit "/"
+    Then I should get a Content-Type header of "text/html; charset=utf-8"
+
+  @normal
+  Scenario: check 404 page content type & charset
+    When I visit a non-existent page
+    Then I should get a Content-Type header of "text/html; charset=utf-8"
+
+  @normal
   Scenario: check licences load
     When I visit "/busking-licence"
     Then I should see "Busking licence"
@@ -43,7 +53,7 @@ Feature: Frontend
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
-    When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE" 
+    When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
     Then I should see "London Borough of Camden"
 
   @normal
