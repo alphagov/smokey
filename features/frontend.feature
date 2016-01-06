@@ -43,7 +43,7 @@ Feature: Frontend
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
-    When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE" 
+    When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
     Then I should see "London Borough of Camden"
 
   @normal
