@@ -59,6 +59,10 @@ When /^I visit "(.*)" (\d+) times$/ do |path, count|
   }
 end
 
+When /^I visit a non-existent page$/ do
+  @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
+end
+
 When /^I search for "(.*)" using tabbed search$/ do |term|
   @response = get_request("#{@host}/search?q=#{term}&ui=old", default_request_options)
 end
@@ -107,6 +111,10 @@ end
 
 Then /^I should get a (\d+) status code$/ do |status|
   @response.code.to_i.should == status.to_i
+end
+
+Then /^I should get a Content-Type header of "(.*)"$/ do |content_type|
+  @response.headers[:content_type].should == content_type
 end
 
 Then /^I should get a location of "(.*)"$/ do |location|

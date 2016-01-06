@@ -95,12 +95,16 @@ def do_http_request(url, method = :get, options = {}, &block)
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
 rescue RestClient::Exception => e
-  finished_at = Time.now
-  message = ["Unable to fetch '#{url}'"]
-  message += ["  Exception: '#{e}'"]
-  message += ["  Response headers: #{e.response.headers.inspect if e.response}"]
-  message += ["  Response time in seconds: #{finished_at - started_at}"]
-  raise message.join("\n")
+  if options[:return_response_on_error]
+    e.response
+  else
+    finished_at = Time.now
+    message = ["Unable to fetch '#{url}'"]
+    message += ["  Exception: '#{e}'"]
+    message += ["  Response headers: #{e.response.headers.inspect if e.response}"]
+    message += ["  Response time in seconds: #{finished_at - started_at}"]
+    raise message.join("\n")
+  end
 end
 
 def single_http_request(url)
