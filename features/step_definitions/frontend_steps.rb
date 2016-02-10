@@ -13,3 +13,15 @@ end
 Then /^I should see an input field for entering my postcode$/ do
   @response.body.should have_field('postcode')
 end
+
+Then /^I should see the heading "(.*?)"$/ do |title|
+  @response.body.should have_css('h1', text: title)
+end
+
+Then /^I should see the matched local authority "(.*?)"$/ do |local_authority|
+  @response.body.should have_css('span.local-authority', text: local_authority)
+end
+
+Then /^I should see the link to "(.*?)"$/ do |link|
+  @response.body.should have_link(link)
+end

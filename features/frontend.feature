@@ -13,22 +13,22 @@ Feature: Frontend
   @normal
   Scenario: check quick answers load
     When I visit "/vat-rates"
-    Then I should see "VAT rates"
+    Then I should see the heading "VAT rates"
 
   @normal
   Scenario: check guides load
     When I visit "/getting-an-mot"
-    Then I should see "Getting an MOT"
+    Then I should see the heading "Getting an MOT"
 
   @normal
   Scenario: check transactions load
     When I visit "/apply-renew-passport"
-    Then I should see "UK passport"
+    Then I should see the heading "UK passport"
 
   @normal
   Scenario: check benefit schemes load
     When I visit "/pension-credit"
-    Then I should see "Pension Credit"
+    Then I should see the heading "Pension Credit"
 
   @normal
   Scenario: check homepage content type & charset
@@ -43,18 +43,18 @@ Feature: Frontend
   @normal
   Scenario: check licences load
     When I visit "/busking-licence"
-    Then I should see "Busking licence"
+    Then I should see the heading "Busking licence"
      And I should see an input field for entering my postcode
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
     Then I should get a 200 status code
-     And I should see "Busking licence"
+     And I should see the heading "Busking licence"
 
   @normal
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
-    Then I should see "Pay your Council Tax"
+    Then I should see the heading "Pay your Council Tax"
     When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
-    Then I should see "London Borough of Camden"
+    Then I should see the matched local authority "London Borough of Camden"
 
   @normal
   Scenario: check find my nearest returns results
@@ -66,7 +66,7 @@ Feature: Frontend
   Scenario: check find my nearest (places) load
     When I visit "/ukonline-centre-internet-access-computer-training"
     Then I should get a 200 status code
-    And I should see "UK online centres"
+    And I should see the heading "UK online centres"
 
   @normal
   Scenario: check campaign pages load
@@ -80,4 +80,4 @@ Feature: Frontend
     And I should see "Teaching people to drive"
     When I click on the section "Teaching people to drive"
     Then I should get a 200 status code
-    And I should see "Apply to become a driving instructor"
+    And I should see the link to "Apply to become a driving instructor"
