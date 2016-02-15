@@ -9,3 +9,7 @@ Then /^I should see the services and information section on the homepage$/ do
   doc = Nokogiri::HTML(html)
   assert doc.css('#services-and-information')
 end
+
+Then /^I should see an input field for postcode$/ do
+  @response.body.should have_field('postcode')
+end
