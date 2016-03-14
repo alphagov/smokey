@@ -110,7 +110,7 @@ Then /^I should get a (\d+) response when I try to visit:$/ do |status, table|
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
-  @response.code.to_i.should == status.to_i
+  expect(@response.code.to_i).to eq status.to_i
 end
 
 Then /^I should get a Content-Type header of "(.*)"$/ do |content_type|
@@ -135,9 +135,9 @@ end
 
 Then /^I should see "(.*)"$/ do |content|
   if @response
-    @response.body.include?(content).should == true
+    expect(@response.body).to include(content)
   elsif page
-    page.body.include?(content).should == true
+    expect(page.body).to include(content)
   end
 end
 
