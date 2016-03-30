@@ -29,7 +29,7 @@ end
 
 When /^I follow the link to the campaign$/ do
   mechanize_with_referer do
-    click_link 'www.gov.uk/lloydsshares'
+    click_link 'www.gov.uk/lloydsshares', match: :first
   end
 end
 
