@@ -24,4 +24,4 @@ Feature: Licensing
   Scenario: Signing in to licensify-admin
      When I try to login as a user
       And I login to Licensify
-     Then I should see "Tacit?"
+     Then I should see "There are no applications available for processing"
