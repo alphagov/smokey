@@ -75,11 +75,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara
-  capybara-mechanize
-  cucumber
-  nokogiri
-  plek
-  rake
+  capybara (= 1.1.2)
+  capybara-mechanize (= 0.3.0)
+  cucumber (= 1.2.1)
+  nokogiri (= 1.5.5)
+  plek (= 1.11.0)
+  rake (= 0.9.2.2)
   rest-client (= 1.6.7)
-  rspec
+  rspec (= 2.11.0)
