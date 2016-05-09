@@ -12,7 +12,7 @@ cd $(dirname "$0")
 [ -e /etc/smokey.sh ] && . /etc/smokey.sh
 
 if [ "$1" == "" ]; then
-  echo "Usage: ./cron_json.sh /tmp/smokey.json"
+  echo "Usage: ./tests_json_output.sh /tmp/smokey.json"
   exit 1
 else
   CACHE_FILE="$1"
