@@ -57,9 +57,10 @@ class FeatureTestRun(object):
 
     def write_step_description_and_status(self, result_details, feature, priority, scenario, step):
         result_details.add("    Step: [%s] %s%s\n" % ((self.step_status(step)), step['keyword'], step['name']))
-        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s" % (
+        message = "%s | %s%s | %s | %s%s" % (
             (self.step_status(step)), (self.feature_name(feature)), priority, scenario['name'],
-            step['keyword'], self.ascii_step_name(step)))
+            step['keyword'], self.ascii_step_name(step))
+        syslog(LOG_NOTICE, message.encode('ascii', 'xmlcharrefreplace'))
 
     def write_row_data(self, result_details, step):
         if 'rows' in step:
@@ -72,9 +73,10 @@ class FeatureTestRun(object):
 
     def write_failure_message(self, result_details, failure_message, feature, priority, scenario, step):
         result_details.add("      Error: %s\n" % (failure_message.partition('\n')[0]))
-        syslog(LOG_NOTICE, "%s | %s%s | %s | %s%s | Error - %s" %
-                           (self.step_status(step), self.feature_name(feature), priority, scenario['name'],
-                            step['keyword'], self.ascii_step_name(step), failure_message.partition('\n')[0]))
+        message = "%s | %s%s | %s | %s%s | Error - %s" % (
+                  self.step_status(step), self.feature_name(feature), priority, scenario['name'],
+                  step['keyword'], self.ascii_step_name(step), failure_message.partition('\n')[0])
+        syslog(LOG_NOTICE, message.encode('ascii', 'xmlcharrefreplace'))
 
     def log_details_and_set_status_for_scenario(self, result_details, feature, priority, scenario):
         result_details.add("  Scenario: %s (%s/%s)\n" % (scenario['name'], feature['uri'], priority))
