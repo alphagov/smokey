@@ -134,7 +134,11 @@ Then /I should get a content length of "(\d+)"/ do |length|
 end
 
 Then /^I should see "(.*)"$/ do |content|
-  if @response
+  if @responses
+    @responses.each do |response|
+      expect(response.body).to include(content)
+    end
+  elsif @response
     expect(@response.body).to include(content)
   elsif page
     expect(page.body).to include(content)
