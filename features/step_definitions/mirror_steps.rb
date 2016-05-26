@@ -17,9 +17,9 @@ Given /^there are (\d) mirrors and (\d) providers/ do |mirrors,providers|
   end
 end
 
-Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, page|
+Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, path|
   @hosts.each do |mirror_host|
-    response = try_get_request("#{mirror_host}#{page}", host_header: "www-origin.mirror.production.govuk.service.gov.uk")
+    response = try_get_request("#{mirror_host}#{path}", host_header: "www-origin.mirror.production.govuk.service.gov.uk")
     response.code.should == status.to_i
   end
 end
