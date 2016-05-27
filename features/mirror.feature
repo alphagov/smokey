@@ -22,8 +22,8 @@ Feature: Mirror
     @high
     Scenario: Check a deep-linked page is served by all the mirrors
       Given there are 2 mirrors and 2 providers
-      Then I should get a 200 response from "/council-tax-reduction" on the mirrors
-      And I should see "Council Tax Reduction"
+      Then I should get a 200 response from "/book-theory-test" on the mirrors
+      And I should see "Book your theory test"
 
     @high
     Scenario: Check a non-existent page returns a service-unavailable error from all the mirrors
