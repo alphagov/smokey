@@ -26,10 +26,11 @@ Feature: Mainstream Publishing Tools
       And I should see "Sign out"
       And I should see "All services"
 
+  @high
   Scenario: Can log in to travel-advice-publisher
     When I go to the "travel-advice-publisher" landing page
-    And I try to login as a user
-    And I go to the "travel-advice-publisher" landing page
+      And I try to login as a user
+      And I go to the "travel-advice-publisher" landing page
     Then I should see "GOV.UK Travel Advice Publisher"
-    And I should see "Sign out"
-    And I should see "All countries"
+      And I should see "Sign out"
+      And I should see "All countries"
