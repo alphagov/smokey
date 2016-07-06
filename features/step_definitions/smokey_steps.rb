@@ -82,11 +82,11 @@ end
 
 def should_visit(path)
   @response = get_request("#{@host}#{path}", default_request_options)
-  @response.code.should == 200
+  expect(@response.code).to eq(200)
 end
 
 def should_see(text)
-  @response.body.include?(text).should == true
+  expect(@response.body.include?(text)).to be_true
 end
 
 Then /^I should be able to visit:$/ do |table|
@@ -105,7 +105,7 @@ end
 Then /^I should get a (\d+) response when I try to visit:$/ do |status, table|
   table.hashes.each do |row|
     response = try_get_request("#{@host}#{row['Path']}", default_request_options)
-    response.code.should == status.to_i
+    expect(response.code).to eq(status.to_i)
   end
 end
 
@@ -114,23 +114,23 @@ Then /^I should get a (\d+) status code$/ do |status|
 end
 
 Then /^I should get a Content-Type header of "(.*)"$/ do |content_type|
-  @response.headers[:content_type].should == content_type
+  expect(@response.headers[:content_type]).to eq(content_type)
 end
 
 Then /^I should get a location of "(.*)"$/ do |location|
-  @response['location'].should == location
+  expect(@response['location']).to eq(location)
 end
 
 Then /^I should get a location header of "(.*)"$/ do |location|
-  @response.headers[:location].should == location
+  expect(@response.headers[:location]).to eq(location)
 end
 
 Then /^I should get a cache control header of "(.*)"$/ do |cache_control|
-  @response.headers[:cache_control].should == cache_control
+  expect(@response.headers[:cache_control]).to eq(cache_control)
 end
 
 Then /I should get a content length of "(\d+)"/ do |length|
-  @response.net_http_res['content-length'].should == length
+  expect(@response.net_http_res['content-length']).to eq(length)
 end
 
 Then /^I should see "(.*)"$/ do |content|
@@ -157,21 +157,21 @@ end
 
 Then /^the logo should link to the homepage$/ do
   logo = Nokogiri::HTML.parse(@response.body).at_css('#logo')
-  logo.attributes['href'].value.should == ENV['EXPECTED_GOVUK_WEBSITE_ROOT']
+  expect(logo.attributes['href'].value).to eq ENV['EXPECTED_GOVUK_WEBSITE_ROOT']
 end
 
 Then /^I should see some search results$/ do
   result_links = Nokogiri::HTML.parse(@response.body).css(".results-list li a")
-  result_links.count.should >= 1
+  expect(result_links.count).to be >= 1
 end
 
 Then /^I should see organisations in the unified organisation filter$/ do
   organisation_options = Nokogiri::HTML.parse(@response.body).css("#organisations-filter input")
-  organisation_options.count.should >= 10
+  expect(organisation_options.count).to be >= 10
 end
 
 Then /^I should see Publisher's publication index$/ do
-  page.should have_selector("#publication-list-container")
+  expect(page).to have_selector("#publication-list-container")
 end
 
 Then /^I should be able to navigate the topic hierarchy$/ do
