@@ -13,3 +13,8 @@ Feature: Service Manual
     When I visit "/service-manual/agile-delivery/writing-user-stories"
     Then I should see "Writing user stories"
     And I should get a 200 status code
+
+  Scenario: Visiting the service standard page
+    When I visit "/service-manual/service-standard"
+    Then I should see "Digital Service Standard"
+    And I should get a 200 status code
