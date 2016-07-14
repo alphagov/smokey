@@ -13,7 +13,7 @@ When /^I visit the email campaign page$/ do
 end
 
 Then /^I should be asked to confirm my location$/ do
-  page.should have_content("Choose your country of residence")
+  expect(page).to have_content("Choose your country of residence")
 end
 
 When /^I give my location as "(.*?)"$/ do |location|
@@ -34,6 +34,6 @@ When /^I follow the link to the campaign$/ do
 end
 
 Then /^I should see the campaign page$/ do
-  page.should have_content("Lloyds Banking Group share offer")
-  page.should have_content("Register your interest in this share offer")
+  expect(page).to have_content("Lloyds Banking Group share offer")
+  expect(page).to have_content("Register your interest in this share offer")
 end
