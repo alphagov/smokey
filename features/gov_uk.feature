@@ -12,3 +12,16 @@ Feature: Core GOV.UK behaviour
     And I force a varnish cache miss
     When I visit "/"
     Then the logo should link to the homepage
+
+  @normal
+  Scenario: entirely upper case slugs redirect to lowercase
+    Given I visit "/GOVERNMENT/PUBLICATIONS" without following redirects
+    Then I should get a 301 status code
+    And I should get a location of "/government/publications"
+
+  @normal
+  Scenario: partially upper case slugs do not redirect
+    When I try to visit "/government/publicatIONS"
+    Then I should get a 404 status code
+
+
