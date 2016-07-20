@@ -145,6 +145,10 @@ Then /^I should see "(.*)"$/ do |content|
   end
 end
 
+Then /^I should be at a location path of "(.*)"$/ do |location_path|
+  @response['location'].should == "#{@host}#{location_path}"
+end
+
 When /^I click "(.*?)"$/ do |link_text|
   link_href = Nokogiri::HTML.parse(@response.body).at_xpath("//a[text()='#{link_text}']/@href")
   link_href.should_not == nil
