@@ -25,3 +25,9 @@ Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, pa
     @responses << response
   end
 end
+
+Then /^I should see a technical difficulties message$/ do
+  @responses.each do |response|
+    expect(response.body).to include("Sorry, we're experiencing technical difficulties")
+  end
+end
