@@ -95,10 +95,13 @@ Then /^I should be able to visit:$/ do |table|
   end
 end
 
-Then /^I should be able to visit and see:$/ do |table|
-  table.hashes.each do |row|
-    should_visit(row['Path'])
-    should_see(row['See'])
+Then /^I should be able to search the tariff and see matching results$/ do
+  %w(animal mineral vegetable).each do |query|
+    expected_url = "/trade-tariff/search?t=#{query}"
+    expected_search_results_text = %r(Search results for (?:‘|')#{query}(?:’|'))
+
+    should_visit(expected_url)
+    should_see(expected_search_results_text)
   end
 end
 
