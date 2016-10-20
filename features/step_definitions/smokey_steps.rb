@@ -86,7 +86,7 @@ def should_visit(path)
 end
 
 def should_see(text)
-  @response.body.include?(text).should == true
+  expect(@response.body).to have_content(text)
 end
 
 Then /^I should be able to visit:$/ do |table|
