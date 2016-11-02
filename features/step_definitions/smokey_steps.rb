@@ -97,11 +97,13 @@ end
 
 Then /^I should be able to search the tariff and see matching results$/ do
   %w(animal mineral vegetable).each do |query|
-    expected_url = "/trade-tariff/search?t=#{query}"
-    expected_search_results_text = %r(Search results for (?:‘|')#{query}(?:’|'))
+    visit("/trade-tariff/sections")
 
-    should_visit(expected_url)
-    should_see(expected_search_results_text)
+    fill_in("search_t", with: query)
+    click_button("Search")
+
+    expected_search_results_text = %r(Search results for (?:‘|')#{query}(?:’|'))
+    expect(page.body).to have_content(expected_search_results_text)
   end
 end
 
