@@ -8,7 +8,7 @@ Feature: Design Principles
   Scenario: check Design Principles
     When I visit "/design-principles"
     Then I should get a 200 status code
-    And I should see "Start with needs"
+    And I should see "Start with user needs"
 
   @normal
   Scenario: check Service Manual
