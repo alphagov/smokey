@@ -96,6 +96,7 @@ Then /^I should be able to visit:$/ do |table|
 end
 
 Then /^I should be able to search the tariff and see matching results$/ do
+  page.driver.browser.agent.add_auth(@host, ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD'])
   %w(animal mineral vegetable).each do |query|
     visit("/trade-tariff/sections")
 
