@@ -22,3 +22,9 @@ Feature: Finder Frontend
     When I visit "/government/groups"
     Then I should see "Groups"
     And I should see an input field to search
+
+  @normal
+  Scenario: check world organisations loads
+    When I visit "/government/statistical-data-sets"
+    Then I should see "Groups"
+    And I should see an input field to search
