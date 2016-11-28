@@ -24,7 +24,25 @@ Feature: Finder Frontend
     And I should see an input field to search
 
   @normal
-  Scenario: check world organisations loads
+  Scenario: check that case studies loads
+    When I visit "/government/case-studies"
+    Then I should see "Case studies: Real-life examples of government activity"
+    And I should see an input field to search
+
+  @normal
+  Scenario: check policy finder loads
+    When I visit "/government/policies"
+    Then I should see "Policies"
+    And I should see an input field to search
+
+  @normal
+  Scenario: check that contacts finder loads
+    When I visit "/government/organisations/hm-revenue-customs/contact"
+    Then I should see "HM Revenue & Customs Contacts"
+    And I should see an input field to search
+
+  @normal
+  Scenario: check that statistical data sets loads
     When I visit "/government/statistical-data-sets"
-    Then I should see "Groups"
+    Then I should see "Statistical data sets"
     And I should see an input field to search
