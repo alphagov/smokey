@@ -1,0 +1,4 @@
+# Options specific to a GOV.UK environment
+integration: -t ~@notintegration
+staging:
+production:
