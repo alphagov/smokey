@@ -126,7 +126,7 @@ Feature: Whitehall
     Then I should get a 200 status code
     And the elapsed time should be less than 2 seconds
 
-  # Speak to Dai Vaughan or Neil Williams before editing this test
+  # Speak to David Illsley or Neil Williams before editing this test
   @high
   Scenario: Banknote feature works
     Given I am testing through the full stack
