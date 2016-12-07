@@ -1,4 +1,4 @@
 # Options specific to a GOV.UK environment
-integration: -t ~@notintegration
-staging:
-production:
+integration: -t ~@pending -t ~@notintegration
+staging: -t ~@pending
+production: -t ~@pending
