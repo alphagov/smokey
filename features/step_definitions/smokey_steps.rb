@@ -165,6 +165,10 @@ When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}"
 end
 
+When /^I try to submit to "(.*)" with "(.*)"$/ do |path, payload|
+  @response = get_request "#{@host}#{path}", :payload => "#{payload}"
+end
+
 Then /^the logo should link to the homepage$/ do
   logo = Nokogiri::HTML.parse(@response.body).at_css('#logo')
   logo.attributes['href'].value.should == ENV['EXPECTED_GOVUK_WEBSITE_ROOT']

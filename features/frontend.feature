@@ -58,7 +58,7 @@ Feature: Frontend
 
   @normal
   Scenario: check find my nearest returns results
-    When I try to post to "/ukonline-centre-internet-access-computer-training.json" with "postcode=WC2B+6NH"
+    When I try to submit to "/ukonline-centre-internet-access-computer-training.json" with "postcode=WC2B+6NH"
     Then I should get a 200 status code
     And I should see "Holborn Library"
 
