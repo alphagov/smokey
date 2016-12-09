@@ -58,15 +58,11 @@ Feature: Frontend
 
   @normal
   Scenario: check find my nearest returns results
-    When I try to post to "/ukonline-centre-internet-access-computer-training.json" with "postcode=WC2B+6NH"
+    When I visit "/ukonline-centre-internet-access-computer-training"
+    And I should see "UK online centres"
+    When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should get a 200 status code
     And I should see "Holborn Library"
-
-  @normal
-  Scenario: check find my nearest (places) load
-    When I visit "/ukonline-centre-internet-access-computer-training"
-    Then I should get a 200 status code
-    And I should see "UK online centres"
 
   @normal
   Scenario: check campaign pages load
