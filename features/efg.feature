@@ -14,11 +14,10 @@ Feature: EFG
   Scenario: Quickly loading the EFG home page
     Given I am benchmarking
     When I visit the EFG home page
-    Then the elapsed time should be less than 1 seconds
+    Then the elapsed time should be less than 10 seconds
 
   @notintegration
   @normal
   Scenario: Can log in
     When I try to login as a valid EFG user
     Then I should be on the EFG post-login page
-
