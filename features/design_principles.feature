@@ -11,19 +11,6 @@ Feature: Design Principles
     And I should see "Start with user needs"
 
   @normal
-  Scenario: check Service Manual
-    When I visit "/service-manual"
-    Then I should get a 200 status code
-    And I should see "Government Service Design Manual"
-
-  @normal
-  Scenario: check Service Manual search
-    When I visit "/service-manual/search?q=alpha"
-    Then I should get a 200 status code
-    And I should see "alpha"
-    And I should see some search results
-
-  @normal
   Scenario: check Transformation dashboard
     When I visit "/transformation"
     Then I should get a 200 status code

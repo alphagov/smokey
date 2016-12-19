@@ -4,6 +4,11 @@ Feature: Service Manual
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  Scenario: check Service Manual
+    When I visit "/service-manual"
+    Then I should see "Service Manual"
+    And I should get a 200 status code
+
   Scenario: Visiting a topic page
     When I visit "/service-manual/agile-delivery"
     Then I should see "Agile delivery"
