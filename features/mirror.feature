@@ -13,6 +13,12 @@ Feature: Mirror
       Then I should get a 503 response from "/search" on the mirrors
       And I should see a technical difficulties message
 
+    @normal
+    Scenario: Check that requests with query parameters return an error
+      Given there are 2 mirror providers
+      Then I should get a 503 response from "/search?q=government" on the mirrors
+      And I should see "Sorry, we are experiencing technical difficulties"
+
     @high
     Scenario: Check homepage is served by all the mirrors
       Given there are 2 mirrors and 2 providers
