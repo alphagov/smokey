@@ -131,10 +131,6 @@ Then /^I should get a location header of "(.*)"$/ do |location|
   @response.headers[:location].should == location
 end
 
-Then /^I should get a cache control header of "(.*)"$/ do |cache_control|
-  @response.headers[:cache_control].should == cache_control
-end
-
 Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
   @response[header_name].should == header_value
 end
