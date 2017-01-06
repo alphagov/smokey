@@ -135,6 +135,10 @@ Then /^I should get a cache control header of "(.*)"$/ do |cache_control|
   @response.headers[:cache_control].should == cache_control
 end
 
+Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
+  @response[header_name].should == header_value
+end
+
 Then /I should get a content length of "(\d+)"/ do |length|
   @response.net_http_res['content-length'].should == length
 end
