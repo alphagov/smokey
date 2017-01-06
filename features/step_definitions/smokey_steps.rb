@@ -63,12 +63,8 @@ When /^I visit a non-existent page$/ do
   @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
 end
 
-When /^I search for "(.*)" using tabbed search$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}&ui=old", default_request_options)
-end
-
-When /^I search for "(.*)" using unified search$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}&ui=unified", default_request_options)
+When /^I search for "(.*)"$/ do |term|
+  @response = get_request("#{@host}/search?q=#{term}", default_request_options)
 end
 
 When /^I request "(.*)" from Bouncer directly$/ do |url|
@@ -171,7 +167,7 @@ Then /^I should see some search results$/ do
   result_links.count.should >= 1
 end
 
-Then /^I should see organisations in the unified organisation filter$/ do
+Then /^I should see organisations in the organisation filter$/ do
   organisation_options = Nokogiri::HTML.parse(@response.body).css("#organisations-filter input")
   organisation_options.count.should >= 10
 end
