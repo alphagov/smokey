@@ -119,20 +119,16 @@ Then /^I should get a (\d+) status code$/ do |status|
   expect(@response.code.to_i).to eq status.to_i
 end
 
-Then /^I should get a Content-Type header of "(.*)"$/ do |content_type|
-  @response.headers[:content_type].should == content_type
-end
+Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
+  header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
 
-Then /^I should get a location of "(.*)"$/ do |location|
-  @response['location'].should == location
-end
-
-Then /^I should get a location header of "(.*)"$/ do |location|
-  @response.headers[:location].should == location
-end
-
-Then /^I should get a cache control header of "(.*)"$/ do |cache_control|
-  @response.headers[:cache_control].should == cache_control
+  if @response.respond_to? :headers
+    @response.headers[header_as_symbol].should == header_value
+  elsif @response[header_name]
+    @response[header_name].should == header_value
+  else
+    raise "Couldn't find header '#{header_name}' in response"
+  end
 end
 
 Then /I should get a content length of "(\d+)"/ do |length|

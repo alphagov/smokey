@@ -33,12 +33,12 @@ Feature: Frontend
   @normal
   Scenario: check homepage content type & charset
     When I visit "/"
-    Then I should get a Content-Type header of "text/html; charset=utf-8"
+    Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
   @normal
   Scenario: check 404 page content type & charset
     When I visit a non-existent page
-    Then I should get a Content-Type header of "text/html; charset=utf-8"
+    Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
   @normal
   Scenario: check licences load
