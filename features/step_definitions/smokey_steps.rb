@@ -119,12 +119,8 @@ Then /^I should get a (\d+) status code$/ do |status|
   expect(@response.code.to_i).to eq status.to_i
 end
 
-Then /^I should get a Content-Type header of "(.*)"$/ do |content_type|
-  @response.headers[:content_type].should == content_type
-end
-
 Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
-  header_as_symbol = header_name.downcase.to_sym
+  header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
 
   if @response.respond_to? :headers
     @response.headers[header_as_symbol].should == header_value
