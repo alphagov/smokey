@@ -11,8 +11,7 @@ node {
       logRotator(
         numToKeepStr: '50')
       ),
-    [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false]
-    ],
+    [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false],
   ])
 
   try {
