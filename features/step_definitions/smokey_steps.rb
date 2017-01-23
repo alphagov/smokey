@@ -16,10 +16,6 @@ Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
 end
 
-Given /^I am not an authenticated user$/ do
-  @authenticated = false
-end
-
 Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
@@ -40,6 +36,10 @@ end
 
 When /^I visit "(.*)"$/ do |path_or_url|
   visit_path path_or_url
+end
+
+When /^I visit "(.*)" without authentication$/ do |path_or_url|
+  visit_without_auth path_or_url
 end
 
 When /^I try to visit "(.*)"$/ do |path_or_url|
