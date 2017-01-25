@@ -27,5 +27,5 @@ fi
 rm -f ${TMP_FILE}
 /usr/local/bin/govuk_setenv default \
     bundle exec cucumber --format json ${PROFILE:-} \
-        -t ~@pending -t ~@disabled_in_icinga > ${TMP_FILE} || true
+        -t ~@disabled_in_icinga > ${TMP_FILE} || true
 mv ${TMP_FILE} ${CACHE_FILE}
