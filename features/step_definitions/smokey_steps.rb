@@ -59,6 +59,13 @@ When /^I visit "(.*)" (\d+) times$/ do |path, count|
   }
 end
 
+When(/^multiple new users visit "(.*?)"$/) do |path|
+  @responses = []
+  20.times do
+    @responses << get_request("#{@host}#{path}", default_request_options)
+  end
+end
+
 When /^I visit a non-existent page$/ do
   @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
 end
