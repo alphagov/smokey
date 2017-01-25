@@ -78,6 +78,9 @@ def do_http_request(url, method = :get, options = {}, &block)
   if options[:host_header]
     headers["Host"] = options[:host_header]
   end
+  if options[:cookies]
+    headers["Cookie"] = options[:cookies].map { |k, v| "#{k}=#{v}" }.join("; ")
+  end
   rate_limit_token = ENV['RATE_LIMIT_TOKEN']
   if rate_limit_token
     headers["Rate-Limit-Token"] = rate_limit_token
