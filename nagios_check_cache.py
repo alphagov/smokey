@@ -10,7 +10,7 @@ def log_result_to_syslog(exitcode, message):
     elif exitcode == 2:
         log_priority = LOG_CRIT
     elif exitcode == 1:
-        log_priority = LOG_WARN
+        log_priority = LOG_WARNING
     else:
         log_priority = LOG_NOTICE
     syslog(log_priority, "CHCK | %s@%s | %s" % (sys.argv[1], sys.argv[2], message))
