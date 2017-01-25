@@ -14,13 +14,3 @@ def visit_path(path)
 
   page.driver.error_messages.should == []
 end
-
-def visit_without_auth(path)
-  if path.match(%r[\?])
-    visit "#{path}&cachebust=#{rand.to_s}"
-  else
-    visit "#{path}?cachebust=#{rand.to_s}"
-  end
-
-  page.driver.error_messages.should == []
-end
