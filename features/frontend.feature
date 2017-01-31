@@ -6,7 +6,7 @@ Feature: Frontend
 
   @normal
   Scenario: check robots.txt
-    When I visit "/robots.txt"
+    When I request "/robots.txt"
     Then I should get a 200 status code
     Then I should see "User-agent:"
 
@@ -32,7 +32,7 @@ Feature: Frontend
 
   @normal
   Scenario: check homepage content type & charset
-    When I visit "/"
+    When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
   @normal

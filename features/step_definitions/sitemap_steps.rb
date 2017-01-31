@@ -1,6 +1,6 @@
 When /^I get the sitemap index$/ do
   step "I visit \"/sitemap.xml\""
-  @sitemap_doc = Nokogiri.XML(@response.body)
+  @sitemap_doc = Nokogiri.XML(page.body)
   @sitemap_links = @sitemap_doc.xpath("/xmlns:sitemapindex/xmlns:sitemap/xmlns:loc")
 end
 

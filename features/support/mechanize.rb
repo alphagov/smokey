@@ -1,8 +1,5 @@
 Before do
-  page.driver.browser.agent.pre_connect_hooks << proc { |agent, request|
-    rate_limit_token = ENV['RATE_LIMIT_TOKEN']
-    if rate_limit_token
-      request["Rate-Limit-Token"] = rate_limit_token
-    end
-  }
+  if ENV['RATE_LIMIT_TOKEN']
+    page.driver.header 'Rate-Limit-Token', ENV['RATE_LIMIT_TOKEN']
+  end
 end
