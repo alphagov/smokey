@@ -1,5 +1,5 @@
 require 'json'
 
 Then /^JSON is returned$/ do
-  JSON.parse(page.body).class.should == Hash 
+  JSON.parse(@response.body).class.should == Hash
 end

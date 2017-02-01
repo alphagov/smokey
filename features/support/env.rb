@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'capybara/cucumber'
-require 'capybara/webkit'
+require 'capybara/poltergeist'
 require 'uri'
 require 'plek'
 
@@ -14,5 +14,5 @@ else
   ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = 'https://www.gov.uk'
 end
 
-Capybara.default_driver = :webkit
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
+Capybara.default_driver = :poltergeist

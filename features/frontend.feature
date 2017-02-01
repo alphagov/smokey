@@ -67,7 +67,7 @@ Feature: Frontend
   @normal
   Scenario: check campaign pages load
     When I visit "/workplacepensions"
-    Then I should get a 200 status code
+    Then I should be at a location path of "/workplace-pensions"
 
   @normal
   Scenario: check browse page load, and links

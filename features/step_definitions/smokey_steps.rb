@@ -152,7 +152,12 @@ Then /^I should see "(.*)"$/ do |content|
 end
 
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
-  @response['location'].should == "#{@host}#{location_path}"
+  url = "#{@host}#{location_path}"
+  if @response
+    @response['location'].should == url
+  else
+    page.current_url.should == url
+  end
 end
 
 When /^I click "(.*?)"$/ do |link_text|
@@ -202,4 +207,8 @@ def random_path_selection(opts={})
   size = opts[:size] || 3
   anchor_tags = opts[:anchor_tags] || []
   anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(size)
+end
+
+When /^I inject a JavaScript error on the page, Smokey raises an exception$/ do
+  expect { page.driver.execute_script('1.error') }.to raise_error
 end
