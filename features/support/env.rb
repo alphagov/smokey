@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'capybara/cucumber'
-require 'capybara/mechanize/cucumber'
+require 'capybara/poltergeist'
 require 'uri'
 require 'plek'
 
@@ -14,6 +14,5 @@ else
   ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = 'https://www.gov.uk'
 end
 
-Capybara.app = "mechanize requires any value to be set here"
-Capybara.default_driver = :mechanize
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
+Capybara.default_driver = :poltergeist
