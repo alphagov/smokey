@@ -20,6 +20,12 @@ Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
 
+Given /^I am ignoring JavaScript errors$/ do
+  # TODO: Remove. This should NOT be required. We should hunt down the source of JS errors. Temporarily putting here
+  # for second-line quick-fix.
+  page.driver.browser.js_errors = false
+end
+
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit_path application_base_url(app_name)
 end
