@@ -5,6 +5,7 @@ Feature: Licensing
     Given I am testing "licensing"
       And I am testing through the full stack
       And I force a varnish cache miss
+      And I am ignoring JavaScript errors
     Then I should be able to visit:
       | Path                                                              |
       | /apply-for-a-licence/test-licence/westminster/apply-1             |
@@ -17,7 +18,7 @@ Feature: Licensing
       And I am benchmarking
       And I am testing through the full stack
       And I force a varnish cache miss
-    When I visit "/apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1"
+    When I request "/apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1"
     Then the elapsed time should be less than 10 seconds
 
   @normal @notintegration
