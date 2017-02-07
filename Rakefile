@@ -7,6 +7,12 @@ Cucumber::Rake::Task.new("test:integration",
   t.cucumber_opts = %w{--format progress}
 end
 
+Cucumber::Rake::Task.new("test:staging",
+                         "Run all tests that are valid in our staging environment") do |t|
+  t.profile = "staging"
+  t.cucumber_opts = %w{--format progress}
+end
+
 Cucumber::Rake::Task.new("test:production",
     "Run all tests that are valid in our production environment") do |t|
   t.profile = "production"
