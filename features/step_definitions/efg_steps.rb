@@ -1,5 +1,5 @@
-Given /^I am testing in an EFG context$/ do
-  # TODO: remove me
+Given /^I cannot see the logout button$/ do
+  page.has_selector?("#logout").should == false
 end
 
 When /^I try to access the list of lenders$/ do
@@ -21,12 +21,10 @@ When /^I visit the EFG home page$/ do
 end
 
 Then /^I should be on the EFG home page$/ do
-  page.has_selector?("#user_username").should == true # username input field
-  page.has_selector?("#user_password").should == true # password input field
+  page.has_selector?("#user_username").should == true
+  page.has_selector?("#user_password").should == true
 end
 
 Then /^I should be on the EFG post-login page$/ do
-  page.has_selector?(".alert-success").should == true # Signed in successfully message
-  page.has_selector?("#welcome_message").should == true # Welcome back, first_name
-  page.has_selector?("#logout").should == true # page has a logout link
+  page.has_selector?("#logout").should == true
 end

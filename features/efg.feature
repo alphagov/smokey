@@ -19,5 +19,6 @@ Feature: EFG
   @notintegration
   @normal
   Scenario: Can log in
+    Given I cannot see the logout button
     When I try to login as a valid EFG user
     Then I should be on the EFG post-login page
