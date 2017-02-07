@@ -18,5 +18,5 @@ if [ ! -f .ruby-version ]; then
   export PATH=$(printf $PATH | awk 'BEGIN { RS=":"; ORS=":" } !/rbenv/' | sed 's/:$//')
 fi
 
-bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
+bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment --quiet
 RESTCLIENT_LOG="log/smokey-rest-client.log" govuk_setenv default bundle exec rake $MYTASK
