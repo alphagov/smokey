@@ -20,5 +20,4 @@ Feature: Calendars
   @normal
   Scenario: check bank holidays JSON format is consistent
     Given I am testing through the full stack
-    When I request "/bank-holidays.json"
-    Then JSON is returned
+    Then I should see a consistent JSON format for the path "/bank-holidays.json"
