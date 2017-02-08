@@ -16,22 +16,17 @@ Then(/^we have shown them all versions of the AB test$/) do
 end
 
 Then(/^I am assigned to a test bucket$/) do
-  ab_cookies = @response.headers[:set_cookie]
-    .select { |h| h.start_with? "ABTest-Example=" }
-  assert_equal 1, ab_cookies.length,
-    "Expected response to set exactly one A/B test cookie"
-
-  ab_cookie = ab_cookies[0]
-  @ab_cookie_value = /ABTest-Example=([^;]*);/.match(ab_cookie)[1]
+  ab_cookie = page.driver.cookies["ABTest-Example"]
+  @ab_cookie_value = ab_cookie.value
 
   assert @ab_cookie_value == "A" || @ab_cookie_value == "B",
     "Expected A/B cookie to have value 'A' or 'B' but got '#{@ab_cookie_value}'"
 
-  assert ab_cookie.include?("expires="), "A/B cookie has no expiry time"
+  refute_nil ab_cookie.expires, "A/B cookie has no expiry time"
 end
 
 Then(/^I can see the bucket I am assigned to$/) do
-  bucket = ab_bucket(@response.body)
+  bucket = ab_bucket(page.body)
   assert bucket == "A" || bucket == "B",
     "Expected A/B bucket to be 'A' or 'B', but got '#{bucket}'"
 
