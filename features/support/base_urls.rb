@@ -2,10 +2,6 @@ def app_domain
   ENV["GOVUK_APP_DOMAIN"] || "integration.publishing.service.gov.uk"
 end
 
-def efg_base_url
-  ENV["EFG_DOMAIN"] || "https://efg.#{app_domain}"
-end
-
 def signon_base_url
   application_base_url('signon')
 end
@@ -18,7 +14,6 @@ def application_base_url(app_name)
   when 'calendars' then "https://calendars.#{app_domain}/bank-holidays"
   when 'contacts' then "https://www.#{app_domain}/contact/hm-revenue-customs"
   when 'businesssupportfinder' then "https://businesssupportfinder.#{app_domain}/business-finance-support-finder"
-  when 'EFG' then efg_base_url
   when 'frontend' then "https://frontend.#{app_domain}/"
   when 'private-frontend' then "https://private-frontend.#{app_domain}/"
   when 'imminence' then "https://imminence.#{app_domain}/"
