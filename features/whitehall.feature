@@ -12,6 +12,7 @@ Feature: Whitehall
   Scenario: There should be no authentication for Whitehall
     Given I am testing through the full stack
     And I force a varnish cache miss
+    And I am not an authenticated user
     Then I should be able to view policies
     And I should be able to view announcements
     And I should be able to view publications
@@ -59,7 +60,7 @@ Feature: Whitehall
   @normal
   Scenario: Department short URLs redirect correctly
     Given I am testing through the full stack
-    Then I should be redirected when I try to visit:
+    Then I should get a 301 response when I try to visit:
       | Path                      |
       | /ago                      |
       | /airports-commission      |
@@ -113,7 +114,7 @@ Feature: Whitehall
   @normal
   Scenario: Whitehall assets are served
     Given I am testing through the full stack
-    When I request "/government/uploads/system/uploads/attachment_data/file/32409/11-944-higher-education-students-at-heart-of-system.pdf"
+    When I visit "/government/uploads/system/uploads/attachment_data/file/32409/11-944-higher-education-students-at-heart-of-system.pdf"
     Then I should get a 200 status code
 
   @normal
@@ -124,3 +125,13 @@ Feature: Whitehall
     When I visit "/government/statistics/announcements"
     Then I should get a 200 status code
     And the elapsed time should be less than 2 seconds
+
+  # Speak to David Illsley or Neil Williams before editing this test
+  @high
+  Scenario: Banknote feature works
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    And I am benchmarking
+    When I visit "/banknote"
+    # Redirects are transparently followed, so the end status code is 200
+    Then I should get a 200 status code
