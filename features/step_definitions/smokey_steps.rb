@@ -25,16 +25,10 @@ Given /^I am an authenticated API client$/ do
 end
 
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
-  url = application_base_url(app_name)
-  parsed_url = URI.parse(url)
-  base_host = "#{parsed_url.scheme}://#{parsed_url.host}"
-
-  page.driver.browser.agent.add_auth(base_host, ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD'])
-
-  visit url
+  visit_path application_base_url(app_name)
 end
 
-When /^I (try to )?visit "(.*)"$/ do |attempt_only, path_or_url|
+When /^I (try to )?request "(.*)"$/ do |attempt_only, path_or_url|
   url = if path_or_url.start_with?("http")
     path_or_url
   else
@@ -42,6 +36,14 @@ When /^I (try to )?visit "(.*)"$/ do |attempt_only, path_or_url|
   end
   request_method = attempt_only ? :try_get_request : :get_request
   @response = send(request_method, url, default_request_options)
+end
+
+When /^I visit "(.*)"$/ do |path_or_url|
+  visit_path path_or_url
+end
+
+When /^I try to visit "(.*)"$/ do |path_or_url|
+  visit_path path_or_url
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
@@ -70,10 +72,6 @@ When /^I visit a non-existent page$/ do
   @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
 end
 
-When /^I search for "(.*)"$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}", default_request_options)
-end
-
 When /^I request "(.*)" from Bouncer directly$/ do |url|
   parsed_url = URI.parse(url)
   bouncer_url = "#{@host}#{parsed_url.path}"
@@ -94,14 +92,13 @@ end
 
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
-    should_visit(row['Path'])
+    visit_path row['Path']
   end
 end
 
 Then /^I should be able to search the tariff and see matching results$/ do
-  page.driver.browser.agent.add_auth(@host, ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD'])
   %w(animal mineral vegetable).each do |query|
-    visit("/trade-tariff/sections")
+    visit_path "/trade-tariff/sections"
 
     fill_in("search_t", with: query)
     click_button("Search")
@@ -111,15 +108,19 @@ Then /^I should be able to search the tariff and see matching results$/ do
   end
 end
 
-Then /^I should get a (\d+) response when I try to visit:$/ do |status, table|
+Then /^I should be redirected when I try to visit:$/ do |table|
   table.hashes.each do |row|
-    response = try_get_request("#{@host}#{row['Path']}", default_request_options)
-    response.code.should == status.to_i
+    visit_path row['Path']
+    page.current_path.should_not == row['Path']
   end
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
-  expect(@response.code.to_i).to eq status.to_i
+  if @response
+    expect(@response.code.to_i).to eq status.to_i
+  else
+    expect(page.status_code.to_i).to eq status.to_i
+  end
 end
 
 Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
@@ -151,7 +152,12 @@ Then /^I should see "(.*)"$/ do |content|
 end
 
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
-  @response['location'].should == "#{@host}#{location_path}"
+  url = "#{@host}#{location_path}"
+  if @response
+    @response['location'].should == url
+  else
+    page.current_url.should == url
+  end
 end
 
 When /^I click "(.*?)"$/ do |link_text|
@@ -165,18 +171,8 @@ When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
 end
 
 Then /^the logo should link to the homepage$/ do
-  logo = Nokogiri::HTML.parse(@response.body).at_css('#logo')
+  logo = Nokogiri::HTML.parse(page.body).at_css('#logo')
   logo.attributes['href'].value.should == ENV['EXPECTED_GOVUK_WEBSITE_ROOT']
-end
-
-Then /^I should see some search results$/ do
-  result_links = Nokogiri::HTML.parse(@response.body).css(".results-list li a")
-  result_links.count.should >= 1
-end
-
-Then /^I should see organisations in the organisation filter$/ do
-  organisation_options = Nokogiri::HTML.parse(@response.body).css("#organisations-filter input")
-  organisation_options.count.should >= 10
 end
 
 Then /^I should see Publisher's publication index$/ do
@@ -184,23 +180,25 @@ Then /^I should see Publisher's publication index$/ do
 end
 
 Then /^I should be able to navigate the topic hierarchy$/ do
-  topics = Nokogiri::HTML.parse(@response.body).css("nav.topics li a")
+  topics = Nokogiri::HTML.parse(page.body).css("nav.topics li a")
   random_path_selection(anchor_tags: topics).each do |path|
-    should_visit(path)
-    subtopics = Nokogiri::HTML.parse(@response.body).css("nav.topics li a")
+    visit_path path
+
+    subtopics = Nokogiri::HTML.parse(page.body).css("nav.topics li a")
     random_path_selection(anchor_tags: subtopics).each do |path|
-      should_visit(path)
+      visit_path path
     end
   end
 end
 
 Then /^I should be able to navigate the browse pages$/ do
-  categories = Nokogiri::HTML.parse(@response.body).css(".browse-panes ul li a")
+  categories = Nokogiri::HTML.parse(page.body).css(".browse-panes ul li a")
   random_path_selection(anchor_tags: categories).each do |path|
-    should_visit(path)
-    subcategories = Nokogiri::HTML.parse(@response.body).css(".pane-inner ul li a")
+    visit_path path
+
+    subcategories = Nokogiri::HTML.parse(page.body).css(".pane-inner ul li a")
     random_path_selection(anchor_tags: subcategories).each do |path|
-      should_visit(path)
+      visit_path path
     end
   end
 end
@@ -209,4 +207,19 @@ def random_path_selection(opts={})
   size = opts[:size] || 3
   anchor_tags = opts[:anchor_tags] || []
   anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(size)
+end
+
+When /^I inject a JavaScript error on the page, Smokey( does not)? raises? an exception$/ do |no_exception|
+  should_raise_exception = no_exception.nil?
+  if should_raise_exception
+    expect { page.driver.execute_script('1.error') }.to raise_error
+  end
+end
+
+Before('@ignore_javascript_errors') do
+  page.driver.browser.js_errors = false
+end
+
+After('@ignore_javascript_errors') do
+  page.driver.browser.js_errors = true
 end

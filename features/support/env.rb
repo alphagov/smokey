@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'capybara/cucumber'
-require 'capybara/mechanize/cucumber'
+require 'capybara/poltergeist'
 require 'uri'
 require 'plek'
 
@@ -14,6 +14,12 @@ else
   ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = 'https://www.gov.uk'
 end
 
-Capybara.app = "mechanize requires any value to be set here"
-Capybara.default_driver = :mechanize
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
+Capybara.default_driver = :poltergeist
+
+Capybara.register_driver :poltergeist do |app|
+  # TODO: We should log the output from PhantomJS. This is currently disabled
+  # because the log format is causing errors with Monitoring
+  # https://github.com/alphagov/smokey/pull/237
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: File.open("log/phantomjs.log", "a"))
+end
