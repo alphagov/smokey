@@ -24,10 +24,6 @@ Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
 
-Given /^I am ignoring JavaScript errors$/ do
-  page.driver.browser.js_errors = false
-end
-
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit_path application_base_url(app_name)
 end
@@ -213,6 +209,17 @@ def random_path_selection(opts={})
   anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(size)
 end
 
-When /^I inject a JavaScript error on the page, Smokey raises an exception$/ do
-  expect { page.driver.execute_script('1.error') }.to raise_error
+When /^I inject a JavaScript error on the page, Smokey( does not)? raises? an exception$/ do |no_exception|
+  should_raise_exception = no_exception.nil?
+  if should_raise_exception
+    expect { page.driver.execute_script('1.error') }.to raise_error
+  end
+end
+
+Before('@ignore_javascript_errors') do
+  page.driver.browser.js_errors = false
+end
+
+After('@ignore_javascript_errors') do
+  page.driver.browser.js_errors = true
 end

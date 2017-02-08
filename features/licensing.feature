@@ -1,11 +1,10 @@
 Feature: Licensing
 
-  @normal @notintegration
+  @normal @notintegration @ignore_javascript_errors
   Scenario: check licensing app is present
     Given I am testing "licensing"
       And I am testing through the full stack
       And I force a varnish cache miss
-      And I am ignoring JavaScript errors
     Then I should be able to visit:
       | Path                                                              |
       | /apply-for-a-licence/test-licence/westminster/apply-1             |
