@@ -1,3 +1,5 @@
+GOOGLE_ANALYTICS_PAGE_VIEW_URL_MATCHER = %r{google-analytics.com/r/collect\?.*t=pageview}
+
 Given(/^there is an AB test setup$/) do
   # Empty step.
   # We assume that there is always an A/B test set up on the example A/B test
@@ -35,8 +37,17 @@ Then(/^I can see the bucket I am assigned to$/) do
 end
 
 Then(/^the bucket is reported to Google Analytics$/) do
-  # TODO: Implement once we know how we're reporting to GA. Is it sufficient to
-  # check the meta tag which is inspected by GA to report the page view?
+  analytics = []
+
+  Timeout.timeout(Capybara.default_max_wait_time) do
+    analytics = page_track_requests until analytics.length > 0
+  end
+
+  assert analytics.length == 1, "Expected exactly 1 page track request"
+
+  query = Rack::Utils.parse_query URI(analytics.first.url).query
+
+  query['cd40'].should == "Example:#{@ab_cookie_value}"
 end
 
 Then(/^I stay on the same bucket when I keep visiting "(.*?)"$/) do |path|
@@ -50,4 +61,8 @@ end
 
 def ab_bucket page
   Nokogiri::HTML.parse(page).css(".ab-example-group").text.strip
+end
+
+def page_track_requests
+  page.driver.network_traffic.select { |traffic| traffic.url =~ GOOGLE_ANALYTICS_PAGE_VIEW_URL_MATCHER}
 end
