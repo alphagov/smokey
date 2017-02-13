@@ -47,7 +47,7 @@ Then(/^the bucket is reported to Google Analytics$/) do
 
   query = Rack::Utils.parse_query URI(analytics.first.url).query
 
-  query['cd40'].should == "Example:#{@ab_cookie_value}"
+  query['cd40'].should == "example:#{@ab_cookie_value}"
 end
 
 Then(/^I stay on the same bucket when I keep visiting "(.*?)"$/) do |path|
