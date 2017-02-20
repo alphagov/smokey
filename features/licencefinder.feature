@@ -21,6 +21,7 @@ Feature: Licence Finder
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
 
   @low
+  @benchmarking
   Scenario: Quickly loading the licence finder home page
     Given I am benchmarking
     And I am testing through the full stack

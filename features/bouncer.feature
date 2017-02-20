@@ -1,6 +1,7 @@
 Feature: Bouncer
 
   @high
+  @benchmarking
   Scenario: Bouncer application is up
     Given I am testing "bouncer"
     And I am benchmarking
