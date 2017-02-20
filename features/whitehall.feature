@@ -93,23 +93,6 @@ Feature: Whitehall
       | /treasury                 |
       | /wales-office             |
 
-  @local-network
-  @low
-  Scenario: Whitehall frontend website should be fast
-    Given I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/government/how-government-works" on the "whitehall-frontend" application
-    Then the elapsed time should be less than 2 seconds
-
-  @normal
-  Scenario: Whitehall offers a world location API
-    Given I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/api/world-locations" on the "whitehall-admin" application
-    Then the elapsed time should be less than 2 seconds
-
   @normal
   Scenario: Whitehall assets are served
     Given I am testing through the full stack
@@ -120,7 +103,5 @@ Feature: Whitehall
   Scenario: National statistics release calendar is served
     Given I am testing through the full stack
     And I force a varnish cache miss
-    And I am benchmarking
     When I visit "/government/statistics/announcements"
     Then I should get a 200 status code
-    And the elapsed time should be less than 2 seconds

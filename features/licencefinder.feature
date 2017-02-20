@@ -19,10 +19,3 @@ Feature: Licence Finder
     And I force a varnish cache miss
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
-
-  @low
-  Scenario: Quickly loading the licence finder home page
-    Given I am benchmarking
-    And I am testing through the full stack
-    When I visit "/licence-finder"
-    Then the elapsed time should be less than 1 seconds
