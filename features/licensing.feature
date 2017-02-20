@@ -11,7 +11,7 @@ Feature: Licensing
       | /apply-for-a-licence/test-licence/westminster/apply-1/form        |
       | /apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1         |
 
-  @normal @notintegration
+  @normal @notintegration @benchmarking
   Scenario: Loading a pdf in a reasonable amount of time
     Given I am testing "licensing"
       And I am benchmarking

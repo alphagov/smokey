@@ -95,6 +95,7 @@ Feature: Whitehall
 
   @local-network
   @low
+  @benchmarking
   Scenario: Whitehall frontend website should be fast
     Given I am benchmarking
     And I am testing through the full stack
@@ -103,6 +104,7 @@ Feature: Whitehall
     Then the elapsed time should be less than 2 seconds
 
   @normal
+  @benchmarking
   Scenario: Whitehall offers a world location API
     Given I am benchmarking
     And I am testing through the full stack
@@ -117,6 +119,7 @@ Feature: Whitehall
     Then I should get a 200 status code
 
   @normal
+  @benchmarking
   Scenario: National statistics release calendar is served
     Given I am testing through the full stack
     And I force a varnish cache miss
