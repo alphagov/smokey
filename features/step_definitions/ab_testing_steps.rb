@@ -12,6 +12,10 @@ Given(/^I do not have any AB testing cookies set$/) do
   # By default, no cookies are set.
 end
 
+Given(/^I am in the "(A|B)" group for "(.*)" AB testing$/) do |test_group, ab_test|
+  page.driver.set_cookie("ABTest-#{ab_test}", test_group)
+end
+
 Then(/^we have shown them all versions of the AB test$/) do
   buckets = @responses.map { |r| ab_bucket(r.body) }.to_set
   buckets.should == (Set.new ["A", "B"])
