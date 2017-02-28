@@ -8,5 +8,5 @@ gem "cucumber", "1.3.20"
 gem "capybara", "~> 2.12.0"
 gem "poltergeist", "1.13.0"
 
-gem "rest-client", "~> 2.0"
-gem "nokogiri", "~> 1.7"
+gem "rest-client", "1.6.7"
+gem "nokogiri", "1.5.5"
