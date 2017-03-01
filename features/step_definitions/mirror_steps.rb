@@ -20,7 +20,11 @@ end
 Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, path|
   @responses = []
   @hosts.each do |mirror_host|
-    response = try_get_request("#{mirror_host}#{path}", host_header: "www-origin.mirror.production.govuk.service.gov.uk")
+    response = try_get_request(
+      "#{mirror_host}#{path}",
+      host_header: "www-origin.mirror.production.govuk.service.gov.uk",
+      verify_ssl: false,
+    )
     response.code.should == status.to_i
     @responses << response
   end

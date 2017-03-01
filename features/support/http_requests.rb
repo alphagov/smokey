@@ -57,6 +57,7 @@ end
 def do_http_request(url, method = :get, options = {}, &block)
   defaults = {
     :auth => true,
+    :verify_ssl => true,
   }
   options = defaults.merge(options)
 
@@ -93,7 +94,8 @@ def do_http_request(url, method = :get, options = {}, &block)
     password: password,
     headers: headers,
     timeout: 10,
-    payload: options[:payload]
+    payload: options[:payload],
+    verify_ssl: options[:verify_ssl],
   ).execute &block
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
