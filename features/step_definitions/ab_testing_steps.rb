@@ -13,7 +13,11 @@ Given(/^I do not have any AB testing cookies set$/) do
 end
 
 Given(/^I am in the "(A|B)" group for "(.*)" AB testing$/) do |test_group, ab_test|
+  # Set BOTH the cookie and the header, because:
+  # - On development/int/staging, cookies don't work so use the header directly
+  # - On production, the header is ignored and overwritten by the CDN, but honours the cookie
   page.driver.set_cookie("ABTest-#{ab_test}", test_group)
+  page.driver.add_headers("GOVUK-ABTest-#{ab_test}" => test_group)
 end
 
 Then(/^we have shown them all versions of the AB test$/) do

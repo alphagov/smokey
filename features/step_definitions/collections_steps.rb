@@ -1,5 +1,5 @@
 When(/^I toggle the first accordion section$/) do
-  first('.js-subsection-button').click
+  first('.js-subsection-title-link').click
 end
 
 Then(/^I can see an accordion$/) do
