@@ -8,8 +8,11 @@ Given(/^there is an AB test setup$/) do
 end
 
 Given(/^I do not have any AB testing cookies set$/) do
-  # Empty step.
-  # By default, no cookies are set.
+  assert_equal(
+    {},
+    page.driver.cookies,
+    "There should be no cookies set"
+  )
 end
 
 Given(/^I am in the "(A|B)" group for "(.*)" AB testing$/) do |test_group, ab_test|
