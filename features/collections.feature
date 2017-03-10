@@ -18,7 +18,6 @@ Feature: Collections
     Then I am in the "A" variant of the education navigation test
     And I stay on bucket "A" of the education navigation test when I keep visiting "/education-maintenance-allowance-ema"
 
-  @notstaging @notproduction
   Scenario: Using the accordion page
     Given I am in the "B" group for "EducationNavigation" AB testing
     When I visit "/education/special-educational-needs-and-disability-send-and-high-needs"
