@@ -21,3 +21,31 @@ Then(/^I can(not)? see the accordion content for only the first item$/) do |cann
     end
   end
 end
+
+Then(/^I am in the "(.*?)" variant of the education navigation test$/) do |variant|
+  ab_cookie = page.driver.cookies["ABTest-EducationNavigation"]
+
+  assert_equal(
+    variant,
+    ab_cookie.value,
+    "We have been assigned to the incorrect variant"
+  )
+
+  assert(
+    ab_cookie.expires,
+    "Expected the cookie to have an expiry date"
+  )
+end
+
+Then(/^I stay on bucket "(A|B)" of the education navigation test when I keep visiting "(.*?)"$/) do |variant, path|
+  20.times do
+    response = visit path
+    education_ab_cookie = page.driver.cookies['ABTest-EducationNavigation']
+
+    assert_equal(
+      variant,
+      education_ab_cookie.value,
+      "The ABTest-EducationNavigation cookie value doesn't match"
+    )
+  end
+end
