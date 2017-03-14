@@ -15,7 +15,7 @@ Feature: Travel Advice
   Scenario: check a country page loads
     When I visit "/foreign-travel-advice/luxembourg"
     Then I should see "Luxembourg"
-    And I should see "Current travel advice"
+    And I should see "Summary"
 
   @normal
   Scenario: Feeds should be available for index and countries
