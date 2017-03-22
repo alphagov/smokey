@@ -13,7 +13,6 @@ def application_base_url(app_name)
   when 'bouncer' then "https://bouncer.#{app_domain}/"
   when 'calendars' then "https://calendars.#{app_domain}/bank-holidays"
   when 'contacts' then "https://www.#{app_domain}/contact/hm-revenue-customs"
-  when 'businesssupportfinder' then "https://businesssupportfinder.#{app_domain}/business-finance-support-finder"
   when 'frontend' then "https://frontend.#{app_domain}/"
   when 'private-frontend' then "https://private-frontend.#{app_domain}/"
   when 'imminence' then "https://imminence.#{app_domain}/"
