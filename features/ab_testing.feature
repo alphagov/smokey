@@ -15,7 +15,7 @@ Feature: A/B Testing
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the AB test
 
-  @withanalitics @low @notintegration @notstaging
+  @withanalytics @low @notintegration @notstaging
   Scenario: check that an A/B test works
     Given there is an AB test setup
     And I am testing through the full stack

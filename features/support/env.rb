@@ -16,24 +16,34 @@ end
 
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 phantomjs_logger = File.open("log/phantomjs.log", "a")
-ANALYTICS_URL = 'https://www.google-analytics.com'
+
+BLACKLISTED_URLS = ['www.google-analytics.com']
 
 Capybara.register_driver :poltergeist do |app|
-  # TODO: We should log the output from PhantomJS. This is currently disabled
-  # because the log format is causing errors with Monitoring
-  # https://github.com/alphagov/smokey/pull/237
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: phantomjs_logger).tap do |driver|
-    driver.browser.url_blacklist = [ANALYTICS_URL]
-  end
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: phantomjs_logger)
 end
 
 Capybara.default_driver = :poltergeist
 
-Around('@withanalitics') do |scenario, block|
-  current_url_blacklist = page.driver.browser.url_blacklist
-  page.driver.browser.url_blacklist = current_url_blacklist - ANALYTICS_URL
+Before('~@withanalytics') do
+  page.driver.browser.url_blacklist = BLACKLISTED_URLS
+  page.driver.add_headers('User-Agent' => 'Smokey')
+end
+
+After('~@withanalytics') do
+  uris = page.driver.network_traffic.map(&:url)
+  urls = uris.select { |uri| ['http', 'https'].include?(URI.parse(uri).scheme) }
+  hosts = urls.map { |url| URI.parse(url).host }.uniq.sort
+
+  if (BLACKLISTED_URLS - hosts).empty?
+    raise "We should not contact Google Analytics. Please use @withanalytics if you need to."
+  end
+end
+
+Around('@withanalytics') do |scenario, block|
+  page.driver.browser.url_blacklist = []
 
   block.call
 
-  page.driver.browser.url_blacklist = current_url_blacklist
+  page.driver.browser.url_blacklist = BLACKLISTED_URLS
 end
