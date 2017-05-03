@@ -32,9 +32,3 @@ Feature: Draft environment
     Then I should see "Content design"
     And I should see "Search this manual"
     And the page should contain the draft watermark
-
-  @draft
-  Scenario: visiting a page served by contacts-frontend
-    When I try to login as a user
-    When I attempt to visit "government/organisations/hm-revenue-customs/contact/child-benefit"
-    Then I should see "Child Benefit"
