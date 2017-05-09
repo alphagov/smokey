@@ -70,6 +70,38 @@ Then(/^I stay on the same bucket when I keep visiting "(.*?)"$/) do |path|
   end
 end
 
+Then(/^I can see the old related links sidebar$/) do
+  refute(
+    page.has_selector?('.govuk-taxonomy-sidebar'),
+    "We should not be seeing the taxonomy sidebar for this page"
+  )
+
+  assert(
+    page.has_selector?('.govuk-related-items'),
+    "We should see the related links sidebar for this page"
+  )
+end
+
+Then(/^I can see the taxonomy beta tag$/) do
+  assert(
+    page.has_selector?(
+      '.govuk-beta-label',
+      text: /this is a test version of the layout of this page/i
+    ),
+    "There should be a beta tag on the page."
+  )
+end
+
+Then(/^I can see the taxonomy breadcrumbs$/) do
+  assert(
+    page.has_selector?(
+      '.govuk-breadcrumbs',
+      text: /education, training and skills/i
+    ),
+    "There should be a taxonomy breadcrumb on the page."
+  )
+end
+
 def ab_bucket page
   Nokogiri::HTML.parse(page).css(".ab-example-group").text.strip
 end
