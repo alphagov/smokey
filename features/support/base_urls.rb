@@ -24,8 +24,6 @@ def application_base_url(app_name)
   when 'signon' then "https://signon.#{app_domain}/"
   when 'smartanswers' then "https://smartanswers.#{app_domain}/calculate-your-maternity-pay"
   when 'static' then "https://static.#{app_domain}/"
-  when 'tariff-backend' then "https://tariff-api.#{app_domain}/"
-  when 'tariff-frontend' then "https://tariff.#{app_domain}/trade-tariff"
   when 'whitehall' then "https://whitehall-frontend.#{app_domain}/government/how-government-works"
   when 'whitehall-frontend' then "https://whitehall-frontend.#{app_domain}"
   when 'whitehall-admin' then "https://whitehall-admin.#{app_domain}"
