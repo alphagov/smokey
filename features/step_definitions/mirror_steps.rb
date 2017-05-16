@@ -1,19 +1,13 @@
-Given /^there are (\d) mirror providers/ do |providers|
+Given /^mirror provider (\d)/ do |provider|
   @hosts = Array.new()
-  provider_max = providers.to_i - 1
-  for p in 0..provider_max do
-    @hosts.push("https://www-origin.mirror.provider#{p}.production.govuk.service.gov.uk")
-  end
+  @hosts.push("https://www-origin.mirror.provider#{provider}.production.govuk.service.gov.uk")
 end
 
-Given /^there are (\d) mirrors and (\d) providers/ do |mirrors,providers|
+Given /^there are (\d) mirrors in provider (\d)/ do |mirrors, provider|
   @hosts = Array.new()
   mirror_max = mirrors.to_i - 1
-  provider_max = providers.to_i - 1
-  for p in 0..provider_max do
-    for m in 0..mirror_max do
-      @hosts.push("https://mirror#{m}.mirror.provider#{p}.production.govuk.service.gov.uk")
-    end
+  for m in 0..mirror_max do
+    @hosts.push("https://mirror#{m}.mirror.provider#{provider}.production.govuk.service.gov.uk")
   end
 end
 
