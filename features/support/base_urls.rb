@@ -19,7 +19,6 @@ def application_base_url(app_name)
   when 'licensing' then "https://licensify.#{app_domain}/apply-for-a-licence"
   when 'local-links-manager' then "https://local-links-manager.#{app_domain}"
   when 'manuals-publisher' then "https://manuals-publisher.#{app_domain}"
-  when 'public-contentapi' then "https://www.#{app_domain}/api/tags.json" # this should be changed to a Content API 'homepage' when we have one
   when 'publisher' then "https://publisher.#{app_domain}/admin"
   when 'signon' then "https://signon.#{app_domain}/"
   when 'smartanswers' then "https://smartanswers.#{app_domain}/calculate-your-maternity-pay"
