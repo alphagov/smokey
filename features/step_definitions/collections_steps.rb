@@ -49,3 +49,12 @@ Then(/^I stay on bucket "(A|B)" of the education navigation test when I keep vis
     )
   end
 end
+
+Then(/^I should be able to see the following ordered accordion sections:$/) do |table|
+  section_titles = find('.js-subsection-title-link')
+  assert_equal(section_titles.count, table.hashes.length)
+
+  table.hashes.each_with_index do |row, index|
+    assert_equal(row, section_titles[index].val())
+  end
+end
