@@ -1,11 +1,14 @@
 Feature: Smart Answers
 
   @normal
-  Scenario: check smart answers load
+  Scenario Outline: Check selected smart answer start pages
     Given I am testing through the full stack
     And I force a varnish cache miss
-    Then I should be able to visit:
-      | Path                                        |
+    When I visit "<smart_answer_start_page>" without following redirects
+    Then I should get a 200 status code
+
+    Examples:
+      | smart_answer_start_page                     |
       | /additional-commodity-code                  |
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
