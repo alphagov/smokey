@@ -11,7 +11,6 @@ Feature: Smart Answers
       | /calculate-employee-redundancy-pay          |
       | /calculate-married-couples-allowance        |
       | /marriage-abroad                            |
-      | /overseas-passports                         |
       | /pay-leave-for-parents                      |
       | /register-a-death                           |
       | /vat-payment-deadlines                      |
