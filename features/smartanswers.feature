@@ -40,3 +40,16 @@ Feature: Smart Answers
     | /landlord-immigration-check/y/SW1A2AA/yes         |
     | /landlord-immigration-check/y/SW1A2AA/yes/yes     |
     | /landlord-immigration-check/y/SW1A2AA/yes/yes/yes |
+
+  @normal
+  Scenario: Step through a smart answer using the Worldwide API
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    Then I should be able to visit:
+    | Path                                                |
+    | /marriage-abroad                                    |
+    | /marriage-abroad/y                                  |
+    | /marriage-abroad/y/sweden                           |
+    | /marriage-abroad/y/sweden/uk                        |
+    | /marriage-abroad/y/sweden/uk/partner_other          |
+    | /marriage-abroad/y/sweden/uk/partner_other/same_sex |
