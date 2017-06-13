@@ -106,11 +106,16 @@ end
 Then /^I should get a (\d+) status code$/ do |expected_status|
   if @response
     actual_status = @response.code.to_i
+    url = @response['location']
   else
     actual_status = page.status_code.to_i
+    url = page.current_url
   end
 
-  expect(expected_status.to_i).to eq actual_status
+  expect(expected_status.to_i).to(
+    eq(actual_status),
+    "#{url}: expected status #{expected_status.to_i} got #{actual_status}"
+  )
 end
 
 Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
