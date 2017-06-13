@@ -27,3 +27,16 @@ Feature: Smart Answers
     | /vat-payment-deadlines/y                    |
     | /vat-payment-deadlines/y/2000-01-31         |
     | /vat-payment-deadlines/y/2000-01-31/cheque  |
+
+  @normal
+  Scenario: Step through a smart answer using Imminence
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    Then I should be able to visit:
+    | Path                                              |
+    | /landlord-immigration-check                       |
+    | /landlord-immigration-check/y                     |
+    | /landlord-immigration-check/y/SW1A2AA             |
+    | /landlord-immigration-check/y/SW1A2AA/yes         |
+    | /landlord-immigration-check/y/SW1A2AA/yes/yes     |
+    | /landlord-immigration-check/y/SW1A2AA/yes/yes/yes |
