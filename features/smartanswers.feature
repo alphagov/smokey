@@ -4,7 +4,7 @@ Feature: Smart Answers
   Scenario Outline: Check selected smart answer start pages
     Given I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "<smart_answer_start_page>" without following redirects
+    When I visit "<smart_answer_start_page>"
     Then I should get a 200 status code
 
     Examples:
