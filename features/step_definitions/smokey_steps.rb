@@ -1,3 +1,5 @@
+require 'json'
+
 Given /^I am testing "(.*)"/ do |host|
   if host.include? "://"
     @host = host
@@ -189,6 +191,10 @@ Then /^I should be able to navigate the browse pages$/ do
       visit_path path
     end
   end
+end
+
+Then /^JSON is returned$/ do
+  JSON.parse(@response.body).class.should == Hash
 end
 
 def random_path_selection(opts={})
