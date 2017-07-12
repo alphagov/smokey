@@ -26,7 +26,6 @@ Feature: A/B Testing
     And the bucket is reported to Google Analytics
     And I stay on the same bucket when I keep visiting "/help/ab-testing"
 
-  @notintegration @notstaging
   Scenario Outline: show old related links for selected mainstream pages
     Given I am testing through the full stack
     And I am in the "B" group for "EducationNavigation" AB testing
