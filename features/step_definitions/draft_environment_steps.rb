@@ -1,5 +1,5 @@
 When /^I attempt to go to a case study$/ do
-  visit_path "government/case-studies/epic-cic"
+  visit_path "government/case-studies/libraries-unlimited"
 end
 
 When /^I attempt to visit "(.*?)"$/ do |path|
@@ -25,7 +25,7 @@ When /^I log in using valid credentials$/ do
 end
 
 Then /^I should be on the case study page$/ do
-  page.current_path.should eq("/government/case-studies/epic-cic")
+  page.current_path.should eq("/government/case-studies/libraries-unlimited")
   page.should have_content('Case study')
 end
 
