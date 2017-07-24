@@ -5,5 +5,5 @@ Feature: Government Frontend
     And I force a varnish cache miss
 
   Scenario:
-    When I visit "/government/case-studies/epic-cic"
+    When I visit "/government/case-studies/libraries-unlimited"
     Then I should see "Case study"

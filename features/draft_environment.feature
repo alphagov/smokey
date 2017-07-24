@@ -14,7 +14,7 @@ Feature: Draft environment
   @draft
   Scenario: visiting a page served by government-frontend
     When I try to login as a user
-    When I attempt to visit "government/case-studies/epic-cic"
+    When I attempt to visit "government/case-studies/libraries-unlimited"
     Then I should see "Case study"
     And the page should contain the draft watermark
 
