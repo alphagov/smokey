@@ -22,7 +22,8 @@ BLACKLISTED_URLS = ['www.google-analytics.com']
 Capybara.register_driver :poltergeist do |app|
   options = {
     debug: ENV['POLTERGEIST_DEBUG'] || false,
-    phantomjs_logger: phantomjs_logger
+    phantomjs_logger: phantomjs_logger,
+    url_blacklist: BLACKLISTED_URLS
   }
   Capybara::Poltergeist::Driver.new(app, options)
 end
@@ -31,10 +32,6 @@ Capybara.default_driver = :poltergeist
 
 Before do
   page.driver.add_headers('User-Agent' => 'Smokey')
-end
-
-Before('~@withanalytics') do
-  page.driver.browser.url_blacklist = BLACKLISTED_URLS
 end
 
 After('~@withanalytics') do
