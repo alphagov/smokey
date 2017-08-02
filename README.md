@@ -27,17 +27,20 @@ or against a single `feature`:
 bundle exec cucumber features/frontend.feature
 ```
 
-The tests will run against the integration environment by default.  You can
-override that by setting the `GOVUK_WEBSITE_ROOT` environment variable.
+The tests run in/against the integration environment by default but require additional configuration to run successfully. This set of options should allow you to run the tests successfully from your development machine:
 
-You may also specify the domain of the draft website root using
-`GOVUK_DRAFT_WEBSITE_ROOT`. By default this will use the url for `draft-
-origin` returned by [`plek`](http://github.com/alphagov/plek).
-
-You'll need to configure the http auth credentials by setting the
-`AUTH_USERNAME` and `AUTH_PASSWORD` environment variables.
-
-    GOVUK_WEBSITE_ROOT=https://hostname AUTH_USERNAME=username AUTH_PASSWORD=password bundle exec rake
+```
+GOVUK_DRAFT_WEBSITE_ROOT=https://draft-origin.integration.publishing.service.gov.uk \
+SIGNON_EMAIL="<email-address>" \
+SIGNON_PASSWORD="<password>" \
+AUTH_USERNAME="<username>" \
+AUTH_PASSWORD="<password>" \
+bundle exec cucumber \
+--format pretty \
+--tags ~@pending \
+--tags ~@local-network \
+--tags ~@notintegration
+```
 
 ### Test configuration
 
