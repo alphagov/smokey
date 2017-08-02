@@ -34,16 +34,6 @@ Before do
   page.driver.add_headers('User-Agent' => 'Smokey')
 end
 
-After('~@withanalytics') do
-  uris = page.driver.network_traffic.map(&:url)
-  urls = uris.select { |uri| ['http', 'https'].include?(URI.parse(uri).scheme) }
-  hosts = urls.map { |url| URI.parse(url).host }.uniq.sort
-
-  if (BLACKLISTED_URLS - hosts).empty?
-    raise "We should not contact Google Analytics. Please use @withanalytics if you need to."
-  end
-end
-
 Before('@withanalytics') do |scenario, block|
   page.driver.browser.url_blacklist = []
 end
