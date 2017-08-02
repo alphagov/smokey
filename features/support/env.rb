@@ -20,7 +20,10 @@ phantomjs_logger = File.open("log/phantomjs.log", "a")
 BLACKLISTED_URLS = ['www.google-analytics.com']
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: phantomjs_logger)
+  options = {
+    phantomjs_logger: phantomjs_logger
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
 end
 
 Capybara.default_driver = :poltergeist
