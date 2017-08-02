@@ -17,7 +17,8 @@ end
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 phantomjs_logger = File.open("log/phantomjs.log", "a")
 
-BLACKLISTED_URLS = ['www.google-analytics.com']
+GOOGLE_ANALYTICS_URL = 'www.google-analytics.com'
+BLACKLISTED_URLS = [GOOGLE_ANALYTICS_URL]
 
 Capybara.register_driver :poltergeist do |app|
   options = {
@@ -35,5 +36,5 @@ Before do
 end
 
 Before('@withanalytics') do |scenario, block|
-  page.driver.browser.url_blacklist = []
+  page.driver.browser.url_blacklist = BLACKLISTED_URLS - [GOOGLE_ANALYTICS_URL]
 end
