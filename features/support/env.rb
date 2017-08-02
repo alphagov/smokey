@@ -18,7 +18,10 @@ Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 phantomjs_logger = File.open("log/phantomjs.log", "a")
 
 GOOGLE_ANALYTICS_URL = 'www.google-analytics.com'
-BLACKLISTED_URLS = [GOOGLE_ANALYTICS_URL]
+BLACKLISTED_URLS = [
+  GOOGLE_ANALYTICS_URL,
+  'www.youtube.com'
+]
 
 Capybara.register_driver :poltergeist do |app|
   options = {
