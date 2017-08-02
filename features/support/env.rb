@@ -21,6 +21,7 @@ BLACKLISTED_URLS = ['www.google-analytics.com']
 
 Capybara.register_driver :poltergeist do |app|
   options = {
+    debug: ENV['POLTERGEIST_DEBUG'] || false,
     phantomjs_logger: phantomjs_logger
   }
   Capybara::Poltergeist::Driver.new(app, options)
