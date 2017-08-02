@@ -44,10 +44,6 @@ After('~@withanalytics') do
   end
 end
 
-Around('@withanalytics') do |scenario, block|
+Before('@withanalytics') do |scenario, block|
   page.driver.browser.url_blacklist = []
-
-  block.call
-
-  page.driver.browser.url_blacklist = BLACKLISTED_URLS
 end
