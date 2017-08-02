@@ -29,9 +29,12 @@ end
 
 Capybara.default_driver = :poltergeist
 
+Before do
+  page.driver.add_headers('User-Agent' => 'Smokey')
+end
+
 Before('~@withanalytics') do
   page.driver.browser.url_blacklist = BLACKLISTED_URLS
-  page.driver.add_headers('User-Agent' => 'Smokey')
 end
 
 After('~@withanalytics') do
