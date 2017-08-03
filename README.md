@@ -106,3 +106,7 @@ Scenario: check guides load
   When I visit "/getting-an-mot/overview"
   Then I should see "Getting an MOT"
 ```
+
+### Deploying
+
+This master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L24).
