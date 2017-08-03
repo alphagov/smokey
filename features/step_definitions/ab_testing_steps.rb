@@ -1,4 +1,4 @@
-GOOGLE_ANALYTICS_PAGE_VIEW_URL_MATCHER = %r{google-analytics.com/r/collect\?.*t=pageview}
+GOOGLE_ANALYTICS_PAGE_VIEW_URL_MATCHER = %r{google-analytics.com/collect\?.*t=pageview}
 
 Given(/^there is an AB test setup$/) do
   # Empty step.
