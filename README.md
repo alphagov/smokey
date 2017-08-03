@@ -39,6 +39,32 @@ You'll need to configure the http auth credentials by setting the
 
     GOVUK_WEBSITE_ROOT=https://hostname AUTH_USERNAME=username AUTH_PASSWORD=password bundle exec rake
 
+### Test configuration
+
+You can use the following environment variables to configure the tests:
+
+* `GOVUK_WEBSITE_ROOT`
+  * Default: https://www-origin.integration.publishing.service.gov.uk
+  * The environment to run the Smoke tests in.
+* `GOVUK_DRAFT_WEBSITE_ROOT`
+  * Default: The value returned by [`plek`](http://github.com/alphagov/plek) for `draft-origin`.
+  * Required by tests tagged with `@draft`.
+* `GOVUK_APP_DOMAIN`
+  * Default: Blank
+  * Used to construct URLs in the `#application_base_url` method.
+* `AUTH_USERNAME`
+  * Default: Blank
+  * Set the HTTP Basic username required to access `GOVUK_WEBSITE_ROOT`.
+* `AUTH_PASSWORD`
+  * Default: Blank
+  * Set the HTTP Basic password required to access `GOVUK_WEBSITE_ROOT`.
+* `SIGNON_EMAIL`
+  * Default: Blank
+  * Email address of a user with a Signon account in the environment the tests are being run in.
+* `SIGNON_PASSWORD`
+  * Default: Blank
+  * Password of a user with a Signon account in the environment the tests are being run in.
+
 ### Debugging the tests
 
 Set the `POLTERGEIST_DEBUG` environment variable to see Poltergeist debug output when running the tests:
