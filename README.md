@@ -39,6 +39,14 @@ You'll need to configure the http auth credentials by setting the
 
     GOVUK_WEBSITE_ROOT=https://hostname AUTH_USERNAME=username AUTH_PASSWORD=password bundle exec rake
 
+### Debugging the tests
+
+Set the `POLTERGEIST_DEBUG` environment variable to see Poltergeist debug output when running the tests:
+
+```
+$ POLTERGEIST_DEBUG=true bundle exec rake
+```
+
 ### Adding new tests
 
 Tests that are supposed to be run by icinga also have to be added to the file
