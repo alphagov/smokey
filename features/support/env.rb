@@ -17,33 +17,24 @@ end
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 phantomjs_logger = File.open("log/phantomjs.log", "a")
 
-BLACKLISTED_URLS = ['www.google-analytics.com']
+GOOGLE_ANALYTICS_URL = 'www.google-analytics.com'
+BLACKLISTED_URLS = [GOOGLE_ANALYTICS_URL]
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: phantomjs_logger)
+  options = {
+    debug: ENV['POLTERGEIST_DEBUG'] || false,
+    phantomjs_logger: phantomjs_logger,
+    url_blacklist: BLACKLISTED_URLS
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
 end
 
 Capybara.default_driver = :poltergeist
 
-Before('~@withanalytics') do
-  page.driver.browser.url_blacklist = BLACKLISTED_URLS
+Before do
   page.driver.add_headers('User-Agent' => 'Smokey')
 end
 
-After('~@withanalytics') do
-  uris = page.driver.network_traffic.map(&:url)
-  urls = uris.select { |uri| ['http', 'https'].include?(URI.parse(uri).scheme) }
-  hosts = urls.map { |url| URI.parse(url).host }.uniq.sort
-
-  if (BLACKLISTED_URLS - hosts).empty?
-    raise "We should not contact Google Analytics. Please use @withanalytics if you need to."
-  end
-end
-
-Around('@withanalytics') do |scenario, block|
-  page.driver.browser.url_blacklist = []
-
-  block.call
-
-  page.driver.browser.url_blacklist = BLACKLISTED_URLS
+Before('@withanalytics') do |scenario, block|
+  page.driver.browser.url_blacklist = BLACKLISTED_URLS - [GOOGLE_ANALYTICS_URL]
 end
