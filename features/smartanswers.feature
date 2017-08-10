@@ -51,3 +51,22 @@ Feature: Smart Answers
     | /marriage-abroad/y/sweden/uk                        |
     | /marriage-abroad/y/sweden/uk/partner_other          |
     | /marriage-abroad/y/sweden/uk/partner_other/same_sex |
+
+  @normal
+  Scenario Outline: Viewing countries in a select element
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I request "<Path>"
+    Then I should see a populated country select
+
+    Examples:
+      | Path                                                       |
+      | /check-uk-visa/y                                           |
+      | /help-if-you-are-arrested-abroad/y                         |
+      | /marriage-abroad/y                                         |
+      | /register-a-birth/y                                        |
+      | /register-a-birth/y/afghanistan/father/yes/another_country |
+      | /register-a-death/y/overseas                               |
+      | /register-a-death/y/overseas/afghanistan/another_country   |
+      | /report-a-lost-or-stolen-passport/y/abroad                 |
+      | /uk-benefits-abroad/y/going_abroad/child_benefit           |
