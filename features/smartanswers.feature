@@ -83,3 +83,22 @@ Feature: Smart Answers
       | /marriage-abroad/y/cayman-islands/uk/partner_british/opposite_sex            | The Cayman Islands is a British overseas territory |
       | /register-a-birth/y/cayman-islands                                           | regulations in the Cayman Islands                  |
       | /register-a-death/y/overseas/cayman-islands                                  | regulations in the Cayman Islands                  |
+
+  Scenario Outline: Country slugs are correctly validated
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I request "<Path>"
+    Then the slug should be <Valid>
+
+    Examples:
+      | Path                                                   | Valid   |
+      | /marriage-abroad/y/netherlands                         | valid   |
+      | /marriage-abroad/y/foo                                 | invalid |
+      | /register-a-birth/y/cayman-islands                     | valid   |
+      | /register-a-birth/y/foo                                | invalid |
+      | /register-a-death/y/overseas/cayman-islands            | valid   |
+      | /register-a-death/y/overseas/foo                       | invalid |
+      | /help-if-you-are-arrested-abroad/y/afghanistan         | valid   |
+      | /help-if-you-are-arrested-abroad/y/foo                 | invalid |
+      | /report-a-lost-or-stolen-passport/y/abroad/afghanistan | valid   |
+      | /report-a-lost-or-stolen-passport/y/abroad/foo         | invalid |
