@@ -102,3 +102,16 @@ Feature: Smart Answers
       | /help-if-you-are-arrested-abroad/y/foo                 | invalid |
       | /report-a-lost-or-stolen-passport/y/abroad/afghanistan | valid   |
       | /report-a-lost-or-stolen-passport/y/abroad/foo         | invalid |
+
+  Scenario Outline: Country FCOs can be looked up
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I request "<Path>"
+    Then I should see "<Expected string>"
+
+    Examples:
+      | Path                                                           | Expected string                 |
+      | /marriage-abroad/y/afghanistan/uk/partner_british/opposite_sex | Embassy of Afghanistan          |
+      | /register-a-birth/y/venezuela/mother/yes/same_country          | venezuela.consulate@fco.gov.uk  |
+      | /register-a-death/y/overseas/north-korea/same_country          | Pyongyang.enquiries@fco.gov.uk  |
+      | /report-a-lost-or-stolen-passport/y/abroad/afghanistan         | britishembassy.kabul@fco.gov.uk |
