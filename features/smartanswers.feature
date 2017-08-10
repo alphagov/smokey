@@ -70,3 +70,16 @@ Feature: Smart Answers
       | /register-a-death/y/overseas/afghanistan/another_country   |
       | /report-a-lost-or-stolen-passport/y/abroad                 |
       | /uk-benefits-abroad/y/going_abroad/child_benefit           |
+
+  Scenario Outline: Country names are correctly formatted
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I request "<Path>"
+    Then I should see "<Expected string>"
+
+    Examples:
+      | Path                                                                         | Expected string                                    |
+      | /marriage-abroad/y/netherlands/ceremony_country/partner_british/opposite_sex | local authorities in the Netherlands               |
+      | /marriage-abroad/y/cayman-islands/uk/partner_british/opposite_sex            | The Cayman Islands is a British overseas territory |
+      | /register-a-birth/y/cayman-islands                                           | regulations in the Cayman Islands                  |
+      | /register-a-death/y/overseas/cayman-islands                                  | regulations in the Cayman Islands                  |
