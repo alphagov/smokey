@@ -71,6 +71,7 @@ Feature: Smart Answers
       | /report-a-lost-or-stolen-passport/y/abroad                 |
       | /uk-benefits-abroad/y/going_abroad/child_benefit           |
 
+  @normal
   Scenario Outline: Country names are correctly formatted
     Given I am testing through the full stack
     And I force a varnish cache miss
@@ -84,6 +85,7 @@ Feature: Smart Answers
       | /register-a-birth/y/cayman-islands                                           | regulations in the Cayman Islands                  |
       | /register-a-death/y/overseas/cayman-islands                                  | regulations in the Cayman Islands                  |
 
+  @normal
   Scenario Outline: Country slugs are correctly validated
     Given I am testing through the full stack
     And I force a varnish cache miss
@@ -103,6 +105,7 @@ Feature: Smart Answers
       | /report-a-lost-or-stolen-passport/y/abroad/afghanistan | valid   |
       | /report-a-lost-or-stolen-passport/y/abroad/foo         | invalid |
 
+  @normal
   Scenario Outline: Country FCOs can be looked up
     Given I am testing through the full stack
     And I force a varnish cache miss
@@ -115,3 +118,17 @@ Feature: Smart Answers
       | /register-a-birth/y/venezuela/mother/yes/same_country          | venezuela.consulate@fco.gov.uk  |
       | /register-a-death/y/overseas/north-korea/same_country          | Pyongyang.enquiries@fco.gov.uk  |
       | /report-a-lost-or-stolen-passport/y/abroad/afghanistan         | britishembassy.kabul@fco.gov.uk |
+
+  @normal
+  Scenario Outline: Postcode lookup
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I request "<Path>"
+    Then I should see "<Expected string>"
+
+    Examples:
+      | Path                                                                            | Expected string            |
+      | /benefit-cap-calculator/y/yes/no/no/bereavement/1000.0/1000.0/single/SW1A%202AA | Greater London benefit cap |
+      | /benefit-cap-calculator/y/yes/no/no/bereavement/1000.0/1000.0/single/EH99%201SP | Outside London benefit cap |
+      | /landlord-immigration-check/y/SW1A%202AA                                        | Is the person renting      |
+      | /landlord-immigration-check/y/EH99%201SP                                        | check in England           |
