@@ -127,8 +127,8 @@ Feature: Smart Answers
     Then I should see "<Expected string>"
 
     Examples:
-      | Path                                                                            | Expected string            |
-      | /benefit-cap-calculator/y/yes/no/no/bereavement/1000.0/1000.0/single/SW1A%202AA | Greater London benefit cap |
-      | /benefit-cap-calculator/y/yes/no/no/bereavement/1000.0/1000.0/single/EH99%201SP | Outside London benefit cap |
-      | /landlord-immigration-check/y/SW1A%202AA                                        | Is the person renting      |
-      | /landlord-immigration-check/y/EH99%201SP                                        | check in England           |
+      | Path                                                                              | Expected string            |
+      | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/SW1A%202AA | Greater London benefit cap |
+      | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/EH99%201SP | Outside London benefit cap |
+      | /landlord-immigration-check/y/SW1A%202AA                                          | Is the person renting      |
+      | /landlord-immigration-check/y/EH99%201SP                                          | check in England           |
