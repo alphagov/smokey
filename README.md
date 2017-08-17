@@ -27,17 +27,54 @@ or against a single `feature`:
 bundle exec cucumber features/frontend.feature
 ```
 
-The tests will run against the integration environment by default.  You can
-override that by setting the `GOVUK_WEBSITE_ROOT` environment variable.
+The tests run in/against the integration environment by default but require additional configuration to run successfully. This set of options should allow you to run the tests successfully from your development machine:
 
-You may also specify the domain of the draft website root using
-`GOVUK_DRAFT_WEBSITE_ROOT`. By default this will use the url for `draft-
-origin` returned by [`plek`](http://github.com/alphagov/plek).
+```
+GOVUK_DRAFT_WEBSITE_ROOT=https://draft-origin.integration.publishing.service.gov.uk \
+SIGNON_EMAIL="<email-address>" \
+SIGNON_PASSWORD="<password>" \
+AUTH_USERNAME="<username>" \
+AUTH_PASSWORD="<password>" \
+bundle exec cucumber \
+--format pretty \
+--tags ~@pending \
+--tags ~@local-network \
+--tags ~@notintegration
+```
 
-You'll need to configure the http auth credentials by setting the
-`AUTH_USERNAME` and `AUTH_PASSWORD` environment variables.
+### Test configuration
 
-    GOVUK_WEBSITE_ROOT=https://hostname AUTH_USERNAME=username AUTH_PASSWORD=password bundle exec rake
+You can use the following environment variables to configure the tests:
+
+* `GOVUK_WEBSITE_ROOT`
+  * Default: https://www-origin.integration.publishing.service.gov.uk
+  * The environment to run the Smoke tests in.
+* `GOVUK_DRAFT_WEBSITE_ROOT`
+  * Default: The value returned by [`plek`](http://github.com/alphagov/plek) for `draft-origin`.
+  * Required by tests tagged with `@draft`.
+* `GOVUK_APP_DOMAIN`
+  * Default: Blank
+  * Used to construct URLs in the `#application_base_url` method.
+* `AUTH_USERNAME`
+  * Default: Blank
+  * Set the HTTP Basic username required to access `GOVUK_WEBSITE_ROOT`.
+* `AUTH_PASSWORD`
+  * Default: Blank
+  * Set the HTTP Basic password required to access `GOVUK_WEBSITE_ROOT`.
+* `SIGNON_EMAIL`
+  * Default: Blank
+  * Email address of a user with a Signon account in the environment the tests are being run in.
+* `SIGNON_PASSWORD`
+  * Default: Blank
+  * Password of a user with a Signon account in the environment the tests are being run in.
+
+### Debugging the tests
+
+Set the `POLTERGEIST_DEBUG` environment variable to see Poltergeist debug output when running the tests:
+
+```
+$ POLTERGEIST_DEBUG=true bundle exec rake
+```
 
 ### Adding new tests
 
@@ -69,3 +106,7 @@ Scenario: check guides load
   When I visit "/getting-an-mot/overview"
   Then I should see "Getting an MOT"
 ```
+
+### Deploying
+
+This master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L24).
