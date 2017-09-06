@@ -1,5 +1,5 @@
 Feature: Finder Frontend
-  This are pages that have been migrated to a finder instead of index pages.
+  These are pages that let you search within a bunch of similar looking documents
 
   Background:
     Given I am testing through the full stack
@@ -10,6 +10,23 @@ Feature: Finder Frontend
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"
     And I should see an input field to search
+
+  @normal
+  Scenario: check policy page loads
+    When I visit "/government/policies"
+    Then I should see "Policy content"
+    And I should see an input field to search
+    And I should see an open facet titled "Organisation" with non-blank values
+
+  @normal
+  Scenario: check policy alpha loads
+    When I visit "/government/policies/all"
+    Then I should see "Policy content"
+    And I should see an input field to search
+    And I should see an open facet titled "Document type" with non-blank values
+    And I should see a closed facet titled "Organisation" with non-blank values
+    And I should see a closed facet titled "Policy" with non-blank values
+    And I should see a closed facet titled "People" with non-blank values
 
   @normal
   Scenario: check world organisations loads
