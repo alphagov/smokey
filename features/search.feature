@@ -1,11 +1,28 @@
 Feature: Search
 
   @high
-  Scenario: check search results
+  Scenario: check search results for tax
     Given I am testing through the full stack
     And I force a varnish cache miss
     When I search for "tax"
     Then I should see some search results
+    And the search results should have different titles
+
+  @high
+  Scenario: check search results for passport
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I search for "passport"
+    Then I should see some search results
+    And the search results should have different titles
+
+  @high
+  Scenario: check search results for universal credit
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I search for "universal credit"
+    Then I should see some search results
+    And the search results should have different titles
 
   @normal
   Scenario: check organisation filtering
