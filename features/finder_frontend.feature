@@ -15,14 +15,14 @@ Feature: Finder Frontend
   @normal
   Scenario: check policy page loads
     When I visit "/government/policies"
-    Then I should see "Policy content"
+    Then I should see "Policies"
     And I should see an input field to search
     And I should see an open facet titled "Organisation" with non-blank values
 
   @normal
   Scenario: check policy alpha loads
     When I visit "/government/policies/all"
-    Then I should see "Policy content"
+    Then I should see "All policy content"
     And I should see an input field to search
     And I should see an open facet titled "Document type" with non-blank values
     And I should see a closed facet titled "Organisation" with non-blank values
