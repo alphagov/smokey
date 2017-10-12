@@ -1,3 +1,4 @@
+@notaws
 @local-network
 Feature: Mirror
 

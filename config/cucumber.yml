@@ -2,3 +2,4 @@
 integration: -t ~@pending -t ~@notintegration
 staging: -t ~@pending -t ~@notstaging
 production: -t ~@pending -t ~@notproduction
+aws: -t ~@pending -t ~@notaws
