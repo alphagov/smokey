@@ -1,23 +1,23 @@
 When(/^I toggle the first accordion section$/) do
-  first('.js-subsection-title-link').click
+  first('.js-toggle-panel').click
 end
 
 Then(/^I can see an accordion$/) do
-  page.should have_css('.js-accordion-with-descriptions')
+  page.should have_css('.app-c-accordion--active')
 end
 
 Then(/^I cannot see any of the accordion content$/) do
-  page.should_not have_css('.subsection-content')
+  page.should_not have_css('.js-panel')
 end
 
 Then(/^I can(not)? see the accordion content for only the first item$/) do |cannot|
   should_see_accordion = cannot.nil?
 
-  all('.js-subsection').each_with_index do |subsection, index|
+  all('.js-section').each_with_index do |subsection, index|
     if index == 0 && should_see_accordion
-      subsection.should have_css('.subsection-content')
+      subsection.should have_css('.js-panel')
     else
-      subsection.should_not have_css('.subsection-content')
+      subsection.should_not have_css('.js-panel')
     end
   end
 end
