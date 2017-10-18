@@ -1,13 +1,13 @@
-When(/^I toggle the first accordion section$/) do
-  first('.js-toggle-panel').click
-end
-
 Then(/^I can see an accordion$/) do
   page.should have_css('.app-c-accordion--active')
 end
 
 Then(/^I cannot see any of the accordion content$/) do
   page.should_not have_css('.js-panel')
+end
+
+When(/^I toggle the first accordion section$/) do
+  first('.js-toggle-panel').click
 end
 
 Then(/^I can(not)? see the accordion content for only the first item$/) do |cannot|
