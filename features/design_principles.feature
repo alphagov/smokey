@@ -13,5 +13,5 @@ Feature: Design Principles
   @normal
   Scenario: check Transformation dashboard
     When I visit "/transformation"
-    Then I should get a 200 status code
-    And I should see "Digital Transformation"
+    Then I should get a 301 status code
+    And I should be at a location path of "/government/publications/gds-transformation-programme-2013-to-2015"
