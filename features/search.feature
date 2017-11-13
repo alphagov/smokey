@@ -6,7 +6,7 @@ Feature: Search
     And I force a varnish cache miss
     When I search for "tax"
     Then I should see some search results
-    And the search results should have different titles
+    And the search results should be unique
 
   @high
   Scenario: check search results for passport
@@ -14,7 +14,7 @@ Feature: Search
     And I force a varnish cache miss
     When I search for "passport"
     Then I should see some search results
-    And the search results should have different titles
+    And the search results should be unique
 
   @high
   Scenario: check search results for universal credit
@@ -22,7 +22,7 @@ Feature: Search
     And I force a varnish cache miss
     When I search for "universal credit"
     Then I should see some search results
-    And the search results should have different titles
+    And the search results should be unique
 
   @normal
   Scenario: check organisation filtering
