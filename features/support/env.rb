@@ -7,8 +7,19 @@ require 'plek'
 ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.integration.publishing.service.gov.uk"
 ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.find('draft-origin')
 
+non_production_website_roots = [
+  "https://www-origin.integration.publishing.service.gov.uk",
+  "https://www-origin.staging.publishing.service.gov.uk",
+  "https://www-origin.integration.govuk.digital",
+  "https://www-origin.blue.integration.govuk.digital",
+  "https://www-origin.green.integration.govuk.digital",
+  "https://www-origin.staging.govuk.digital",
+  "https://www-origin.blue.staging.govuk.digital",
+  "https://www-origin.green.staging.govuk.digital",
+]
+
 case ENV["GOVUK_WEBSITE_ROOT"]
-when "https://www-origin.integration.publishing.service.gov.uk", "https://www-origin.staging.publishing.service.gov.uk"
+when *non_production_website_roots
   ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = ENV["GOVUK_WEBSITE_ROOT"]
 else
   ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = 'https://www.gov.uk'
