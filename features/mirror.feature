@@ -3,18 +3,6 @@
 Feature: Mirror
 
     @high
-    Scenario: Check homepage is served by the load-balanced mirrors
-      Given mirror provider 1
-      Then I should get a 200 response from "/" on the mirrors
-      And I should see "Welcome to GOV.UK"
-
-    @high
-    Scenario: Check that search returns an error on the load-balanced mirrors
-      Given mirror provider 1
-      Then I should get a 503 response from "/search" on the mirrors
-      And I should see a technical difficulties message
-
-    @high
     Scenario: Check homepage is served by all the mirrors
       Given there are 2 mirrors in provider 1
       Then I should get a 200 response from "/" on the mirrors
