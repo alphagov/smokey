@@ -68,6 +68,16 @@ You can use the following environment variables to configure the tests:
   * Default: Blank
   * Password of a user with a Signon account in the environment the tests are being run in.
 
+### Spoof target domain
+
+Set the `SPOOF_TARGET_DOMAIN` environment variable to run tests against a alternative URL, while
+maintaining the `Host` header as set by the `GOVUK_WEBSITE_ROOT` environment variable.
+
+This may be useful when you wish to test against the FQDN of a site where the DNS does not yet
+resolve to the correct IP.
+
+An alternative method would be to update `/etc/hosts` on the client running the tests.
+
 ### Debugging the tests
 
 Set the `POLTERGEIST_DEBUG` environment variable to see Poltergeist debug output when running the tests:

@@ -67,6 +67,12 @@ def do_http_request(url, method = :get, options = {}, &block)
   }
 
   started_at = Time.now
+
+  spoof_target_domain = ENV['SPOOF_TARGET_DOMAIN']
+  if spoof_target_domain
+    options[:host_header] = URI(url).host
+    url = URI(url).scheme + "://" + spoof_target_domain
+  end
   url = options[:cache_bust] ? cache_bust(url) : url
   if options[:auth]
     user     = ENV['AUTH_USERNAME']
