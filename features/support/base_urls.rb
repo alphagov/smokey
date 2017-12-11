@@ -2,6 +2,10 @@ def app_domain
   ENV["GOVUK_APP_DOMAIN"] || "integration.publishing.service.gov.uk"
 end
 
+def app_domain_internal
+  ENV["GOVUK_APP_DOMAIN_INTERNAL"]
+end
+
 def signon_base_url
   application_base_url('signon')
 end
@@ -10,7 +14,7 @@ def application_base_url(app_name)
   case app_name
   when 'asset-manager' then "https://asset-manager.#{app_domain}/"
   when 'assets' then "https://assets-origin.#{app_domain}/"
-  when 'bouncer' then "https://bouncer.#{app_domain}/"
+  when 'bouncer' then app_domain_internal.nil? ? "https://bouncer.#{app_domain}/" : "https://bouncer.#{app_domain_internal}/"
   when 'calendars' then "https://calendars.#{app_domain}/bank-holidays"
   when 'contacts' then "https://www.#{app_domain}/contact/hm-revenue-customs"
   when 'frontend' then "https://frontend.#{app_domain}/"
