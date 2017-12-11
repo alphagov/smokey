@@ -24,8 +24,13 @@ if [ -n "$2" ]; then
     PROFILE="--profile $2"
 fi
 
+GOVUK_SETENV_APP=default
+if [ -n "$3" ]; then
+  GOVUK_SETENV_APP=$3
+fi
+
 rm -f ${TMP_FILE}
-/usr/local/bin/govuk_setenv default \
+/usr/local/bin/govuk_setenv $GOVUK_SETENV_APP \
     bundle exec cucumber --expand --format json ${PROFILE:-} \
         -t ~@disabled_in_icinga > ${TMP_FILE} || true
 mv ${TMP_FILE} ${CACHE_FILE}
