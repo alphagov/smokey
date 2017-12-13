@@ -17,6 +17,7 @@ Feature: Search
     And the search results should be unique
 
   @high
+  @notintegration
   Scenario: check search results for universal credit
     Given I am testing through the full stack
     And I force a varnish cache miss
