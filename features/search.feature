@@ -32,6 +32,7 @@ Feature: Search
     Then I should see organisations in the organisation filter
 
   @normal
+  @notintegration
   Scenario: check sitemap
     Given I am testing through the full stack
     And I force a varnish cache miss
