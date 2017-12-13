@@ -10,6 +10,10 @@ if [ -z $MYTASK ]; then
   MYTASK="test:production"
 fi
 
+if [ -z $GOVUK_SETENV_APP ]; then
+  GOVUK_SETENV_APP=default
+fi
+
 # This removes rbenv shims from the PATH where there is no
 # .ruby-version file. This is because certain gems call their
 # respective tasks with ruby -S which causes the following error to
@@ -19,4 +23,4 @@ if [ ! -f .ruby-version ]; then
 fi
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
-RESTCLIENT_LOG="log/smokey-rest-client.log" govuk_setenv default bundle exec rake $MYTASK
+RESTCLIENT_LOG="log/smokey-rest-client.log" govuk_setenv $GOVUK_SETENV_APP bundle exec rake $MYTASK
