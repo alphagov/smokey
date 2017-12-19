@@ -22,6 +22,7 @@ Feature: Licence Finder
 
   @low
   @benchmarking
+  @notintegration
   Scenario: Quickly loading the licence finder home page
     Given I am benchmarking
     And I am testing through the full stack
