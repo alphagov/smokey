@@ -19,4 +19,4 @@ if [ ! -f .ruby-version ]; then
 fi
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
-RESTCLIENT_LOG="log/smokey-rest-client.log" govuk_setenv default bundle exec rake $MYTASK
+RESTCLIENT_LOG="log/smokey-rest-client.log" govuk_setenv smokey bundle exec rake $MYTASK
