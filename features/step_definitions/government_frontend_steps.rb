@@ -24,7 +24,7 @@ Then /^I should be redirected to "(.*?)"$/ do |url_or_path|
 end
 
 def wait_until(&block)
-  max_time_to_try_until = Capybara.default_wait_time
+  max_time_to_try_until = Capybara.default_max_wait_time
   time_between_intervals = 0.1 # in seconds
 
   time_left = max_time_to_try_until
