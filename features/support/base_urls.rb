@@ -12,7 +12,7 @@ end
 
 def application_base_url(app_name)
   case app_name
-  when 'asset-manager' then "https://asset-manager.#{app_domain}/"
+  when 'asset-manager' then app_domain_internal.nil? ? "https://asset-manager.#{app_domain}/" : "https://asset-manager.#{app_domain_internal}/"
   when 'assets' then "https://assets-origin.#{app_domain}/"
   when 'bouncer' then app_domain_internal.nil? ? "https://bouncer.#{app_domain}/" : "https://bouncer.#{app_domain_internal}/"
   when 'calendars' then "https://calendars.#{app_domain}/bank-holidays"
