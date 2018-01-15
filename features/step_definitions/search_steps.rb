@@ -8,7 +8,7 @@ Then /^I should see some search results$/ do
 end
 
 Then /^I should see organisations in the organisation filter$/ do
-  organisation_options = page.all("#organisations.options-container input")
+  organisation_options = page.all("#organisations.options-container input", visible: false)
   organisation_options.count.should >= 10
 end
 
