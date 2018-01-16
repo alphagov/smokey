@@ -3,7 +3,7 @@ Then /^I should see an input field to search$/ do
 end
 
 And /^I should see an? (open|closed) facet titled "(.*?)" with non-blank values$/ do |open_closed, title|
-  facet = page.find('.govuk-option-select') { |elem| elem.find('.js-container-head').has_text?(title)}
+  facet = page.find('.app-c-option-select') { |elem| elem.find('.js-container-head').has_text?(title)}
 
   if open_closed == "open"
     expect(facet[:class].split(" ")).not_to include("js-closed")
