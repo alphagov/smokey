@@ -4,7 +4,15 @@ Given /^I am testing "(.*)"/ do |host|
   if host.include? "://"
     @host = host
   else
-    @host = application_base_url(host)
+    @host = application_external_url(host)
+  end
+end
+
+Given /^I am testing "(.*)" internally/ do |host|
+  if host.include? "://"
+    @host = host
+  else
+    @host = application_internal_url(host)
   end
 end
 
@@ -27,7 +35,7 @@ Given /^I am an authenticated API client$/ do
 end
 
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
-  visit_path application_base_url(app_name)
+  visit_path application_external_url(app_name)
 end
 
 When /^I (try to )?request "(.*)"$/ do |attempt_only, path_or_url|
@@ -53,7 +61,7 @@ When /^I visit "(.*)" without following redirects$/ do |path|
 end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
-  application_host = application_base_url(application)
+  application_host = application_internal_url(application)
   @response = get_request("#{application_host}#{path}", default_request_options)
 end
 

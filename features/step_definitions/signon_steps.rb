@@ -1,7 +1,7 @@
 When /^I try to login as a user$/ do
   assert ENV["SIGNON_EMAIL"] && ENV["SIGNON_PASSWORD"], "Please ensure that the signon user credentials are available in the environment"
 
-  visit signon_base_url
+  visit application_external_url("signon")
 
   fill_in "Email", :with => ENV["SIGNON_EMAIL"]
   fill_in "Passphrase", :with => ENV["SIGNON_PASSWORD"]
