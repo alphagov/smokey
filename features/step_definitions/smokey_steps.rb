@@ -217,6 +217,13 @@ When /^I inject a JavaScript error on the page, Smokey( does not)? raises? an ex
   end
 end
 
+When /^I see links to pages per topic$/ do
+  pages = Nokogiri::HTML.parse(page.body).css(".browse-container a")
+  unless pages.any?
+    fail "There are no links on this Services and Information page"
+  end
+end
+
 Before('@ignore_javascript_errors') do
   page.driver.browser.js_errors = false
 end
