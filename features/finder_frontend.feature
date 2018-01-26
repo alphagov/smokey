@@ -4,7 +4,6 @@ Feature: Finder Frontend
   Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
-    And I am in the "A" group for "PolicyFinderTest" AB testing
 
   @normal
   Scenario: check people page loads
