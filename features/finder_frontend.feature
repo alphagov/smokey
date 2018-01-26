@@ -38,12 +38,6 @@ Feature: Finder Frontend
     And I should see an input field to search
 
   @normal
-  Scenario: check policy finder loads
-    When I visit "/government/policies"
-    Then I should see "Policies"
-    And I should see an input field to search
-
-  @normal
   Scenario: check that contacts finder loads
     When I visit "/government/organisations/hm-revenue-customs/contact"
     Then I should see "HM Revenue &amp; Customs Contacts"
