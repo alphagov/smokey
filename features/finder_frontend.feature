@@ -20,16 +20,6 @@ Feature: Finder Frontend
     And I should see an open facet titled "Organisation" with non-blank values
 
   @normal
-  Scenario: check policy alpha loads
-    When I visit "/government/policies/all"
-    Then I should see "All policy content"
-    And I should see an input field to search
-    And I should see an open facet titled "Document type" with non-blank values
-    And I should see a closed facet titled "Organisation" with non-blank values
-    And I should see a closed facet titled "Policy" with non-blank values
-    And I should see a closed facet titled "People" with non-blank values
-
-  @normal
   Scenario: check world organisations loads
     When I visit "/government/world/organisations"
     Then I should see "Worldwide organisations"
