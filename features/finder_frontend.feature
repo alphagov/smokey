@@ -4,7 +4,6 @@ Feature: Finder Frontend
   Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
-    And I am in the "A" group for "PolicyFinderTest" AB testing
 
   @normal
   Scenario: check people page loads
@@ -18,16 +17,6 @@ Feature: Finder Frontend
     Then I should see "Policies"
     And I should see an input field to search
     And I should see an open facet titled "Organisation" with non-blank values
-
-  @normal
-  Scenario: check policy alpha loads
-    When I visit "/government/policies/all"
-    Then I should see "All policy content"
-    And I should see an input field to search
-    And I should see an open facet titled "Document type" with non-blank values
-    And I should see a closed facet titled "Organisation" with non-blank values
-    And I should see a closed facet titled "Policy" with non-blank values
-    And I should see a closed facet titled "People" with non-blank values
 
   @normal
   Scenario: check world organisations loads
@@ -45,12 +34,6 @@ Feature: Finder Frontend
   Scenario: check that case studies loads
     When I visit "/government/case-studies"
     Then I should see "Case studies: Real-life examples of government activity"
-    And I should see an input field to search
-
-  @normal
-  Scenario: check policy finder loads
-    When I visit "/government/policies"
-    Then I should see "Policies"
     And I should see an input field to search
 
   @normal
