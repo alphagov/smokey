@@ -3,7 +3,7 @@ Feature: Asset Manager
   @local-network
   @normal
   Scenario: check an asset can be loaded
-    Given I am testing "asset-manager"
+    Given I am testing "asset-manager" internally
     And I am an authenticated API client
     When I request "/assets/513a0efbed915d425e000002"
     Then I should get a 200 status code

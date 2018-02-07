@@ -2,7 +2,7 @@ Feature: Licensing
 
   @normal @notintegration @ignore_javascript_errors
   Scenario: check licensing app is present
-    Given I am testing "licensing"
+    Given I am testing "licensing" internally
       And I am testing through the full stack
       And I force a varnish cache miss
     Then I should be able to visit:
@@ -13,7 +13,7 @@ Feature: Licensing
 
   @normal @notintegration @benchmarking
   Scenario: Loading a pdf in a reasonable amount of time
-    Given I am testing "licensing"
+    Given I am testing "licensing" internally
       And I am benchmarking
       And I am testing through the full stack
       And I force a varnish cache miss
