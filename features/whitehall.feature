@@ -100,7 +100,7 @@ Feature: Whitehall
     Given I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "/government/how-government-works" on the "whitehall-frontend" application
+    When I visit "/government/how-government-works"
     Then the elapsed time should be less than 2 seconds
 
   @normal
