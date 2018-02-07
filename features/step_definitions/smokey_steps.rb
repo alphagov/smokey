@@ -1,6 +1,6 @@
 require 'json'
 
-Given /^I am testing "(.*)"/ do |host|
+Given /^I am testing "(.*)"$/ do |host|
   if host.include? "://"
     @host = host
   else
