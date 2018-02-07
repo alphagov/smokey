@@ -1,4 +1,4 @@
-When /^I login to Licensify$/ do
-  visit_path "https://licensify-admin.#{app_domain}/login"
+When /^I login to `Licensify$/ do
+  visit_path "#{application_external_url('licensify-admin')}/login"
   click_button 'Login'
 end
