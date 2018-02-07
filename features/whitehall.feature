@@ -109,7 +109,7 @@ Feature: Whitehall
     Given I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "/api/world-locations" on the "whitehall-admin" application
+    When I visit "/api/world-locations"
     Then the elapsed time should be less than 2 seconds
 
   @normal
