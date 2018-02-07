@@ -3,7 +3,6 @@ DEFAULT_PATHS = {
   'contacts' => '/hm-revenue-customs',
   'imminence' => '/admin',
   'licensefinder' => '/licence-finder',
-  'licensing' => '/apply-for-a-licence',
   'licensing' => '/apply-for-a-license',
   'publisher' => '/admin',
   'smartanswers' => '/calculate-your-maternity-pay',
