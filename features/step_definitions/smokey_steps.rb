@@ -166,9 +166,14 @@ Then /^I should be at a location path of "(.*)"$/ do |location_path|
 end
 
 When /^I click "(.*?)"$/ do |link_text|
-  link_href = Nokogiri::HTML.parse(@response.body).at_xpath("//a[text()='#{link_text}']/@href")
+  if @response
+    link_href = Nokogiri::HTML.parse(@response.body).at_xpath("//a[text()='#{link_text}']/@href")
+  elsif body
+    link_href = Nokogiri::HTML.parse(page.body)
+                .at_xpath("//a[text()='#{link_text}']/@href")
+  end
   link_href.should_not == nil
-  step "I visit \"#{link_href.value}\""
+  step  "I visit \"#{link_href.value}\""
 end
 
 When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
