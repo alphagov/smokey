@@ -165,12 +165,6 @@ Then /^I should be at a location path of "(.*)"$/ do |location_path|
   end
 end
 
-When /^I click "(.*?)"$/ do |link_text|
-  link_href = Nokogiri::HTML.parse(@response.body).at_xpath("//a[text()='#{link_text}']/@href")
-  link_href.should_not == nil
-  step "I visit \"#{link_href.value}\""
-end
-
 When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}"
 end
