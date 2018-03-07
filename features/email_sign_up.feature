@@ -6,7 +6,7 @@ Feature: Email Signup Journeys
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @high @pending
+  @high
   Scenario: Starting from foreign travel advise
     When I visit "/foreign-travel-advice/turkey"
     And I click on the link "Get email alerts"
@@ -17,7 +17,7 @@ Feature: Email Signup Journeys
     And I input "simulate-delivered@notifications.service.gov.uk" and click subscribe
     Then I should see "You’ve subscribed successfully"
 
-  @normal @pending
+  @normal
   Scenario: Starting from organisations
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
@@ -25,7 +25,7 @@ Feature: Email Signup Journeys
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
 
-  @normal @pending
+  @normal
   Scenario: Starting from a finder
     When I visit "/government/policies/immigration-and-borders"
     And I click on the link "Subscribe to email alerts"
@@ -33,7 +33,7 @@ Feature: Email Signup Journeys
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
 
-  @normal @pending
+  @normal
   Scenario: Starting from announcements
     When I visit "/government/announcements"
     And I click on the link "email"
@@ -41,7 +41,7 @@ Feature: Email Signup Journeys
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
 
-  @normal @pending
+  @normal
   Scenario: Starting from whitehall finder
     When I visit "/government/publications"
     And I click on the link "email"
@@ -49,7 +49,7 @@ Feature: Email Signup Journeys
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
 
-  @normal @pending
+  @normal
   Scenario: Starting from a taxon page
     When I visit "/education"
     Then I should see "Get email alerts for this topic"
@@ -59,7 +59,7 @@ Feature: Email Signup Journeys
     And I click on the button "Sign up now"
     Then I should see "How often do you want to get updates?"
 
-  @normal @pending
+  @normal
   Scenario: Starting from a topic page
     When I visit "/topic/transport/motorways-major-roads"
     Then I should see "Subscribe to email alerts"
@@ -67,7 +67,7 @@ Feature: Email Signup Journeys
     And I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
 
-  @normal @pending
+  @normal
   Scenario: Starting from a finder(specialist publisher)
     When I visit "/cma-cases"
     Then I should see "Subscribe to email alerts"
