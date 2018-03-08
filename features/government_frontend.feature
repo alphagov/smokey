@@ -10,7 +10,7 @@ Feature: Government Frontend
 
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
-    Then I should see "Prove your identity to continue"
+    Then I should see "How do you want to sign in?"
     And I should see a radio button for "sign-in-with-government-gateway"
     And I should see a radio button for "sign-in-with-gov-uk-verify"
     And I should see a radio button for "register-for-self-assessment"
