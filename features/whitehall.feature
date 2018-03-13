@@ -115,7 +115,7 @@ Feature: Whitehall
   @normal
   Scenario: Whitehall assets are served
     Given I am testing through the full stack
-    When I request "/government/uploads/system/uploads/attachment_data/file/32409/11-944-higher-education-students-at-heart-of-system.pdf"
+    When I request "/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf"
     Then I should get a 200 status code
 
   @normal
