@@ -105,6 +105,9 @@ def do_http_request(url, method = :get, options = {}, &block)
     payload: options[:payload],
     verify_ssl: options[:verify_ssl],
   }
+  if options[:avoid_redirects]
+    request_options[:max_redirects] = 0
+  end
   RestClient::Request.new(request_options).execute &block
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"

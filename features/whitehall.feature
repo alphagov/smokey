@@ -115,7 +115,7 @@ Feature: Whitehall
   @normal
   Scenario: Whitehall assets are served
     Given I am testing through the full stack
-    When I request "/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf"
+    When I request "/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf" without following redirects
     Then I should get a 200 status code
 
   @normal
