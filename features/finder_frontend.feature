@@ -39,7 +39,7 @@ Feature: Finder Frontend
   @normal
   Scenario: check that contacts finder loads
     When I visit "/government/organisations/hm-revenue-customs/contact"
-    Then I should see "HM Revenue &amp; Customs Contacts"
+    Then I should see "Contact HM Revenue &amp; Customs"
     And I should see an input field to search
 
   @normal
