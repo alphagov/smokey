@@ -5,7 +5,7 @@ Feature: Contacts
     Given I am testing through the full stack
     And I force a varnish cache miss
     When I visit "/government/organisations/hm-revenue-customs/contact"
-    Then I should see "HM Revenue &amp; Customs Contacts"
+    Then I should see "Contact HM Revenue &amp; Customs"
 
   @normal
   Scenario: viewing a contact
