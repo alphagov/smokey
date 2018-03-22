@@ -2,8 +2,9 @@ Feature: Bouncer
 
   @high
   @benchmarking
+  @local-network
   Scenario: Bouncer application is up
-    Given I am testing "bouncer"
+    Given I am testing "bouncer" internally
     And I am benchmarking
     When I request "http://www.attorneygeneral.gov.uk" from Bouncer directly
     Then I should get a 301 status code
