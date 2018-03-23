@@ -5,7 +5,7 @@ require 'uri'
 require 'plek'
 
 ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.integration.publishing.service.gov.uk"
-ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.find('draft-origin')
+ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for('draft-origin')
 
 non_production_website_roots = [
   "https://www-origin.integration.publishing.service.gov.uk",
