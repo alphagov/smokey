@@ -52,8 +52,8 @@ Feature: Email Signup Journeys
   @normal
   Scenario: Starting from a taxon page
     When I visit "/education"
-    Then I should see "Get email alerts for this topic"
-    When I click on the link "Get email alerts for this topic Education, training and skills"
+    Then I should see "Sign up for updates to this topic page"
+    When I click on the link "Sign up for updates to this topic page"
     Then I should see "What do you want to get alerts about?"
     When I choose radio button "Teaching and leadership" and click on "Select"
     And I click on the button "Sign up now"
