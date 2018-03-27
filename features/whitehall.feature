@@ -113,8 +113,14 @@ Feature: Whitehall
     Then the elapsed time should be less than 2 seconds
 
   @normal
-  Scenario: Whitehall assets are served
+  Scenario: Whitehall assets are redirected to the asset host
     Given I am testing through the full stack
+    When I request "/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf"
+    Then I should be redirected to the asset host
+
+  @normal
+  Scenario: Whitehall assets are served from the asset host
+    Given I am testing "assets-origin"
     When I request "/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf" without following redirects
     Then I should get a 200 status code
 

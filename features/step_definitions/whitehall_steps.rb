@@ -19,6 +19,10 @@ When /^I do a whitehall search for "([^"]*)"$/ do |term|
   visit_path "/government/publications?keywords=#{uri_escape(term)}"
 end
 
+Then(/^I should be redirected to the asset host$/) do
+  expect(@response.request.url).to match(Plek.new.public_asset_host)
+end
+
 def follow_link_to_first_policy_on_policies_page
   visit_path "/government/policies"
   visit_path page.first('.document a')['href']
