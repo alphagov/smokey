@@ -19,8 +19,18 @@ When /^I do a whitehall search for "([^"]*)"$/ do |term|
   visit_path "/government/publications?keywords=#{uri_escape(term)}"
 end
 
+When(/^I request an attachment$/) do
+  @attachment_path = '/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf'
+  step %Q(I request "#{@attachment_path}")
+end
+
 Then(/^I should be redirected to the asset host$/) do
   expect(@response.request.url).to match(Plek.new.public_asset_host)
+end
+
+Then(/^the attachment should be served successfully$/) do
+  expect(@response.request.url).to match(@attachment_path)
+  expect(@response.code).to eq(200)
 end
 
 def follow_link_to_first_policy_on_policies_page
