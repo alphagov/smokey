@@ -38,16 +38,14 @@ When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit_path application_external_url(app_name)
 end
 
-When /^I (try to )?request "(.*)"( without following redirects)?$/ do |attempt_only, path_or_url, avoid_redirects|
+When /^I (try to )?request "(.*)"$/ do |attempt_only, path_or_url|
   url = if path_or_url.start_with?("http")
     path_or_url
   else
     "#{@host}#{path_or_url}"
   end
   request_method = attempt_only ? :try_get_request : :get_request
-  request_options = default_request_options
-  request_options[:avoid_redirects] = true if avoid_redirects
-  @response = send(request_method, url, request_options)
+  @response = send(request_method, url, default_request_options)
 end
 
 When /^I visit "(.*)"$/ do |path_or_url|
