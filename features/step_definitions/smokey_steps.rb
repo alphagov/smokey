@@ -206,6 +206,19 @@ Then /^JSON is returned$/ do
   JSON.parse(@response.body).class.should == Hash
 end
 
+Then /^The frontend app is "(.*)"$/ do |application|
+  name = "govuk:rendering-application"
+  if @response
+    tags = Nokogiri::HTML.parse(@response.body).css("meta[name='#{name}']")
+    fail "Missing #{name} meta tag" if tags.nil? or tags.empty?
+    tags[0]["content"].should == application
+  else
+    tags = Nokogiri::HTML.parse(page.body).css("meta[name='#{name}']")
+    fail "Missing #{name} meta tag" if tags.nil? or tags.empty?
+    tags[0]["content"].should == application
+  end
+end
+
 def random_path_selection(opts={})
   size = opts[:size] || 3
   anchor_tags = opts[:anchor_tags] || []
