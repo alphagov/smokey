@@ -1,4 +1,4 @@
-@notaws
+@notintegration
 @local-network
 Feature: Mirror
 
