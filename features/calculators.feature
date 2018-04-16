@@ -7,6 +7,8 @@ Feature: Calculators app
 
     When I visit "/child-benefit-tax-calculator"
     Then I should see "Child Benefit tax calculator"
+     And The frontend app is "frontend"
 
     When I visit "/child-benefit-tax-calculator/main"
     Then I should see "Child Benefit tax calculator"
+     And The frontend app is "calculators"
