@@ -10,3 +10,4 @@ Feature: Calculators app
 
     When I visit "/child-benefit-tax-calculator/main"
     Then I should see "Child Benefit tax calculator"
+    And I should be able to see the previous tax year
