@@ -19,4 +19,4 @@ Feature: Data.gov.uk
   @normal
   Scenario: check RDF API
     When I request "/dataset/lidar-composite-dsm-1m1.rdf"
-    Then I should get a 200 status code
+    Then I should get a 301 status code
