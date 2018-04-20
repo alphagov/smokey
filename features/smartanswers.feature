@@ -6,13 +6,13 @@ Feature: Smart Answers
     And I force a varnish cache miss
     Then I should be able to visit:
     | Path                                        |
-    | /additional-commodity-code                  |
-    | /calculate-employee-redundancy-pay          |
-    | /calculate-married-couples-allowance        |
-    | /marriage-abroad                            |
-    | /pay-leave-for-parents                      |
-    | /register-a-death                           |
-    | /vat-payment-deadlines                      |
+    | /additional-commodity-code/y                |
+    | /calculate-employee-redundancy-pay/y        |
+    | /calculate-married-couples-allowance/y      |
+    | /marriage-abroad/y                          |
+    | /pay-leave-for-parents/y                    |
+    | /register-a-death/y                         |
+    | /vat-payment-deadlines/y                    |
     And I should get a 200 status code
 
   @normal
