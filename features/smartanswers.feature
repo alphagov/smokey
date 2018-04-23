@@ -132,3 +132,8 @@ Feature: Smart Answers
       | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/EH99%201SP | Outside London benefit cap |
       | /landlord-immigration-check/y/SW1A%202AA                                          | Is the person renting      |
       | /landlord-immigration-check/y/EH99%201SP                                          | check in England           |
+
+  @normal
+  Scenario: Excluding personal information
+    When I visit "/marriage-abroad/y"
+    Then I should see that postcodes are stripped from analytics data
