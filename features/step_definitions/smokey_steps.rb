@@ -100,6 +100,17 @@ def should_see(text)
   expect(@response.body).to have_content(text)
 end
 
+Then /^I should see that postcodes are stripped from analytics data$/ do
+  name = "govuk:static-analytics:strip-postcodes"
+  if @response
+    tags = Nokogiri::HTML.parse(@response.body).css("meta[name='#{name}']")
+    fail "Missing #{name} meta tag" if tags.nil? or tags.empty?
+  else
+    tags = Nokogiri::HTML.parse(page.body).css("meta[name='#{name}']")
+    fail "Missing #{name} meta tag" if tags.nil? or tags.empty?
+  end
+end
+
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     visit_path row['Path']
