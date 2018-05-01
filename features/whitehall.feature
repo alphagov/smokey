@@ -129,3 +129,14 @@ Feature: Whitehall
     When I visit "/government/statistics/announcements"
     Then I should get a 200 status code
     And the elapsed time should be less than 2 seconds
+
+  @normal
+  Scenario: Formats rendered by Whitehall respond OK
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    Then I should be able to visit:
+      | Path                                     |
+      | /government/how-government-works         |
+      | /government/people/eric-pickles          |
+      | /government/organisations/cabinet-office |
+    And I should get a 200 status code
