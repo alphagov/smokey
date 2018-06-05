@@ -47,3 +47,13 @@ Feature: Finder Frontend
     When I visit "/government/statistical-data-sets"
     Then I should see "Statistical data sets"
     And I should see an input field to search
+
+  @normal
+  Scenario: check that specialist documents are searchable
+    When I visit "/cma-cases?keywords=merger"
+    Then I should see filtered documents
+
+  @normal
+  Scenario: check that advanced search returns results
+    When I visit "/search/advanced?topic=/education&group=news_and_communications"
+    Then I should see filtered documents

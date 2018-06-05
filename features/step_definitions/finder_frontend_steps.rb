@@ -2,6 +2,11 @@ Then /^I should see an input field to search$/ do
   page.body.should have_field('keywords')
 end
 
+Then(/^I should see filtered documents$/) do
+  result_links = page.all(".filtered-results li a")
+  result_links.count.should >= 1
+end
+
 And /^I should see an? (open|closed) facet titled "(.*?)" with non-blank values$/ do |open_closed, title|
   facet = page.find('.app-c-option-select') { |elem| elem.find('.js-container-head').has_text?(title)}
 
