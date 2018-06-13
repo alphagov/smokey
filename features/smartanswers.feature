@@ -115,7 +115,6 @@ Feature: Smart Answers
     Examples:
       | Path                                                           | Expected string                 |
       | /marriage-abroad/y/afghanistan/uk/partner_british/opposite_sex | Embassy of Afghanistan          |
-      | /register-a-birth/y/venezuela/mother/yes/same_country          | venezuela.consulate@fco.gov.uk  |
       | /register-a-death/y/overseas/north-korea/same_country          | Pyongyang.enquiries@fco.gov.uk  |
       | /report-a-lost-or-stolen-passport/y/abroad/afghanistan         | britishembassy.kabul@fco.gov.uk |
 
