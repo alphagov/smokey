@@ -25,3 +25,7 @@ And /^I should see an? (open|closed) facet titled "(.*?)" with non-blank values$
   expect(labels).not_to be_empty
   expect(blank_labels).to be_empty
 end
+
+Then(/^I should see "([^"]*)" in the result\-info class$/) do |malicious_code|
+   expect(page).to have_css(".result-info", text: malicious_code)
+end

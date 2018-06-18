@@ -57,3 +57,8 @@ Feature: Finder Frontend
   Scenario: check that advanced search returns results
     When I visit "/search/advanced?topic=/education&group=news_and_communications"
     Then I should see filtered documents
+
+  @high
+  Scenario: check malicious code does not execute
+    When I visit "/government/organisations/hm-revenue-customs/contact?keywords=<script>alert(document.cookie);</script>"
+    Then I should see "<script>alert(document.cookie)" in the results section
