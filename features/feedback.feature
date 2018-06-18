@@ -6,3 +6,8 @@ Feature: Feedback
   Scenario: The "Contact GOV.UK" page
     When I visit "/contact/govuk"
     Then I should see "Contact GOV.UK"
+
+  Scenario: malicious actor inputs code to carry out XSS attack
+    When I visit "contact/govuk"
+    And I input malicious code in the email field
+    Then I see the code returned in the page

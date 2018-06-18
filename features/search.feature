@@ -40,3 +40,9 @@ Feature: Search
     When I get the sitemap index
     Then It should contain a link to at least one sitemap file
     And I should be able to get all the referenced sitemap files
+
+  Scenario: malicious actor inputs malicious code to effect XSS attack
+    Given I am testing through the full stack
+    And I force a varnish cache miss
+    When I search for "<script>alert(document.cookie)</script>"
+    Then I see the code returned in the page
