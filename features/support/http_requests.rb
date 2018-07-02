@@ -41,9 +41,9 @@ def post_request(url, options = {})
         args.delete :payload
       end
 
-      response.follow_redirection(RestClient::Request.new(args), result, &block)
+      response.follow_redirection(&block)
     else
-      response.return!(request, result, &block)
+      response.return!(&block)
     end
   }
 end
