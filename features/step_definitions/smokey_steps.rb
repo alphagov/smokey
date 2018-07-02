@@ -152,7 +152,7 @@ Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
 end
 
 Then /I should get a content length of "(\d+)"/ do |length|
-  @response.net_http_res['content-length'].should == length
+  @response.net_http_res['content-length'].to_i.should == length
 end
 
 Then /^I should see "(.*)"$/ do |content|
