@@ -6,7 +6,7 @@ gem "minitest", "~> 5"
 gem "nokogiri", "~> 1"
 gem "plek", "~> 2"
 gem "poltergeist", "~> 1"
-gem "rake", "~> 11"
+gem "rake", "~> 12"
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"
 

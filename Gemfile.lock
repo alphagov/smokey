@@ -55,7 +55,7 @@ GEM
     rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
-    rake (11.3.0)
+    rake (12.3.1)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -92,7 +92,7 @@ DEPENDENCIES
   nokogiri (~> 1)
   plek (~> 2)
   poltergeist (~> 1)
-  rake (~> 11)
+  rake (~> 12)
   rest-client (~> 2)
   rspec (~> 3)
 
