@@ -37,9 +37,9 @@ AUTH_USERNAME="<username>" \
 AUTH_PASSWORD="<password>" \
 bundle exec cucumber \
 --format pretty \
---tags ~@pending \
---tags ~@local-network \
---tags ~@notintegration
+--tags "not @pending" \
+--tags "not @local-network" \
+--tags "not @notintegration"
 ```
 
 ### Test configuration

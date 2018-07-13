@@ -25,5 +25,5 @@ fi
 rm -f ${TMP_FILE}
 /usr/local/bin/govuk_setenv smokey \
     bundle exec cucumber --expand --format json ${PROFILE:-} \
-        -t ~@disabled_in_icinga > ${TMP_FILE} || true
+        -t "not @disabled_in_icinga" > ${TMP_FILE} || true
 mv ${TMP_FILE} ${CACHE_FILE}
