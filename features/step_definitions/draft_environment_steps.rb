@@ -15,7 +15,7 @@ When /^I attempt to visit a manual$/ do
 end
 
 Then /^I should be prompted to log in$/ do
-  page.should have_content('Sign in')
+  expect(page).to have_content('Sign in')
 end
 
 When /^I log in using valid credentials$/ do
@@ -25,10 +25,10 @@ When /^I log in using valid credentials$/ do
 end
 
 Then /^I should be on the case study page$/ do
-  page.current_path.should eq("/government/case-studies/libraries-unlimited")
-  page.should have_content('Case study')
+  expect(page.current_path).to eq("/government/case-studies/libraries-unlimited")
+  expect(page).to have_content('Case study')
 end
 
 Then /^the page should contain the draft watermark$/ do
-  page.should have_css('body.draft')
+  expect(page).to have_css('body.draft')
 end

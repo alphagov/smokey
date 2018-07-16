@@ -25,7 +25,7 @@ end
 
 Then(/^we have shown them all versions of the AB test$/) do
   buckets = @responses.map { |r| ab_bucket(r.body) }.to_set
-  buckets.should == (Set.new ["A", "B"])
+  expect(buckets).to eq(Set.new ["A", "B"])
 end
 
 Then(/^I am assigned to a test bucket$/) do
@@ -58,7 +58,7 @@ Then(/^the bucket is reported to Google Analytics$/) do
 
   query = Rack::Utils.parse_query URI(analytics.first.url).query
 
-  query['cd40'].should == "Example:#{@ab_cookie_value}"
+  expect(query['cd40']).to eq("Example:#{@ab_cookie_value}")
 end
 
 Then(/^I stay on the same bucket when I keep visiting "(.*?)"$/) do |path|
@@ -66,7 +66,7 @@ Then(/^I stay on the same bucket when I keep visiting "(.*?)"$/) do |path|
     request_options = default_request_options.merge(cookies: {"ABTest-Example": @ab_cookie_value})
     response = get_request("#{@host}#{path}", request_options)
 
-    ab_bucket(response.body).should == @original_bucket
+    expect(ab_bucket(response.body)).to eq(@original_bucket)
   end
 end
 

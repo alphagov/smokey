@@ -8,6 +8,6 @@ end
 
 Then(/^I should be able to see the previous tax year$/) do
   within(".tax-year") do
-    page.should have_content(previous_tax_years.join(" to "))
+    expect(page).to have_content(previous_tax_years.join(" to "))
   end
 end

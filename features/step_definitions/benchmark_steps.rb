@@ -3,5 +3,5 @@ Given /^I am benchmarking$/ do
 end
 
 Then /^the elapsed time should be less than (\d+) seconds?$/ do |time|
-  (@scenario_start_time - Time.now).should > time.to_i * -1
+  expect(@scenario_start_time - Time.now).to be > time.to_i * -1
 end
