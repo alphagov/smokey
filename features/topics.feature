@@ -1,5 +1,6 @@
 Feature: Topics
 
+  @normal
   Scenario: dynamically checking topic hierarchy
     Given I am testing through the full stack
     And I force a varnish cache miss

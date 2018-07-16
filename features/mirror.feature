@@ -1,5 +1,4 @@
-@notintegration
-@local-network
+@notintegration @local-network
 Feature: Mirror
 
     @high

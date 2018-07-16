@@ -8,7 +8,7 @@ Feature: Whitehall
     And I force a varnish cache miss
     Then I should see the departments and policies section on the homepage
 
-  @notintegration
+  @normal @notintegration
   Scenario: There should be no authentication for Whitehall
     Given I am testing through the full stack
     And I force a varnish cache miss
@@ -29,7 +29,7 @@ Feature: Whitehall
     When I do a whitehall search for "Assessing radioactive waste disposal sites"
     Then I should see "Assessing radioactive waste disposal sites"
 
-  @disabled_in_icinga
+  @normal
   Scenario: Feeds should be available for documents
     Given I am testing through the full stack
     And I force a varnish cache miss
@@ -54,9 +54,7 @@ Feature: Whitehall
       | /government/ministers            |
       | /government/world                |
 
-  @local-network
-  @low
-  @benchmarking
+  @low @benchmarking @local-network
   Scenario: Whitehall frontend website should be fast
     Given I am benchmarking
     And I am testing through the full stack
@@ -64,8 +62,7 @@ Feature: Whitehall
     When I visit "/government/how-government-works"
     Then the elapsed time should be less than 2 seconds
 
-  @normal
-  @benchmarking
+  @normal @benchmarking
   Scenario: Whitehall offers a world location API
     Given I am benchmarking
     And I am testing through the full stack
@@ -81,8 +78,7 @@ Feature: Whitehall
     Then I should be redirected to the asset host
     And the attachment should be served successfully
 
-  @normal
-  @benchmarking
+  @normal @benchmarking
   Scenario: National statistics release calendar is served
     Given I am testing through the full stack
     And I force a varnish cache miss

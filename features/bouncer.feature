@@ -1,8 +1,6 @@
 Feature: Bouncer
 
-  @high
-  @benchmarking
-  @local-network
+  @high @benchmarking @local-network
   Scenario: Bouncer application is up
     Given I am testing "bouncer" internally
     And I am benchmarking
