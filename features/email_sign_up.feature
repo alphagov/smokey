@@ -1,6 +1,6 @@
-Feature: Email Signup Journeys
+Feature: Email signup
   There are multiple different ways a user can start their email subscription
-  signup journey
+  signup journey. Test each one of them to ensure they lead to the right place.
 
   Background:
     Given I am testing through the full stack

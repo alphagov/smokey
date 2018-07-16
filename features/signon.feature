@@ -1,4 +1,5 @@
-Feature: Sign-on-o-tron
+Feature: Signon
+
   @high
   Scenario: Can log in
     When I try to login as a user

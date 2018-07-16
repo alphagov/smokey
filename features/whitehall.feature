@@ -1,5 +1,5 @@
 Feature: Whitehall
-  This is the Inside Government application that powers
+  This is the Whitehall application that powers most pages under
   www.gov.uk/government and the detailed guidance format type.
 
   @normal

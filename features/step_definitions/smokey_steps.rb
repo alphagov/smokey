@@ -1,4 +1,4 @@
-require 'json'
+require "json"
 
 Given /^I am testing "(.*)"$/ do |host|
   if host.include? "://"

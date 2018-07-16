@@ -1,5 +1,5 @@
 Feature: Finder Frontend
-  These are pages that let you search within a bunch of similar looking documents
+  These are pages that let you search within a set of similar looking documents.
 
   Background:
     Given I am testing through the full stack

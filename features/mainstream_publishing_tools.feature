@@ -1,4 +1,5 @@
 Feature: Mainstream Publishing Tools
+
   @high
   Scenario: Can log in to publisher
     When I go to the "publisher" landing page
