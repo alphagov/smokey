@@ -19,7 +19,7 @@ Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, pa
       host_header: "www-origin.mirror.production.govuk.service.gov.uk",
       verify_ssl: false,
     )
-    response.code.should == status.to_i
+    expect(response.code).to eq(status.to_i)
     @responses << response
   end
 end

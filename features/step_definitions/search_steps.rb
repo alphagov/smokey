@@ -4,12 +4,12 @@ end
 
 Then /^I should see some search results$/ do
   result_links = page.all(".results-list li a")
-  result_links.count.should >= 1
+  expect(result_links.count).to be >= 1
 end
 
 Then /^I should see organisations in the organisation filter$/ do
   organisation_options = page.all("#organisations.options-container input", visible: false)
-  organisation_options.count.should >= 10
+  expect(organisation_options.count).to be >= 10
 end
 
 And /^the search results should be unique$/ do

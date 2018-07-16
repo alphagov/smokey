@@ -1,10 +1,10 @@
 Then /^I should see an input field to search$/ do
-  page.body.should have_field('keywords')
+  expect(page.body).to have_field('keywords')
 end
 
 Then(/^I should see filtered documents$/) do
   result_links = page.all(".filtered-results li a")
-  result_links.count.should >= 1
+  expect(result_links.count).to be >= 1
 end
 
 And /^I should see an? (open|closed) facet titled "(.*?)" with non-blank values$/ do |open_closed, title|

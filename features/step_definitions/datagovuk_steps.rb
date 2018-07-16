@@ -4,5 +4,5 @@ end
 
 Then /^I should see some dataset results$/ do
   result_links = page.all(".dgu-results__result")
-  result_links.count.should >= 1
+  expect(result_links.count).to be >= 1
 end

@@ -1,9 +1,9 @@
 Then(/^I can see an accordion$/) do
-  page.should have_css('.app-c-accordion--active')
+  expect(page).to have_css('.app-c-accordion--active')
 end
 
 Then(/^I cannot see any of the accordion content$/) do
-  page.should_not have_css('.js-panel')
+  expect(page).not_to have_css('.js-panel')
 end
 
 When(/^I toggle the first accordion section$/) do
@@ -15,9 +15,9 @@ Then(/^I can(not)? see the accordion content for only the first item$/) do |cann
 
   all('.js-section').each_with_index do |subsection, index|
     if index == 0 && should_see_accordion
-      subsection.should have_css('.js-panel')
+      expect(subsection).to have_css('.js-panel')
     else
-      subsection.should_not have_css('.js-panel')
+      expect(subsection).not_to have_css('.js-panel')
     end
   end
 end

@@ -93,7 +93,7 @@ end
 
 def should_visit(path)
   @response = get_request("#{@host}#{path}", default_request_options)
-  @response.code.should == 200
+  expect(@response.code).to eq(200)
 end
 
 def should_see(text)
@@ -120,7 +120,7 @@ end
 Then /^I should be redirected when I try to visit:$/ do |table|
   table.hashes.each do |row|
     visit_path row['Path']
-    page.current_path.should_not == row['Path']
+    expect(page.current_path).not_to eq(row['Path'])
   end
 end
 
@@ -143,16 +143,16 @@ Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
   header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
 
   if @response.respond_to? :headers
-    @response.headers[header_as_symbol].should == header_value
+    expect(@response.headers[header_as_symbol]).to eq(header_value)
   elsif @response[header_name]
-    @response[header_name].should == header_value
+    expect(@response[header_name]).to eq(header_value)
   else
     raise "Couldn't find header '#{header_name}' in response"
   end
 end
 
 Then /I should get a content length of "(\d+)"/ do |length|
-  @response.net_http_res['content-length'].to_i.should == length
+  expect(@response.net_http_res['content-length'].to_i).to eq(length)
 end
 
 Then /^I should see "(.*)"$/ do |content|
@@ -170,9 +170,9 @@ end
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
   url = "#{@host}#{location_path}"
   if @response
-    @response['location'].should == url
+    expect(@response['location']).to eq(url)
   else
-    page.current_url.should == url
+    expect(page.current_url).to eq(url)
   end
 end
 
@@ -182,11 +182,11 @@ end
 
 Then /^the logo should link to the homepage$/ do
   logo = Nokogiri::HTML.parse(page.body).at_css('#logo')
-  logo.attributes['href'].value.should == ENV['EXPECTED_GOVUK_WEBSITE_ROOT']
+  expect(logo.attributes['href'].value).to eq(ENV['GOVUK_WEBSITE_ROOT'])
 end
 
 Then /^I should see Publisher's publication index$/ do
-  page.should have_selector("#publication-list-container")
+  expect(page).to have_selector("#publication-list-container")
 end
 
 Then /^I should be able to navigate the topic hierarchy$/ do
@@ -214,7 +214,7 @@ Then /^I should be able to navigate the browse pages$/ do
 end
 
 Then /^JSON is returned$/ do
-  JSON.parse(@response.body).class.should == Hash
+  expect(JSON.parse(@response.body).class).to eq(Hash)
 end
 
 def random_path_selection(opts={})
