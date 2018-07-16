@@ -48,7 +48,7 @@ You can use the following environment variables to configure the tests:
 
 * `GOVUK_WEBSITE_ROOT`
   * Default: https://www-origin.integration.publishing.service.gov.uk
-  * The environment to run the Smoke tests in.
+  * The environment to run the smoke tests in.
 * `GOVUK_DRAFT_WEBSITE_ROOT`
   * Default: The value returned by [`plek`](http://github.com/alphagov/plek) for `draft-origin`.
   * Required by tests tagged with `@draft`.

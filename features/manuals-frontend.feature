@@ -1,4 +1,5 @@
-Feature: Manuals frontend
+Feature: Manuals Frontend
+
   @normal
   Scenario: check manuals load
     Given I am testing through the full stack

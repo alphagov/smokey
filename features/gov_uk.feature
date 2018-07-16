@@ -27,5 +27,3 @@ Feature: Core GOV.UK behaviour
     And I force a varnish cache miss
     When I try to visit "/government/publicatIONS"
     Then I should get a 404 status code
-
-

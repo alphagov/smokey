@@ -1,4 +1,4 @@
-Feature: Smokey Javascript Error detection
+Feature: Smokey JavaScript error detection
 
   # This test checks that the @ignore_javascript_errors successfully ignores JavaScript errors. It is placed before
   # the JS error detection test to ensure that it is also correctly torn down
