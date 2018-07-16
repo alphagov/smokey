@@ -18,13 +18,13 @@ Feature: Government Frontend
     And I should see a radio button for "register-for-self-assessment"
     And I should see a continue button
 
-  @normal
+  @pending
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Sign in with Government Gateway"
     Then I should be redirected to "https://www.tax.service.gov.uk/gg/sign-in?continue=/account"
 
-  @normal
+  @pending
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Sign in with GOV.UK Verify"
