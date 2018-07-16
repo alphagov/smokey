@@ -54,22 +54,6 @@ Feature: Whitehall
       | /government/ministers            |
       | /government/world                |
 
-  @low @benchmarking @local-network
-  Scenario: Whitehall frontend website should be fast
-    Given I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/government/how-government-works"
-    Then the elapsed time should be less than 2 seconds
-
-  @normal @benchmarking
-  Scenario: Whitehall offers a world location API
-    Given I am benchmarking
-    And I am testing through the full stack
-    And I force a varnish cache miss
-    When I visit "/api/world-locations"
-    Then the elapsed time should be less than 2 seconds
-
   @normal
   Scenario: Whitehall assets are redirected to and served from the asset host
     Given I am testing through the full stack
@@ -77,15 +61,6 @@ Feature: Whitehall
     When I request an attachment
     Then I should be redirected to the asset host
     And the attachment should be served successfully
-
-  @normal @benchmarking
-  Scenario: National statistics release calendar is served
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-    And I am benchmarking
-    When I visit "/government/statistics/announcements"
-    Then I should get a 200 status code
-    And the elapsed time should be less than 2 seconds
 
   @normal
   Scenario: Formats rendered by Whitehall respond OK
