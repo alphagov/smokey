@@ -1,7 +1,6 @@
 Feature: Asset Manager
 
-  @local-network
-  @normal
+  @normal @local-network
   Scenario: check an asset can be loaded
     Given I am testing "asset-manager" internally
     And I am an authenticated API client

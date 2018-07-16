@@ -4,10 +4,12 @@ Feature: Government Frontend
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  @normal
   Scenario:
     When I visit "/government/case-studies/epic-cic"
     Then I should see "Case study"
 
+  @normal
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     Then I should see "How do you want to sign in?"
@@ -16,18 +18,19 @@ Feature: Government Frontend
     And I should see a radio button for "register-for-self-assessment"
     And I should see a continue button
 
-  @pending
+  @normal
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Sign in with Government Gateway"
     Then I should be redirected to "https://www.tax.service.gov.uk/gg/sign-in?continue=/account"
 
-  @pending
+  @normal
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Sign in with GOV.UK Verify"
     Then I should be redirected to "https://www.signin.service.gov.uk/start"
 
+  @normal
   Scenario:
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Register for Self Assessment"

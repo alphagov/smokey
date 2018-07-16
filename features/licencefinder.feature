@@ -20,9 +20,7 @@ Feature: Licence Finder
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
 
-  @low
-  @benchmarking
-  @notintegration
+  @low @benchmarking @notintegration
   Scenario: Quickly loading the licence finder home page
     Given I am benchmarking
     And I am testing through the full stack
