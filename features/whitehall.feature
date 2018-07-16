@@ -20,7 +20,6 @@ Feature: Whitehall
       | /government/topics        |
       | /government/consultations |
       | /government/ministers     |
-      | /government/organisations |
       | /government/world         |
 
   @normal
@@ -53,45 +52,7 @@ Feature: Whitehall
       | /government/topics               |
       | /government/consultations        |
       | /government/ministers            |
-      | /government/organisations        |
       | /government/world                |
-
-  @normal
-  Scenario: Department short URLs redirect correctly
-    Given I am testing through the full stack
-    Then I should be redirected when I try to visit:
-      | Path                      |
-      | /ago                      |
-      | /airports-commission      |
-      | /bis                      |
-      | /brac                     |
-      | /cabinetoffice            |
-      | /cabinet-office           |
-      | /communities              |
-      | /dclg                     |
-      | /dcms                     |
-      | /decc                     |
-      | /defra                    |
-      | /dfe                      |
-      | /dfid                     |
-      | /dft                      |
-      | /dh                       |
-      | /dsa                      |
-      | /dwp                      |
-      | /fco                      |
-      | /hmrc                     |
-      | /home-office              |
-      | /mod                      |
-      | /moj                      |
-      | /nio                      |
-      | /oag                      |
-      | /office-for-life-sciences |
-      | /phe                      |
-      | /pins                     |
-      | /planning-inspectorate    |
-      | /scotland-office          |
-      | /treasury                 |
-      | /wales-office             |
 
   @local-network
   @low
@@ -138,5 +99,4 @@ Feature: Whitehall
       | Path                                     |
       | /government/how-government-works         |
       | /government/people/eric-pickles          |
-      | /government/organisations/cabinet-office |
     And I should get a 200 status code

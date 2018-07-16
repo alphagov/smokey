@@ -17,16 +17,16 @@ Feature: Public API
       And JSON is returned
 
     @normal
-    Scenario: Check the whitehall governments API returns data
+    Scenario: Check the collections organisations API returns data
       Given I force a varnish cache miss
-      When I request "/api/governments"
+      When I request "/api/organisations"
       Then I should get a 200 status code
       And JSON is returned
 
     @normal
-    Scenario: Check the whitehall organisations API returns data
+    Scenario: Check the whitehall governments API returns data
       Given I force a varnish cache miss
-      When I request "/api/organisations"
+      When I request "/api/governments"
       Then I should get a 200 status code
       And JSON is returned
 
