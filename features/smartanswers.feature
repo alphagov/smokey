@@ -1,9 +1,11 @@
 Feature: Smart Answers
 
-  @normal
-  Scenario: Check selected smart answer start pages
+  Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
+
+  @normal
+  Scenario: Check selected smart answer start pages
     Then I should be able to visit:
     | Path                                        |
     | /additional-commodity-code/y                |
@@ -17,8 +19,6 @@ Feature: Smart Answers
 
   @normal
   Scenario: step through a smart answer
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be able to visit:
     | Path                                        |
     | /vat-payment-deadlines                      |
@@ -28,8 +28,6 @@ Feature: Smart Answers
 
   @normal
   Scenario: Step through a smart answer using Imminence
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be able to visit:
     | Path                                              |
     | /landlord-immigration-check                       |
@@ -41,8 +39,6 @@ Feature: Smart Answers
 
   @normal
   Scenario: Step through a smart answer using the Worldwide API
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be able to visit:
     | Path                                                |
     | /marriage-abroad                                    |
@@ -54,8 +50,6 @@ Feature: Smart Answers
 
   @normal
   Scenario Outline: Viewing countries in a select element
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     When I request "<Path>"
     Then I should see a populated country select
 
@@ -73,8 +67,6 @@ Feature: Smart Answers
 
   @normal
   Scenario Outline: Country names are correctly formatted
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     When I request "<Path>"
     Then I should see "<Expected string>"
 
@@ -87,8 +79,6 @@ Feature: Smart Answers
 
   @normal
   Scenario Outline: Country slugs are correctly validated
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     When I request "<Path>"
     Then the slug should be <Valid>
 
@@ -107,8 +97,6 @@ Feature: Smart Answers
 
   @normal
   Scenario Outline: Country FCOs can be looked up
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     When I request "<Path>"
     Then I should see "<Expected string>"
 
@@ -120,8 +108,6 @@ Feature: Smart Answers
 
   @normal
   Scenario Outline: Postcode lookup
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     When I request "<Path>"
     Then I should see "<Expected string>"
 

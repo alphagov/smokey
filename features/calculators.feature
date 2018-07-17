@@ -1,4 +1,4 @@
-Feature: Calculators app
+Feature: Calculators
 
   @normal
   Scenario: Accessing the child benefit tax calculator
