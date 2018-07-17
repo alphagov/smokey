@@ -1,9 +1,11 @@
 Feature: Collections
 
-  @normal
-  Scenario Outline: Check example collection pages
+  Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
+
+  @normal
+  Scenario Outline: Check example collection pages
     When I request "<Path>"
     Then I should see "<Expected string>"
 
@@ -19,7 +21,5 @@ Feature: Collections
 
   @normal
   Scenario: Check services and information pages
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     When I visit "/government/organisations/hm-revenue-customs/services-information"
     Then I see links to pages per topic

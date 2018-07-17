@@ -1,17 +1,17 @@
 Feature: Router
 
-  @high
-  Scenario: Router loads home page
+  Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
+
+  @high
+  Scenario: Router loads home page
     Then I should be able to visit:
       | Path      |
       | /         |
 
   @normal
   Scenario: Department short URLs redirect correctly
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be redirected when I try to visit:
       | Path                      |
       | /ago                      |
