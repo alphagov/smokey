@@ -22,7 +22,7 @@ def uri_escape(s)
 end
 
 def default_request_options
-  { auth: @authenticated, cache_bust: @bypass_varnish, client_auth: @authenticated_as_client }
+  { auth: @authenticated, cache_bust: @bypass_varnish, search_cache_bust: @bypass_varnish_for_search, client_auth: @authenticated_as_client }
 end
 
 # Make a POST.
@@ -48,8 +48,8 @@ def post_request(url, options = {})
   }
 end
 
-def cache_bust(url)
-  cache_bust = 'cache_bust=' + rand.to_s
+def cache_bust(url, param: 'cache_bust')
+  cache_bust = "#{param}=#{rand}"
   separator = url.include?("?") ? "&" : "?"
   "#{url}#{separator}#{cache_bust}"
 end
@@ -75,7 +75,11 @@ def do_http_request(url, method = :get, options = {}, &block)
     # FIXME: this is set only in the interests of the migration period
     options[:verify_ssl] = false
   end
-  url = options[:cache_bust] ? cache_bust(url) : url
+  if options[:cache_bust]
+    url = cache_bust(url, param: 'cache_bust')
+  elsif options[:search_cache_bust]
+    url = cache_bust(url, param: 'c')
+  end
   if options[:auth]
     user     = ENV['AUTH_USERNAME']
     password = ENV['AUTH_PASSWORD']
