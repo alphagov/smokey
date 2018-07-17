@@ -2,7 +2,7 @@ Feature: Search
 
   Background:
     Given I am testing through the full stack
-    And I force a varnish cache miss
+    And I force a varnish cache miss for search
 
   @high
   Scenario: check search results for tax
