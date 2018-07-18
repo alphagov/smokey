@@ -5,17 +5,19 @@ Feature: Smart Answers
     And I force a varnish cache miss
 
   @normal
-  Scenario: Check selected smart answer start pages
-    Then I should be able to visit:
-    | Path                                        |
-    | /additional-commodity-code/y                |
-    | /calculate-employee-redundancy-pay/y        |
-    | /calculate-married-couples-allowance/y      |
-    | /marriage-abroad/y                          |
-    | /pay-leave-for-parents/y                    |
-    | /register-a-death/y                         |
-    | /vat-payment-deadlines/y                    |
-    And I should get a 200 status code
+  Scenario Outline: Check selected smart answer start pages
+    When I request "<Path>"
+    Then I should see "<Expected string>"
+
+    Examples:
+      | Path                                        | Expected string                                      |
+      | /additional-commodity-code/y                | How much starch or glucose does the product contain? |
+      | /calculate-employee-redundancy-pay/y        | What date was your employee made redundant?          |
+      | /calculate-married-couples-allowance/y      | Were you or your partner born before 6 April 1935?   |
+      | /marriage-abroad/y                          | Where do you want to get married?                    |
+      | /pay-leave-for-parents/y                    | Will the mother care for the child with a partner?   |
+      | /register-a-death/y                         | Where did the death happen?                          |
+      | /vat-payment-deadlines/y                    | When does your VAT accounting period end?            |
 
   @normal
   Scenario: step through a smart answer

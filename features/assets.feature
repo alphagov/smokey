@@ -4,7 +4,7 @@ Feature: Assets
   Scenario: Assets are being served
     Given I am testing "assets-origin"
     When I request "/__canary__"
-    Then I should get a 200 status code
+    Then JSON is returned
 
   @normal
   Scenario: Assets with a docx extension

@@ -25,5 +25,5 @@ Feature: Core GOV.UK behaviour
   Scenario: partially upper case slugs do not redirect
     Given I am testing through the full stack
     And I force a varnish cache miss
-    When I try to visit "/government/publicatIONS"
-    Then I should get a 404 status code
+    When I visit "/government/publicatIONS"
+    Then I should see "Page not found"
