@@ -55,9 +55,11 @@ Feature: Whitehall
     And the attachment should be served successfully
 
   @normal
-  Scenario: Formats rendered by Whitehall respond OK
-    Then I should be able to visit:
-      | Path                                     |
-      | /government/how-government-works         |
-      | /government/people/eric-pickles          |
-    And I should get a 200 status code
+  Scenario Outline: Formats rendered by Whitehall respond OK
+    When I request "<Path>"
+    Then I should see "<Expected string>"
+
+    Examples:
+      | Path                             | Expected string             |
+      | /government/how-government-works | How government works        |
+      | /government/people/eric-pickles  | The Rt Hon Sir Eric Pickles |

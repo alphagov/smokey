@@ -7,7 +7,6 @@ Feature: Frontend
   @normal
   Scenario: check robots.txt
     When I request "/robots.txt"
-    Then I should get a 200 status code
     Then I should see "User-agent:"
 
   @normal
@@ -46,8 +45,7 @@ Feature: Frontend
     Then I should see "Busking licence"
      And I should see an input field for postcode
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
-    Then I should get a 200 status code
-     And I should see "Busking licence"
+    Then I should see "Busking licence"
 
   @normal
   Scenario: check local transactions load
@@ -61,8 +59,7 @@ Feature: Frontend
     When I visit "/ukonline-centre-internet-access-computer-training"
     And I should see "UK online centres"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
-    Then I should get a 200 status code
-    And I should see "Holborn Library"
+    Then I should see "Holborn Library"
 
   @normal
   Scenario: check campaign pages load
@@ -72,8 +69,6 @@ Feature: Frontend
   @normal
   Scenario: check browse page load, and links
     When I visit "/browse/driving"
-    Then I should get a 200 status code
     And I should see "Teaching people to drive"
     When I click on the section "Teaching people to drive"
-    Then I should get a 200 status code
-    And I should see "Apply to become a driving instructor"
+    Then I should see "Apply to become a driving instructor"
