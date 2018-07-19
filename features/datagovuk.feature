@@ -10,7 +10,7 @@ Feature: Data.gov.uk
     When I request "/"
     Then I should see "Find open data"
 
-  @high
+  @high @ignore_javascript_errors
   Scenario: check search
     When I search for "data" in datasets
     Then I should see some dataset results
