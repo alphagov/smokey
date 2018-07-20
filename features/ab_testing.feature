@@ -9,17 +9,17 @@ Feature: A/B Testing
   manipulate the HTTP request and response headers.
 
   Background:
-    Given there is an AB test setup
+    Given there is an A/B test set up
     And I am testing through the full stack
 
   @low @notintegration @notstaging
   Scenario: check we end up in all buckets
     When multiple new users visit "/help/ab-testing"
-    Then we have shown them all versions of the AB test
+    Then we have shown them all versions of the A/B test
 
-  @withanalytics @low @notintegration @notstaging
+  @low @notintegration @notstaging
   Scenario: check that an A/B test works
-    And I do not have any AB testing cookies set
+    And I do not have any A/B testing cookies set
     When I visit "/help/ab-testing"
     Then I am assigned to a test bucket
     And I can see the bucket I am assigned to
