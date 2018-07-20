@@ -61,4 +61,4 @@ Feature: Finder Frontend
   @high
   Scenario: check malicious code does not execute
     When I visit "/government/organisations/hm-revenue-customs/contact?keywords=<script>alert(document.cookie);</script>"
-    Then I should see "<script>alert(document.cookie)" in the results section
+    Then I should see "&lt;script&gt;alert(document.cookie)"
