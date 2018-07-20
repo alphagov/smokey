@@ -1,6 +1,6 @@
 Feature: Licensing
 
-  @normal @notintegration @ignore_javascript_errors
+  @normal @notintegration
   Scenario: check licensing app is present
     Given I am testing "licensing" internally
       And I am testing through the full stack
