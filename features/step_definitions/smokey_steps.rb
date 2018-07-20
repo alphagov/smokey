@@ -17,7 +17,7 @@ Given /^I am testing "(.*)" internally/ do |host|
 end
 
 Given /^I am testing through the full stack$/ do
-  @host = ENV["GOVUK_WEBSITE_ROOT"]
+  @host = Plek.new.website_root
   @bypass_varnish = false
   @bypass_varnish_for_search = false
   @authenticated = true
@@ -66,7 +66,7 @@ When /^I visit "(.*)" without following redirects$/ do |path|
 end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
-  application_host = application_internal_url(application)
+  application_host = application_external_url(application)
   @response = get_request("#{application_host}#{path}", default_request_options)
 end
 
@@ -173,11 +173,12 @@ Then /^I should see "(.*)"$/ do |content|
 end
 
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
-  url = "#{@host}#{location_path}"
   if @response
-    expect(@response['location']).to eq(url)
+    uri = URI(@response['location'])
+    expect(uri.path).to eq(location_path)
   else
-    expect(page.current_url).to eq(url)
+    uri = URI(page.current_url)
+    expect(uri.path).to eq(location_path)
   end
 end
 
