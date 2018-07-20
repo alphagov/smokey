@@ -29,8 +29,8 @@ Feature: Search
 
   @normal @notintegration
   Scenario: check sitemap
-    When I get the sitemap index
-    Then It should contain a link to at least one sitemap file
+    When I visit "/sitemap.xml"
+    Then it should contain a link to at least one sitemap file
     And I should be able to get all the referenced sitemap files
 
   @high
