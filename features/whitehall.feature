@@ -60,6 +60,6 @@ Feature: Whitehall
     Then I should see "<Expected string>"
 
     Examples:
-      | Path                             | Expected string                    |
-      | /government/how-government-works | How government works               |
-      | /government/people/eric-pickles  | The Rt Hon The Lord (Eric) Pickles |
+      | Path                             | Expected string         |
+      | /government/how-government-works | How government works    |
+      | /government/people/eric-pickles  | The Rt Hon Lord Pickles |
