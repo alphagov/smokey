@@ -31,8 +31,10 @@ ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for("draft-origin")
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] || ENV["GOVUK_WEBSITE_ROOT"]
 
 # Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't
-# support this)
-server = BrowserMob::Proxy::Server.new("./bin/browsermob-proxy")
+# support this) on a random port between 3222 and 3229
+proxy_port = (3222..3229).to_a.sample
+puts "Running BrowserMob Proxy on port #{proxy_port}..."
+server = BrowserMob::Proxy::Server.new("./bin/browsermob-proxy", port: proxy_port)
 server.start
 proxy = server.create_proxy
 
