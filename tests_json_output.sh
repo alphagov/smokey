@@ -20,10 +20,13 @@ TMP_FILE="${CACHE_FILE}.tmp"
 
 if [ -n "$2" ]; then
     PROFILE="--profile $2"
+    ENVIRONMENT="$2"
+else
+    ENVIRONMENT="production"
 fi
 
 rm -f ${TMP_FILE}
 /usr/local/bin/govuk_setenv smokey \
-    bundle exec cucumber --expand --format json ${PROFILE:-} \
+    bundle exec cucumber ENVIRONMENT=${ENVIRONMENT} --expand --format json ${PROFILE:-} \
         -t "not @disabled_in_icinga" > ${TMP_FILE} || true
 mv ${TMP_FILE} ${CACHE_FILE}
