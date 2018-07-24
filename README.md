@@ -8,10 +8,10 @@ features.
 
 ## Technical documentation
 
-The smoke tests are based on [Cucumber](http://cukes.info/). We use feature
+The smoke tests are based on [Cucumber](https://cucumber.io/). We use feature
 files to describe single applications (eg
 [`whitehall`](https://github.com/alphagov/whitehall),
-[`frontend`](https://github.com/alphagov/frontend)).
+[`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
 ### Running the tests
 
@@ -27,10 +27,10 @@ or against a single `feature`:
 bundle exec cucumber features/frontend.feature
 ```
 
-The tests run in/against the integration environment by default but require additional configuration to run successfully. This set of options should allow you to run the tests successfully from your development machine:
+The tests require additional configuration to run successfully. This set of options should allow you to run the tests successfully from your development machine:
 
 ```
-GOVUK_DRAFT_WEBSITE_ROOT=https://draft-origin.integration.publishing.service.gov.uk \
+ENVIRONMENT=integration \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
 AUTH_USERNAME="<username>" \
@@ -46,14 +46,17 @@ bundle exec cucumber \
 
 You can use the following environment variables to configure the tests:
 
-* `GOVUK_WEBSITE_ROOT`
-  * Default: https://www-origin.integration.publishing.service.gov.uk
+* `ENVIRONMENT`
+  * Default: Blank
   * The environment to run the smoke tests in.
+* `GOVUK_WEBSITE_ROOT`
+  * Default: The website root corresponding to the chosen environment.
+  * Used when checking for the correct URLs in tests.
 * `GOVUK_DRAFT_WEBSITE_ROOT`
   * Default: The value returned by [`plek`](http://github.com/alphagov/plek) for `draft-origin`.
   * Required by tests tagged with `@draft`.
 * `GOVUK_APP_DOMAIN`
-  * Default: Blank
+  * Default: The app domain corresponding to the chosen environment.
   * Used to construct URLs in the `#application_base_url` method.
 * `AUTH_USERNAME`
   * Default: Blank
@@ -67,31 +70,24 @@ You can use the following environment variables to configure the tests:
 * `SIGNON_PASSWORD`
   * Default: Blank
   * Password of a user with a Signon account in the environment the tests are being run in.
+* `RATE_LIMIT_TOKEN`
+  * Default: Blank
+  * A token used to bypass the default rate limiting.
 
-### Spoof target domain
+### Spoofing the target domain
 
-Set the `SPOOF_TARGET_DOMAIN` environment variable to run tests against a alternative URL, while
-maintaining the `Host` header as set by the `GOVUK_WEBSITE_ROOT` environment variable.
+Set the `SPOOF_TARGET_DOMAIN` environment variable to run tests against a alternative URL, while maintaining the `Host` header as set by the `GOVUK_WEBSITE_ROOT` environment variable.
 
-This may be useful when you wish to test against the FQDN of a site where the DNS does not yet
-resolve to the correct IP.
+This may be useful when you wish to test against the FQDN of a site where the DNS does not yet resolve to the correct IP.
 
 An alternative method would be to update `/etc/hosts` on the client running the tests.
 
-### Debugging the tests
-
-Set the `POLTERGEIST_DEBUG` environment variable to see Poltergeist debug output when running the tests:
-
-```
-$ POLTERGEIST_DEBUG=true bundle exec rake
-```
-
 ### Adding new tests
 
-Tests that are supposed to be run by icinga also have to be added to the file
-`modules/monitoring/manifests/checks/smokey.pp` in our Puppet repository. For
+Tests that are supposed to be run by Icinga also have to be added to the file
+`modules/monitoring/manifests/checks/smokey.pp` in the [govuk-puppet](https://github.com/alphagov/govuk-puppet) repository. For
 example, the test [frontend.feature](/features/frontend.feature)
-is added to icinga like this:
+is added to Icinga like this:
 
 ```puppet
 icinga::check_feature {
@@ -119,4 +115,8 @@ Scenario: check guides load
 
 ### Deploying
 
-This master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L24).
+This master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L33).
+
+### Use of BrowserMob Proxy
+
+Smokey uses BrowserMob Proxy as a proxy between the feature tests and Selenium. The proxy allows manipulation of HTTP request headers, which is not supported by Selenium. The proxy consists of a runner in `bin` and a JAR containing the application in `lib`.

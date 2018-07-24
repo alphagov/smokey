@@ -14,7 +14,7 @@ Feature: Benchmarking
     Given I am benchmarking
     And I am testing through the full stack
     When I visit "/licence-finder"
-    Then the elapsed time should be less than 1 seconds
+    Then the elapsed time should be less than 2 seconds
 
   @normal @benchmarking @notintegration
   Scenario: Loading a pdf in a reasonable amount of time

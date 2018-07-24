@@ -1,54 +1,82 @@
-require 'nokogiri'
+require 'browsermob/proxy'
+require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
-require 'capybara/poltergeist'
-require 'uri'
+require 'nokogiri'
 require 'plek'
+require 'selenium-webdriver'
+require 'uri'
 
-ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.integration.publishing.service.gov.uk"
-ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for('draft-origin')
+if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
+  basic_auth_credentials = "#{ENV['AUTH_USERNAME']}:#{ENV['AUTH_PASSWORD']}@"
+end
 
-non_production_website_roots = [
-  "https://www-origin.integration.publishing.service.gov.uk",
-  "https://www-origin.staging.publishing.service.gov.uk",
-  "https://www-origin.integration.govuk.digital",
-  "https://www-origin.blue.integration.govuk.digital",
-  "https://www-origin.green.integration.govuk.digital",
-  "https://www-origin.staging.govuk.digital",
-  "https://www-origin.blue.staging.govuk.digital",
-  "https://www-origin.green.staging.govuk.digital",
-]
-
-case ENV["GOVUK_WEBSITE_ROOT"]
-when *non_production_website_roots
-  ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = ENV["GOVUK_WEBSITE_ROOT"]
+# Set up environment
+case ENV["ENVIRONMENT"]
+when "integration"
+  ENV["GOVUK_APP_DOMAIN"] ||= "integration.publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.integration.publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] ||= "https://#{basic_auth_credentials}www-origin.integration.publishing.service.gov.uk"
+when "staging"
+  ENV["GOVUK_APP_DOMAIN"] ||= "staging.publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.staging.publishing.service.gov.uk"
+when "production"
+  ENV["GOVUK_APP_DOMAIN"] ||= "publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.gov.uk"
 else
-  ENV["EXPECTED_GOVUK_WEBSITE_ROOT"] = 'https://www.gov.uk'
+  raise "ENVIRONMENT should be one of integration, staging or production"
 end
 
-Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
-phantomjs_logger = File.open("log/phantomjs.log", "a")
+# Set up basic URLs
+ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for("draft-origin")
+Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] || ENV["GOVUK_WEBSITE_ROOT"]
 
-GOOGLE_ANALYTICS_URL = 'www.google-analytics.com'
-BLACKLISTED_URLS = [
-  GOOGLE_ANALYTICS_URL,
-  'www.youtube.com'
+# Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't
+# support this)
+server = BrowserMob::Proxy::Server.new("./bin/browsermob-proxy")
+server.start
+proxy = server.create_proxy
+
+# Set up request logging and make it available across all tests
+proxy.new_har
+@@har = proxy.har
+
+# Add request headers
+if ENV["RATE_LIMIT_TOKEN"]
+  proxy.header({ "Rate-Limit-Token" => ENV["RATE_LIMIT_TOKEN"] })
+end
+
+# Blacklist YouTube to prevent cross-site errors
+proxy.blacklist(/^https:\/\/www\.youtube\.com/i, 200)
+proxy.blacklist(/^https:\/\/s\.ytimg\.com/i, 200)
+
+# Licensify admin doesn't have favicon.ico so block requests to prevent errors
+proxy.blacklist(/^https:\/\/licensify-admin(.*)\.publishing\.service\.gov\.uk\/favicon\.ico$/i, 200)
+
+# Use Chrome in headless mode
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    loggingPrefs: { browser: "ALL" },
+    proxy: { type: :manual, ssl: "#{proxy.host}:#{proxy.port}" }
+  )
+
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--disable-gpu")
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options: options,
+    desired_capabilities: capabilities
+  )
+end
+
+Capybara.default_driver = :headless_chrome
+Capybara.javascript_driver = :headless_chrome
+
+# Only raise for severe JavaScript errors and filter our 404s and CORS messages
+Capybara::Chromedriver::Logger.raise_js_errors = true
+Capybara::Chromedriver::Logger.filter_levels = %i(debug info warning)
+Capybara::Chromedriver::Logger.filters = [
+  /Failed to load resource/i,
+  /The target origin provided/i,
 ]
-
-Capybara.register_driver :poltergeist do |app|
-  options = {
-    debug: ENV['POLTERGEIST_DEBUG'] || false,
-    phantomjs_logger: phantomjs_logger,
-    url_blacklist: BLACKLISTED_URLS
-  }
-  Capybara::Poltergeist::Driver.new(app, options)
-end
-
-Capybara.default_driver = :poltergeist
-
-Before do
-  page.driver.add_headers('User-Agent' => 'Smokey')
-end
-
-Before('@withanalytics') do |scenario, block|
-  page.driver.browser.url_blacklist = BLACKLISTED_URLS - [GOOGLE_ANALYTICS_URL]
-end

@@ -25,7 +25,13 @@ When(/^I request an attachment$/) do
 end
 
 Then(/^I should be redirected to the asset host$/) do
-  expect(@response.request.url).to match(Plek.new.public_asset_host)
+  asset_hosts = [
+    application_external_url("assets-origin"),
+    application_external_url("assets")
+  ]
+  uri = URI(@response.request.url)
+  asset_url = "#{uri.scheme}://#{uri.host}"
+  assert asset_hosts.include?(asset_url), "Asset host #{asset_url} is not valid"
 end
 
 Then(/^the attachment should be served successfully$/) do
