@@ -4,19 +4,19 @@ require 'cucumber/rake/task'
 Cucumber::Rake::Task.new("test:integration",
     "Run all tests that are valid in our integration environment") do |t|
   t.profile = "integration"
-  t.cucumber_opts = %w{ENVIRONMENT=integration --format progress -t "not @benchmarking"}
+  t.cucumber_opts = %w{ENVIRONMENT=integration --format pretty -t "not @benchmarking"}
 end
 
 Cucumber::Rake::Task.new("test:staging",
                          "Run all tests that are valid in our staging environment") do |t|
   t.profile = "staging"
-  t.cucumber_opts = %w{ENVIRONMENT=staging --format progress -t "not @benchmarking"}
+  t.cucumber_opts = %w{ENVIRONMENT=staging --format pretty -t "not @benchmarking"}
 end
 
 Cucumber::Rake::Task.new("test:production",
     "Run all tests that are valid in our production environment") do |t|
   t.profile = "production"
-  t.cucumber_opts = %w{ENVIRONMENT=production --format progress -t "not @benchmarking"}
+  t.cucumber_opts = %w{ENVIRONMENT=production --format pretty -t "not @benchmarking"}
 end
 
 Cucumber::Rake::Task.new("test:notlocalnetwork",
