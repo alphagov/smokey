@@ -57,6 +57,7 @@ proxy.blacklist(/^https:\/\/licensify-admin(.*)\.publishing\.service\.gov\.uk\/f
 # Use Chrome in headless mode
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    acceptInsecureCerts: true,
     loggingPrefs: { browser: "ALL" },
     proxy: { type: :manual, ssl: "#{proxy.host}:#{proxy.port}" }
   )
