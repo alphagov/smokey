@@ -10,24 +10,9 @@ Feature: Frontend
     Then I should see "User-agent:"
 
   @normal
-  Scenario: check quick answers load
-    When I visit "/vat-rates"
-    Then I should see "VAT rates"
-
-  @normal
-  Scenario: check guides load
-    When I visit "/getting-an-mot"
-    Then I should see "Getting an MOT"
-
-  @normal
   Scenario: Check transactions load
     When I visit "/apply-renew-passport"
     Then I should see "UK passport"
-
-  @normal
-  Scenario: check benefit schemes load
-    When I visit "/pension-credit"
-    Then I should see "Pension Credit"
 
   @normal
   Scenario: Check homepage content type and charset
