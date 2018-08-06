@@ -8,6 +8,19 @@ Feature: Assets
     When I request "/__canary__"
     Then JSON is returned
 
+  @normal @local-network
+  Scenario: Check an asset can be loaded
+    Given I am testing "asset-manager" internally
+    And I am an authenticated API client
+    When I request "/assets/513a0efbed915d425e000002"
+    And I should see "120613_Albania_Travel_Advice_WEB_Ed2_jpeg.jpg"
+
+  @normal
+  Scenario: Check an asset can be served
+    Given I am testing "assets-origin"
+    When I request "/media/513a0efbed915d425e000002/120613_Albania_Travel_Advice_WEB_Ed2_jpeg.jpg"
+    And I should get a content length of "212880"
+
   @normal
   Scenario: Check assets with a docx extension are served correctly
     Given I am testing "assets-origin"
