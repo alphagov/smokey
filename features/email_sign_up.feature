@@ -1,13 +1,13 @@
 Feature: Email signup
-  There are multiple different ways a user can start their email subscription
-  signup journey. Test each one of them to ensure they lead to the right place.
+  Tests for each of the email signup journeys to ensure they lead to the right
+  place.
 
   Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
 
   @high
-  Scenario: Starting from foreign travel advise
+  Scenario: Starting from foreign travel advice
     When I visit "/foreign-travel-advice/turkey"
     And I click on the link "Get email alerts"
     Then I should see "Create subscription"
@@ -18,7 +18,7 @@ Feature: Email signup
     Then I should see "You’ve subscribed successfully"
 
   @normal
-  Scenario: Starting from organisations
+  Scenario: Starting from an organisation home page
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
     Then I should see "Create subscription"
@@ -42,7 +42,7 @@ Feature: Email signup
     Then I should see "How often do you want to get updates?"
 
   @normal
-  Scenario: Starting from whitehall finder
+  Scenario: Starting from a whitehall finder
     When I visit "/government/publications"
     And I click on the link "email"
     Then I should see "Create subscription"
@@ -68,7 +68,7 @@ Feature: Email signup
     Then I should see "How often do you want to get updates?"
 
   @normal
-  Scenario: Starting from a finder(specialist publisher)
+  Scenario: Starting from a finder (specialist-publisher)
     When I visit "/cma-cases"
     Then I should see "Subscribe to email alerts"
     When I click on the link "Subscribe to email alerts"

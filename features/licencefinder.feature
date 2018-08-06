@@ -5,7 +5,7 @@ Feature: Licence Finder
     And I force a varnish cache miss
 
   @normal
-  Scenario: check licence finder loads
+  Scenario: Check licence finder loads
     Then I should be able to visit:
       | Path                                                              |
       | /licence-finder                                                   |
@@ -16,6 +16,6 @@ Feature: Licence Finder
       | /licence-finder/licences?activities=149&location=wales&sectors=59 |
 
   @normal
-  Scenario: check licence finder returns licences
+  Scenario: Check licence finder returns licences
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"

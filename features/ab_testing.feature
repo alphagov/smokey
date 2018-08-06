@@ -1,7 +1,7 @@
 Feature: A/B Testing
   Tests for the example A/B testing page. Even though these just test an example
-  page, they're still a useful smoke test of real A/B experiments, because they
-  all A/B tests rely on CDN config to assign users into buckets and handle A/B
+  page, they're still a useful smoke test of real A/B experiments, because all
+  A/B tests rely on CDN config to assign users into buckets and handle A/B
   cookies correctly. So a failure in these tests indicates that all A/B tests
   may be broken.
 
@@ -13,12 +13,12 @@ Feature: A/B Testing
     And I am testing through the full stack
 
   @low @notintegration @notstaging
-  Scenario: check we end up in all buckets
+  Scenario: Check we end up in all buckets
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the A/B test
 
   @low @notintegration @notstaging
-  Scenario: check that an A/B test works
+  Scenario: Check that an A/B test works
     And I do not have any A/B testing cookies set
     When I visit "/help/ab-testing"
     Then I am assigned to a test bucket

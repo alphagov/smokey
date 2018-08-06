@@ -20,7 +20,7 @@ Feature: Smart Answers
       | /vat-payment-deadlines/y                    | When does your VAT accounting period end?            |
 
   @normal
-  Scenario: step through a smart answer
+  Scenario: Check stepping through a smart answer
     Then I should be able to visit:
     | Path                                        |
     | /vat-payment-deadlines                      |
@@ -29,7 +29,7 @@ Feature: Smart Answers
     | /vat-payment-deadlines/y/2000-01-31/cheque  |
 
   @normal
-  Scenario: Step through a smart answer using Imminence
+  Scenario: Check stepping through a smart answer that uses Imminence
     Then I should be able to visit:
     | Path                                              |
     | /landlord-immigration-check                       |
@@ -40,7 +40,7 @@ Feature: Smart Answers
     | /landlord-immigration-check/y/SW1A2AA/yes/yes/yes |
 
   @normal
-  Scenario: Step through a smart answer using the Worldwide API
+  Scenario: Check stepping through a smart answer that uses the Worldwide API
     Then I should be able to visit:
     | Path                                                |
     | /marriage-abroad                                    |
@@ -51,7 +51,7 @@ Feature: Smart Answers
     | /marriage-abroad/y/sweden/uk/partner_other/same_sex |
 
   @normal
-  Scenario Outline: Viewing countries in a select element
+  Scenario Outline: Check viewing countries in a select element
     When I request "<Path>"
     Then I should see a populated country select
 
@@ -68,7 +68,7 @@ Feature: Smart Answers
       | /uk-benefits-abroad/y/going_abroad/child_benefit           |
 
   @normal
-  Scenario Outline: Country names are correctly formatted
+  Scenario Outline: Check country names are correctly formatted
     When I request "<Path>"
     Then I should see "<Expected string>"
 
@@ -80,7 +80,7 @@ Feature: Smart Answers
       | /register-a-death/y/overseas/cayman-islands                                  | regulations in the Cayman Islands                  |
 
   @normal
-  Scenario Outline: Country slugs are correctly validated
+  Scenario Outline: Check country slugs are correctly validated
     When I request "<Path>"
     Then the slug should be <Valid>
 
@@ -98,7 +98,7 @@ Feature: Smart Answers
       | /report-a-lost-or-stolen-passport/y/abroad/foo         | invalid |
 
   @normal
-  Scenario Outline: Country FCOs can be looked up
+  Scenario Outline: Check country FCOs can be looked up
     When I request "<Path>"
     Then I should see "<Expected string>"
 
@@ -109,7 +109,7 @@ Feature: Smart Answers
       | /report-a-lost-or-stolen-passport/y/abroad/afghanistan         | britishembassy.kabul@fco.gov.uk |
 
   @normal
-  Scenario Outline: Postcode lookup
+  Scenario Outline: Check postcode lookup
     When I request "<Path>"
     Then I should see "<Expected string>"
 
@@ -121,6 +121,6 @@ Feature: Smart Answers
       | /landlord-immigration-check/y/EH99%201SP                                          | check in England           |
 
   @normal
-  Scenario: Excluding personal information
+  Scenario: Check personal information is excluded from analytics data
     When I visit "/marriage-abroad/y"
     Then I should see that postcodes are stripped from analytics data

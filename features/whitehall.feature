@@ -1,13 +1,13 @@
 Feature: Whitehall
-  This is the Whitehall application that powers most pages under
-  www.gov.uk/government and the detailed guidance format type.
+  Tests for the whitehall application that powers some pages under
+  www.gov.uk/government and www.gov.uk/world.
 
   Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
 
   @normal
-  Scenario: Government publishing section on GOV.UK homepage
+  Scenario: Check the government publishing section on GOV.UK homepage
     Then I should see the departments and policies section on the homepage
 
   @normal @notintegration
@@ -23,19 +23,19 @@ Feature: Whitehall
       | /government/world         |
 
   @normal
-  Scenario: Searching for an existing consultation on whitehall via elastic search
+  Scenario: Check searching for an existing consultation on whitehall
     When I do a whitehall search for "Assessing radioactive waste disposal sites"
     Then I should see "Assessing radioactive waste disposal sites"
 
   @normal
-  Scenario: Feeds should be available for documents
+  Scenario: Check feeds are available for documents
     Then I should be able to visit:
       | Path                           |
       | /government/announcements.atom |
       | /government/publications.atom  |
 
   @normal
-  Scenario: Visiting whitehall
+  Scenario: Check whitehall pages load
     Then I should be able to view policies
     And I should be able to view announcements
     And I should be able to view publications
@@ -49,7 +49,7 @@ Feature: Whitehall
       | /government/world                |
 
   @normal
-  Scenario: Whitehall assets are redirected to and served from the asset host
+  Scenario: Check whitehall assets are redirected to and served from the asset host
     When I request an attachment
     Then I should be redirected to the asset host
     And the attachment should be served successfully

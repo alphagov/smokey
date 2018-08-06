@@ -5,7 +5,7 @@ Feature: Frontend
     And I force a varnish cache miss
 
   @normal
-  Scenario: check robots.txt
+  Scenario: Check robots.txt
     When I request "/robots.txt"
     Then I should see "User-agent:"
 
@@ -20,7 +20,7 @@ Feature: Frontend
     Then I should see "Getting an MOT"
 
   @normal
-  Scenario: check transactions load
+  Scenario: Check transactions load
     When I visit "/apply-renew-passport"
     Then I should see "UK passport"
 
@@ -30,17 +30,17 @@ Feature: Frontend
     Then I should see "Pension Credit"
 
   @normal
-  Scenario: check homepage content type & charset
+  Scenario: Check homepage content type and charset
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
   @normal
-  Scenario: check 404 page content type & charset
+  Scenario: Check 404 page content type and charset
     When I visit a non-existent page
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
   @normal
-  Scenario: check licences load
+  Scenario: Check licences load
     When I visit "/busking-licence"
     Then I should see "Busking licence"
      And I should see an input field for postcode
@@ -48,21 +48,21 @@ Feature: Frontend
     Then I should see "Busking licence"
 
   @normal
-  Scenario: check local transactions load
+  Scenario: Check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
     When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
     Then I should see "Camden"
 
   @normal
-  Scenario: check find my nearest returns results
+  Scenario: Check "find my nearest" returns results
     When I visit "/ukonline-centre-internet-access-computer-training"
     And I should see "UK online centres"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should see "Holborn Library"
 
   @normal
-  Scenario: check campaign pages load
+  Scenario: Check redirects work
     When I visit "/workplacepensions"
     Then I should be at a location path of "/workplace-pensions"
 

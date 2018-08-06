@@ -1,7 +1,8 @@
 Feature: Benchmarking
+  Tests to check the loading times for various pages on GOV.UK.
 
   @high @benchmarking @local-network
-  Scenario: Bouncer application is up
+  Scenario: Check Bouncer application is up
     Given I am testing "bouncer" internally
     And I am benchmarking
     When I request "http://www.attorneygeneral.gov.uk" from Bouncer directly
@@ -10,14 +11,14 @@ Feature: Benchmarking
     And the elapsed time should be less than 2 seconds
 
   @low @benchmarking @notintegration
-  Scenario: Quickly loading the licence finder home page
+  Scenario: Check the licence finder home page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
     When I visit "/licence-finder"
     Then the elapsed time should be less than 2 seconds
 
   @normal @benchmarking @notintegration
-  Scenario: Loading a pdf in a reasonable amount of time
+  Scenario: Check requesting a PDF takes a reasonable amount of time
     Given I am testing "licensing" internally
       And I am benchmarking
       And I am testing through the full stack
@@ -26,7 +27,7 @@ Feature: Benchmarking
     Then the elapsed time should be less than 10 seconds
 
   @normal @benchmarking
-  Scenario: Whitehall frontend website should be fast
+  Scenario: Check whitehall-frontend pages load quickly
     Given I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
@@ -34,7 +35,7 @@ Feature: Benchmarking
     Then the elapsed time should be less than 2 seconds
 
   @normal @benchmarking
-  Scenario: Whitehall API should be fast
+  Scenario: Check the whitehall API loads quickly
     Given I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
@@ -42,7 +43,7 @@ Feature: Benchmarking
     Then the elapsed time should be less than 2 seconds
 
   @normal @benchmarking
-  Scenario: National statistics release calendar should be fast
+  Scenario: Check the statistics announcements page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss

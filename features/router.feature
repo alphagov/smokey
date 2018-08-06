@@ -5,13 +5,13 @@ Feature: Router
     And I force a varnish cache miss
 
   @high
-  Scenario: Router loads home page
+  Scenario: Check the router loads home page
     Then I should be able to visit:
       | Path      |
       | /         |
 
   @normal
-  Scenario: Department short URLs redirect correctly
+  Scenario: Check department short URLs redirect correctly
     Then I should be redirected when I try to visit:
       | Path                      |
       | /ago                      |

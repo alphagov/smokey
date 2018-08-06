@@ -5,21 +5,21 @@ Feature: Service Manual
     And I force a varnish cache miss
 
   @normal
-  Scenario: check Service Manual
+  Scenario: Check Service Manual loads
     When I visit "/service-manual"
     Then I should see "Service Manual"
 
   @normal
-  Scenario: Visiting a topic page
+  Scenario: Check a topic page loads
     When I visit "/service-manual/agile-delivery"
     Then I should see "Agile delivery"
 
   @normal
-  Scenario: Visiting a guide page
+  Scenario: Check a guide page loads
     When I visit "/service-manual/agile-delivery/writing-user-stories"
     Then I should see "Writing user stories"
 
   @normal
-  Scenario: Visiting the service standard page
+  Scenario: Check the service standard page loads
     When I visit "/service-manual/service-standard"
     Then I should see "Digital Service Standard"

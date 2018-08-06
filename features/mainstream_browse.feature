@@ -1,9 +1,11 @@
-Feature: Browse
+Feature: Mainstream Browse
 
-  @high
-  Scenario: check browse pages load
+  Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
+
+  @high
+  Scenario: Check mainstream browse pages load
     Then I should be able to visit:
       | Path            |
       | /browse         |
