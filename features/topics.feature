@@ -1,7 +1,7 @@
 Feature: Topics
 
   @normal
-  Scenario: dynamically checking topic hierarchy
+  Scenario: Check navigating the topic hierarchy
     Given I am testing through the full stack
     And I force a varnish cache miss
     Then I should be able to visit:

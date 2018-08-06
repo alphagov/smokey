@@ -10,7 +10,7 @@ Feature: Government Frontend
     Then I should see "Case study"
 
   @normal
-  Scenario:
+  Scenario: Check service sign-in offers both Government Gateway and GOV.UK Verify
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     Then I should see "How do you want to sign in?"
     And I should see a radio button for "sign-in-with-government-gateway"
@@ -19,19 +19,19 @@ Feature: Government Frontend
     And I should see a continue button
 
   @pending
-  Scenario:
+  Scenario: Check service sign-in redirects correctly to Government Gateway
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Sign in with Government Gateway"
     Then I should be redirected to "https://www.tax.service.gov.uk/gg/sign-in?continue=/account"
 
   @pending
-  Scenario:
+  Scenario: Check service sign-in redirects correctly to GOV.UK Verify
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Sign in with GOV.UK Verify"
     Then I should be redirected to "https://www.signin.service.gov.uk/start"
 
   @normal
-  Scenario:
+  Scenario: Check service sign-in redirects correctly to registration page
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Register for Self Assessment"
     Then I should be redirected to "/log-in-file-self-assessment-tax-return/sign-in/register-self-assessment"

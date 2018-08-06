@@ -1,4 +1,5 @@
 require 'minitest'
+
 module Cucumber
   module MiniTestAssertions
     def self.extended(base)
@@ -9,5 +10,5 @@ module Cucumber
     attr_accessor :assertions
   end
 end
-World(Cucumber::MiniTestAssertions)
 
+World(Cucumber::MiniTestAssertions)

@@ -5,20 +5,20 @@ Feature: Calendars
     And I force a varnish cache miss
 
   @normal
-  Scenario: check calendars loads
+  Scenario: Check calendars pages
     Then I should be able to visit:
       | Path                       |
       | /when-do-the-clocks-change |
       | /bank-holidays             |
 
   @normal
-  Scenario: check alternative formats are available
+  Scenario: Check alternative formats are available
     Then I should be able to visit:
       | Path                                           |
       | /when-do-the-clocks-change/united-kingdom.json |
       | /when-do-the-clocks-change/united-kingdom.ics  |
 
   @normal
-  Scenario: check bank holidays JSON format is consistent
+  Scenario: Check bank holidays JSON format is consistent
     When I request "/bank-holidays.json"
     Then JSON is returned
