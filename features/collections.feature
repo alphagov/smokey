@@ -23,3 +23,10 @@ Feature: Collections
   Scenario: Check services and information pages
     When I visit "/government/organisations/hm-revenue-customs/services-information"
     Then I see links to pages per topic
+
+  @normal
+  Scenario: Check browse page loads with links
+    When I visit "/browse/driving"
+    And I should see "Teaching people to drive"
+    When I click on the section "Teaching people to drive"
+    Then I should see "Apply to become a driving instructor"

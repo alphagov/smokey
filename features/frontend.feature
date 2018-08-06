@@ -65,10 +65,3 @@ Feature: Frontend
   Scenario: Check redirects work
     When I visit "/workplacepensions"
     Then I should be at a location path of "/workplace-pensions"
-
-  @normal
-  Scenario: check browse page load, and links
-    When I visit "/browse/driving"
-    And I should see "Teaching people to drive"
-    When I click on the section "Teaching people to drive"
-    Then I should see "Apply to become a driving instructor"
