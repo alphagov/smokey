@@ -4,10 +4,39 @@ Feature: Government Frontend
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @normal
-  Scenario:
-    When I visit "/government/case-studies/epic-cic"
-    Then I should see "Case study"
+    @normal
+    Scenario: Check example pages across formats
+      Given I am testing through the full stack
+      And I force a varnish cache miss
+      Then I should be able to visit:
+        | Path                                                                                                  |
+        | /government/case-studies/out-of-syria-back-into-school                                                |
+        | /foreign-travel-advice/belgium                                                                        |
+        | /self-assessment-tax-returns                                                                          |
+        | /government/speeches/the-failure-of-child-protection-and-the-need-for-a-fresh-start                   |
+        | /government/fatalities/lieutenant-antony-king                                                         |
+        | /government/news/relationships-and-sex-education-for-the-21st-century                                 |
+        | /government/get-involved/take-part/help-run-a-charity                                                 |
+        | /government/world-location-news/farewell-party-for-the-british-honorary-consul-in-galapagos.es-419    |
+        | /government/publications/belarus-tax-treaties                                                         |
+        | /government/consultations/red-diesel-call-for-evidence                                                |
+        | /government/collections/fraud-error-debt-and-grants-function                                          |
+        | /government/statistics/announcements/nhs-outcomes-framework-indicators-aug-2018-release               |
+        | /government/topical-events/2014-overseas-territories-joint-ministerial-council/about                  |
+        | /government/groups/nuclear-energy-skills-alliance                                                     |
+        | /aaib-reports/beech-f33a-g-hope-14-july-1989                                                          |
+        | /guidance/introduction-of-statutory-participation-in-trialling-of-national-curriculum-tests-from-2016 |
+        | /cma-cases/agc-automotive-europe-nordglass                                                            |
+        | /countryside-stewardship-grants/relocation-of-sheep-dips-and-pens-rp20                                |
+        | /drug-safety-update/paraffin-based-treatments-risk-of-fire-hazard                                     |
+        | /maib-reports/switchboard-fire-on-ferry-off-larne-northern-ireland                                    |
+        | /drug-device-alerts/medical-device-alerts-archived-in-july-2015                                       |
+        | /raib-reports/collision-with-a-collapsed-signal-post-at-newbury                                       |
+        | /business-finance-support/business-development-grant-scheme-scarborough-borough                       |
+        | /workplace-temperatures                                                                               |
+        | /help/update-email-notifications                                                                      |
+        | /government/statistical-data-sets/effort-statistics-february-2017                                     |
+        | /government/publications/development-scheme/practice-guide-72-development-schemes                     |
 
   @normal
   Scenario: Check service sign-in offers both Government Gateway and GOV.UK Verify
@@ -35,40 +64,3 @@ Feature: Government Frontend
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Register for Self Assessment"
     Then I should be redirected to "/log-in-file-self-assessment-tax-return/sign-in/register-self-assessment"
-
-  @normal
-  Scenario Outline: Check example pages across formats
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-    When I request "<Path>"
-    Then I should get a 200 status code
-
-    Examples:
-      | Path                                                                                                  |
-      | /government/case-studies/out-of-syria-back-into-school                                                |
-      | /foreign-travel-advice/belgium                                                                        |
-      | /self-assessment-tax-returns                                                                          |
-      | /government/speeches/the-failure-of-child-protection-and-the-need-for-a-fresh-start                   |
-      | /government/fatalities/lieutenant-antony-king                                                         |
-      | /government/news/relationships-and-sex-education-for-the-21st-century                                 |
-      | /government/get-involved/take-part/help-run-a-charity                                                 |
-      | /government/world-location-news/farewell-party-for-the-british-honorary-consul-in-galapagos.es-419    |
-      | /government/publications/belarus-tax-treaties                                                         |
-      | /government/consultations/red-diesel-call-for-evidence                                                |
-      | /government/collections/fraud-error-debt-and-grants-function                                          |
-      | /government/statistics/announcements/nhs-outcomes-framework-indicators-aug-2018-release               |
-      | /government/topical-events/2014-overseas-territories-joint-ministerial-council/about                  |
-      | /government/groups/nuclear-energy-skills-alliance                                                     |
-      | /aaib-reports/beech-f33a-g-hope-14-july-1989                                                          |
-      | /guidance/introduction-of-statutory-participation-in-trialling-of-national-curriculum-tests-from-2016 |
-      | /cma-cases/agc-automotive-europe-nordglass                                                            |
-      | /countryside-stewardship-grants/relocation-of-sheep-dips-and-pens-rp20                                |
-      | /drug-safety-update/paraffin-based-treatments-risk-of-fire-hazard                                     |
-      | /maib-reports/switchboard-fire-on-ferry-off-larne-northern-ireland                                    |
-      | /drug-device-alerts/medical-device-alerts-archived-in-july-2015                                       |
-      | /raib-reports/collision-with-a-collapsed-signal-post-at-newbury                                       |
-      | /business-finance-support/business-development-grant-scheme-scarborough-borough                       |
-      | /workplace-temperatures                                                                               |
-      | /help/update-email-notifications                                                                      |
-      | /government/statistical-data-sets/effort-statistics-february-2017                                     |
-      | /government/publications/development-scheme/practice-guide-72-development-schemes                     |
