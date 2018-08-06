@@ -10,18 +10,6 @@ Feature: Whitehall
   Scenario: Check the government publishing section on GOV.UK homepage
     Then I should see the departments and policies section on the homepage
 
-  @normal @notintegration
-  Scenario: There should be no authentication for Whitehall
-    Then I should be able to view policies
-    And I should be able to view announcements
-    And I should be able to view publications
-    Then I should be able to visit:
-      | Path                      |
-      | /government/topics        |
-      | /government/consultations |
-      | /government/ministers     |
-      | /government/world         |
-
   @normal
   Scenario: Check searching for an existing consultation on whitehall
     When I do a whitehall search for "Assessing radioactive waste disposal sites"
@@ -46,6 +34,7 @@ Feature: Whitehall
       | /government/topics               |
       | /government/consultations        |
       | /government/ministers            |
+      | /government/people/eric-pickles  |
       | /government/world                |
 
   @normal
@@ -53,13 +42,3 @@ Feature: Whitehall
     When I request an attachment
     Then I should be redirected to the asset host
     And the attachment should be served successfully
-
-  @normal
-  Scenario Outline: Formats rendered by Whitehall respond OK
-    When I request "<Path>"
-    Then I should see "<Expected string>"
-
-    Examples:
-      | Path                             | Expected string         |
-      | /government/how-government-works | How government works    |
-      | /government/people/eric-pickles  | The Rt Hon Lord Pickles |
