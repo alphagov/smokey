@@ -20,7 +20,7 @@ Feature: Finder Frontend
 
   @normal
   Scenario: Check world organisations loads
-    When I visit "/government/world/organisations"
+    When I visit "/world/organisations"
     Then I should see "Worldwide organisations"
     And I should see an input field to search
 
