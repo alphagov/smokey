@@ -32,6 +32,11 @@ Feature: Collections
     Then I should see "Apply to become a driving instructor"
 
   @normal
+  Scenario: Check topic page loads
+    When I visit "/topic"
+    Then I should be able to navigate the topic hierarchy
+
+  @normal
   Scenario: Check services and information page loads
     When I visit "/government/organisations/hm-revenue-customs/services-information"
     Then I see links to pages per topic
