@@ -5,7 +5,7 @@ Feature: Feedback
     And I force a varnish cache miss
 
   @normal
-  Scenario: Check the "Contact GOV.UK" page
+  Scenario: Check the "Contact GOV.UK" page loads
     When I visit "/contact/govuk"
     Then I should see "Contact GOV.UK"
 
@@ -14,3 +14,8 @@ Feature: Feedback
     When I visit "/contact/govuk"
     And I input malicious code in the email field
     Then I see the code returned in the page
+
+  @normal
+  Scenario: Check the FoI page loads
+    When I visit "/contact/foi"
+    Then I should see "Make a Freedom of Information request"
