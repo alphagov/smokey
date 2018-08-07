@@ -15,6 +15,11 @@ Feature: Frontend
     Then I should see "UK passport"
 
   @normal
+  Scenario: Check help page loads correctly
+    When I visit "/help"
+    Then I should see "Help using GOV.UK"
+
+  @normal
   Scenario: Check homepage content type and charset
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"

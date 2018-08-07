@@ -19,6 +19,7 @@ Feature: Government Frontend
         | /government/get-involved/take-part/help-run-a-charity                                                 |
         | /government/world-location-news/farewell-party-for-the-british-honorary-consul-in-galapagos.es-419    |
         | /government/publications/belarus-tax-treaties                                                         |
+        | /government/publications/budget-2016-documents/budget-2016                                            |
         | /government/consultations/red-diesel-call-for-evidence                                                |
         | /government/collections/fraud-error-debt-and-grants-function                                          |
         | /government/statistics/announcements/nhs-outcomes-framework-indicators-aug-2018-release               |

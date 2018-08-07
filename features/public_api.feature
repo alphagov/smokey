@@ -25,6 +25,13 @@ Feature: Public API
     And JSON is returned
 
   @normal
+  Scenario: Check the collections organisation API returns data
+    Given I force a varnish cache miss
+    When I request "/api/organisations/hm-revenue-customs"
+    Then I should get a 200 status code
+    And JSON is returned
+
+  @normal
   Scenario: Check the whitehall governments API returns data
     Given I force a varnish cache miss
     When I request "/api/governments"

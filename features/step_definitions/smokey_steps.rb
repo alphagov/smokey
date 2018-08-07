@@ -219,6 +219,13 @@ Then /^JSON is returned$/ do
   expect(JSON.parse(@response.body).class).to eq(Hash)
 end
 
+Then /^valid XML should be returned$/ do
+  xml_doc = Nokogiri::XML(@response.body) do |config|
+    config.strict
+  end
+  expect(xml_doc.class).to eq(Nokogiri::XML::Document)
+end
+
 def random_path_selection(opts={})
   size = opts[:size] || 3
   anchor_tags = opts[:anchor_tags] || []

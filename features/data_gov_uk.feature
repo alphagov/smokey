@@ -6,16 +6,16 @@ Feature: Data.gov.uk
     And I force a varnish cache miss
 
   @high
-  Scenario: Check home page loads
+  Scenario: Check home page loads correctly
     When I request "/"
     Then I should see "Find open data"
 
   @high
-  Scenario: Check search
+  Scenario: Check search works
     When I search for "data" in datasets
     Then I should see some dataset results
 
   @normal
-  Scenario: Check RDF API
+  Scenario: Check RDF API loads
     When I request "/dataset/lidar-composite-dsm-1m1.rdf"
     Then I should get a 200 status code
