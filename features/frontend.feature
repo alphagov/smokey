@@ -15,7 +15,7 @@ Feature: Frontend
     Then I should see "UK passport"
 
   @normal
-  Scenario: Check help page loads
+  Scenario: Check help page loads correctly
     When I visit "/help"
     Then I should see "Help using GOV.UK"
 
