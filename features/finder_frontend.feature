@@ -16,7 +16,7 @@ Feature: Finder Frontend
     When I visit "/government/policies"
     Then I should see "Policies"
     And I should see an input field to search
-    And I should see an open facet titled "Organisation" with non-blank values
+    And I should see a closed facet titled "Organisation" with non-blank values
 
   @normal
   Scenario: Check world organisations loads correctly
@@ -52,6 +52,7 @@ Feature: Finder Frontend
   Scenario: Check specialist documents are searchable
     When I visit "/cma-cases?keywords=merger"
     Then I should see filtered documents
+    And I should see an open facet titled "Case type" with non-blank values
 
   @normal
   Scenario: Check advanced search returns results
