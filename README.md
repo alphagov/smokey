@@ -3,7 +3,7 @@
 Automated tests that describe high level user journeys which touch multiple
 applications within the GOV.UK stack.
 
-These are used to verify releases and also to provide Nagios alerts for major
+These are used to verify releases and also to provide Icinga alerts for major
 features.
 
 ## Technical documentation
@@ -98,7 +98,7 @@ icinga::check_feature {
 
 ### Prioritising scenarios
 
-Because we integrate Nagios with the output from these tests, we provide a set
+Because we integrate Icinga with the output from these tests, we provide a set
 of tags which match with how important we consider a scenario to be. `@high` and
 above will trigger pager alerts.
 
@@ -115,8 +115,15 @@ Scenario: check guides load
 
 ### Deploying
 
-This master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L33).
+The master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L33) to the monitoring machines to run the Smokey loop. The Smokey that runs after deployments is always the latest version from the master branch and does not need deployment.
 
 ### Use of BrowserMob Proxy
 
 Smokey uses BrowserMob Proxy as a proxy between the feature tests and Selenium. The proxy allows manipulation of HTTP request headers, which is not supported by Selenium. The proxy consists of a runner in `bin` and a JAR containing the application in `lib`.
+
+### Use of scripts
+
+* `tests_json_output.sh`: Used to run the Smokey loop on the monitoring machines and output JSON to a temporary file.
+* `nagios_check_cache.py`: Used by Icinga to check the JSON in the temporary file created by the Smokey loop and determine the current status (pass/fail).
+* `deploy.sh`: Used by Jenkins when running the `Smokey_Deploy` job to deploy Smokey to the monitoring machines.
+* `jenkins.sh`: Used by Jenkins to run a one-off Smokey after a deployment.
