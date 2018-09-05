@@ -23,7 +23,7 @@ Feature: Draft environment
   Scenario: Check visiting a specialist document served by government-frontend
     When I try to login as a user
     And I attempt to visit a CMA case
-    Then I should see "Competition and Markets Authority case"
+    Then I should see "Competition and Markets Authority"
     And the page should contain the draft watermark
 
   @normal @draft
