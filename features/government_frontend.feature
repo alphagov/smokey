@@ -5,10 +5,11 @@ Feature: Government Frontend
     And I force a varnish cache miss
 
     @normal
-    Scenario: Check example pages across formats
-      Given I am testing through the full stack
-      And I force a varnish cache miss
-      Then I should be able to visit:
+    Scenario Outline: Check example pages across formats
+      When I request "<Path>"
+      Then I should get a 200 status code
+
+      Examples:
         | Path                                                                                                  |
         | /government/case-studies/out-of-syria-back-into-school                                                |
         | /foreign-travel-advice/belgium                                                                        |
