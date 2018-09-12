@@ -23,11 +23,14 @@ Feature: Whitehall
       | /government/publications.atom  |
 
   @normal
-  Scenario: Check whitehall pages load
+  Scenario Outline: Check whitehall pages load
     Then I should be able to view policies
     And I should be able to view announcements
     And I should be able to view publications
-    Then I should be able to visit:
+    When I request "<Path>"
+    Then I should get a 200 status code
+
+    Examples:
       | Path                             |
       | /government/how-government-works |
       | /government/get-involved         |
