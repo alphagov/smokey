@@ -25,7 +25,7 @@ GEM
       colorize
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
-    chromedriver-helper (1.2.0)
+    chromedriver-helper (2.0.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     coderay (1.1.2)
@@ -121,7 +121,7 @@ DEPENDENCIES
   browsermob-proxy (~> 0.2)
   capybara (~> 3)
   capybara-chromedriver-logger (~> 0.2)
-  chromedriver-helper (~> 1)
+  chromedriver-helper (~> 2)
   cucumber (~> 3)
   minitest (~> 5)
   nokogiri (~> 1)
