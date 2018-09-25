@@ -3,6 +3,7 @@ require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
 require 'nokogiri'
 require 'plek'
+require 'chromedriver-helper'
 require 'selenium-webdriver'
 require 'uri'
 
