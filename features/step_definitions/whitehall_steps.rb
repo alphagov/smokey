@@ -3,10 +3,6 @@ Then /^I should see the departments and policies section on the homepage$/ do
   assert page.first('#departments-and-policy')
 end
 
-Then /^I should be able to view policies$/ do
-  follow_link_to_first_policy_on_policies_page
-end
-
 Then /^I should be able to view publications$/ do
   follow_link_to_first_publication_on_publications_page
 end
@@ -37,11 +33,6 @@ end
 Then(/^the attachment should be served successfully$/) do
   expect(@response.request.url).to match(@attachment_path)
   expect(@response.code).to eq(200)
-end
-
-def follow_link_to_first_policy_on_policies_page
-  visit_path "/government/policies"
-  visit_path page.first('.document a')['href']
 end
 
 def follow_link_to_first_announcement_on_announcements_page
