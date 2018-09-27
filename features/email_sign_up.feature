@@ -26,14 +26,6 @@ Feature: Email signup
     Then I should see "How often do you want to get updates?"
 
   @normal
-  Scenario: Starting from a finder
-    When I visit "/government/policies/immigration-and-borders"
-    And I click on the link "Subscribe to email alerts"
-    Then I should see "Create subscription"
-    When I click on the button "Create subscription"
-    Then I should see "How often do you want to get updates?"
-
-  @normal
   Scenario: Starting from announcements
     When I visit "/government/announcements"
     And I click on the link "email"
