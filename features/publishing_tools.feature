@@ -67,16 +67,6 @@ Feature: Publishing Tools
     And I should see "All needs"
 
   @high
-  Scenario: Can log in to policy-publisher
-    When I go to the "policy-publisher" landing page
-    And I try to login as a user
-    And I go to the "policy-publisher" landing page
-    Then I should see "GOV.UK Policy Publisher"
-    And I should see "Sign out"
-    And I should see "Policies"
-    And I should see "New policy"
-
-  @high
   Scenario: Can log in to publisher
     When I go to the "publisher" landing page
     And I try to login as a user
