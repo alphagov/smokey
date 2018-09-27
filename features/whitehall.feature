@@ -24,8 +24,7 @@ Feature: Whitehall
 
   @normal
   Scenario Outline: Check whitehall pages load
-    Then I should be able to view policies
-    And I should be able to view announcements
+    Then I should be able to view announcements
     And I should be able to view publications
     When I request "<Path>"
     Then I should get a 200 status code

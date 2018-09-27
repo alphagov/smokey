@@ -12,13 +12,6 @@ Feature: Finder Frontend
     And I should see an input field to search
 
   @normal
-  Scenario: Check policy page loads correctly
-    When I visit "/government/policies"
-    Then I should see "Policies"
-    And I should see an input field to search
-    And I should see a closed facet titled "Organisation" with non-blank values
-
-  @normal
   Scenario: Check world organisations loads correctly
     When I visit "/world/organisations"
     Then I should see "Worldwide organisations"
