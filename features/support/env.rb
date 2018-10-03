@@ -3,7 +3,6 @@ require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
 require 'nokogiri'
 require 'plek'
-require 'chromedriver-helper'
 require 'selenium-webdriver'
 require 'uri'
 
@@ -53,6 +52,15 @@ proxy.blacklist(/^https:\/\/s\.ytimg\.com/i, 200)
 
 # Licensify admin doesn't have favicon.ico so block requests to prevent errors
 proxy.blacklist(/^https:\/\/licensify-admin(.*)\.publishing\.service\.gov\.uk\/favicon\.ico$/i, 200)
+
+chromedriver_from_path = File.which("chromedriver")
+
+if chromedriver_from_path
+  # Use the installed chromedriver, rather than chromedriver-helper
+  Selenium::WebDriver::Chrome.driver_path = chromedriver_from_path
+else
+  require 'chromedriver-helper'
+end
 
 # Use Chrome in headless mode
 Capybara.register_driver :headless_chrome do |app|
