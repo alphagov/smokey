@@ -5,11 +5,11 @@ When /^I try to login as a user$/ do
 
   if page.has_content?("Sign in")
     fill_in "Email", :with => ENV["SIGNON_EMAIL"]
-    fill_in "Passphrase", :with => ENV["SIGNON_PASSWORD"]
+    fill_in "Password", :with => ENV["SIGNON_PASSWORD"]
     click_button "Sign in"
   else
     # Short-circuit if we're already signed in
-    expect(page).to have_content("Welcome to GOV.UK")
+    expect(page).to have_content("Your applications")
   end
 end
 
