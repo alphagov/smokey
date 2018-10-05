@@ -4,7 +4,7 @@ Feature: Signon
   @high
   Scenario: Check logging in works
     When I try to login as a user
-    Then I should see "Welcome to GOV.UK"
+    Then I should see "Your applications"
 
   @low
   Scenario: Check signon cookies are marked as secure
