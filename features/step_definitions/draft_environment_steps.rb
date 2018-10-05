@@ -20,7 +20,7 @@ end
 
 When /^I log in using valid credentials$/ do
   fill_in "Email", :with => ENV["SIGNON_EMAIL"]
-  fill_in "Passphrase", :with => ENV["SIGNON_PASSWORD"]
+  fill_in "Password", :with => ENV["SIGNON_PASSWORD"]
   click_button "Sign in"
 end
 
