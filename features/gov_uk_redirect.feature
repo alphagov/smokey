@@ -6,7 +6,7 @@ Feature: Redirect of gov.uk to www.gov.uk
     Then I should get a 301 status code
     And I should get a "Location" header of "https://www.gov.uk/"
 
-  @pending
+  @normal
   Scenario: Check redirect from service domain to GOV.UK has HSTS enabled
     When I visit "https://service.gov.uk/" without following redirects
     Then I should get a 302 status code
