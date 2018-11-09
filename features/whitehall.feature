@@ -36,7 +36,7 @@ Feature: Whitehall
       | /government/consultations        |
       | /government/ministers            |
       | /government/people/eric-pickles  |
-      | /government/world                |
+      | /world                           |
 
   @normal
   Scenario: Check whitehall assets are redirected to and served from the asset host
