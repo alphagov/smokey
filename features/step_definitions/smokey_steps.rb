@@ -63,6 +63,11 @@ end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
   application_host = application_external_url(application)
+  visit_path "#{application_host}#{path}"
+end
+
+When /^I request "([^"]*)" from the "([^"]*)" application$/ do |path, application|
+  application_host = application_external_url(application)
   @response = get_request("#{application_host}#{path}", default_request_options)
 end
 

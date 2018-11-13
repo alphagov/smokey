@@ -11,6 +11,6 @@ Feature: Transition
 
   @high
   Scenario: Check the host list from API to configure CDN works
-    When I visit "/hosts.json" on the "transition" application
+    When I request "/hosts.json" from the "transition" application
     Then I should get a 200 status code
      And I should see "www.direct.gov.uk"
