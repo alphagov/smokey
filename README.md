@@ -33,6 +33,8 @@ The tests require additional configuration to run successfully. This set of opti
 ENVIRONMENT=integration \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
+AUTH_USERNAME="<username>" \
+AUTH_PASSWORD="<password>" \
 bundle exec cucumber \
 --format pretty \
 --tags "not @pending" \
