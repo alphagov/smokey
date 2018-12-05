@@ -7,19 +7,14 @@ require 'plek'
 require 'selenium-webdriver'
 require 'uri'
 
-if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
-  basic_auth_credentials = "#{ENV['AUTH_USERNAME']}:#{ENV['AUTH_PASSWORD']}@"
-end
-
 # Set up environment
 case ENV["ENVIRONMENT"]
 when "integration"
   ENV["GOVUK_APP_DOMAIN"] ||= "integration.publishing.service.gov.uk"
-  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.integration.publishing.service.gov.uk"
-  ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] ||= "https://#{basic_auth_credentials}www-origin.integration.publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.integration.publishing.service.gov.uk"
 when "staging"
   ENV["GOVUK_APP_DOMAIN"] ||= "staging.publishing.service.gov.uk"
-  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www-origin.staging.publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.staging.publishing.service.gov.uk"
 when "production"
   ENV["GOVUK_APP_DOMAIN"] ||= "publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.gov.uk"
@@ -29,7 +24,7 @@ end
 
 # Set up basic URLs
 ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for("draft-origin")
-Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] || ENV["GOVUK_WEBSITE_ROOT"]
+Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 
 # Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't
 # support this) on a random port between 3222 and 3229
