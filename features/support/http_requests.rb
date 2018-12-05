@@ -22,7 +22,7 @@ def uri_escape(s)
 end
 
 def default_request_options
-  { cache_bust: @bypass_varnish, search_cache_bust: @bypass_varnish_for_search, client_auth: @authenticated_as_client }
+  { auth: @authenticated, cache_bust: @bypass_varnish, search_cache_bust: @bypass_varnish_for_search, client_auth: @authenticated_as_client }
 end
 
 # Make a POST.
@@ -56,6 +56,7 @@ end
 
 def do_http_request(url, method = :get, options = {}, &block)
   defaults = {
+    :auth => true,
     :verify_ssl => true,
   }
   options = defaults.merge(options)
@@ -78,6 +79,10 @@ def do_http_request(url, method = :get, options = {}, &block)
     url = cache_bust(url, param: 'cache_bust')
   elsif options[:search_cache_bust]
     url = cache_bust(url, param: 'c')
+  end
+  if options[:auth]
+    user     = ENV['AUTH_USERNAME']
+    password = ENV['AUTH_PASSWORD']
   end
   if options[:client_auth]
     headers["Authorization"] = "Bearer #{ENV['BEARER_TOKEN']}"
