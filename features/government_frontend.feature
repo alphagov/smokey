@@ -34,7 +34,7 @@ Feature: Government Frontend
         | /maib-reports/switchboard-fire-on-ferry-off-larne-northern-ireland                                    |
         | /drug-device-alerts/medical-device-alerts-archived-in-july-2015                                       |
         | /raib-reports/collision-with-a-collapsed-signal-post-at-newbury                                       |
-        | /business-finance-support/business-development-grant-scheme-scarborough-borough                       |
+        | /business-finance-support/better-business-finance                                                     |
         | /workplace-temperatures                                                                               |
         | /help/update-email-notifications                                                                      |
         | /government/statistical-data-sets/effort-statistics-february-2017                                     |
