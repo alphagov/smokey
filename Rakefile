@@ -13,6 +13,12 @@ Cucumber::Rake::Task.new("test:staging",
   t.cucumber_opts = %w{ENVIRONMENT=staging --format pretty -t "not @benchmarking"}
 end
 
+Cucumber::Rake::Task.new("test:staging-aws",
+                         "Run all tests that are valid in our aws staging environment") do |t|
+  t.profile = "staging"
+  t.cucumber_opts = %w{ENVIRONMENT=staging-aws --format pretty -t "not @benchmarking"}
+end
+
 Cucumber::Rake::Task.new("test:production",
     "Run all tests that are valid in our production environment") do |t|
   t.profile = "production"
