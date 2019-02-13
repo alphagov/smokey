@@ -16,7 +16,6 @@ Feature: Foreign Travel Advice
     When I visit "/foreign-travel-advice/luxembourg"
     Then I should see "Luxembourg"
     And I should see "Summary"
-    And I should see "About Foreign and Commonwealth Office travel advice"
 
   @normal
   Scenario: Check feeds are available for both index and countries
