@@ -47,7 +47,7 @@ Feature: Frontend
   @normal
   Scenario: Check "find my nearest" returns results
     When I visit "/ukonline-centre-internet-access-computer-training"
-    And I should see "Online Centres Networks"
+    And I should see "Online Centres Network"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should see "Holborn Library"
 
