@@ -64,7 +64,6 @@ Feature: Smart Answers
       | /register-a-birth/y/afghanistan/father/yes/another_country |
       | /register-a-death/y/overseas                               |
       | /register-a-death/y/overseas/afghanistan/another_country   |
-      | /report-a-lost-or-stolen-passport/y/abroad                 |
       | /uk-benefits-abroad/y/going_abroad/child_benefit           |
 
   @normal
@@ -94,8 +93,6 @@ Feature: Smart Answers
       | /register-a-death/y/overseas/foo                       | invalid |
       | /help-if-you-are-arrested-abroad/y/afghanistan         | valid   |
       | /help-if-you-are-arrested-abroad/y/foo                 | invalid |
-      | /report-a-lost-or-stolen-passport/y/abroad/afghanistan | valid   |
-      | /report-a-lost-or-stolen-passport/y/abroad/foo         | invalid |
 
   @normal
   Scenario Outline: Check country FCOs can be looked up
@@ -106,7 +103,6 @@ Feature: Smart Answers
       | Path                                                           | Expected string                 |
       | /marriage-abroad/y/afghanistan/uk/partner_british/opposite_sex | Embassy of Afghanistan          |
       | /register-a-death/y/overseas/north-korea/same_country          | Pyongyang.enquiries@fco.gov.uk  |
-      | /report-a-lost-or-stolen-passport/y/abroad/afghanistan         | britishembassy.kabul@fco.gov.uk |
 
   @normal
   Scenario Outline: Check postcode lookup
