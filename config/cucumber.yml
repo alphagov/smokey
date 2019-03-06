@@ -1,4 +1,6 @@
 # Options specific to a GOV.UK environment
-integration: -t "not @pending" -t "not @notintegration"
+integration: -t "not @pending" -t "not @notintegration" -t "not @notaws"
 staging: -t "not @pending" -t "not @notstaging"
 production: -t "not @pending" -t "not @notproduction"
+staging_aws: -t "not @pending" -t "not @notstaging" -t "not @notaws"
+production_aws: -t "not @pending" -t "not @notproduction" -t "not @notaws"
