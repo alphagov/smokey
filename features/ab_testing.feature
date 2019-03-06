@@ -5,19 +5,16 @@ Feature: A/B Testing
   cookies correctly. So a failure in these tests indicates that all A/B tests
   may be broken.
 
-  These tests are only run against Production because they rely on the CDN to
-  manipulate the HTTP request and response headers.
-
   Background:
     Given there is an A/B test set up
     And I am testing through the full stack
 
-  @low @notintegration @notstaging
+  @low
   Scenario: Check we end up in all buckets
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the A/B test
 
-  @low @notintegration @notstaging
+  @low
   Scenario: Check that an A/B test works
     And I do not have any A/B testing cookies set
     When I visit "/help/ab-testing"
