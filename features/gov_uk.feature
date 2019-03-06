@@ -5,7 +5,13 @@ Feature: Core GOV.UK behaviour
   Scenario: Check paths with a trailing slash are redirected
     When I visit "https://www.gov.uk/browse/benefits/" without following redirects
     Then I should get a 301 status code
-    And I should get a "Location" header of "/browse/benefits"
+    And I should get a "Location" header of "//www.gov.uk/browse/benefits"
+
+  @high
+  Scenario: Check paths with a trailing full stop are redirected
+    When I visit "https://www.gov.uk/browse/benefits." without following redirects
+    Then I should get a 301 status code
+    And I should get a "Location" header of "//www.gov.uk/browse/benefits"
 
   @normal
   Scenario: Check the crown logo links to GOV.UK homepage
