@@ -1,3 +1,4 @@
+@aws
 Feature: Smart Answers
 
   Background:

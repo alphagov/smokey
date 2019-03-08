@@ -1,3 +1,4 @@
+@aws
 Feature: Search
   Tests for the GOV.UK search engine.
 

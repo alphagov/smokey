@@ -1,3 +1,4 @@
+@aws
 Feature: Contacts
 
   Background:
