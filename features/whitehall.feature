@@ -1,3 +1,4 @@
+@aws
 Feature: Whitehall
   Tests for the whitehall application that powers some pages under
   www.gov.uk/government and www.gov.uk/world.
