@@ -26,8 +26,8 @@ Feature: Email signup
     Then I should see "How often do you want to get updates?"
 
   @normal
-  Scenario: Starting from announcements
-    When I visit "/government/announcements"
+  Scenario: Starting from the news and communications finder
+    When I visit "/search/news-and-communications"
     And I click on the link "email"
     Then I should see "Email alert subscription"
     When I click on the button "Create subscription"
