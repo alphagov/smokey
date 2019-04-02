@@ -28,3 +28,21 @@ Feature: Data.gov.uk
     And I force a varnish cache miss
     When I request "/"
     Then I should see "Data publisher"
+
+  @high
+  Scenario: Check datasets sync between CKAN and Find
+    Given I am testing "https://ckan.publishing.service.gov.uk"
+    And I force a varnish cache miss
+    When I request "/api/3/action/package_list"
+    And I save the dataset count
+    Given I am testing "https://data.gov.uk"
+    And I force a varnish cache miss
+    When I search for "" in datasets
+    Then I should see a similar dataset count
+
+  @high
+  Scenario: Check there is an accurate number of datasets
+    Given I am testing "https://data.gov.uk"
+    And I force a varnish cache miss
+    When I search for "" in datasets
+    Then I should see an accurate dataset count
