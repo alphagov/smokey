@@ -62,7 +62,7 @@ Feature: Email signup
   @normal
   Scenario: Starting from a finder (specialist-publisher)
     When I visit "/cma-cases"
-    Then I should see "Subscribe to email alerts"
-    When I click on the link "Subscribe to email alerts"
+    Then I should see "Get email alerts"
+    When I click on the link "Get email alerts"
     And I choose the checkbox "Markets" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
