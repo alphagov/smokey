@@ -3,7 +3,7 @@ When /^I search for "(.*)"$/ do |term|
 end
 
 Then /^I should see some search results$/ do
-  result_links = page.all(".results-list li a")
+  result_links = page.all(".finder-results li a")
   expect(result_links.count).to be >= 1
 end
 
@@ -14,8 +14,8 @@ end
 
 And /^the search results should be unique$/ do
   results = []
-  page.all(".results-list li a").each_with_index do |item, idx|
-    results << item.text + page.all(".results-list li p")[idx].text
+  page.all(".finder-results li a").each_with_index do |item, idx|
+    results << item.text + page.all(".finder-results li p")[idx].text
   end
   expect(results.uniq.count).to eq(results.count)
 end
