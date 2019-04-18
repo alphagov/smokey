@@ -33,7 +33,6 @@ Feature: Whitehall
       | Path                             |
       | /government/how-government-works |
       | /government/get-involved         |
-      | /government/consultations        |
       | /government/ministers            |
       | /government/people/eric-pickles  |
       | /world                           |
