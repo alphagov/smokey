@@ -33,5 +33,5 @@ end
 
 def follow_link_to_first_publication_on_publications_page
   visit_path "/government/publications"
-  visit_path page.first('.document-row a')['href']
+  visit_path page.first('.document a')['href']
 end
