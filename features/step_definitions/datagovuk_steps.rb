@@ -9,7 +9,7 @@ end
 
 When /^I save the dataset count$/ do
   json = JSON.parse(@response.body)
-  @package_count = json.fetch("result").count
+  @package_count = json.fetch("count")
 end
 
 Then /^I should see a similar dataset count$/ do
