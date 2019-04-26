@@ -24,13 +24,13 @@ Feature: Core GOV.UK behaviour
   Scenario: Check entirely upper case slugs redirect to lowercase
     Given I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "/GOVERNMENT/PUBLICATIONS" without following redirects
+    When I visit "/GOVERNMENT/STATISTICS" without following redirects
     Then I should get a 301 status code
-    And I should be at a location path of "/government/publications"
+    And I should be at a location path of "/government/statistics"
 
   @normal
   Scenario: Check partially upper case slugs do not redirect
     Given I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "/government/publicatIONS" without following redirects
+    When I visit "/government/statisTICS" without following redirects
     Then I should see "Page not found"

@@ -35,7 +35,7 @@ Feature: Email signup
 
   @normal
   Scenario: Starting from a whitehall finder
-    When I visit "/government/publications"
+    When I visit "/government/statistics"
     And I click on the link "email"
     Then I should see "Create subscription"
     When I click on the button "Create subscription"
