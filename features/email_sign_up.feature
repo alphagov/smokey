@@ -21,8 +21,10 @@ Feature: Email signup
   Scenario: Starting from an organisation home page
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
-    Then I should see "Create subscription"
-    When I click on the button "Create subscription"
+    Then I should see "Get email alerts"
+    When I click on the link "Select"
+    Then I should see "What you’ll get"
+    When I click on the button "Sign up now"
     Then I should see "How often do you want to get updates?"
 
   @normal
