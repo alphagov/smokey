@@ -19,7 +19,7 @@ And /^I should see an? (open|closed) facet titled "(.*?)" with non-blank values$
     facet.find('button').click
   end
 
-  labels = facet.all('.options-container label').map(&:text)
+  labels = facet.all('.js-options-container label').map(&:text)
   blank_labels = labels.select { |label| label.strip.empty? }
 
   expect(labels).not_to be_empty
