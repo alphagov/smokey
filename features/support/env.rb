@@ -24,7 +24,7 @@ when "production", "production_aws"
   ENV["GOVUK_APP_DOMAIN"] ||= "publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.gov.uk"
 else
-  raise "ENVIRONMENT should be one of integration, staging or production"
+  raise "ENVIRONMENT should be one of integration, staging, staging_aws, production or production_aws"
 end
 
 # Set up basic URLs

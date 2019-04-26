@@ -1,22 +1,12 @@
 require 'rubygems'
 require 'cucumber/rake/task'
 
-Cucumber::Rake::Task.new("test:integration",
-    "Run all tests that are valid in our integration environment") do |t|
-  t.profile = "integration"
-  t.cucumber_opts = %w{ENVIRONMENT=integration --format pretty -t "not @benchmarking"}
-end
-
-Cucumber::Rake::Task.new("test:staging",
-                         "Run all tests that are valid in our staging environment") do |t|
-  t.profile = "staging"
-  t.cucumber_opts = %w{ENVIRONMENT=staging --format pretty -t "not @benchmarking"}
-end
-
-Cucumber::Rake::Task.new("test:production",
-    "Run all tests that are valid in our production environment") do |t|
-  t.profile = "production"
-  t.cucumber_opts = %w{ENVIRONMENT=production --format pretty -t "not @benchmarking"}
+%w(integration staging staging_aws production production_aws).each do |environment|
+  Cucumber::Rake::Task.new("test:#{environment}",
+      "Run all tests that are valid in our #{environment} environment") do |t|
+    t.profile = environment
+    t.cucumber_opts = %W{ENVIRONMENT=#{environment} --format pretty -t "not @benchmarking"}
+  end
 end
 
 Cucumber::Rake::Task.new("test:notlocalnetwork",
