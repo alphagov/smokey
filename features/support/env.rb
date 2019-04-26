@@ -55,12 +55,11 @@ proxy.blacklist(/^https:\/\/s\.ytimg\.com/i, 200)
 proxy.blacklist(/^https:\/\/licensify-admin(.*)\.publishing\.service\.gov\.uk\/favicon\.ico$/i, 200)
 
 chromedriver_from_path = File.which("chromedriver")
-
 if chromedriver_from_path
   # Use the installed chromedriver, rather than chromedriver-helper
-  Selenium::WebDriver::Chrome.driver_path = chromedriver_from_path
+  Selenium::WebDriver::Chrome::Service.driver_path = chromedriver_from_path
 else
-  require 'chromedriver-helper'
+  require 'webdrivers'
 end
 
 # Use Chrome in headless mode
