@@ -9,7 +9,7 @@ end
 
 When /^I save the dataset count$/ do
   json = JSON.parse(@response.body)
-  @package_count = json.fetch("result").count
+  @package_count = json.fetch("count")
 end
 
 Then /^I should see a similar dataset count$/ do
@@ -25,7 +25,7 @@ Then /^I should see an accurate dataset count$/ do
   count_span = page.first(".dgu-results__summary span.bold-small")
   count = count_span.text.gsub(/[^\d^\.]/, '').to_i
 
-  # this is correct as of the 2nd April 2019, we might need to increase this
+  # this is correct as of the 26th April 2019, we might need to increase this
   # number in the future if more datasets are published
-  expect(count).to be_within(1000).of(49557)
+  expect(count).to be_within(1500).of(52823)
 end
