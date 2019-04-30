@@ -18,4 +18,4 @@ Feature: Feedback
   @normal
   Scenario: Check the FoI page loads correctly
     When I visit "/contact/foi"
-    Then I should see "Make a Freedom of Information request"
+    Then I should see "How to make a freedom of information (FOI) request"
