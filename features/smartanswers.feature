@@ -103,7 +103,7 @@ Feature: Smart Answers
     Examples:
       | Path                                                           | Expected string                 |
       | /marriage-abroad/y/afghanistan/uk/partner_british/opposite_sex | Embassy of Afghanistan          |
-      | /register-a-death/y/overseas/north-korea/same_country          | Pyongyang.enquiries@fco.gov.uk  |
+      | /register-a-death/y/overseas/north-korea/same_country          | British Embassy Pyongyang       |
 
   @normal
   Scenario Outline: Check postcode lookup
