@@ -108,7 +108,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    webdrivers (3.8.0)
+    webdrivers (3.9.0)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (~> 3.0)
@@ -132,7 +132,7 @@ DEPENDENCIES
   rest-client (~> 2)
   rspec (~> 3)
   selenium-webdriver (~> 3)
-  webdrivers (~> 3.8)
+  webdrivers (~> 3.9)
 
 BUNDLED WITH
    1.17.2
