@@ -22,4 +22,4 @@ Feature: Service Manual
   @normal
   Scenario: Check the service standard page loads correctly
     When I visit "/service-manual/service-standard"
-    Then I should see "Digital Service Standard"
+    Then I should see "Service Standard"
