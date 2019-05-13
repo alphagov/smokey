@@ -6,6 +6,8 @@ applications within the GOV.UK stack.
 These are used to verify releases and also to provide Icinga alerts for major
 features.
 
+The tests are run against integration, staging and production environments, and are triggered by deployments of most GOV.UK applications, CDNs and associated dependencies (`grep -i "smokey" modules/govuk_jenkins/templates/jobs/*` in the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet) for a full list).
+
 ## Technical documentation
 
 The smoke tests are based on [Cucumber](https://cucumber.io/). We use feature
