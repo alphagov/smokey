@@ -13,6 +13,20 @@ files to describe single applications (eg
 [`whitehall`](https://github.com/alphagov/whitehall),
 [`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
+### Installation
+
+Smokey requires Java to be installed, because of its [use of the BrowserMob Proxy](#use-of-browsermob-proxy). Note that if you're using the Development VM then Java is already installed.
+
+If you're not using the VM, or want to run Smokey on your host Mac, run `brew cask install java`.
+
+If you don't have Homebrew installed, or are not using a Mac, you can [download the Java JDK from the OpenJDK website](https://openjdk.java.net/).
+
+After that, it's a standard Ruby setup:
+
+```
+bundle install
+```
+
 ### Running the tests
 
 Run the suite with:
