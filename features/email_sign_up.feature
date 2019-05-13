@@ -13,6 +13,7 @@ Feature: Email signup
     Then I should see "Create subscription"
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
     When I choose radio button "No more than once a week" and click on "Next"
     And I input "simulate-delivered@notifications.service.gov.uk" and click subscribe
     Then I should see "You’ve subscribed successfully"
@@ -26,6 +27,7 @@ Feature: Email signup
     Then I should see "What you’ll get"
     When I click on the button "Sign up now"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
 
   @normal
   Scenario: Starting from the news and communications finder
@@ -34,6 +36,7 @@ Feature: Email signup
     Then I should see "Email alert subscription"
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
 
   @normal
   Scenario: Starting from a whitehall finder
@@ -42,6 +45,7 @@ Feature: Email signup
     Then I should see "Create subscription"
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
 
   @normal
   Scenario: Starting from a taxon page
@@ -52,6 +56,7 @@ Feature: Email signup
     When I choose radio button "Teaching and leadership" and click on "Select"
     And I click on the button "Sign up now"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
 
   @normal
   Scenario: Starting from a topic page
@@ -60,6 +65,7 @@ Feature: Email signup
     When I click on the link "Subscribe to email alerts"
     And I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
 
   @normal
   Scenario: Starting from a finder (specialist-publisher)
@@ -68,3 +74,13 @@ Feature: Email signup
     When I click on the link "Get email alerts"
     And I choose the checkbox "Markets" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
+    And the "immediately" option should be preselected by default
+
+  @normal
+  Scenario: Starting from the business finder
+    When I visit "/find-eu-exit-guidance-business"
+    Then I should see "Get email alerts"
+    When I click on the link "Get email alerts"
+    And I click on the button "Create subscription"
+    Then I should see "How often do you want to get updates?"
+    And the "daily" option should be preselected by default
