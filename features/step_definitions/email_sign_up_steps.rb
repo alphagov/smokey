@@ -20,3 +20,8 @@ end
 When /^I click on the button "(.*?)"$/ do |button_text|
   click_button button_text
 end
+
+And /^the "(.+)" option should be preselected by default$/ do |frequency|
+  # 'visible: false' because the radio buttons are 'hidden' in order to style them
+  expect(page).to have_css("input[name='frequency'][value='#{frequency}'][checked]", visible: false)
+end
