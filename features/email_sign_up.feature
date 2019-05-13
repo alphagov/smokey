@@ -75,3 +75,12 @@ Feature: Email signup
     And I choose the checkbox "Markets" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
     And the "immediately" option should be preselected by default
+
+  @normal
+  Scenario: Starting from the business finder
+    When I visit "/find-eu-exit-guidance-business"
+    Then I should see "Get email alerts"
+    When I click on the link "Get email alerts"
+    And I click on the button "Create subscription"
+    Then I should see "How often do you want to get updates?"
+    And the "daily" option should be preselected by default
