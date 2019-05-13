@@ -105,7 +105,7 @@ $ sudo kill -9 6385
 You can even set up an alias in your `~/.bash_profile`:
 
 ```sh
-alias killbrowsermob="ps xu | grep browsermob-proxy | grep -v grep | awk '{ print $2 }' | xargs kill -9"
+alias killbrowsermob="ps xu | grep [b]rowsermob-proxy | grep -v grep | awk '{ print \$2 }' | xargs kill -9"
 ```
 
 ### Spoofing the target domain
