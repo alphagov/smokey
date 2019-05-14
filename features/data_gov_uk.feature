@@ -44,3 +44,10 @@ Feature: Data.gov.uk
     And I force a varnish cache miss
     When I search for "" in datasets
     Then I should see an accurate dataset count
+
+  @high
+  Scenario: Check that we don't get any s3 CSP errors for organogram previews
+    Given I am testing "https://data.gov.uk"
+    When I preview an organogram
+    Then I should see "View the full organogram"
+    And I don't get any s3 CSP errors
