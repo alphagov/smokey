@@ -12,20 +12,14 @@ Feature: Whitehall
     Then I should see the departments and policies section on the homepage
 
   @normal
-  Scenario: Check searching for an existing consultation on whitehall
-    When I do a whitehall search for "Assessing radioactive waste disposal sites"
-    Then I should see "Assessing radioactive waste disposal sites"
-
-  @normal
   Scenario: Check feeds are available for documents
     Then I should be able to visit:
       | Path                           |
       | /government/announcements.atom |
-      | /government/publications.atom  |
+      | /government/statistics.atom  |
 
   @normal
   Scenario Outline: Check whitehall pages load
-    Then I should be able to view publications
     When I request "<Path>"
     Then I should get a 200 status code
 
