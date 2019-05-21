@@ -57,6 +57,32 @@ When /^I visit "(.*)"$/ do |path_or_url|
   visit_path path_or_url
 end
 
+When /^I visit the "([^"]+)" finder with keywords (.*)$/ do |finder, keywords|
+  path = "/search/#{finder}?keywords=#{keywords}"
+  visit_path path
+end
+
+When /^I visit the "([^"]+)" finder without keywords$/ do |finder|
+  path = "/search/#{finder}"
+  visit_path path
+end
+
+And /^There should be no alert$/ do
+  expect {
+    page.driver.browser.switch_to.alert.accept
+  }.to raise_error(Selenium::WebDriver::Error::NoSuchAlertError)
+end
+
+And /^I should see the string (.+)$/ do |content|
+  expect(page.find_field('finder-keyword-search').value).to eq(content)
+end
+
+And /^I fill in the keyword field with (.+)$/ do |content|
+  page.fill_in 'finder-keyword-search', with: "#{content}\n"
+  page.find('button[data-name="keywords"]', match: :first)
+end
+
+
 When /^I visit "(.*)" without following redirects$/ do |path|
   @response = single_http_request("#{@host}#{path}")
 end
