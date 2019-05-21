@@ -1,3 +1,8 @@
+Before do
+  # Clear the request log so that tests only see their requests.
+  @@proxy.new_har
+end
+
 After do
   # Do this manually rather than using `after_example!` so we can configure
   # the log destination to be $stderr rather than $stdout. This prevents
