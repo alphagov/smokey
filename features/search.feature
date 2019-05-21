@@ -7,22 +7,16 @@ Feature: Search
     And I force a varnish cache miss for search
 
   @high
-  Scenario: Check search results for tax
-    When I search for "tax"
+  Scenario Outline: Check search results
+    When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique
 
-  @high
-  Scenario: Check search results for passport
-    When I search for "passport"
-    Then I should see some search results
-    And the search results should be unique
-
-  @high
-  Scenario: Check search results for universal credit
-    When I search for "universal credit"
-    Then I should see some search results
-    And the search results should be unique
+    Examples:
+    | keywords         |
+    | tax              |
+    | passport         |
+    | universal credit |
 
   @normal
   Scenario: Check organisation filtering
