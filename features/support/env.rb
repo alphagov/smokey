@@ -38,9 +38,8 @@ server = BrowserMob::Proxy::Server.new("./bin/browsermob-proxy", port: proxy_por
 server.start
 proxy = server.create_proxy
 
-# Set up request logging and make it available across all tests
-proxy.new_har
-@@har = proxy.har
+# Make the proxy available to the tests
+@@proxy = proxy
 
 # Add request headers
 if ENV["RATE_LIMIT_TOKEN"]

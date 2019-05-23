@@ -7,22 +7,23 @@ Feature: Search
     And I force a varnish cache miss for search
 
   @high
-  Scenario: Check search results for tax
-    When I search for "tax"
+  Scenario Outline: Check search results and analytics
+    When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique
+    And search analytics for "<keywords>" are reported
+    When I expand the search options
+    Then the "filterClicked" event is reported
+    When I go to the next page
+    Then the "contentsClicked" event is reported
+    When I click result 1
+    Then the "navFinderLinkClicked" event for result 1 is reported
 
-  @high
-  Scenario: Check search results for passport
-    When I search for "passport"
-    Then I should see some search results
-    And the search results should be unique
-
-  @high
-  Scenario: Check search results for universal credit
-    When I search for "universal credit"
-    Then I should see some search results
-    And the search results should be unique
+    Examples:
+    | keywords         |
+    | tax              |
+    | passport         |
+    | universal credit |
 
   @normal
   Scenario: Check organisation filtering
