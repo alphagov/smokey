@@ -24,7 +24,7 @@ Feature: Data.gov.uk
 
   @high
   Scenario: Check CKAN loads correctly
-    Given I am testing "https://ckan.publishing.service.gov.uk"
+    Given I am testing "ckan"
     When I request "/"
     Then I should see "Data publisher"
 
