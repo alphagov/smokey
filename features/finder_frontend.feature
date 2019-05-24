@@ -61,51 +61,7 @@ Feature: Finder Frontend
     Then There should be no alert
     And I should see the string <keyword>
 
-  Examples: news-and-communications finder
-    | keyword                                              |  finder                      |
-    |<script>alert(123)</script>                           | news-and-communications      |
-    |&lt;script&gt;alert(&#39;123&#39;);&lt;/script&gt;    | news-and-communications      |
-    |<img src=x onerror=alert(123) />                      | news-and-communications      |
-    |<svg><script>123<1>alert(123)</script>                | news-and-communications      |
-    |\"><script>alert(123)</script>                        | news-and-communications      |
-    |'><script>alert(123)</script>                         | news-and-communications      |
-    |><script>alert(123)</script>                          | news-and-communications      |
-    |</script><script>alert(123)</script>                  | news-and-communications      |
-    |< / script >< script >alert(123)< / script >          | news-and-communications      |
-    | onfocus=JaVaSCript:alert(123) autofocus              | news-and-communications      |
-    |\" onfocus=JaVaSCript:alert(123) autofocus            | news-and-communications      |
-    |' onfocus=JaVaSCript:alert(123) autofocus             | news-and-communications      |
-    |＜script＞alert(123)＜/script＞                        | news-and-communications      |
-    |<sc<script>ript>alert(123)</sc</script>ript>          | news-and-communications      |
-    |--><script>alert(123)</script>                        | news-and-communications      |
-    |\";alert(123);t=\"                                    | news-and-communications      |
-    |';alert(123);t='                                      | news-and-communications      |
-    |JavaSCript:alert(123)                                 | news-and-communications      |
-    |;alert(123);                                          | news-and-communications      |
-    |\"><script>alert(123);</script x=\"                   | news-and-communications      |
-    |'><script>alert(123);</script x='                     | news-and-communications      |
-    |><script>alert(123);</script x=                       | news-and-communications      |
-  Examples: all finder
-    | keyword                                              |  finder                      |
-    |<script>alert(123)</script>                           | all                          |
-    |&lt;script&gt;alert(&#39;123&#39;);&lt;/script&gt;    | all                          |
-    |<img src=x onerror=alert(123) />                      | all                          |
-    |<svg><script>123<1>alert(123)</script>                | all                          |
-    |\"><script>alert(123)</script>                        | all                          |
-    |'><script>alert(123)</script>                         | all                          |
-    |><script>alert(123)</script>                          | all                          |
-    |</script><script>alert(123)</script>                  | all                          |
-    |< / script >< script >alert(123)< / script >          | all                          |
-    | onfocus=JaVaSCript:alert(123) autofocus              | all                          |
-    |\" onfocus=JaVaSCript:alert(123) autofocus            | all                          |
-    |' onfocus=JaVaSCript:alert(123) autofocus             | all                          |
-    |＜script＞alert(123)＜/script＞                        | all                          |
-    |<sc<script>ript>alert(123)</sc</script>ript>          | all                          |
-    |--><script>alert(123)</script>                        | all                          |
-    |\";alert(123);t=\"                                    | all                          |
-    |';alert(123);t='                                      | all                          |
-    |JavaSCript:alert(123)                                 | all                          |
-    |;alert(123);                                          | all                          |
-    |\"><script>alert(123);</script x=\"                   | all                          |
-    |'><script>alert(123);</script x='                     | all                          |
-    |><script>alert(123);</script x=                       | all                          |
+  Examples:
+    | keyword                     | finder                  |
+    | <script>alert(123)</script> | news-and-communications |
+    | <script>alert(123)</script> | all                     |

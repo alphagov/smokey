@@ -74,12 +74,12 @@ And /^There should be no alert$/ do
 end
 
 And /^I should see the string (.+)$/ do |content|
-  expect(page.find_field('finder-keyword-search').value).to eq(content)
+  expect(page.find('#finder-keyword-search').value).to eq(content)
 end
 
 And /^I fill in the keyword field with (.+)$/ do |content|
-  page.fill_in 'finder-keyword-search', with: "#{content}\n"
-  page.find('button[data-name="keywords"]', match: :first)
+  page.fill_in id: 'finder-keyword-search', with: "#{content}\n"
+  page.find('button[data-name="keywords"]', match: :first, wait: 5)
 end
 
 
