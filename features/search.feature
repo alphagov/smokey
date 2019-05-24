@@ -11,13 +11,13 @@ Feature: Search
     When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique
-    And search analytics for "<keywords>" are reported
     When I expand the search options
-    Then the "filterClicked" event is reported
-    When I go to the next page
-    Then the "contentsClicked" event is reported
-    When I click result 1
-    Then the "navFinderLinkClicked" event for result 1 is reported
+    And I go to the next page
+    And I click result 1
+    Then search analytics for "<keywords>" are reported
+    And the "filterClicked" event is reported
+    And the "contentsClicked" event is reported
+    And the "navFinderLinkClicked" event for result 1 is reported
 
     Examples:
     | keywords         |

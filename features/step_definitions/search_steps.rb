@@ -6,11 +6,11 @@ When /^I expand the search options$/ do
   click_link "+ Show more search options"
 end
 
-When /^I go to the next page$/ do
+And /^I go to the next page$/ do
   click_link "Next page"
 end
 
-When /^I click result (.*)$/ do |n|
+And /^I click result (.*)$/ do |n|
   result = page.all(".finder-results li a")[n.to_i - 1]
   click_link result.text
 end
@@ -33,7 +33,7 @@ And /^the search results should be unique$/ do
   expect(results.uniq.count).to eq(results.count)
 end
 
-And /^search analytics for "(.*)" are reported$/ do |term|
+Then /^search analytics for "(.*)" are reported$/ do |term|
   found = false
   sought = "dp=#{CGI::escape("/search/all?keywords=#{term.sub(' ', '+')}")}"
   $proxy.har.entries.each do |e|
@@ -42,7 +42,7 @@ And /^search analytics for "(.*)" are reported$/ do |term|
   expect(found).to be(true)
 end
 
-Then /^the "(.*)" event is reported$/ do |event|
+And /^the "(.*)" event is reported$/ do |event|
   found = false
   sought = "eventCategory=#{event}"
   $proxy.har.entries.each do |e|
@@ -51,7 +51,7 @@ Then /^the "(.*)" event is reported$/ do |event|
   expect(found).to be(true)
 end
 
-Then /^the "(.*)" event for result (.*) is reported$/ do |event, n|
+And /^the "(.*)" event for result (.*) is reported$/ do |event, n|
   found = false
   sought = "eventCategory=#{event}&eventAction=Search.#{n}"
   $proxy.har.entries.each do |e|
