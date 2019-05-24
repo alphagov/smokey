@@ -79,7 +79,7 @@ end
 
 And /^I fill in the keyword field with (.+)$/ do |content|
   page.fill_in id: 'finder-keyword-search', with: "#{content}\n"
-  page.find('button[data-name="keywords"]', match: :first)
+  page.find('button[data-name="keywords"]', match: :first, wait: 5)
 end
 
 
