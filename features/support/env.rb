@@ -39,7 +39,7 @@ server.start
 proxy = server.create_proxy
 
 # Make the proxy available to the tests
-@@proxy = proxy
+$proxy = proxy
 
 # Add request headers
 if ENV["RATE_LIMIT_TOKEN"]
