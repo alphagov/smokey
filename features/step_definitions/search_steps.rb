@@ -34,28 +34,27 @@ And /^the search results should be unique$/ do
 end
 
 Then /^search analytics for "(.*)" are reported$/ do |term|
-  found = false
   sought = "dp=#{CGI::escape("/search/all?keywords=#{term.sub(' ', '+')}")}"
-  $proxy.har.entries.each do |e|
-    found = true if e.request.url.include? sought
-  end
-  expect(found).to be(true)
+  wait_until { proxy_has_request_containing sought }
+  expect(proxy_has_request_containing sought).to be(true)
 end
 
 And /^the "(.*)" event is reported$/ do |event|
-  found = false
   sought = "eventCategory=#{event}"
-  $proxy.har.entries.each do |e|
-    found = true if e.request.url.include? sought
-  end
-  expect(found).to be(true)
+  wait_until { proxy_has_request_containing sought }
+  expect(proxy_has_request_containing sought).to be(true)
 end
 
 And /^the "(.*)" event for result (.*) is reported$/ do |event, n|
-  found = false
   sought = "eventCategory=#{event}&eventAction=Search.#{n}"
+  wait_until { proxy_has_request_containing sought }
+  expect(proxy_has_request_containing sought).to be(true)
+end
+
+def proxy_has_request_containing(sought)
+  found = false
   $proxy.har.entries.each do |e|
     found = true if e.request.url.include? sought
   end
-  expect(found).to be(true)
+  found
 end
