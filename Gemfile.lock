@@ -101,14 +101,14 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    rubyzip (1.2.2)
+    rubyzip (1.2.3)
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    webdrivers (3.9.4)
+    webdrivers (4.0.0)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (~> 3.0)
@@ -132,7 +132,7 @@ DEPENDENCIES
   rest-client (~> 2)
   rspec (~> 3)
   selenium-webdriver (~> 3)
-  webdrivers (~> 3.9)
+  webdrivers (~> 4.0)
 
 BUNDLED WITH
    1.17.2
