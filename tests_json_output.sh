@@ -13,10 +13,8 @@ if [ "$1" == "" ]; then
   echo "Usage: ./tests_json_output.sh /tmp/smokey.json [environment]"
   exit 1
 else
-  CACHE_FILE="$1"
+  FILE="$1"
 fi
-
-TMP_FILE="${CACHE_FILE}.tmp"
 
 if [ -n "$2" ]; then
     PROFILE="--profile $2"
@@ -25,8 +23,6 @@ else
     ENVIRONMENT="production"
 fi
 
-rm -f ${TMP_FILE}
-/usr/local/bin/govuk_setenv smokey \
+exec /usr/local/bin/govuk_setenv smokey \
     bundle exec cucumber ENVIRONMENT=${ENVIRONMENT} --expand --format json ${PROFILE:-} \
-        -t "not @disabled_in_icinga" > ${TMP_FILE} || true
-mv ${TMP_FILE} ${CACHE_FILE}
+        -t "not @disabled_in_icinga" --out "$FILE"
