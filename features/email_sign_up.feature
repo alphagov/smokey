@@ -81,6 +81,7 @@ Feature: Email signup
     When I visit "/find-eu-exit-guidance-business"
     Then I should see "Get email alerts"
     When I click on the link "Get email alerts"
+    And I choose the checkbox "Personal data"
     And I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
     And the "daily" option should be preselected by default
