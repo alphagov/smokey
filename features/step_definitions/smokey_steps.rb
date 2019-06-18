@@ -213,6 +213,10 @@ When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}"
 end
 
+When /^I try to post to "(.*)" with "(.*)" without following redirects$/ do |path, payload|
+  @response = post_request "#{@host}#{path}", :payload => "#{payload}", dont_follow_redirects: true
+end
+
 Then /^the logo should link to the homepage$/ do
   logo = Nokogiri::HTML.parse(page.body).at_css('#logo')
   expect(logo.attributes['href'].value).to eq(ENV['GOVUK_WEBSITE_ROOT'])
@@ -267,5 +271,32 @@ When /^I see links to pages per topic$/ do
   pages = Nokogiri::HTML.parse(page.body).css(".browse-container a")
   unless pages.any?
     fail "There are no links on this Services and Information page"
+  end
+end
+
+Then /^I should hit the cache$/ do
+  cache_hits = cache_hits_value(@response)
+
+  expect(cache_hits).not_to be nil
+  expect(cache_hits).not_to be("0")
+end
+
+Then /^I should not hit the cache$/ do
+  cache_hits = cache_hits_value(@response)
+
+  expect(cache_hits).not_to be nil
+  expect(cache_hits).to eq("0")
+end
+
+def cache_hits_value(response)
+  header_name = 'X-Cache-Hits'
+  header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
+
+  if response.respond_to? :headers
+    response.headers[header_as_symbol]
+  elsif response['X-Cache-Hits'].present?
+    response[header_name].to_i
+  else
+    raise "Couldn't find X-Cache-Hits header in response"
   end
 end
