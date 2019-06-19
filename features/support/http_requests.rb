@@ -41,6 +41,8 @@ def post_request(url, options = {})
         args.delete :payload
       end
 
+      return response if options[:dont_follow_redirects]
+
       response.follow_redirection(&block)
     else
       response.return!(&block)
@@ -64,6 +66,7 @@ def do_http_request(url, method = :get, options = {}, &block)
   headers = {
     'User-Agent' => 'Smokey Test / Ruby',
     'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'FASTLY-DEBUG' => '1',
   }
 
   started_at = Time.now
