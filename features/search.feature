@@ -30,7 +30,7 @@ Feature: Search
     When I search for "policy"
     Then I should see organisations in the organisation filter
 
-  @normal @notintegration
+  @normal @notintegration @nottraining
   Scenario: Check sitemap
     When I visit "/sitemap.xml"
     Then it should contain a link to at least one sitemap file

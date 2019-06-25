@@ -13,6 +13,10 @@ end
 
 # Set up environment
 case ENV["ENVIRONMENT"]
+when "training"
+  ENV["GOVUK_APP_DOMAIN"] ||= "training.govuk.digital"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.training.govuk.digital"
+  ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] ||= "https://#{basic_auth_credentials}www.training.govuk.digital"
 when "integration"
   ENV["GOVUK_APP_DOMAIN"] ||= "integration.publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.integration.publishing.service.gov.uk"

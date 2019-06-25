@@ -10,14 +10,14 @@ Feature: Benchmarking
     And I should get a "Location" header of "https://www.gov.uk/government/organisations/attorney-generals-office"
     And the elapsed time should be less than 2 seconds
 
-  @low @benchmarking @notintegration
+  @low @benchmarking @notintegration @nottraining
   Scenario: Check the licence finder home page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
     When I visit "/licence-finder"
     Then the elapsed time should be less than 2 seconds
 
-  @normal @benchmarking @notintegration
+  @normal @benchmarking @notintegration @nottraining
   Scenario: Check requesting a PDF takes a reasonable amount of time
     Given I am testing "licensing" internally
       And I am benchmarking
