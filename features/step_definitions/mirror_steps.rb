@@ -1,0 +1,23 @@
+Given /^S3 mirrors/ do |url|	
+  @hosts = Array.new()	
+  @hosts.push("https://govuk-production-mirror.s3.amazonaws.com")
+  @hosts.push("https://govuk-production-mirror-replica.s3.amazonaws.com")
+end	
+
+Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, path|	
+  @responses = []	
+  @hosts.each do |mirror_host|	
+    response = try_get_request(	
+      "#{mirror_host}#{path}",	
+      verify_ssl: false,	
+    )	
+    expect(response.code).to eq(status.to_i)	
+    @responses << response	
+  end	
+end	
+
+Then /^I should see a technical difficulties message$/ do	
+  @responses.each do |response|	
+    expect(response.body).to include("Sorry, we're experiencing technical difficulties")	
+  end	
+end
