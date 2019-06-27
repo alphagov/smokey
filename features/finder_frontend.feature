@@ -47,11 +47,6 @@ Feature: Finder Frontend
     Then I should see filtered documents
     And I should see an open facet titled "Case type" with non-blank values
 
-  @normal
-  Scenario: Check advanced search returns results
-    When I visit "/search/advanced?topic=/education&group=news_and_communications"
-    Then I should see filtered documents
-
   @high
   Scenario Outline: Check malicious code does not execute
     When I visit the "<finder>" finder with keywords <keyword>
