@@ -14,7 +14,7 @@ Feature: Email signup
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
     And the "immediately" option should be preselected by default
-    When I choose radio button "No more than once a week" and click on "Next"
+    When I choose radio button "Once a week" and click on "Next"
     And I input "simulate-delivered@notifications.service.gov.uk" and click subscribe
     Then I should see "You’ve subscribed successfully"
 
