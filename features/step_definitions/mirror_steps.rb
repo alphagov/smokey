@@ -7,11 +7,10 @@ end
 Then /^I should get a (\d+) response from "(.*)" on the mirrors$/ do |status, path|	
   @responses = []	
   @hosts.each do |mirror_host|	
-    response = try_get_request(	
-      "#{mirror_host}#{path}",	
-      verify_ssl: false,	
+    response = single_http_request(	
+      "#{mirror_host}#{path}"
     )	
-    expect(response.code).to eq(status.to_i)	
+    expect(response.code.to_i).to eq(status.to_i)	
     @responses << response	
   end	
 end	
