@@ -1,4 +1,4 @@
-Given /^S3 mirrors/ do |url|	
+Given /^S3 mirrors/ do
   @hosts = Array.new()	
   @hosts.push("https://govuk-production-mirror.s3.amazonaws.com")
   @hosts.push("https://govuk-production-mirror-replica.s3.amazonaws.com")
