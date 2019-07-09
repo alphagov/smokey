@@ -39,13 +39,6 @@ Feature: Data.gov.uk
     Then I should see a similar dataset count
 
   @high @notintegration @notstaging @nottraining
-  Scenario: Check there is an accurate number of datasets
-    Given I am testing "https://data.gov.uk"
-    And I force a varnish cache miss
-    When I search for "" in datasets
-    Then I should see an accurate dataset count
-
-  @high @notintegration @notstaging @nottraining
   Scenario: Check that we don't get any s3 CSP errors for organogram previews
     Given I am testing "https://data.gov.uk"
     When I preview an organogram

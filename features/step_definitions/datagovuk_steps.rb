@@ -21,15 +21,6 @@ Then /^I should see a similar dataset count$/ do
   expect(count).to be_within(25).of(@package_count)
 end
 
-Then /^I should see an accurate dataset count$/ do
-  count_span = page.first(".dgu-results__summary span.bold-small")
-  count = count_span.text.gsub(/[^\d^\.]/, '').to_i
-
-  # this is correct as of the 26th April 2019, we might need to increase this
-  # number in the future if more datasets are published
-  expect(count).to be_within(1500).of(52823)
-end
-
 When /^I preview an organogram$/ do
   visit_path "#{@host}/dataset/7d114298-919b-4108-9600-9313e34ce3b8/organogram-of-staff-roles-salaries-september-2018/datafile/83a8d9f0-2d7c-433b-96f3-77866cddf058/preview"
 end
