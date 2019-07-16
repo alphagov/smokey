@@ -107,7 +107,7 @@ def do_http_request(url, method = :get, options = {}, &block)
     method: method,
     user: user,
     password: password,
-    headers: headers,
+	headers: headers.merge(options[:headers] || {}),
     timeout: 10,
     payload: options[:payload],
     verify_ssl: options[:verify_ssl],
