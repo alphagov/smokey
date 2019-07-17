@@ -4,6 +4,7 @@ Feature: WAF
 
   Background:
     Given I am testing through the full stack
+    And I force a varnish cache miss
 
   @high
   Scenario: Check that the X-Always-Block rule is in place
