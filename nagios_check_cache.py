@@ -167,8 +167,9 @@ def main():
     logfile = smokey_log_dir + feature_name + '_' + sys.argv[2] + '.log'
     ensure_log_directory_exists(smokey_log_dir)
     # Parse the json into valuble information
-    feature_test_run = FeatureTestRun(feature_name, smokey_json, priority, logfile);
+    feature_test_run = FeatureTestRun(feature_name, smokey_json, priority, logfile)
     # We didn't even find this feature in the steps!
+
     if not feature_test_run.feature_found:
         log_result_and_exit(0, "OK: But feature %s was not found" % feature_name)
 
@@ -183,19 +184,10 @@ def main():
         status = "OK"
         exitcode = 0
     else:
-        # We use this exitcode later
-        exitcode = 99
+        log_result_and_exit(3, "UNKNOWN: No tests were run")
 
-    # Assuming we had a non-zero number of checks, lets spit out Nagios output
-    if exitcode != 99:
-        log_result_and_exit(exitcode, "%s: %s failed, %s skipped, %s passed; \n\n%s" % (
-            status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
-
-    # We had no steps, but did the feature at least exist?
-    if feature_test_run.feature_found:
-        log_result_and_exit(0, "OK: But no %s tests for %s found" % (priority, feature_name))
-    else:
-        log_result_and_exit(3, "UNKNOWN: Something went very wrong")
+    log_result_and_exit(exitcode, "%s: %s failed, %s skipped, %s passed; \n\n%s" % (
+        status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
 
 
 if __name__ == '__main__':
