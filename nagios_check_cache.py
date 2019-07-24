@@ -171,7 +171,7 @@ def main():
     # We didn't even find this feature in the steps!
 
     if not feature_test_run.feature_found:
-        log_result_and_exit(0, "OK: But feature %s was not found" % feature_name)
+        log_result_and_exit(3, "UNKNOWN: Feature %s was not found" % feature_name)
 
     # Check the output of our tests
     if feature_test_run.failed > 0:
