@@ -184,7 +184,7 @@ def main():
         status = "OK"
         exitcode = 0
     else:
-        log_result_and_exit(3, "UNKNOWN: No tests were run")
+        log_result_and_exit(0, "OK: But no %s tests for %s found" % (priority, feature_name))
 
     log_result_and_exit(exitcode, "%s: %s failed, %s skipped, %s passed; \n\n%s" % (
         status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
