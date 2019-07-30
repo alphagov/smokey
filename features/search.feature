@@ -17,7 +17,8 @@ Feature: Search
     When I go to the next page
     Then the "contentsClicked" event is reported
     When I click result 1
-    Then the "navFinderLinkClicked" event for result 1 is reported
+    Then the "navFinderLinkClicked" event for result Search.1 is reported
+    Then the "UX" event for result click is reported
 
     Examples:
     | keywords         |

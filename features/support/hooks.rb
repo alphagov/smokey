@@ -1,6 +1,6 @@
 Before do
   # Clear the request log so that tests only see their requests.
-  $proxy.new_har
+  $proxy.new_har(capture_binary_content: true)
 end
 
 After do
