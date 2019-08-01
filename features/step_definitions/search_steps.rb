@@ -10,8 +10,8 @@ When /^I go to the next page$/ do
   click_link "Next page"
 end
 
-When /^I click result (.*)$/ do |n|
-  result = page.all(".finder-results li a")[n.to_i - 1]
+When /^I click result (.*)$/ do |num|
+  result = page.all(".finder-results li a")[num.to_i - 1]
   click_link result.text
 end
 
@@ -35,26 +35,26 @@ end
 
 Then /^search analytics for "(.*)" are reported$/ do |term|
   sought = "dp=#{CGI::escape("/search/all?keywords=#{term.sub(' ', '+')}")}"
-  wait_until { proxy_has_request_containing sought }
-  expect(proxy_has_request_containing sought).to be(true)
+  wait_until { proxy_has_request_with_body_containing sought }
+  expect(proxy_has_request_with_body_containing sought).to be(true)
 end
 
 Then /^the "(.*)" event is reported$/ do |event|
-  sought = "eventCategory=#{event}"
-  wait_until { proxy_has_request_containing sought }
-  expect(proxy_has_request_containing sought).to be(true)
+  sought = "ec=#{event}"
+  wait_until { proxy_has_request_with_body_containing sought }
+  expect(proxy_has_request_with_body_containing sought).to be(true)
 end
 
 Then /^the "(.*)" event for result (.*) is reported$/ do |event, n|
-  sought = "eventCategory=#{event}&eventAction=Search.#{n}"
-  wait_until { proxy_has_request_containing sought }
-  expect(proxy_has_request_containing sought).to be(true)
+  sought = "ec=#{event}&ea=#{n}"
+  wait_until { proxy_has_request_with_body_containing sought }
+  expect(proxy_has_request_with_body_containing sought).to be(true)
 end
 
-def proxy_has_request_containing(sought)
-  found = false
-  $proxy.har.entries.each do |e|
-    found = true if e.request.url.include? sought
+def proxy_has_request_with_body_containing(sought)
+  $proxy.har.entries.any? do |e|
+    if e.request.body_size.positive?
+      e.request.post_data.text.include?(sought)
+    end
   end
-  found
 end
