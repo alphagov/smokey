@@ -32,7 +32,7 @@ Feature: Email signup
   @normal
   Scenario: Starting from the news and communications finder
     When I visit "/search/news-and-communications"
-    And I click on the link "email"
+    And I click on the link "Get email alerts"
     Then I should see "Email alert subscription"
     When I click on the button "Create subscription"
     Then I should see "How often do you want to get updates?"
@@ -81,7 +81,6 @@ Feature: Email signup
     When I visit "/find-eu-exit-guidance-business"
     Then I should see "Get email alerts"
     When I click on the link "Get email alerts"
-    And I choose the checkbox "Personal data"
-    And I click on the button "Create subscription"
+    And I choose the checkbox "Personal data" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
     And the "daily" option should be preselected by default
