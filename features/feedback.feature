@@ -19,3 +19,11 @@ Feature: Feedback
   Scenario: Check the FoI page loads correctly
     When I visit "/contact/foi"
     Then I should see "How to make a freedom of information (FOI) request"
+
+  @normal
+  Scenario: Check "is this page useful?" email survey
+    When I visit "/"
+    And I click to say the page is not useful
+    And I submit the email survey signup form
+    Then I see a signup confirmation message
+    And a request is sent to the feedback app
