@@ -1,5 +1,8 @@
 Feature: Data.gov.uk
   Tests for "Find open data" and CKAN on data.gov.uk
+  
+  Background:
+    Given I am testing through the full stack
 
   @high @notintegration @notstaging @nottraining
   Scenario: Check home page loads correctly
