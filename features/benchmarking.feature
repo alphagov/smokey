@@ -43,9 +43,9 @@ Feature: Benchmarking
     Then the elapsed time should be less than 2 seconds
 
   @normal @benchmarking
-  Scenario: Check the statistics announcements page loads quickly
+  Scenario: Check the research and statistics page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
-    When I visit "/government/statistics/announcements"
+    When I visit "/search/research-and-statistics"
     Then the elapsed time should be less than 2 seconds
