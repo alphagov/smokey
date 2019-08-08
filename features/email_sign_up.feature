@@ -45,7 +45,7 @@ Feature: Email signup
     Then I should see "Create subscription"
     And I choose the checkbox "Statistics (published)" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
-    And the "As soon as they happen" option should be preselected by default
+    And the "immediately" option should be preselected by default
 
   @normal
   Scenario: Starting from a taxon page
