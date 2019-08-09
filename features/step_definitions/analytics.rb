@@ -16,10 +16,20 @@ Then /^the "(.*)" event for result (.*) is reported$/ do |event, n|
   expect(proxy_has_request_with_body_containing sought).to be(true)
 end
 
+Then /^the page view should be tracked$/ do
+  sought = "t=pageview"
+  wait_until { proxy_has_request_with_body_containing sought }
+  expect(proxy_has_request_with_body_containing sought).to be(true)
+end
+
 def proxy_has_request_with_body_containing(sought)
-  $proxy.har.entries.any? do |e|
-    if e.request.body_size.positive?
-      e.request.post_data.text.include?(sought)
+  $proxy.har.entries.any? do |entry|
+    request = entry.request
+
+    return true if request.url.include?(sought)
+
+    if request.body_size.positive?
+      return true if request.post_data.text.include?(sought)
     end
   end
 end

@@ -26,6 +26,11 @@ Feature: Frontend
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
   @normal
+  Scenario: Check homepage sends an event to Google Analytics
+    When I visit "/"
+    Then the page view should be tracked
+
+  @normal
   Scenario: Check 404 page content type and charset
     When I visit a non-existent page
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
