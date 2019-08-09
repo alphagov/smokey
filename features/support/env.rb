@@ -54,6 +54,9 @@ end
 proxy.blacklist(/^https:\/\/www\.youtube\.com/i, 200)
 proxy.blacklist(/^https:\/\/s\.ytimg\.com/i, 200)
 
+# To avoid sending events to Google Analytics
+proxy.blacklist(/^https:\/\/www\.google\-analytics\.com/i, 200)
+
 # Licensify admin doesn't have favicon.ico so block requests to prevent errors
 proxy.blacklist(/^https:\/\/licensify-admin(.*)\.publishing\.service\.gov\.uk\/favicon\.ico$/i, 200)
 
