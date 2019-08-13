@@ -52,7 +52,6 @@ end
 
 # Blacklist YouTube to prevent cross-site errors
 proxy.blacklist(/^https:\/\/www\.youtube\.com/i, 200)
-proxy.blacklist(/^https:\/\/www\.youtube\-nocookie\.com/i, 200)
 proxy.blacklist(/^https:\/\/s\.ytimg\.com/i, 200)
 
 # To avoid sending events to Google Analytics
