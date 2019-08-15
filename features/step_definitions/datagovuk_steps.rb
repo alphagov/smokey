@@ -7,9 +7,13 @@ Then /^I should see some dataset results$/ do
   expect(result_links.count).to be >= 1
 end
 
+When /^I search for all datasets$/ do
+  visit "#{@host}/dataset?q="
+end
+
 When /^I save the dataset count$/ do
-  json = JSON.parse(@response.body)
-  @package_count = json.fetch("result").fetch("count")
+  package_count_form = page.first(".search-form h2")
+  @package_count = package_count_form.text.gsub(/[^\d^\.]/, '').to_i
 end
 
 Then /^I should see a similar dataset count$/ do

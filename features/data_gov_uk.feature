@@ -34,7 +34,7 @@ Feature: Data.gov.uk
   @high @notintegration @notstaging @nottraining
   Scenario: Check datasets sync between CKAN and Find
     Given I am testing "https://ckan.publishing.service.gov.uk"
-    When I request "/api/3/action/package_search"
+    When I search for all datasets
     And I save the dataset count
     Given I am testing "https://data.gov.uk"
     And I force a varnish cache miss
