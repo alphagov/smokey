@@ -48,4 +48,4 @@ Feature: Benchmarking
     And I am testing through the full stack
     And I force a varnish cache miss
     When I visit "/search/research-and-statistics"
-    Then the elapsed time should be less than 2 seconds
+    Then the elapsed time should be less than 4 seconds
