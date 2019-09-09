@@ -43,7 +43,6 @@ Feature: Email signup
     When I visit "/search/research-and-statistics"
     And I click on the link "Get email alerts"
     Then I should see "Create subscription"
-    And I choose the checkbox "Statistics (published)" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
     And the "immediately" option should be preselected by default
 
