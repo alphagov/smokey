@@ -3,7 +3,7 @@ When /^I search for "(.*)"$/ do |term|
 end
 
 When /^I expand the search options$/ do
-  click_link "+ Show more search options"
+  click_button "+ Show more search options"
 end
 
 When /^I go to the next page$/ do
