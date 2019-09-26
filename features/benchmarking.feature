@@ -10,7 +10,7 @@ Feature: Benchmarking
     And I should get a "Location" header of "https://www.gov.uk/government/organisations/attorney-generals-office"
     And the elapsed time should be less than 2 seconds
 
-  @low @benchmarking @notintegration @nottraining
+  @low @benchmarking @notintegration @nottraining @aws
   Scenario: Check the licence finder home page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
@@ -42,7 +42,7 @@ Feature: Benchmarking
     When I visit "/api/world-locations"
     Then the elapsed time should be less than 2 seconds
 
-  @normal @benchmarking
+  @normal @benchmarking @aws
   Scenario: Check the research and statistics page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
