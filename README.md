@@ -17,7 +17,7 @@ files to describe single applications (eg
 
 ### Installation
 
-Smokey requires Java to be installed, because of its [use of the BrowserMob Proxy](#use-of-browsermob-proxy). Note that if you're using the Development VM then Java is already installed.
+Smokey requires Java to be installed, because of its [use of the BrowserUp Proxy](#use-of-browserup-proxy). Note that if you're using the Development VM then Java is already installed.
 
 If you're not using the VM, or want to run Smokey on your host Mac, run `brew cask install adoptopenjdk`.
 
@@ -92,20 +92,20 @@ You can use the following environment variables to configure the tests:
 
 ### HTTP status code failure
 
-A common test failure is `HTTP status code 550 (RestClient::RequestFailed)`. This is a result of the BrowserMob Proxy java process running as part of a previously aborted smokey-loop and the new smoke tests cannot start a new proxy.
+A common test failure is `HTTP status code 550 (RestClient::RequestFailed)`. This is a result of the BrowserUp Proxy java process running as part of a previously aborted smokey-loop and the new smoke tests cannot start a new proxy.
 
 It's necessary to kill the existing java process (replace process numbers as appropriate).
 
 ```sh
 $ ps -ef | grep java
-> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browsermob-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browsermob-dist-2.1.4.jar --port 3222
+> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browserup-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browserup-dist-2.0.1.jar --port 3222
 $ sudo kill -9 6385
 ```
 
 You can even set up an alias in your `~/.bash_profile`:
 
 ```sh
-alias killbrowsermob="ps xu | grep [b]rowsermob-proxy | grep -v grep | awk '{ print \$2 }' | xargs kill -9"
+alias killbrowserup="ps xu | grep [b]rowserup-proxy | grep -v grep | awk '{ print \$2 }' | xargs kill -9"
 ```
 
 ### Spoofing the target domain
@@ -151,9 +151,9 @@ Scenario: check guides load
 
 The master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L33) to the monitoring machines to run the Smokey loop. The Smokey that runs after deployments is always the latest version from the master branch and does not need deployment.
 
-### Use of BrowserMob Proxy
+### Use of BrowserUp Proxy
 
-Smokey uses BrowserMob Proxy as a proxy between the feature tests and Selenium. The proxy allows manipulation of HTTP request headers, which is not supported by Selenium. The proxy consists of a runner in `bin` and a JAR containing the application in `lib`.
+Smokey uses BrowserUp Proxy as a proxy between the feature tests and Selenium. The proxy allows manipulation of HTTP request headers, which is not supported by Selenium. The proxy consists of a runner in `bin` and a JAR containing the application in `lib`.
 
 ### Use of scripts
 
