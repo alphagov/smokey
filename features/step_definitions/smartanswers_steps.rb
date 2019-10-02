@@ -10,7 +10,7 @@ end
 Then /^the slug should be (valid|invalid)$/ do |valid_or_invalid|
   is_valid = valid_or_invalid == "valid"
 
-  error_message = "#current-error"
+  error_message = ".govuk-error-message"
 
   if is_valid
     expect(@response.body).to_not have_css(error_message)
