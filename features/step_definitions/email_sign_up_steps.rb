@@ -9,7 +9,7 @@ When /^I input "(.*)" and click subscribe$/ do |email|
 end
 
 When /^I click on the link "(.*?)"$/ do |link_text|
-  click_link link_text
+  click_link link_text, match: :first
 end
 
 When /^I choose the checkbox "(.*)" and click on "(.*)"$/ do |option, button_text|
