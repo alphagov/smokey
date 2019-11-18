@@ -7,7 +7,7 @@ def previous_tax_years
 end
 
 Then(/^I should be able to see the previous tax year$/) do
-  within("#tax-year") do
+  within("#tax_year") do
     expect(page).to have_content(previous_tax_years.join(" to "))
   end
 end
