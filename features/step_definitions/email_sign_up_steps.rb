@@ -3,11 +3,6 @@ When /^I choose radio button "(.*?)" and click on "(.*?)"$/ do |option, button_t
   step "I click on the button \"#{button_text}\""
 end
 
-When /^I input "(.*)" and click subscribe$/ do |email|
-  fill_in('address', with: email)
-  step "I click on the button \"Subscribe\""
-end
-
 When /^I click on the link "(.*?)"$/ do |link_text|
   click_link link_text, match: :first
 end
