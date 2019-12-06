@@ -2,10 +2,6 @@ When /^I search for "(.*)"$/ do |term|
   visit_path "/search?q=#{term}"
 end
 
-When /^I expand the search options$/ do
-  click_button "+ Show more search options"
-end
-
 When /^I go to the next page$/ do
   click_link "Next page"
 end
