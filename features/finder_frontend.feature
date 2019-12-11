@@ -54,7 +54,6 @@ Feature: Finder Frontend
     When I visit the "<finder>" finder without keywords
     And I fill in the keyword field with <keyword>
     Then There should be no alert
-    And I should see the string <keyword>
 
   Examples:
     | keyword                     | finder                  |
