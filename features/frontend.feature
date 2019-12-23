@@ -25,7 +25,7 @@ Feature: Frontend
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
-  @normal
+  @pending
   Scenario: Check homepage sends an event to Google Analytics
     When I visit "/"
     Then the page view should be tracked
