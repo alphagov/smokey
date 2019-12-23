@@ -6,7 +6,7 @@ Feature: Search
     Given I am testing through the full stack
     And I force a varnish cache miss for search
 
-  @high
+  @pending
   Scenario Outline: Check search results and analytics
     When I search for "<keywords>"
     Then I should see some search results
