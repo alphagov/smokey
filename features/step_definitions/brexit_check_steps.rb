@@ -5,17 +5,17 @@ end
 
 When "I answer the nationality question" do
   choose('British', visible: false)
-  click_button "Next"
+  click_button "Continue"
 end
 
 When "I answer the where do you live question" do
   choose('Another EU country', visible: false)
-  click_button "Next"
+  click_button "Continue"
 end
 
 When "I skip all other questions" do
   while page.has_current_path?('/get-ready-brexit-check/questions', ignore_query: true)
-    click_button "Next"
+    click_button "Continue"
   end
 end
 
