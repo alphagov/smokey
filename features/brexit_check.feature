@@ -16,7 +16,7 @@ Feature: Get Ready for Brexit Check
 
   @high
   Scenario: Check that the Brexit checker can be subscribed to
-    When I visit "/get-ready-brexit-check/questions"
+    When I visit "/transition-check/questions"
     And I answer the nationality question
     And I skip all other questions
     And I click Subscribe link
