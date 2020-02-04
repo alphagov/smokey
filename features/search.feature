@@ -6,14 +6,12 @@ Feature: Search
     Given I am testing through the full stack
     And I force a varnish cache miss for search
 
-  @pending
+  @high
   Scenario Outline: Check search results and analytics
     When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique
     Then search analytics for "<keywords>" are reported
-    When I expand the search options
-    Then the "filterClicked" event is reported
     When I go to the next page
     Then the "contentsClicked" event is reported
     When I click result 1
