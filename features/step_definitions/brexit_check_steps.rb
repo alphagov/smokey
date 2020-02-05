@@ -20,7 +20,7 @@ When "I skip all other questions" do
 end
 
 Then "I should see the results page" do
-  expect(page).to have_content("Get ready for a no-deal Brexit: Your results")
+  expect(page).to have_content("How to get ready for new rules in 2021: Your results")
 end
 
 Then "I should see confirmation of my answers" do
