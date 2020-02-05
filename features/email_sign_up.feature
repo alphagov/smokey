@@ -66,10 +66,3 @@ Feature: Email signup
     And I choose the checkbox "Markets" and click on "Create subscription"
     Then I should see "How often do you want to get updates?"
 
-  @normal
-  Scenario: Starting from the business finder
-    When I visit "/find-eu-exit-guidance-business"
-    Then I should see "Get email alerts"
-    When I click on the link "Get email alerts"
-    And I choose the checkbox "Personal data" and click on "Create subscription"
-    Then I should see "How often do you want to get updates?"
