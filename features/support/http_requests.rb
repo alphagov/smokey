@@ -63,6 +63,11 @@ def do_http_request(url, method = :get, options = {}, &block)
   }
   options = defaults.merge(options)
 
+  if @consent_cookie_value
+    cookies = options.fetch(:cookies, {}).merge("cookies_policy": @consent_cookie_value)
+    options = options.merge(cookies: cookies)
+  end
+
   headers = {
     'User-Agent' => 'Smokey Test / Ruby',
     'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',

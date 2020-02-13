@@ -4,6 +4,7 @@ Feature: Search
 
   Background:
     Given I am testing through the full stack
+    And I consent to cookies
     And I force a varnish cache miss for search
 
   @high

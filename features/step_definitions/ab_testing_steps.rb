@@ -8,11 +8,13 @@ Given(/^there is an A\/B test set up$/) do
 end
 
 Given(/^I do not have any A\/B testing cookies set$/) do
-  assert_equal(
-    [],
-    Capybara.current_session.driver.browser.manage.all_cookies,
-    "There should be no cookies set"
-  )
+  Capybara.current_session.driver.browser.manage.all_cookies.each do |cookie|
+    refute_equal(
+      "ABTest-Example",
+      cookie[:name],
+      "There should be no A/B cookies set"
+    )
+  end
 end
 
 Then(/^we have shown them all versions of the A\/B test$/) do

@@ -7,6 +7,7 @@ Feature: A/B Testing
 
   Background:
     Given there is an A/B test set up
+    And I consent to cookies
     And I am testing through the full stack
 
   @low
