@@ -39,6 +39,20 @@ Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
 
+And /^I consent to cookies$/ do
+  visit_path "/"
+  click_button "Accept"
+
+  consent_cookie = Capybara
+    .current_session
+    .driver
+    .browser
+    .manage
+    .cookie_named("cookies_policy")
+
+  @consent_cookie_value = consent_cookie[:value]
+end
+
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit_path application_external_url(app_name)
 end

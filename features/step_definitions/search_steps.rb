@@ -1,6 +1,5 @@
 When /^I search for "(.*)"$/ do |term|
   visit_path "/search?q=#{term}"
-  click_button "Accept" # Pesky search cookie window needs to be told to go away
 end
 
 When /^I expand the search options$/ do
