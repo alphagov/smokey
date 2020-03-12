@@ -80,6 +80,7 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument("--headless")
   options.add_argument("--disable-gpu")
   options.add_argument("--disable-xss-auditor")
+  options.add_argument("--user-agent=Smokey\ Test\ \/\ Ruby")
 
   Capybara::Selenium::Driver.new(
     app,
