@@ -22,7 +22,7 @@ Feature: Data.gov.uk
   Scenario: Check RDF API loads
     Given I am testing "https://data.gov.uk"
     And I force a varnish cache miss
-    When I request "/dataset/lidar-composite-dsm-1m1.rdf"
+    When I request "/dataset/lidar-composite-dtm-2017-1m.rdf"
     Then I should get a 200 status code
 
   @high
