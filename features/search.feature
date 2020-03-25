@@ -25,7 +25,7 @@ Feature: Search
     | passport         |
     | universal credit |
 
-  @normal
+  @pending
   Scenario: Check organisation filtering
     When I search for "policy"
     Then I should see organisations in the organisation filter
