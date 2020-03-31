@@ -19,9 +19,7 @@ Feature: Email signup
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
     Then I should see "Get email alerts"
-    When I click on the link "Select"
-    Then I should see "What you’ll get"
-    When I click on the button "Sign up now"
+    When I click on the link "Sign up"
     Then I should see "How often do you want to receive emails?"
 
   @normal
