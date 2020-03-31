@@ -18,7 +18,7 @@ Feature: Email signup
   Scenario: Starting from an organisation home page
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
-    Then I should see "Get email alerts"
+    Then I should see "Sign up to get emails"
     When I click on the link "Sign up"
     Then I should see "How often do you want to receive emails?"
 
@@ -45,7 +45,7 @@ Feature: Email signup
     When I click on the link "Sign up for updates to this topic page"
     Then I should see "What do you want to get alerts about?"
     When I choose radio button "Teaching and leadership" and click on "Select"
-    And I click on the button "Sign up now"
+    And I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
 
   @normal
