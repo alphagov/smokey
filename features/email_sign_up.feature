@@ -19,7 +19,7 @@ Feature: Email signup
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
     Then I should see "Sign up to get emails"
-    When I click on the link "Sign up"
+    When I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
 
   @normal
