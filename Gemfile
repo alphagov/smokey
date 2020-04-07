@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "browsermob-proxy", "~> 0.3"
 gem "capybara", "~> 3"
-gem "capybara-chromedriver-logger", "~> 0.2"
+gem "capybara-chromedriver-logger", "~> 0.3"
 gem "cucumber", "~> 3"
 gem "minitest", "~> 5"
 gem "nokogiri", "~> 1"
