@@ -31,6 +31,8 @@ bundle install
 
 ## Running the tests
 
+You must be disconnected from the VPN before attempting to run the tests locally.
+
 Run the suite with:
 
 ```
