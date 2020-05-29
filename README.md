@@ -41,11 +41,7 @@ SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
 AUTH_USERNAME="<username>" \
 AUTH_PASSWORD="<password>" \
-bundle exec cucumber \
---format pretty \
---tags "not @pending" \
---tags "not @local-network" \
---tags "not @notintegration"
+bundle exec cucumber
 ```
 
 ### Test configuration

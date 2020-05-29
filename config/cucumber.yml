@@ -1,4 +1,4 @@
-# Options specific to a GOV.UK environment
+default: -t "not @benchmarking" -t "not @pending" -t "not @local-network" -t "not @notintegration"
 training: -t "not @pending" -t "not @nottraining" -t "not @notaws"
 integration: -t "not @pending" -t "not @notintegration" -t "not @notaws"
 staging: -t "not @pending" -t "not @notstaging" -t "not @aws"
