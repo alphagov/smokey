@@ -33,19 +33,7 @@ bundle install
 
 You must be disconnected from the VPN before attempting to run the tests locally.
 
-Run the suite with:
-
-```
-bundle exec rake
-```
-
-or against a single `feature`:
-
-```
-bundle exec cucumber features/frontend.feature
-```
-
-The tests require additional configuration to run successfully. This set of options should allow you to run the tests successfully from your development machine:
+The tests require additional configuration to run successfully on a local machine.
 
 ```
 ENVIRONMENT=integration \
