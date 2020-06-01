@@ -53,7 +53,7 @@ Feature: Email signup
     When I visit "/topic/transport/motorways-major-roads"
     Then I should see "Subscribe to email alerts"
     When I click on the link "Subscribe to email alerts"
-    And I click on the button "Create subscription"
+    And I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
 
   @normal
