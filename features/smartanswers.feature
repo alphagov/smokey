@@ -1,4 +1,4 @@
-@aws @app-smart-answers
+@aws @app-smartanswers
 Feature: Smart Answers
 
   Background:
