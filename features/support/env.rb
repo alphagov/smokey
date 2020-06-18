@@ -7,20 +7,14 @@ require 'plek'
 require 'selenium-webdriver'
 require 'uri'
 
-if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
-  basic_auth_credentials = "#{ENV['AUTH_USERNAME']}:#{ENV['AUTH_PASSWORD']}@"
-end
-
 # Set up environment
 case ENV["ENVIRONMENT"]
 when "training"
   ENV["GOVUK_APP_DOMAIN"] ||= "training.govuk.digital"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.training.govuk.digital"
-  ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] ||= "https://#{basic_auth_credentials}www.training.govuk.digital"
 when "integration"
   ENV["GOVUK_APP_DOMAIN"] ||= "integration.publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.integration.publishing.service.gov.uk"
-  ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] ||= "https://#{basic_auth_credentials}www.integration.publishing.service.gov.uk"
 when "staging", "staging_aws"
   ENV["GOVUK_APP_DOMAIN"] ||= "staging.publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.staging.publishing.service.gov.uk"
@@ -33,7 +27,7 @@ end
 
 # Set up basic URLs
 ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for("draft-origin")
-Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT_WITH_AUTH"] || ENV["GOVUK_WEBSITE_ROOT"]
+Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 
 # Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't
 # support this) on a random port between 3222 and 3229
@@ -48,6 +42,14 @@ $proxy = proxy
 # Add request headers
 if ENV["RATE_LIMIT_TOKEN"]
   proxy.header({ "Rate-Limit-Token" => ENV["RATE_LIMIT_TOKEN"] })
+end
+
+if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
+  proxy.basic_authentication(
+    URI.parse(ENV["GOVUK_WEBSITE_ROOT"]).host,
+    ENV["AUTH_USERNAME"],
+    ENV["AUTH_PASSWORD"],
+  )
 end
 
 # Blacklist YouTube to prevent cross-site errors
