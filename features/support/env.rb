@@ -1,6 +1,7 @@
 require 'browsermob/proxy'
 require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
+require 'gds-api-adapters'
 require 'nokogiri'
 require 'ptools'
 require 'plek'
@@ -13,13 +14,14 @@ when "training"
   ENV["GOVUK_APP_DOMAIN"] ||= "training.govuk.digital"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.training.govuk.digital"
 when "integration"
-  ENV["GOVUK_APP_DOMAIN"] ||= "integration.publishing.service.gov.uk"
+  ENV["GOVUK_APP_DOMAIN"] ||= "integration.govuk-internal.digital"
+  ENV["GOVUK_APP_DOMAIN_EXTERNAL"] ||= "integration.publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.integration.publishing.service.gov.uk"
 when "staging", "staging_aws"
-  ENV["GOVUK_APP_DOMAIN"] ||= "staging.publishing.service.gov.uk"
+  ENV["GOVUK_APP_DOMAIN_EXTERNAL"] ||= "staging.publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.staging.publishing.service.gov.uk"
 when "production", "production_aws"
-  ENV["GOVUK_APP_DOMAIN"] ||= "publishing.service.gov.uk"
+  ENV["GOVUK_APP_DOMAIN_EXTERNAL"] ||= "publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.gov.uk"
 else
   raise "ENVIRONMENT should be one of integration, staging, staging_aws, production or production_aws"
