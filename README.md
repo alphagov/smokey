@@ -45,31 +45,16 @@ bundle exec cucumber
 You can use the following environment variables to configure the tests:
 
 * `ENVIRONMENT`
-  * Default: Blank
-  * The environment to run the smoke tests in.
-* `GOVUK_WEBSITE_ROOT`
-  * Default: The website root corresponding to the chosen environment.
-  * Used when checking for the correct URLs in tests.
-* `GOVUK_DRAFT_WEBSITE_ROOT`
-  * Default: The value returned by [`plek`](http://github.com/alphagov/plek) for `draft-origin`.
-  * Required by tests tagged with `@draft`.
-* `GOVUK_APP_DOMAIN`
-  * Default: The app domain corresponding to the chosen environment.
-  * Used to construct URLs in the `#application_base_url` method.
+  * This is used to set environment variables for [Plek](https://github.com/alphagov/plek).
 * `AUTH_USERNAME`
-  * Default: Blank
-  * Set the HTTP Basic username required to access `GOVUK_WEBSITE_ROOT`.
+  * Set the HTTP Basic auth username (required for Integration).
 * `AUTH_PASSWORD`
-  * Default: Blank
-  * Set the HTTP Basic password required to access `GOVUK_WEBSITE_ROOT`.
+  * Set the HTTP Basic auth password (required for Integration).
 * `SIGNON_EMAIL`
-  * Default: Blank
   * Email address of a user with a Signon account in the environment the tests are being run in.
 * `SIGNON_PASSWORD`
-  * Default: Blank
   * Password of a user with a Signon account in the environment the tests are being run in.
 * `RATE_LIMIT_TOKEN`
-  * Default: Blank
   * A token used to bypass the default rate limiting.
 
 ### HTTP status code failure
