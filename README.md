@@ -17,17 +17,13 @@ files to describe single applications (eg
 
 ### Installation
 
-Smokey requires Java to be installed, because of its [use of the BrowserUp Proxy](#use-of-browserup-proxy). Note that if you're using the Development VM then Java is already installed.
+Smokey requires Java to be installed, because of its [use of the BrowserUp Proxy](#use-of-browserup-proxy).
 
-If you're not using the VM, or want to run Smokey on your host Mac, run `brew cask install adoptopenjdk`.
+- To run Smokey on your host Mac, run `brew cask install adoptopenjdk`.
 
-If you don't have Homebrew installed, or are not using a Mac, you can [download the Java JDK from the AdpotOpenJDK website](https://adoptopenjdk.net/).
+- If you don't have Homebrew installed, [download the Java JDK from the AdpotOpenJDK website](https://adoptopenjdk.net/).
 
-After that, it's a standard Ruby setup:
-
-```
-bundle install
-```
+After that, it's a standard Ruby setup: `bundle install`.
 
 ## Running the tests
 
