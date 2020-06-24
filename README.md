@@ -7,18 +7,30 @@ The master branch of the tests is frequently run in all environments, triggered 
 
 The tests also run in [a continuous Smokey loop](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf), using a version of the master branch [deployed by Jenkins each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb). We use the Smokey loop to provide Icinga alerts for major features.
 
-## Technical documentation
+## Layout
 
-The smoke tests are based on [Cucumber](https://cucumber.io/). We use feature
+The smoke tests are based on [Cucumber](https://cucumber.io/) and [use Selenium to manipulate a headless Chrome browser](features/support/env.rb). We use feature
 files to describe single applications (eg
 [`whitehall`](https://github.com/alphagov/whitehall),
 [`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
-### Installation
+We configure Selenium with a BrowserUp Proxy. The proxy allows us to capture and check for asynchronous requests made by JavaScript in our app e.g. for analytics. It relates to the following files:
 
-Smokey requires Java to be installed, because of its [use of the BrowserUp Proxy](#use-of-browserup-proxy).
+* `bin/browserup-proxy`: a runner script
+* `lib/*`: JARs for BrowserUp Proxy and its dependencies
 
-- To run Smokey on your host Mac, run `brew cask install adoptopenjdk`.
+This repo also contains several scripts to support external systems running the tests and checking their output.
+
+* `tests_json_output.sh`: used to run the Smokey loop and output JSON to a temporary file
+* `nagios_check_cache.py`: used by Icinga to check for pass/fail statuses in the JSON in the temporary file
+* `deploy.sh`: used by Jenkins to deploy Smokey in order to run the Smokey loop
+* `jenkins.sh`: used by Jenkins to run a one-off Smokey e.g. after a deployment
+
+## Installation
+
+Smokey requires Java to be installed, because of its use of the BrowserUp Proxy.
+
+- On your host Mac, run `brew cask install adoptopenjdk`.
 
 - If you don't have Homebrew installed, [download the Java JDK from the AdpotOpenJDK website](https://adoptopenjdk.net/).
 
@@ -104,14 +116,3 @@ Scenario: check guides load
   When I visit "/getting-an-mot/overview"
   Then I should see "Getting an MOT"
 ```
-
-### Use of BrowserUp Proxy
-
-Smokey uses BrowserUp Proxy as a proxy between the feature tests and Selenium. The proxy allows manipulation of HTTP request headers, which is not supported by Selenium. The proxy consists of a runner in `bin` and a JAR containing the application in `lib`.
-
-### Use of scripts
-
-* `tests_json_output.sh`: Used to run the Smokey loop on the monitoring machines and output JSON to a temporary file.
-* `nagios_check_cache.py`: Used by Icinga to check the JSON in the temporary file created by the Smokey loop and determine the current status (pass/fail).
-* `deploy.sh`: Used by Jenkins when running the `Smokey_Deploy` job to deploy Smokey to the monitoring machines.
-* `jenkins.sh`: Used by Jenkins to run a one-off Smokey after a deployment.
