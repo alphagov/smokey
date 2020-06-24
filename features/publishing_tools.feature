@@ -1,3 +1,4 @@
+@app-publishing-api
 Feature: Publishing Tools
 
   @high
