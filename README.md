@@ -68,51 +68,7 @@ You can use the following environment variables to configure the tests:
 * `RATE_LIMIT_TOKEN`
   * A token used to bypass the default rate limiting.
 
-### HTTP status code failure
+## Further documentation
 
-A common test failure is `HTTP status code 550 (RestClient::RequestFailed)`. This is a result of the BrowserUp Proxy java process running as part of a previously aborted smokey-loop and the new smoke tests cannot start a new proxy.
-
-It's necessary to kill the existing java process (replace process numbers as appropriate).
-
-```sh
-$ ps -ef | grep java
-> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browserup-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browserup-dist-2.0.1.jar --port 3222
-$ sudo kill -9 6385
-```
-
-You can even set up an alias in your `~/.bash_profile`:
-
-```sh
-alias killbrowserup="ps xu | grep [b]rowserup-proxy | grep -v grep | awk '{ print \$2 }' | xargs kill -9"
-```
-
-### Adding new tests
-
-Tests that are supposed to be run by Icinga also have to be added to the file
-`modules/monitoring/manifests/checks/smokey.pp` in the [govuk-puppet](https://github.com/alphagov/govuk-puppet) repository. For
-example, the test [frontend.feature](/features/frontend.feature)
-is added to Icinga like this:
-
-```puppet
-icinga::check_feature {
-  'check_frontend':          feature => 'frontend';
-  #other feature tests
-}
-```
-
-### Prioritising scenarios
-
-Because we integrate Icinga with the output from these tests, we provide a set
-of tags which match with how important we consider a scenario to be. `@high` and
-above will trigger pager alerts.
-
-Each scenario can and should be prioritised by using the `@urgent`, `@high`,
-`@normal` or `@low` cucumber tags. For example, the frontend scenario "check
-guides load" can be prioritised like this:
-
-```cucumber
-@low
-Scenario: check guides load
-  When I visit "/getting-an-mot/overview"
-  Then I should see "Getting an MOT"
-```
+- [troubleshooting](docs/troubleshooting.md)
+- [writing-tests](docs/writing-tests.md)
