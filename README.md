@@ -3,10 +3,9 @@
 Automated tests that describe high level user journeys which touch multiple
 applications within the GOV.UK stack.
 
-These are used to verify releases and also to provide Icinga alerts for major
-features.
+The master branch of the tests is frequently run in all environments, triggered by deployments of most GOV.UK applications, CDNs and associated dependencies ([check here](https://github.com/alphagov/govuk-puppet/search?l=HTML%2BERB&q=smokey)).
 
-The tests are run against training, integration, staging and production environments, and are triggered by deployments of most GOV.UK applications, CDNs and associated dependencies (`grep -i "smokey" modules/govuk_jenkins/templates/jobs/*` in the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet) for a full list).
+The tests also run in [a continuous Smokey loop](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf), using a version of the master branch [deployed by Jenkins each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb). We use the Smokey loop to provide Icinga alerts for major features.
 
 ## Technical documentation
 
@@ -105,10 +104,6 @@ Scenario: check guides load
   When I visit "/getting-an-mot/overview"
   Then I should see "Getting an MOT"
 ```
-
-### Deploying
-
-The master branch of this Smokey project is automatically [deployed by Jenkins at about 9am each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb#L33) to the monitoring machines to run the Smokey loop. The Smokey that runs after deployments is always the latest version from the master branch and does not need deployment.
 
 ### Use of BrowserUp Proxy
 
