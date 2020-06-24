@@ -19,8 +19,6 @@ After that, it's a standard Ruby setup: `bundle install`.
 
 ## Running the tests
 
-You must be disconnected from the VPN before attempting to run the tests locally.
-
 The tests require additional configuration to run successfully on a local machine.
 
 ```
