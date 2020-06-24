@@ -51,22 +51,14 @@ AUTH_PASSWORD="<password>" \
 bundle exec cucumber
 ```
 
-### Test configuration
-
 You can use the following environment variables to configure the tests:
 
-* `ENVIRONMENT`
-  * This is used to set environment variables for [Plek](https://github.com/alphagov/plek).
-* `AUTH_USERNAME`
-  * Set the HTTP Basic auth username (required for Integration).
-* `AUTH_PASSWORD`
-  * Set the HTTP Basic auth password (required for Integration).
-* `SIGNON_EMAIL`
-  * Email address of a user with a Signon account in the environment the tests are being run in.
-* `SIGNON_PASSWORD`
-  * Password of a user with a Signon account in the environment the tests are being run in.
-* `RATE_LIMIT_TOKEN`
-  * A token used to bypass the default rate limiting.
+* `ENVIRONMENT`: used to set environment variables for [Plek](https://github.com/alphagov/plek)
+* `AUTH_USERNAME`: the HTTP Basic auth username (required for Integration)
+* `AUTH_PASSWORD`: the HTTP Basic auth password (required for Integration)
+* `SIGNON_EMAIL`: email address of a user with a Signon account in the environment the tests are being run in
+* `SIGNON_PASSWORD`: password of a user with a Signon account in the environment the tests are being run in
+* `RATE_LIMIT_TOKEN`: a token used to bypass the default rate limiting
 
 ## Further documentation
 
