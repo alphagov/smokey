@@ -76,13 +76,6 @@ def do_http_request(url, method = :get, options = {}, &block)
 
   started_at = Time.now
 
-  spoof_target_domain = ENV['SPOOF_TARGET_DOMAIN']
-  if spoof_target_domain
-    options[:host_header] = URI(url).host
-    url = URI(url).scheme + "://" + spoof_target_domain
-    # FIXME: this is set only in the interests of the migration period
-    options[:verify_ssl] = false
-  end
   if options[:cache_bust]
     url = cache_bust(url, param: 'cache_bust')
   elsif options[:search_cache_bust]

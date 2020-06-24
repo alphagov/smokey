@@ -75,14 +75,6 @@ You can even set up an alias in your `~/.bash_profile`:
 alias killbrowserup="ps xu | grep [b]rowserup-proxy | grep -v grep | awk '{ print \$2 }' | xargs kill -9"
 ```
 
-### Spoofing the target domain
-
-Set the `SPOOF_TARGET_DOMAIN` environment variable to run tests against a alternative URL, while maintaining the `Host` header as set by the `GOVUK_WEBSITE_ROOT` environment variable.
-
-This may be useful when you wish to test against the FQDN of a site where the DNS does not yet resolve to the correct IP.
-
-An alternative method would be to update `/etc/hosts` on the client running the tests.
-
 ### Adding new tests
 
 Tests that are supposed to be run by Icinga also have to be added to the file
