@@ -1,4 +1,4 @@
-@app-publishing-api
+@app-publishing-api @aws
 Feature: Publishing Tools
 
   @high
