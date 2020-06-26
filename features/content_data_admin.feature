@@ -1,3 +1,4 @@
+@aws
 Feature: Content Data Admin
   Tests for the Content Data Admin application, which provides
   publishers with data about the content they manage
