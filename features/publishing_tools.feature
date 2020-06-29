@@ -31,6 +31,15 @@ Feature: Publishing Tools
     And I should see "Taxons"
 
   @high
+  Scenario: Can log in to content-publisher
+    When I go to the "content-publisher" landing page
+    And I try to login as a user
+    And I go to the "content-publisher" landing page
+    Then I should see "Content Publisher"
+    And I should see "Sign out"
+    And I should see "Documents"
+
+  @high
   Scenario: Can log in to imminence
     When I go to the "imminence" landing page
     And I try to login as a user
