@@ -28,3 +28,13 @@ Feature: Foreign Travel Advice
   Scenario: Check country feed contains the correct website root
     When I visit "/foreign-travel-advice/ireland.atom"
     Then the XML ID is formed from the correct URL
+
+  @notproduction
+  Scenario: Publishing travel advice
+    When I go to the "travel-advice-publisher" landing page
+    And I try to login as a user
+    And I go to the "travel-advice-publisher" landing page
+    Then I should see "GOV.UK Travel Advice Publisher"
+    When I publish a new travel advice edition
+    And I visit "/foreign-travel-advice/afghanistan"
+    Then I should see the updated travel advice
