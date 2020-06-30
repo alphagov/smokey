@@ -92,13 +92,11 @@ class FeatureTestRun(object):
         result_details.add("\n")
 
     def set_status_for_scenarios_in_feature(self, feature, priority, result_details):
-        if 'elements' not in feature:
-            log_result_and_exit(0, "OK: Feature %s has no steps at any priority" % feature['id'])
+        if priority != '@normal':
+            return
+
         for scenario in feature['elements']:
-            if 'tags' in scenario:
-                for tag in scenario['tags']:
-                    if tag['name'] == priority:
-                        self.log_details_and_set_status_for_scenario(result_details, feature, priority, scenario)
+            self.log_details_and_set_status_for_scenario(result_details, feature, priority, scenario)
 
     def set_status_for_feature(self, feature_name, json_data, priority):
         feature_uri = 'features/' + feature_name + '.feature'
