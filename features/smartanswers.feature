@@ -11,7 +11,6 @@ Feature: Smart Answers
     When I request "/healthcheck"
     Then I should get a 200 status code
 
-  @normal
   Scenario Outline: Check selected smart answer start pages
     When I request "<Path>"
     Then I should see "<Expected string>"
@@ -26,7 +25,6 @@ Feature: Smart Answers
       | /register-a-death/y                         | Where did the death happen?                          |
       | /vat-payment-deadlines/y                    | When does your VAT accounting period end?            |
 
-  @normal
   Scenario: Check stepping through a smart answer
     Then I should be able to visit:
     | Path                                        |
@@ -35,7 +33,6 @@ Feature: Smart Answers
     | /vat-payment-deadlines/y/2000-01-31         |
     | /vat-payment-deadlines/y/2000-01-31/cheque  |
 
-  @normal
   Scenario: Check stepping through a smart answer that uses Imminence
     Then I should be able to visit:
     | Path                                              |
@@ -46,7 +43,6 @@ Feature: Smart Answers
     | /landlord-immigration-check/y/SW1A2AA/yes/yes     |
     | /landlord-immigration-check/y/SW1A2AA/yes/yes/yes |
 
-  @normal
   Scenario: Check stepping through a smart answer that uses the Worldwide API
     Then I should be able to visit:
     | Path                                                |
@@ -57,7 +53,6 @@ Feature: Smart Answers
     | /marriage-abroad/y/sweden/uk/partner_other          |
     | /marriage-abroad/y/sweden/uk/partner_other/same_sex |
 
-  @normal
   Scenario Outline: Check viewing countries in a select element
     When I request "<Path>"
     Then I should see a populated country select
@@ -73,7 +68,6 @@ Feature: Smart Answers
       | /register-a-death/y/overseas/afghanistan/another_country   |
       | /uk-benefits-abroad/y/going_abroad/child_benefit           |
 
-  @normal
   Scenario Outline: Check country names are correctly formatted
     When I request "<Path>"
     Then I should see "<Expected string>"
@@ -85,7 +79,6 @@ Feature: Smart Answers
       | /register-a-birth/y/cayman-islands                                           | regulations in the Cayman Islands                  |
       | /register-a-death/y/overseas/cayman-islands                                  | regulations in the Cayman Islands                  |
 
-  @normal
   Scenario Outline: Check country slugs are correctly validated
     When I request "<Path>"
     Then the slug should be <Valid>
@@ -101,7 +94,6 @@ Feature: Smart Answers
       | /help-if-you-are-arrested-abroad/y/afghanistan         | valid   |
       | /help-if-you-are-arrested-abroad/y/foo                 | invalid |
 
-  @normal
   Scenario Outline: Check country FCOs can be looked up
     When I request "<Path>"
     Then I should see "<Expected string>"
@@ -111,7 +103,6 @@ Feature: Smart Answers
       | /marriage-abroad/y/afghanistan/uk/partner_british/opposite_sex | Embassy of Afghanistan          |
       | /register-a-death/y/overseas/north-korea/same_country          | British Embassy Pyongyang       |
 
-  @normal
   Scenario Outline: Check postcode lookup
     When I request "<Path>"
     Then I should see "<Expected string>"
@@ -123,7 +114,6 @@ Feature: Smart Answers
       | /landlord-immigration-check/y/SW1A%202AA                                          | Is the person renting      |
       | /landlord-immigration-check/y/EH99%201SP                                          | check in England           |
 
-  @normal
   Scenario: Check personal information is excluded from analytics data
     When I visit "/marriage-abroad/y"
     Then I should see that postcodes are stripped from analytics data

@@ -6,7 +6,6 @@ Feature: Email signup
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @high
   Scenario: Starting from foreign travel advice
     When I visit "/foreign-travel-advice/turkey"
     And I click on the link "Get email alerts"
@@ -14,7 +13,6 @@ Feature: Email signup
     When I click on the button "Create subscription"
     Then I should see "How often do you want to receive emails?"
 
-  @normal
   Scenario: Starting from an organisation home page
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
@@ -22,7 +20,6 @@ Feature: Email signup
     When I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
 
-  @normal
   Scenario: Starting from the news and communications finder
     When I visit "/search/news-and-communications"
     And I click on the link "Get email alerts"
@@ -30,7 +27,6 @@ Feature: Email signup
     When I click on the button "Create subscription"
     Then I should see "How often do you want to receive emails?"
 
-  @normal
   Scenario: Starting from the statistics finder
     When I visit "/search/research-and-statistics"
     And I click on the link "Get email alerts"
@@ -38,7 +34,6 @@ Feature: Email signup
     And I choose the checkbox "Statistics (published)" and click on "Create subscription"
     Then I should see "How often do you want to receive emails?"
 
-  @normal
   Scenario: Starting from a taxon page
     When I visit "/education"
     Then I should see "Sign up for updates to this topic page"
@@ -48,7 +43,6 @@ Feature: Email signup
     And I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
 
-  @normal
   Scenario: Starting from a topic page
     When I visit "/topic/transport/motorways-major-roads"
     Then I should see "Subscribe to email alerts"
@@ -56,11 +50,9 @@ Feature: Email signup
     And I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
 
-  @normal
   Scenario: Starting from a finder (specialist-publisher)
     When I visit "/cma-cases"
     Then I should see "Get email alerts"
     When I click on the link "Get email alerts"
     And I choose the checkbox "Markets" and click on "Create subscription"
     Then I should see "How often do you want to receive emails?"
-

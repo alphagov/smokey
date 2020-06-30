@@ -6,7 +6,6 @@ Feature: WAF
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @high
   Scenario: Check that the X-Always-Block rule is in place
     Given I set header X-Always-Block to true
     When I send a GET request to "/"

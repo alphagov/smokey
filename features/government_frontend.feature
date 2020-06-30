@@ -5,7 +5,6 @@ Feature: Government Frontend
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-    @normal
     Scenario Outline: Check example pages across formats
       When I request "<Path>"
       Then I should get a 200 status code
@@ -41,7 +40,6 @@ Feature: Government Frontend
         | /government/statistical-data-sets/effort-statistics-february-2017                                     |
         | /government/publications/development-scheme/practice-guide-72-development-schemes                     |
 
-  @normal
   Scenario: Check service sign-in offers both Government Gateway and GOV.UK Verify
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     Then I should see "How do you want to sign in?"
@@ -62,7 +60,6 @@ Feature: Government Frontend
     When I choose "Sign in with GOV.UK Verify"
     Then I should be redirected to "https://www.signin.service.gov.uk/start"
 
-  @normal
   Scenario: Check service sign-in redirects correctly to registration page
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Register for Self Assessment"

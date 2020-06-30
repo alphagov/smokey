@@ -7,7 +7,6 @@ Feature: Search
     And I consent to cookies
     And I force a varnish cache miss for search
 
-  @high
   Scenario Outline: Check search results and analytics
     When I search for "<keywords>"
     Then I should see some search results
@@ -30,13 +29,12 @@ Feature: Search
     When I search for "policy"
     Then I should see organisations in the organisation filter
 
-  @normal @notintegration @nottraining
+  @notintegration @nottraining
   Scenario: Check sitemap
     When I visit "/sitemap.xml"
     Then it should contain a link to at least one sitemap file
     And I should be able to get all the referenced sitemap files
 
-  @high
   Scenario: Check malicious code does not execute
     When I search for "<script>alert(document.cookie)</script>"
     Then I see the code returned in the page

@@ -4,7 +4,6 @@ Feature: Manuals Frontend
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @normal
   Scenario: Check manuals load
     Then I should be able to visit:
       | Path                                       |
