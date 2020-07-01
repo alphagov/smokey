@@ -5,6 +5,12 @@ Feature: Smart Answers
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "smartanswers" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code
+
   @normal
   Scenario Outline: Check selected smart answer start pages
     When I request "<Path>"
