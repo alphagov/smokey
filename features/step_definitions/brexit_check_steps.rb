@@ -1,6 +1,6 @@
 When "I start the checker" do
   visit_path "/transition"
-  click_link "Check what's changing"
+  click_link "Check what’s changing"
 end
 
 When "I answer the nationality question" do
