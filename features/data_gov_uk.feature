@@ -31,6 +31,13 @@ Feature: Data.gov.uk
     When I request "/"
     Then I should see "Data publisher"
 
+  @high
+  Scenario: Check CKAN action api's search works
+    Given I am testing "ckan"
+    When I request "/api/action/package_search?q=data"
+    Then I should get a 200 status code
+    And JSON is returned
+
   @high @notintegration @notstaging @nottraining
   Scenario: Check datasets sync between CKAN and Find
     Given I am testing "https://ckan.publishing.service.gov.uk"
