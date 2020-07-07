@@ -9,7 +9,6 @@ DEFAULT_PATHS = {
   'licensing' => '/apply-for-a-license',
   'maslow' => '/needs',
   'publisher' => '/admin',
-  'smartanswers' => '/calculate-your-maternity-pay',
   'specialist-publisher' => '/cma-cases',
   'travel-advice-publisher' => '/admin',
   'whitehall' => '/government/how-government-works',
