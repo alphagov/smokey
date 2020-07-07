@@ -21,5 +21,5 @@ def application_external_url(app_name)
 end
 
 def application_internal_url(app_name)
-  "#{Plek.new.find(app_name)}#{DEFAULT_PATHS.fetch(app_name,'')}"
+  "#{Plek.new.find(app_name)}"
 end
