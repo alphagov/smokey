@@ -25,13 +25,13 @@ def log_result_and_exit(exitcode, message):
 
 
 class FeatureTestRun(object):
-    def __init__(self, feature_name, json_data, priority, logfile):
+    def __init__(self, feature_name, json_data, logfile):
         self.feature_found = False
         self.passed = 0
         self.skipped = 0
         self.failed = 0
         self.log = ""
-        self.set_status_for_feature(feature_name, json_data, priority)
+        self.set_status_for_feature(feature_name, json_data)
         self.write_pretty_log(logfile)
 
     def increment_status_and_capture_failure_message(self, step):
@@ -55,10 +55,10 @@ class FeatureTestRun(object):
     def step_status(self, step):
         return step['result']['status'].upper()[:4]
 
-    def write_step_description_and_status(self, result_details, feature, priority, scenario, step):
+    def write_step_description_and_status(self, result_details, feature, scenario, step):
         result_details.add("    Step: [%s] %s%s\n" % ((self.step_status(step)), step['keyword'], step['name']))
-        message = "%s | %s%s | %s | %s%s" % (
-            (self.step_status(step)), (self.feature_name(feature)), priority, scenario['name'],
+        message = "%s | %s | %s | %s%s" % (
+            (self.step_status(step)), (self.feature_name(feature)), scenario['name'],
             step['keyword'], self.ascii_step_name(step))
         syslog(LOG_NOTICE, message.encode('ascii', 'xmlcharrefreplace'))
 
@@ -71,34 +71,31 @@ class FeatureTestRun(object):
                 row_data += "\n"
                 result_details.add(row_data)
 
-    def write_failure_message(self, result_details, failure_message, feature, priority, scenario, step):
+    def write_failure_message(self, result_details, failure_message, feature, scenario, step):
         result_details.add("      Error: %s\n" % (failure_message.partition('\n')[0]))
-        message = "%s | %s%s | %s | %s%s | Error - %s" % (
-                  self.step_status(step), self.feature_name(feature), priority, scenario['name'],
+        message = "%s | %s | %s | %s%s | Error - %s" % (
+                  self.step_status(step), self.feature_name(feature), scenario['name'],
                   step['keyword'], self.ascii_step_name(step), failure_message.partition('\n')[0])
         syslog(LOG_NOTICE, message.encode('ascii', 'xmlcharrefreplace'))
 
-    def log_details_and_set_status_for_scenario(self, result_details, feature, priority, scenario):
-        result_details.add("  Scenario: %s (%s/%s)\n" % (scenario['name'], feature['uri'], priority))
+    def log_details_and_set_status_for_scenario(self, result_details, feature, scenario):
+        result_details.add("  Scenario: %s (%s)\n" % (scenario['name'], feature['uri'] ))
 
         for step in scenario['steps']:
             failure_message = self.increment_status_and_capture_failure_message(step)
-            self.write_step_description_and_status(result_details, feature, priority, scenario, step)
+            self.write_step_description_and_status(result_details, feature, scenario, step)
             self.write_row_data(result_details, step)
             if failure_message != "":
-                self.write_failure_message(result_details, failure_message, feature, priority, scenario, step)
+                self.write_failure_message(result_details, failure_message, feature, scenario, step)
 
         # To make our log pretty
         result_details.add("\n")
 
-    def set_status_for_scenarios_in_feature(self, feature, priority, result_details):
-        if priority != '@normal':
-            return
-
+    def set_status_for_scenarios_in_feature(self, feature, result_details):
         for scenario in feature['elements']:
-            self.log_details_and_set_status_for_scenario(result_details, feature, priority, scenario)
+            self.log_details_and_set_status_for_scenario(result_details, feature, scenario)
 
-    def set_status_for_feature(self, feature_name, json_data, priority):
+    def set_status_for_feature(self, feature_name, json_data):
         feature_uri = 'features/' + feature_name + '.feature'
         result_details = ResultBuffer()
 
@@ -108,7 +105,7 @@ class FeatureTestRun(object):
                 self.passed = 0
                 self.skipped = 0
                 self.failed = 0
-                self.set_status_for_scenarios_in_feature(feature, priority, result_details)
+                self.set_status_for_scenarios_in_feature(feature, result_details)
 
         self.log = result_details.getvalue()
 
@@ -131,8 +128,8 @@ class ResultBuffer(object):
 
 
 def argument_check():
-    if len(sys.argv) != 4:
-        log_result_and_exit(3, "UNKNOWN: Usage: nagios_check_cache.py feature priority jsonfile")
+    if len(sys.argv) != 3:
+        log_result_and_exit(3, "UNKNOWN: Usage: nagios_check_cache.py feature jsonfile")
 
 
 def argument_sanity_checks(json_file):
@@ -154,18 +151,17 @@ def ensure_log_directory_exists(log_dir):
 def main():
     argument_check()
     feature_name = sys.argv[1]
-    priority = "@" + sys.argv[2]
-    json_file = sys.argv[3]
+    json_file = sys.argv[2]
     argument_sanity_checks(json_file)
     smokey_log_dir = os.path.dirname(os.path.abspath(sys.argv[0])) + '/log/'
     openlog("smokey", 0, LOG_DAEMON)
 
     #  set some variables
     smokey_json = json.loads(open(json_file).read())
-    logfile = smokey_log_dir + feature_name + '_' + sys.argv[2] + '.log'
+    logfile = smokey_log_dir + feature_name + '.log'
     ensure_log_directory_exists(smokey_log_dir)
     # Parse the json into valuble information
-    feature_test_run = FeatureTestRun(feature_name, smokey_json, priority, logfile)
+    feature_test_run = FeatureTestRun(feature_name, smokey_json, logfile)
     # We didn't even find this feature in the steps!
 
     if not feature_test_run.feature_found:
@@ -182,7 +178,7 @@ def main():
         status = "OK"
         exitcode = 0
     else:
-        log_result_and_exit(0, "OK: But no %s tests for %s found" % (priority, feature_name))
+        log_result_and_exit(0, "OK: But no tests for %s found" % (feature_name))
 
     log_result_and_exit(exitcode, "%s: %s failed, %s skipped, %s passed; \n\n%s" % (
         status, feature_test_run.failed, feature_test_run.skipped, feature_test_run.passed, feature_test_run.log))
