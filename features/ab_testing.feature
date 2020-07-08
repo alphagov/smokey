@@ -10,12 +10,10 @@ Feature: A/B Testing
     And I consent to cookies
     And I am testing through the full stack
 
-  @low
   Scenario: Check we end up in all buckets
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the A/B test
 
-  @low
   Scenario: Check that an A/B test works
     And I do not have any A/B testing cookies set
     When I visit "/help/ab-testing"

@@ -4,7 +4,6 @@ Feature: Get Ready for Brexit Check
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @high
   Scenario: Brexit checker shows results
     When I start the checker
     And I answer the nationality question
@@ -14,7 +13,6 @@ Feature: Get Ready for Brexit Check
     And I should see confirmation of my answers
     And I should see answers applicable to me
 
-  @high
   Scenario: Check that the Brexit checker can be subscribed to
     When I visit "/transition-check/questions"
     And I answer the nationality question

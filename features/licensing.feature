@@ -1,7 +1,7 @@
 Feature: Licensing
   Tests for the Licensify app.
 
-  @normal @notintegration @nottraining
+  @notintegration @nottraining
   Scenario: Check licensing app is present
     Given I am testing "licensing" internally
       And I am testing through the full stack
@@ -12,7 +12,7 @@ Feature: Licensing
       | /apply-for-a-licence/test-licence/westminster/apply-1/form        |
       | /apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1         |
 
-  @normal @notintegration @nottraining
+  @notintegration @nottraining
   Scenario: Check signing in to licensify-admin
      When I try to login as a user
       And I login to Licensify

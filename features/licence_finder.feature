@@ -4,7 +4,6 @@ Feature: Licence Finder
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @normal
   Scenario: Check licence finder loads
     Then I should be able to visit:
       | Path                                                              |
@@ -15,12 +14,10 @@ Feature: Licence Finder
       | /licence-finder/location?sectors=59&activities=149                |
       | /licence-finder/licences?activities=149&location=wales&sectors=59 |
 
-  @normal
   Scenario: Check licence finder returns licences
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
 
-  @normal
   Scenario: Check licence postcode lookup
     When I visit "/temporary-events-notice"
     Then I should see "Temporary Events Notice"

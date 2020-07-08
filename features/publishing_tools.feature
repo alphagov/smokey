@@ -1,4 +1,4 @@
-@app-publishing-api @aws @high
+@app-publishing-api @aws
 Feature: Publishing Tools
   Scenario: Can log in to collections-publisher
     When I go to the "collections-publisher" landing page

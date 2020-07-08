@@ -5,13 +5,11 @@ Feature: Router
     Given I am testing through the full stack
     And I force a varnish cache miss
 
-  @high
   Scenario: Check the router loads home page
     Then I should be able to visit:
       | Path      |
       | /         |
 
-  @normal
   Scenario: Check department short URLs redirect correctly
     Then I should be redirected when I try to visit:
       | Path                      |
