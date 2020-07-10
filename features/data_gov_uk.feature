@@ -4,21 +4,21 @@ Feature: Data.gov.uk
   Background:
     Given I am testing through the full stack
 
-  @notintegration @notstaging @nottraining
+  @notintegration @notstaging
   Scenario: Check home page loads correctly
     Given I am testing "https://data.gov.uk"
     And I force a varnish cache miss
     When I request "/"
     Then I should see "Find open data"
 
-  @notintegration @notstaging @nottraining
+  @notintegration @notstaging
   Scenario: Check search works
     Given I am testing "https://data.gov.uk"
     And I force a varnish cache miss
     When I search for "data" in datasets
     Then I should see some dataset results
 
-  @notintegration @notstaging @nottraining
+  @notintegration @notstaging
   Scenario: Check RDF API loads
     Given I am testing "https://data.gov.uk"
     And I force a varnish cache miss
@@ -36,7 +36,7 @@ Feature: Data.gov.uk
     Then I should get a 200 status code
     And JSON is returned
 
-  @notintegration @notstaging @nottraining
+  @notintegration @notstaging
   Scenario: Check datasets sync between CKAN and Find
     Given I am testing "https://ckan.publishing.service.gov.uk"
     When I search for all datasets
@@ -46,7 +46,7 @@ Feature: Data.gov.uk
     When I search for "" in datasets
     Then I should see a similar dataset count
 
-  @notintegration @notstaging @nottraining
+  @notintegration @notstaging
   Scenario: Check that we don't get any s3 CSP errors for organogram previews
     Given I am testing "https://data.gov.uk"
     When I preview an organogram
