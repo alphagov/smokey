@@ -1,6 +1,6 @@
 When "I start the checker" do
   visit_path "/transition"
-  click_link "Check what’s changing"
+  click_link "Start now"
 end
 
 When "I answer the nationality question" do
@@ -9,7 +9,7 @@ When "I answer the nationality question" do
 end
 
 When "I answer the where do you live question" do
-  choose('Another EU country', visible: false)
+  choose('Another EU country, or Switzerland, Norway, Iceland or Liechtenstein', visible: false)
   click_button "Continue"
 end
 
@@ -33,7 +33,7 @@ Then "I should see answers applicable to me" do
 end
 
 When "I click Subscribe link" do
-  click_link "Subscribe"
+  click_link "Subscribe to email updates about changes that may affect you and get a link to your results"
 end
 
 When "I click Subscribe button" do
