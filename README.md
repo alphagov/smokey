@@ -62,3 +62,4 @@ This repo also contains several scripts to support external systems running the 
 
 - [troubleshooting](docs/troubleshooting.md)
 - [writing-tests](docs/writing-tests.md)
+- [pr-template](.github/pull_request_template.md)
