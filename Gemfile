@@ -6,7 +6,7 @@ gem "capybara-chromedriver-logger", "~> 0.3"
 gem "cucumber", "~> 3"
 gem "minitest", "~> 5"
 gem "nokogiri", "~> 1"
-gem "plek", "~> 3"
+gem "plek", "~> 4"
 gem 'ptools'
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"

@@ -71,7 +71,7 @@ GEM
     netrc (0.11.0)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
-    plek (3.0.0)
+    plek (4.0.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -126,7 +126,7 @@ DEPENDENCIES
   cucumber (~> 3)
   minitest (~> 5)
   nokogiri (~> 1)
-  plek (~> 3)
+  plek (~> 4)
   pry-byebug (~> 3)
   ptools
   rest-client (~> 2)
