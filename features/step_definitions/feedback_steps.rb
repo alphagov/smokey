@@ -12,7 +12,7 @@ end
 
 When /^I submit the email survey signup form$/ do
   within(".gem-c-feedback") do
-    fill_in "Email address", with: "name@example.com"
+    fill_in "Email address", with: "simulate-delivered@notifications.service.gov.uk"
     click_on "Send me the survey"
   end
 end
