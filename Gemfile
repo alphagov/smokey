@@ -11,7 +11,7 @@ gem 'ptools'
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"
 gem "selenium-webdriver", "~> 3"
-gem "webdrivers", "~> 4.3"
+gem "webdrivers", "~> 4.4"
 
 group :development do
   gem "pry-byebug", "~> 3"
