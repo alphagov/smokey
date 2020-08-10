@@ -64,3 +64,9 @@ Feature: Government Frontend
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Register for Self Assessment"
     Then I should be redirected to "/log-in-file-self-assessment-tax-return/sign-in/register-self-assessment"
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "government-frontend" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code

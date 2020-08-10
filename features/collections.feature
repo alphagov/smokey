@@ -43,3 +43,9 @@ Feature: Collections
   Scenario: Check government documents feed JSON format is consistent
     When I request "/government/feed"
     Then valid XML should be returned
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "collections" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code

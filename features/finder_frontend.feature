@@ -6,6 +6,12 @@ Feature: Finder Frontend
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "finder-frontend" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code
+
   Scenario: Check people page loads correctly
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"
