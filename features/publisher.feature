@@ -1,3 +1,4 @@
+@app-publisher
 Feature: (Mainstream) Publisher
 
   @local-network
