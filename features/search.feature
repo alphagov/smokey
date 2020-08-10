@@ -30,12 +30,6 @@ Feature: Search
     When I search for "policy"
     Then I should see organisations in the organisation filter
 
-  @notintegration
-  Scenario: Check sitemap
-    When I visit "/sitemap.xml"
-    Then it should contain a link to at least one sitemap file
-    And I should be able to get all the referenced sitemap files
-
   @app-finder-frontend
   Scenario: Check malicious code does not execute
     When I search for "<script>alert(document.cookie)</script>"
