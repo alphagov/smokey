@@ -1,3 +1,4 @@
+@app-finder-frontend
 Feature: Get Ready for Brexit Check
 
   Background:

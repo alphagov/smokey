@@ -12,14 +12,14 @@ Feature: Draft environment
     Then I should be on the case study page
     And the page should contain the draft watermark
 
-  @draft
+  @draft @app-government-frontend
   Scenario: Check visiting a page served by government-frontend
     When I try to login as a user
     When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
     Then I should see "Case study"
     And the page should contain the draft watermark
 
-  @draft
+  @draft @app-government-frontend
   Scenario: Check visiting a specialist document served by government-frontend
     When I try to login as a user
     And I attempt to visit a CMA case

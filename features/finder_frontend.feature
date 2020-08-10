@@ -1,9 +1,16 @@
+@app-finder-frontend
 Feature: Finder Frontend
   These are pages that let you search within a set of similar looking documents.
 
   Background:
     Given I am testing through the full stack
     And I force a varnish cache miss
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "finder-frontend" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code
 
   Scenario: Check people page loads correctly
     When I visit "/government/people"

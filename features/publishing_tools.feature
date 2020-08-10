@@ -67,6 +67,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "All needs"
 
+  @app-publisher
   Scenario: Can log in to publisher
     When I go to the "publisher" landing page
     And I try to login as a user
@@ -101,6 +102,7 @@ Feature: Publishing Tools
     And I should see "CMA Cases"
     And I should see "Add another CMA Case"
 
+  @app-travel-advice-publisher
   Scenario: Can log in to travel-advice-publisher
     When I go to the "travel-advice-publisher" landing page
     And I try to login as a user
