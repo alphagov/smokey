@@ -1,3 +1,4 @@
+@app-collections
 Feature: Collections
 
   Background:

@@ -1,4 +1,4 @@
-@aws
+@aws @app-government-frontend
 Feature: Government Frontend
 
   Background:
