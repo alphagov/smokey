@@ -24,3 +24,10 @@ Feature: Foreign Travel Advice
   Scenario: Check country feed contains the correct website root
     When I visit "/foreign-travel-advice/ireland.atom"
     Then the XML ID is formed from the correct URL
+
+  Scenario: Email signup from foreign travel advice
+    When I visit "/foreign-travel-advice/turkey"
+    And I click on the link "Get email alerts"
+    Then I should see "Create subscription"
+    When I click on the button "Create subscription"
+    Then I should see "How often do you want to receive emails?"
