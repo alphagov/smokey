@@ -17,7 +17,7 @@ When /^I save the dataset count$/ do
 end
 
 Then /^I should see a similar dataset count$/ do
-  count_span = page.first(".dgu-results__summary span.govuk-!-font-weight-bold")
+  count_span = page.first(".dgu-results__summary")
   count = count_span.text.gsub(/[^\d^\.]/, '').to_i
 
   # to account for a delay in the sync between CKAN and Find, we only check
