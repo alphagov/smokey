@@ -26,21 +26,21 @@ Feature: Data.gov.uk
     Then I should get a 200 status code
 
   # disabled during upgrade
-  @notintegration @notstaging
+  @notintegration @notstaging @notproduction
   Scenario: Check CKAN loads correctly
     Given I am testing "ckan"
     When I request "/"
     Then I should see "Data publisher"
 
   # disabled during upgrade
-  @notintegration @notstaging
+  @notintegration @notstaging @notproduction
   Scenario: Check CKAN action api's search works
     Given I am testing "ckan"
     When I request "/api/action/package_search?q=data"
     Then I should get a 200 status code
     And JSON is returned
 
-  @notintegration @notstaging
+  @notintegration @notstaging @notproduction
   Scenario: Check datasets sync between CKAN and Find
     Given I am testing "https://ckan.publishing.service.gov.uk"
     When I search for all datasets
