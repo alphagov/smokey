@@ -6,6 +6,7 @@ Feature: Licensing
     Given I am testing "licensing" internally
       And I am testing through the full stack
       And I force a varnish cache miss
+      And I don't care about JavaScript errors
     Then I should be able to visit:
       | Path                                                              |
       | /apply-for-a-licence/test-licence/westminster/apply-1             |

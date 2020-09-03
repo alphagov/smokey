@@ -156,6 +156,10 @@ Then /^I should see that postcodes are stripped from analytics data$/ do
   end
 end
 
+And /^I don't care about JavaScript errors/ do
+  $fail_on_js_error = false
+end
+
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     visit_path row['Path']
