@@ -22,7 +22,7 @@ Feature: Assets
   Scenario: Check assets with a docx extension are served correctly
     Given I am testing "assets"
     When I request "/media/59f70d5640f0b66bbc806ed3/questionnaire-for-accommodation-providers-online-hotel-booking.docx"
-    Then I should get a "Content-Type" header of "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    Then I should get a "Content-Type" header of "application/vnd.oasis.opendocument.text"
 
   Scenario: Check assets with an xls extension are served correctly
     Given I am testing "assets"
