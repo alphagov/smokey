@@ -17,10 +17,3 @@ Feature: Licence Finder
   Scenario: Check licence finder returns licences
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
-
-  Scenario: Check licence postcode lookup
-    When I visit "/temporary-events-notice"
-    Then I should see "Temporary Events Notice"
-     And I should see an input field for postcode
-    When I try to post to "/temporary-events-notice" with "postcode=SW1A+2AA"
-    Then I should see "Westminster City Council"
