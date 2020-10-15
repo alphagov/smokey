@@ -66,3 +66,9 @@ Feature: Collections
     When I click on the link "Subscribe to email alerts"
     And I click on the button "Sign up"
     Then I should see "How often do you want to receive emails?"
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "collections" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code
