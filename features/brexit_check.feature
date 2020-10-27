@@ -19,5 +19,6 @@ Feature: Get Ready for Brexit Check
     And I answer the nationality question
     And I skip all other questions
     And I click Subscribe link
+    And I do not want a GOV.UK account
     And I click on the button "Subscribe"
     Then I should enter the email subscription workflow

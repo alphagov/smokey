@@ -36,6 +36,12 @@ When "I click Subscribe link" do
   click_link "Subscribe to email updates about changes that may affect you and get a link to your results"
 end
 
+When "I do not want a GOV.UK account" do
+  click_link "get notifications and a link to your results"
+rescue Capybara::ElementNotFound
+  # link is only visible if accounts feature flag is turned on
+end
+
 Then "I should enter the email subscription workflow" do
   path = "/email/subscriptions/new?topic_id=brexit-checklist-living-eu-nationality-uk"
   page.has_current_path?(path)
