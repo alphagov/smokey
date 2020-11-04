@@ -1,3 +1,4 @@
+@app-manuals-frontend
 Feature: Manuals Frontend
 
   Background:
