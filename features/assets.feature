@@ -29,7 +29,7 @@ Feature: Assets
     When I request "/media/580768d940f0b64fbe000022/Target_incomes_calculator.xls"
     Then I should get a "Content-Type" header of "application/vnd.ms-excel"
 
-  @draft-assets
+  @draft-assets @app-authenticating-proxy
   Scenario: Check draft assets require authentication
     When I visit "/media/123/filename.extension"
     Then I should be redirected to signon
