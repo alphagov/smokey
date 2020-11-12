@@ -1,3 +1,4 @@
+@app-info-frontend
 Feature: Info Frontend
 
   Background:
