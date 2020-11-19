@@ -3,4 +3,5 @@ Feature: Publishing API
   Scenario: Healthcheck
     Given I am testing "publishing-api" internally
     When I request "/healthcheck"
-    Then I should get a 200 status code
+    Then JSON is returned
+    And I should see ""status":"ok""

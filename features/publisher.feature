@@ -5,4 +5,5 @@ Feature: (Mainstream) Publisher
   Scenario: Healthcheck
     Given I am testing "publisher" internally
     When I request "/healthcheck"
-    Then I should get a 200 status code
+    Then JSON is returned
+    And I should see ""status":"ok""

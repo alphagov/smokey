@@ -9,7 +9,8 @@ Feature: Smart Answers
   Scenario: Healthcheck
     Given I am testing "smartanswers" internally
     When I request "/healthcheck"
-    Then I should get a 200 status code
+    Then JSON is returned
+    And I should see ""status":"ok""
 
   Scenario Outline: Check selected smart answer start pages
     When I request "<Path>"
