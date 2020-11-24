@@ -30,4 +30,4 @@ Feature: Foreign Travel Advice
     And I click on the link "Get email alerts"
     Then I should see "Create subscription"
     When I click on the button "Create subscription"
-    Then I should see "How often do you want to receive emails?"
+    Then I should see "How often do you want to get emails?"
