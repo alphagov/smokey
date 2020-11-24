@@ -65,22 +65,19 @@ Feature: Finder Frontend
   Scenario: Email signup from the news and communications finder
     When I visit "/search/news-and-communications"
     And I click on the link "Get email alerts"
-    Then I should see "Email alert subscription"
-    When I click on the button "Create subscription"
+    And I click on the button "Create subscription"
     Then I should see "How often do you want to get emails?"
 
   Scenario: Email signup from the statistics finder
     When I visit "/search/research-and-statistics"
     And I click on the link "Get email alerts"
-    Then I should see "Create subscription"
-    And I choose the checkbox "Statistics (published)" and click on "Create subscription"
+    And I choose the checkbox "Statistics (published)" and click on "Continue"
     Then I should see "How often do you want to get emails?"
 
   Scenario: Email signup from a finder (specialist-publisher)
     When I visit "/cma-cases"
-    Then I should see "Get email alerts"
     When I click on the link "Get email alerts"
-    And I choose the checkbox "Markets" and click on "Create subscription"
+    And I choose the checkbox "Markets" and click on "Continue"
     Then I should see "How often do you want to get emails?"
 
   Scenario Outline: Check search results and analytics

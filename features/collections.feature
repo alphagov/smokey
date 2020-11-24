@@ -48,7 +48,7 @@ Feature: Collections
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
     Then I should see "Sign up to get emails"
-    When I click on the button "Sign up"
+    When I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
   Scenario: Email signup from a taxon page
@@ -57,14 +57,14 @@ Feature: Collections
     When I click on the link "Sign up for updates to this topic page"
     Then I should see "What do you want to get alerts about?"
     When I choose radio button "Teaching and leadership" and click on "Select"
-    And I click on the button "Sign up"
+    And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
   Scenario: Email signup from a topic page
     When I visit "/topic/transport/motorways-major-roads"
     Then I should see "Subscribe to email alerts"
     When I click on the link "Subscribe to email alerts"
-    And I click on the button "Sign up"
+    And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
   @local-network
