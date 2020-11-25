@@ -47,16 +47,15 @@ Feature: Collections
   Scenario: Email signup from an organisation home page
     When I visit "/government/organisations/department-for-education"
     And I click on the link "email"
-    Then I should see "Sign up to get emails"
-    When I click on the button "Continue"
+    And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
   Scenario: Email signup from a taxon page
     When I visit "/education"
     Then I should see "Sign up for updates to this topic page"
     When I click on the link "Sign up for updates to this topic page"
-    Then I should see "What do you want to get alerts about?"
-    When I choose radio button "Teaching and leadership" and click on "Select"
+    Then I should see "What do you want to get emails about?"
+    When I choose radio button "Teaching and leadership" and click on "Continue"
     And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
