@@ -65,7 +65,7 @@ Feature: Finder Frontend
   Scenario: Email signup from the news and communications finder
     When I visit "/search/news-and-communications"
     And I click on the link "Get email alerts"
-    And I click on the button "Create subscription"
+    And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
   Scenario: Email signup from the statistics finder
