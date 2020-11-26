@@ -2,6 +2,11 @@ When "I visit the postcode checker" do
   visit_path "/find-coronavirus-local-restrictions"
 end
 
-Then "I should be redirected to the national restrictions page" do
-  expect(current_path).to eql("/guidance/new-national-restrictions-from-5-november")
+When "I enter a valid postcode" do
+  fill_in "Enter a full postcode", with: "E18QS"
+  click_button "Find"
+end
+
+Then "I should see the local restrictions results page" do
+  expect(page).to have_content("We've matched the postcode")
 end
