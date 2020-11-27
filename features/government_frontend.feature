@@ -63,7 +63,7 @@ Feature: Government Frontend
   Scenario: Check service sign-in redirects correctly to registration page
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
     When I choose "Register for Self Assessment"
-    Then I should be redirected to "/log-in-file-self-assessment-tax-return/sign-in/register-self-assessment"
+    Then I should be redirected to "/register-for-self-assessment"
 
   @local-network
   Scenario: Healthcheck
