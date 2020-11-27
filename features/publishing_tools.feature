@@ -26,6 +26,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "Taxons"
 
+  @app-content-publisher
   Scenario: Can log in to content-publisher
     When I go to the "content-publisher" landing page
     And I try to login as a user
