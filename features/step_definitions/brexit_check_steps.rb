@@ -37,7 +37,7 @@ When "I click Subscribe link" do
 end
 
 When "I do not want a GOV.UK account" do
-  click_link "get alerts and a link to your results"
+  click_link "Subscribe to get email updates"
 rescue Capybara::ElementNotFound
   # link is only visible if accounts feature flag is turned on
 end
