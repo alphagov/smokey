@@ -49,6 +49,7 @@ Feature: Finder Frontend
     Then I should see filtered documents
     And I should see an open facet titled "Case type" with non-blank values
 
+  @notintegration @notstaging @notproduction
   Scenario Outline: Check malicious code does not execute
     When I visit the "<finder>" finder with keywords <keyword>
     Then There should be no alert
