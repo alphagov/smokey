@@ -27,6 +27,6 @@ Feature: Foreign Travel Advice
 
   Scenario: Email signup from foreign travel advice
     When I visit "/foreign-travel-advice/turkey"
-    And I click on the link "Get email alerts"
+    And I click on the link "Get emails"
     And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
