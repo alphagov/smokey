@@ -51,6 +51,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "Council"
 
+  @app-manuals-publisher
   Scenario: Can log in to manuals-publisher
     When I go to the "manuals-publisher" landing page
     And I try to login as a user
@@ -77,6 +78,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see Publisher's publication index
 
+  @app-service-manual-publisher
   Scenario: Can log in to service-manual-publisher
     When I go to the "service-manual-publisher" landing page
     And I try to login as a user
@@ -85,6 +87,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "Create a Guide"
 
+  @app-short-url-manager
   Scenario: Can log in to short-url-manager
     When I go to the "short-url-manager" landing page
     And I try to login as a user
