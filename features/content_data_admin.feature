@@ -1,7 +1,11 @@
-@aws
+@aws @app-content-data-admin
 Feature: Content Data Admin
   Tests for the Content Data Admin application, which provides
   publishers with data about the content they manage
+
+  Scenario: Healthcheck
+    When I visit "/healthcheck" on the "content-data-admin" application
+    Then I should see "OK"
 
   Scenario: Can access the Content Data Admin index page
     When I go to the "content-data-admin" landing page
