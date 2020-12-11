@@ -1,5 +1,6 @@
 @app-publishing-api @aws
 Feature: Publishing Tools
+  @app-collections-publisher
   Scenario: Can log in to collections-publisher
     When I go to the "collections-publisher" landing page
     And I try to login as a user
