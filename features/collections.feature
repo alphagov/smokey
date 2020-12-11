@@ -61,8 +61,8 @@ Feature: Collections
 
   Scenario: Email signup from a topic page
     When I visit "/topic/transport/motorways-major-roads"
-    Then I should see "Subscribe to email alerts"
-    When I click on the link "Subscribe to email alerts"
+    Then I should see "Get emails for this topic"
+    When I click on the link "Get emails for this topic"
     And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
