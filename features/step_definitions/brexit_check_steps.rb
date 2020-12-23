@@ -1,6 +1,6 @@
 When "I start the checker" do
   visit_path "/transition"
-  click_link "Start now"
+  click_link "Brexit checker: start now"
 end
 
 When "I answer the nationality question" do
