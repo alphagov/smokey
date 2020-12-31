@@ -60,7 +60,7 @@ Feature: Smart Answers
       | /register-a-birth/y/afghanistan/father/yes/another_country |
       | /register-a-death/y/overseas                               |
       | /register-a-death/y/overseas/afghanistan/another_country   |
-      | /uk-benefits-abroad/y/going_abroad/child_benefit           |
+      | /uk-benefits-abroad/y/going_abroad/jsa                     |
 
   Scenario Outline: Check country names are correctly formatted
     When I request "<Path>"
