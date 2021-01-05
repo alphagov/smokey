@@ -7,5 +7,4 @@ Feature: Collections
 
   Scenario: Postcode checker shows results
     When I visit the postcode checker
-    And I enter a valid postcode
-    Then I should see the local restrictions results page
+    Then I should be redirected to the national restrictions page
