@@ -44,6 +44,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "All services"
 
+  @app-local-links-manager
   Scenario: Can log in to local-links-manager
     When I go to the "local-links-manager" landing page
     And I try to login as a user
