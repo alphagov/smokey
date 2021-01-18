@@ -10,6 +10,9 @@ require 'webdrivers'
 
 # Set up environment
 case ENV["ENVIRONMENT"]
+when "test"
+  ENV["GOVUK_APP_DOMAIN"] ||= "test.publishing.service.gov.uk"
+  ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.test.publishing.service.gov.uk"
 when "integration"
   ENV["GOVUK_APP_DOMAIN"] ||= "integration.publishing.service.gov.uk"
   ENV["GOVUK_WEBSITE_ROOT"] ||= "https://www.integration.publishing.service.gov.uk"
