@@ -33,7 +33,12 @@ Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 # Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't
 # support this) on a random port between 3222 and 3229
 proxy_port = (3222..3229).to_a.sample
-server = BrowserMob::Proxy::Server.new("./bin/browserup-proxy", port: proxy_port)
+server = BrowserMob::Proxy::Server.new(
+  "./bin/browserup-proxy",
+  port: proxy_port,
+  log: ENV.fetch("ENABLE_BROWSERMOB_LOGS", false),
+  timeout: 20
+)
 server.start
 proxy = server.create_proxy
 
@@ -76,6 +81,7 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument("--disable-gpu")
   options.add_argument("--disable-xss-auditor")
   options.add_argument("--user-agent=Smokey\ Test\ \/\ Ruby")
+  options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
 
   Capybara::Selenium::Driver.new(
     app,

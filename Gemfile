@@ -8,6 +8,7 @@ gem "minitest", "~> 5"
 gem "nokogiri", "~> 1"
 gem "plek", "~> 4"
 gem 'ptools'
+gem "rake", "~> 13.0"
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"
 gem "selenium-webdriver", "~> 3"
