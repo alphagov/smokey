@@ -1,0 +1,55 @@
+---
+definitions:
+
+resources:
+  - icon: github
+    name: smokey
+    source:
+      branch: main
+      uri: https://github.com/alphagov/smokey
+      paths:
+        - concourse
+        - VERSION
+    type: git
+
+  - name: smokey-image
+    type: registry-image
+    icon: docker
+    source:
+      repository: govuk/smokey
+      tag: latest
+      username: ((docker_hub_username))
+      password: ((docker_hub_authtoken))
+
+jobs:
+  - name: update-pipeline
+    plan:
+    - get: smokey
+      trigger: true
+    - file: smokey/concourse/pipelines/ci.yml
+      set_pipeline: smokey-ci
+
+  - name: release-docker-image
+    plan:
+    - get: smokey
+      trigger: true
+    - task: build-image
+      privileged: true
+      params:
+        CONTEXT: smokey
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source:
+            repository: vito/oci-build-task
+        inputs:
+        - name: smokey
+        outputs:
+        - name: image
+        run:
+          path: build
+    - put: smokey-image
+      params:
+        image: image/image.tar
+        additional_tags: smokey/VERSION
