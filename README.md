@@ -11,7 +11,7 @@ The tests also run in [a continuous Smokey loop](https://github.com/alphagov/gov
 
 Smokey requires Java to be installed, because of its use of the BrowserUp Proxy.
 
-- On your host Mac, run `brew cask install adoptopenjdk`.
+- On your host Mac, run `brew install adoptopenjdk`.
 
 - If you don't have Homebrew installed, [download the Java JDK from the AdpotOpenJDK website](https://adoptopenjdk.net/).
 
