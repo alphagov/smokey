@@ -29,7 +29,7 @@ Then "I should see confirmation of my answers" do
 end
 
 Then "I should see answers applicable to me" do
-  expect(page).to have_content("Find out how to apply to be a resident in the EU country you live in")
+  expect(page).to have_content("Check if you need to apply for a new residence status")
 end
 
 When "I click Subscribe link" do
