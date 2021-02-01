@@ -16,13 +16,13 @@ GEM
       rest-client
     builder (3.2.4)
     byebug (11.1.3)
-    capybara (3.34.0)
+    capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      regexp_parser (~> 1.5)
+      regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     capybara-chromedriver-logger (0.3.0)
       capybara
@@ -112,7 +112,7 @@ GEM
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rake (13.0.3)
-    regexp_parser (1.8.2)
+    regexp_parser (2.0.3)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
