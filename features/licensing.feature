@@ -1,3 +1,4 @@
+@app-licensing
 Feature: Licensing
   Tests for the Licensify app.
 
