@@ -73,3 +73,9 @@ Feature: Frontend
   Scenario: Check bank holidays JSON format is consistent
     When I request "/bank-holidays.json"
     Then JSON is returned
+
+  @local-network @aws
+  Scenario: Healthcheck
+    Given I am testing "frontend" internally
+    When I request "/healthcheck"
+    Then I should get a 200 status code
