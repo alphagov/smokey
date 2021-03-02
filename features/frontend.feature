@@ -1,4 +1,4 @@
-@aws @replatforming
+@aws @replatforming @app-frontend
 Feature: Frontend
 
   Background:
