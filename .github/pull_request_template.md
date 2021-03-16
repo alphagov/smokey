@@ -22,7 +22,7 @@ Steps to deploy a change:
 - Run the [Smokey deploy job][] to deploy the [continuous Smokey loop][]
 - Repeat this in Staging and Production
 
-> The manual [Smokey job][] will pick up changes on `master` automatically. You only need to do a manual deployment for the [continuous Smokey loop][].
+> The manual [Smokey job][] will pick up changes on `main` automatically. You only need to do a manual deployment for the [continuous Smokey loop][].
 
 [Smokey job]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
 [continuous Smokey loop]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf
