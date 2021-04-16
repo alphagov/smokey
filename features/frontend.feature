@@ -74,7 +74,7 @@ Feature: Frontend
     When I request "/bank-holidays.json"
     Then JSON is returned
 
-  @local-network @aws
+  @local-network @aws @notreplatforming
   Scenario: Healthcheck
     Given I am testing "frontend" internally
     When I request "/healthcheck"
