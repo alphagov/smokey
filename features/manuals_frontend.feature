@@ -10,3 +10,10 @@ Feature: Manuals Frontend
       | Path                                       |
       | /guidance/content-design/planning-content  |
       | /hmrc-internal-manuals/pensions-tax-manual |
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "manuals-frontend" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""
