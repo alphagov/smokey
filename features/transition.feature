@@ -12,3 +12,10 @@ Feature: Transition
     When I request "/hosts.json" from the "transition" application
     Then I should get a 200 status code
      And I should see "www.direct.gov.uk"
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "transition" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""
