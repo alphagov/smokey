@@ -1,8 +1,7 @@
-@app-service-manual-frontend
+@app-service-manual-frontend @local-network
 Feature: Service Manual Frontend
-
-  @local-network
   Scenario: Healthcheck
     Given I am testing "service-manual-frontend" internally
-    When I request "/healthcheck"
-    Then I should get a 200 status code
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""
