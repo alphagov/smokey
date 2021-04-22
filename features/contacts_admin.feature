@@ -1,7 +1,7 @@
-@app-content-data-api @local-network
-Feature: Content Data API
+@app-contacts-admin @local-network
+Feature: Contacts Admin
   Scenario: Healthcheck
-    Given I am testing "content-data-api" internally
+    Given I am testing "contacts-admin" internally
     When I request "/healthcheck/ready"
     Then JSON is returned
     And I should see ""status":"ok""

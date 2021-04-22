@@ -1,8 +1,7 @@
-@app-manuals-publisher
+@app-manuals-publisher @local-network
 Feature: Manuals Publisher
-
-  @local-network
   Scenario: Healthcheck
     Given I am testing "manuals-publisher" internally
-    When I request "/healthcheck"
-    Then I should get a 200 status code
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""

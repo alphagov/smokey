@@ -1,8 +1,7 @@
-@app-hmrc-manuals-api
+@app-hmrc-manuals-api @local-network
 Feature: HMRC Manuals API
-
-  @local-network @aws
   Scenario: Healthcheck
     Given I am testing "hmrc-manuals-api" internally
-    When I request "/healthcheck"
-    Then I should get a 200 status code
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""

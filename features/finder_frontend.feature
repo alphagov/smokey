@@ -10,7 +10,7 @@ Feature: Finder Frontend
   @local-network
   Scenario: Healthcheck
     Given I am testing "finder-frontend" internally
-    When I request "/healthcheck.json"
+    When I request "/healthcheck/ready"
     Then JSON is returned
     And I should see ""status":"ok""
 

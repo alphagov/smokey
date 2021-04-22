@@ -1,7 +1,7 @@
 @app-support @local-network
-Feature: support
+Feature: Support
   Scenario: Healthcheck
     Given I am testing "support" internally
-    When I request "/healthcheck"
+    When I request "/healthcheck/ready"
     Then JSON is returned
     And I should see ""status":"ok""

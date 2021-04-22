@@ -4,6 +4,13 @@ Feature: Feedback
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  @app-feedback @local-network
+  Scenario: Healthcheck
+    Given I am testing "feedback" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""
+
   Scenario: Check the "Contact GOV.UK" page loads correctly
     When I visit "/contact/govuk"
     Then I should see "Contact GOV.UK"

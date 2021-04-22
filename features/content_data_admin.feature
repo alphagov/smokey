@@ -4,8 +4,10 @@ Feature: Content Data Admin
   publishers with data about the content they manage
 
   Scenario: Healthcheck
-    When I visit "/healthcheck" on the "content-data-admin" application
-    Then I should see "OK"
+    Given I am testing "content-data" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""
 
   Scenario: Can access the Content Data Admin index page
     When I go to the "content-data-admin" landing page

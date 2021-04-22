@@ -77,5 +77,6 @@ Feature: Frontend
   @local-network @aws @notreplatforming
   Scenario: Healthcheck
     Given I am testing "frontend" internally
-    When I request "/healthcheck"
-    Then I should get a 200 status code
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""

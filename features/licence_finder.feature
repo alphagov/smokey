@@ -1,3 +1,4 @@
+@app-licencefinder
 Feature: Licence Finder
 
   Background:
@@ -17,3 +18,10 @@ Feature: Licence Finder
   Scenario: Check licence finder returns licences
     When I visit "/licence-finder/licences?activities=149&location=wales&sectors=59"
     Then I should see "A premises licence is for carrying out 'licensable activities' at a particular venue"
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "licencefinder" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""

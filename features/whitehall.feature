@@ -32,3 +32,10 @@ Feature: Whitehall
     When I request an attachment
     Then I should be redirected to the asset host
     And the attachment should be served successfully
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "whitehall-admin" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""

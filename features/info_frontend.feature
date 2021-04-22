@@ -8,3 +8,10 @@ Feature: Info Frontend
   Scenario: Check the info page for the benefits mainstream browse page
     When I visit "/info/browse/benefits"
     Then I should see "Benefits"
+
+  @local-network
+  Scenario: Healthcheck
+    Given I am testing "info-frontend" internally
+    When I request "/healthcheck/ready"
+    Then JSON is returned
+    And I should see ""status":"ok""
