@@ -1,4 +1,4 @@
-@app-publisher
+@app-publisher @replatforming
 Feature: (Mainstream) Publisher
 
   @local-network
