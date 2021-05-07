@@ -5,6 +5,7 @@ Feature: Frontend
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  @notreplatforming
   Scenario: Check robots.txt
     When I request "/robots.txt"
     Then I should see "User-agent:"
@@ -27,6 +28,7 @@ Feature: Frontend
     When I visit "/"
     Then the page view should be tracked
 
+  @notreplatforming
   Scenario: Check 404 page content type and charset
     When I visit a non-existent page
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
