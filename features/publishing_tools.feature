@@ -71,7 +71,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "All needs"
 
-  @app-publisher
+  @app-publisher @replatforming
   Scenario: Can log in to publisher
     When I go to the "publisher" landing page
     And I try to login as a user
