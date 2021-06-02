@@ -52,8 +52,8 @@ Feature: Collections
 
   Scenario: Email signup from a taxon page
     When I visit "/education"
-    Then I should see "Get emails about this topic"
-    When I click on the link "Get emails about this topic"
+    Then I should see "Get emails for this topic"
+    When I click on the link "Get emails for this topic"
     Then I should see "What do you want to get emails about?"
     When I choose radio button "Teaching and leadership" and click on "Continue"
     And I click on the button "Continue"
