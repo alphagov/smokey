@@ -1,5 +1,5 @@
 When "I start the checker" do
-  visit_path "/transition"
+  visit_path "/brexit"
   click_link "Brexit checker: start now"
 end
 
