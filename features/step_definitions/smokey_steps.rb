@@ -235,7 +235,7 @@ When /^I try to post to "(.*)" with "(.*)" without following redirects$/ do |pat
 end
 
 Then /^the logo should link to the homepage$/ do
-  logo = Nokogiri::HTML.parse(page.body).at_css('#logo')
+  logo = Nokogiri::HTML.parse(page.body).at_css('.govuk-header__link')
   expect(logo.attributes['href'].value).to eq(ENV['GOVUK_WEBSITE_ROOT'])
 end
 
