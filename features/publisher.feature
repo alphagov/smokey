@@ -8,7 +8,7 @@ Feature: (Mainstream) Publisher
     Then JSON is returned
     And I should see ""status":"ok""
 
-  @notproduction
+  @notstaging @notproduction
   Scenario: Can create a draft place
     Given I have the smokey run identifier
     When I try to login as a user
@@ -18,7 +18,7 @@ Feature: (Mainstream) Publisher
     And I preview the draft place
     Then I should see that the content has been published
 
-  @notproduction
+  @notstaging @notproduction
   Scenario: Can publish a draft place to live
     Given I have the smokey run identifier
     When I try to login as a user
@@ -31,7 +31,7 @@ Feature: (Mainstream) Publisher
     And I view the published content on live
     Then I should see that the content has been published
 
-  @notproduction
+  @notstaging @notproduction
   Scenario: Can unpublish a live place
     Given I have the smokey run identifier
     When I try to login as a user
