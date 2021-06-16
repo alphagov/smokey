@@ -15,7 +15,7 @@ Feature: Smart Answers
       | /calculate-employee-redundancy-pay/y        | What date was your employee made redundant?          |
       | /calculate-married-couples-allowance/y      | Were you or your partner born before 6 April 1935?   |
       | /marriage-abroad/y                          | Where do you want to get married?                    |
-      | /pay-leave-for-parents/y                    | Will the mother care for the child with a partner?   |
+      | /maternity-paternity-pay-leave/y            | Will the mother care for the child with a partner?   |
       | /register-a-death/y                         | Where did the death happen?                          |
       | /vat-payment-deadlines/y                    | When does your VAT accounting period end?            |
 
