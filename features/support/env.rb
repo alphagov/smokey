@@ -58,8 +58,8 @@ if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
   )
   proxy.basic_authentication(
     "www.account.staging.publishing.service.gov.uk",
-    ENV["AUTH_USERNAME"],
-    ENV["AUTH_PASSWORD"],
+    ENV["ACCOUNT_AUTH_USERNAME"],
+    ENV["ACCOUNT_AUTH_PASSWORD"],
   )
 end
 
