@@ -27,16 +27,6 @@ Feature: Smart Answers
     | /vat-payment-deadlines/y/2000-01-31         |
     | /vat-payment-deadlines/y/2000-01-31/cheque  |
 
-  Scenario: Check stepping through a smart answer that uses Imminence
-    Then I should be able to visit:
-    | Path                                              |
-    | /landlord-immigration-check                       |
-    | /landlord-immigration-check/y                     |
-    | /landlord-immigration-check/y/SW1A2AA             |
-    | /landlord-immigration-check/y/SW1A2AA/yes         |
-    | /landlord-immigration-check/y/SW1A2AA/yes/yes     |
-    | /landlord-immigration-check/y/SW1A2AA/yes/yes/yes |
-
   Scenario: Check stepping through a smart answer that uses the Worldwide API
     Then I should be able to visit:
     | Path                                                |
@@ -105,8 +95,6 @@ Feature: Smart Answers
       | Path                                                                              | Expected string            |
       | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/SW1A%202AA | Greater London benefit cap |
       | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/EH99%201SP | Outside London benefit cap |
-      | /landlord-immigration-check/y/SW1A%202AA                                          | Is the person renting      |
-      | /landlord-immigration-check/y/EH99%201SP                                          | check in England           |
 
   Scenario: Check personal information is excluded from analytics data
     When I visit "/marriage-abroad/y"
