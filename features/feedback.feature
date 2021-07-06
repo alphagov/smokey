@@ -65,8 +65,8 @@ Feature: Feedback
 
     @app-frontend
     Examples:
-      | url | application |
-      | /   | frontend    |
+      | url     | application |
+      | /help   | frontend    |
 
     @app-government-frontend
     Examples:
