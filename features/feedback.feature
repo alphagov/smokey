@@ -43,12 +43,10 @@ Feature: Feedback
     And I click to say the page is useful
     Then I see the feedback confirmation message
 
-    # Failing as of 30 June 2021
-    #
-    # @app-collections
-    # Examples:
-    #   | url                       | application |
-    #   | /government/organisations | collections |
+    @app-collections
+    Examples:
+      | url                       | application |
+      | /government/organisations | collections |
 
     @app-email-frontend
     Examples:
@@ -65,12 +63,10 @@ Feature: Feedback
       | url                             | application     |
       | /search/news-and-communications | finder-frontend |
 
-    # Failing as of 30 June 2021
-    #
-    # @app-frontend
-    # Examples:
-    #   | url | application |
-    #   | /   | frontend    |
+    @app-frontend
+    Examples:
+      | url     | application |
+      | /help   | frontend    |
 
     @app-government-frontend
     Examples:
@@ -97,12 +93,10 @@ Feature: Feedback
       | url             | application             |
       | /service-manual | service-manual-frontend |
 
-    # Failing as of 30 June 2021
-    #
-    # @app-smartanswers
-    # Examples:
-    #   | url              | application  |
-    #   | /marriage-abroad | smartanswers |
+    @app-smartanswers
+    Examples:
+      | url              | application  |
+      | /marriage-abroad | smartanswers |
 
     @app-whitehall
     Examples:
