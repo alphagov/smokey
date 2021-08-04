@@ -87,15 +87,6 @@ Feature: Smart Answers
       | /marriage-abroad/y/afghanistan/uk/partner_british/opposite_sex | Embassy of Afghanistan          |
       | /register-a-death/y/overseas/north-korea/same_country          | British Embassy Pyongyang       |
 
-  Scenario Outline: Check postcode lookup
-    When I request "<Path>"
-    Then I should see "<Expected string>"
-
-    Examples:
-      | Path                                                                              | Expected string            |
-      | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/SW1A%202AA | Greater London benefit cap |
-      | /benefit-cap-calculator/y/yes/no/none/bereavement/1000.0/1000.0/single/EH99%201SP | Outside London benefit cap |
-
   Scenario: Check personal information is excluded from analytics data
     When I visit "/marriage-abroad/y"
     Then I should see that postcodes are stripped from analytics data
