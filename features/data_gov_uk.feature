@@ -38,6 +38,7 @@ Feature: Data.gov.uk
     Then I should get a 200 status code
     And JSON is returned
 
+  @notintegration @notstaging
   Scenario: Check datasets sync between CKAN and Find
     Given I am testing "https://ckan.publishing.service.gov.uk"
     When I search for all datasets
