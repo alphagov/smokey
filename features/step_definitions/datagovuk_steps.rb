@@ -12,7 +12,7 @@ When /^I search for all datasets$/ do
 end
 
 When /^I save the dataset count$/ do
-  package_count_form = page.first(".search-form h2")
+  package_count_form = page.first(".search-form h1")
   @package_count = package_count_form.text.gsub(/[^\d^\.]/, '').to_i
 end
 
