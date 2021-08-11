@@ -53,11 +53,6 @@ Feature: Feedback
       | url                        | application          |
       | /email/manage/authenticate | email-alert-frontend |
 
-    @app-feedback
-    Examples:
-      | url            | application |
-      | /contact/govuk | feedback    |
-
     @app-finder-frontend
     Examples:
       | url                             | application     |
