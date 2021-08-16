@@ -27,6 +27,7 @@ GEM
     capybara-chromedriver-logger (0.3.0)
       capybara
       colorize
+    capybara-select-2 (0.5.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -161,6 +162,7 @@ DEPENDENCIES
   browsermob-proxy (~> 0.3)
   capybara (~> 3)
   capybara-chromedriver-logger (~> 0.3)
+  capybara-select-2
   cucumber (~> 5)
   minitest (~> 5)
   nokogiri (~> 1)
