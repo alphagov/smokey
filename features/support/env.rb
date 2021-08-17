@@ -1,6 +1,7 @@
 require 'browsermob/proxy'
 require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
+require 'capybara-select-2'
 require 'nokogiri'
 require 'ptools'
 require 'plek'

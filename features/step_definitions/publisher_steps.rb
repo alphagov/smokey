@@ -35,7 +35,7 @@ When "I should see that the content has been published" do
 end
 
 When /I search for the content in category "([^"]*)"/ do |status|
-  select "Nobody", from: "Assignee"
+  select2 "Nobody", from: "ASSIGNEE"
   fill_in "Keyword", with: publication_title
   select "Place", from: "Format"
   click_button "Filter publications"
