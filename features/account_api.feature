@@ -7,7 +7,7 @@ Feature: Account API
     Then JSON is returned
     And I should see ""status":"ok""
 
-  @app-frontend @app-collections @app-finder-frontend
+  @notintegration @app-frontend @app-collections @app-finder-frontend
   Scenario Outline: Signing in
     Given I am testing through the full stack
     And I force a varnish cache miss
