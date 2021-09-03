@@ -65,10 +65,3 @@ Feature: Collections
     When I click on the link "Get emails for this topic"
     And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
-
-  @local-network
-  Scenario: Healthcheck
-    Given I am testing "collections" internally
-    When I request "/healthcheck/ready"
-    Then JSON is returned
-    And I should see ""status":"ok""

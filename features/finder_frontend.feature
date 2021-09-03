@@ -7,13 +7,6 @@ Feature: Finder Frontend
     And I consent to cookies
     And I force a varnish cache miss
 
-  @local-network
-  Scenario: Healthcheck
-    Given I am testing "finder-frontend" internally
-    When I request "/healthcheck/ready"
-    Then JSON is returned
-    And I should see ""status":"ok""
-
   Scenario: Check people page loads correctly
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"

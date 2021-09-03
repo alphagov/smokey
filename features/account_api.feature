@@ -1,12 +1,5 @@
 @app-account-api
 Feature: Account API
-  @local-network
-  Scenario: Healthcheck
-    Given I am testing "account-api" internally
-    When I request "/healthcheck/ready"
-    Then JSON is returned
-    And I should see ""status":"ok""
-
   @notintegration @app-frontend @app-collections @app-finder-frontend
   Scenario Outline: Signing in
     Given I am testing through the full stack
