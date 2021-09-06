@@ -90,10 +90,3 @@ Feature: Smart Answers
   Scenario: Check personal information is excluded from analytics data
     When I visit "/marriage-abroad/y"
     Then I should see that postcodes are stripped from analytics data
-
-  @local-network
-  Scenario: Healthcheck
-    Given I am testing "smartanswers" internally
-    When I request "/healthcheck/ready"
-    Then JSON is returned
-    And I should see ""status":"ok""

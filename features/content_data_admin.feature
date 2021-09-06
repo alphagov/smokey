@@ -3,12 +3,6 @@ Feature: Content Data Admin
   Tests for the Content Data Admin application, which provides
   publishers with data about the content they manage
 
-  Scenario: Healthcheck
-    Given I am testing "content-data" internally
-    When I request "/healthcheck/ready"
-    Then JSON is returned
-    And I should see ""status":"ok""
-
   Scenario: Can access the Content Data Admin index page
     When I go to the "content-data-admin" landing page
     And I try to login as a user

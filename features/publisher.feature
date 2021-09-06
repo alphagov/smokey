@@ -1,13 +1,6 @@
 @app-publisher @replatforming
 Feature: (Mainstream) Publisher
 
-  @local-network
-  Scenario: Healthcheck
-    Given I am testing "publisher" internally
-    When I request "/healthcheck/ready"
-    Then JSON is returned
-    And I should see ""status":"ok""
-
   @notstaging @notproduction
   Scenario: Can create a draft place
     Given I have the smokey run identifier
