@@ -1,5 +1,6 @@
 @app-account-dashboard
 Feature: Account dashboard
+  @notintegration
   Scenario: Check that the sign out links are available in the Accounts dashboard
     Given I am testing through the full stack
     And I force a varnish cache miss
