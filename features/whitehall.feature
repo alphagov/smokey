@@ -23,7 +23,6 @@ Feature: Whitehall
     Examples:
       | Path                             |
       | /government/how-government-works |
-      | /government/get-involved         |
       | /government/ministers            |
       | /government/people/eric-pickles  |
       | /world                           |
