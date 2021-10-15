@@ -13,7 +13,7 @@ gem "rake", "~> 13.0"
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"
 gem "selenium-webdriver", "~> 3"
-gem "webdrivers", "~> 4.6"
+gem "webdrivers", "~> 4.7"
 
 group :development do
   gem "pry-byebug", "~> 3"
