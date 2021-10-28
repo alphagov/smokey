@@ -1,6 +1,6 @@
 @app-account-api
 Feature: Account API
-  @notintegration @app-frontend @app-collections @app-finder-frontend
+  @notintegration @notstaging @notproduction @app-frontend @app-collections @app-finder-frontend
   Scenario Outline: Signing in
     Given I am testing through the full stack
     And I force a varnish cache miss
