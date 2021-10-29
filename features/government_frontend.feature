@@ -39,6 +39,7 @@ Feature: Government Frontend
         | /help/update-email-notifications                                                                      |
         | /government/statistical-data-sets/effort-statistics-february-2017                                     |
         | /government/publications/development-scheme/practice-guide-72-development-schemes                     |
+        | /government/get-involved                                                                              |
 
   Scenario: Check service sign-in offers both Government Gateway and GOV.UK Verify
     When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
