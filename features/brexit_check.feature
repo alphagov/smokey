@@ -13,12 +13,3 @@ Feature: Get Ready for Brexit Check
     Then I should see the results page
     And I should see confirmation of my answers
     And I should see answers applicable to me
-
-  Scenario: Check that the Brexit checker can be subscribed to
-    When I visit "/transition-check/questions"
-    And I answer the nationality question
-    And I skip all other questions
-    And I click Subscribe link
-    And I do not want a GOV.UK account
-    And I click on the button "Subscribe"
-    Then I should enter the email subscription workflow

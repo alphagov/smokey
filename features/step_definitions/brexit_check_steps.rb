@@ -31,18 +31,3 @@ end
 Then "I should see answers applicable to me" do
   expect(page).to have_content("Check if you need to apply for a new residence status")
 end
-
-When "I click Subscribe link" do
-  click_link "Subscribe to email updates about changes that may affect you and get a link to your results"
-end
-
-When "I do not want a GOV.UK account" do
-  click_link "Subscribe to get email updates"
-rescue Capybara::ElementNotFound
-  # link is only visible if accounts feature flag is turned on
-end
-
-Then "I should enter the email subscription workflow" do
-  path = "/email/subscriptions/new?topic_id=brexit-checklist-living-eu-nationality-uk"
-  page.has_current_path?(path)
-end
