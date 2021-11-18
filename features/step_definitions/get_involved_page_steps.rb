@@ -1,16 +1,16 @@
 Then /^I should see the next closing box$/ do
-  expect(page).to have_css(".consultation-closing-soon")
+  expect(page).to have_css("#inset-text-ff2ba52c")
 end
 
 And /^it should be populated$/ do
-  within ".consultation-closing-soon .document-row" do
+  within "#inset-text-ff2ba52c div" do
     expect(page).to have_css("h3")
     @title = find(:xpath, "h3").native.text
   end
 end
 
 When /^I click the next closing response link$/ do
-  within ".consultation-closing-soon" do
+  within "#inset-text-ff2ba52c .govuk-link" do
     click_link "Read and respond"
   end
 end
@@ -20,14 +20,14 @@ Then /^I should see the next closing consultation$/ do
 end
 
 And /^it should be populated with three open consultations$/ do
-  within ".recently-opened" do
-    expect(page).to have_css("#consultation-title", count: 3)
+  within ".get-involved > div:nth-child(4) > div > h2" do
+    expect(page).to have_css(".gem-c-document-list__item-title", count: 3)
   end
 end
 
 And /^it should be populated with three closed consultations$/ do
-  within ".recent-outcomes" do
-    expect(page).to have_css("#consultation-title", count: 3)
+  within ".get-involved > div:nth-child(5) > div > h2" do
+    expect(page).to have_css(".gem-c-document-list__item-title", count: 3)
   end
 end
 
