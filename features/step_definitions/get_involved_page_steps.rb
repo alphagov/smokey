@@ -10,7 +10,7 @@ And /^it should be populated$/ do
 end
 
 When /^I click the next closing response link$/ do
-  within ".gem-c-inset-text > div > .govuk-link" do
+  within ".gem-c-inset-text" do
     click_link "Read and respond"
   end
 end
@@ -39,4 +39,3 @@ end
 And /^it should link to "(.*?)"$/ do |link|
   have_link(@linktext, :href => link)
 end
-
