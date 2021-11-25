@@ -49,6 +49,15 @@ Feature: Frontend
     Then I should see "Camden"
 
   @notreplatforming
+  Scenario: Check electoral pages load
+    When I visit "/contact-electoral-registration-office"
+    Then I should see "Electoral Registration Office"
+    When I visit "/contact-electoral-registration-office?postcode=sw1a+1aa"
+    Then I should see "Get help with electoral registration"
+    When I visit "/contact-electoral-registration-office?postcode=WV148TU"
+    Then I should see "Choose your address"
+
+  @notreplatforming
   Scenario: Check "find my nearest" returns results
     When I visit "/ukonline-centre-internet-access-computer-training"
     And I should see "Online Centres Network"
