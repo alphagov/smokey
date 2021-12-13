@@ -1,6 +1,6 @@
-Then /^I should see the departments and policies section on the homepage$/ do
+Then /^I should see the Government activity section on the homepage$/ do
   visit_path "/"
-  assert page.first('#departments-and-policy')
+  assert page.first('.homepage-section__government-activity')
 end
 
 When(/^I request an attachment$/) do
