@@ -8,7 +8,7 @@ Feature: Whitehall
     And I force a varnish cache miss
 
   Scenario: Check the government publishing section on GOV.UK homepage
-    Then I should see the departments and policies section on the homepage
+    Then I should see the Government activity section on the homepage
 
   Scenario: Check feeds are available for documents
     Then I should be able to visit:
