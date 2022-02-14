@@ -15,6 +15,7 @@ Feature: Benchmarking
   Scenario: Check the licence finder home page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
+    And I force a varnish cache miss
     When I visit "/licence-finder"
     Then the elapsed time should be less than 2 seconds
 
