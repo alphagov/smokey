@@ -6,14 +6,14 @@ Feature: Core GOV.UK behaviour
     And I force a varnish cache miss
 
   Scenario: Check paths with a trailing slash are redirected
-    When I visit "https://www.gov.uk/browse/benefits/" without following redirects
+    When I visit "/browse/benefits/" without following redirects
     Then I should get a 301 status code
-    And I should get a "Location" header of "//www.gov.uk/browse/benefits"
+    And I should be at a location path of "/browse/benefits"
 
   Scenario: Check paths with a trailing full stop are redirected
-    When I visit "https://www.gov.uk/browse/benefits." without following redirects
+    When I visit "/browse/benefits." without following redirects
     Then I should get a 301 status code
-    And I should get a "Location" header of "//www.gov.uk/browse/benefits"
+    And I should be at a location path of "/browse/benefits"
 
   Scenario: Check the crown logo links to GOV.UK homepage
     When I visit "/"
