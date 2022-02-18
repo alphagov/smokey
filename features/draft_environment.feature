@@ -15,6 +15,7 @@ Feature: Draft environment
 
   @draft @app-government-frontend
   Scenario: Check visiting a page served by government-frontend
+    Given I force a varnish cache miss
     When I try to login as a user
     When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
     Then I should see "Case study"
@@ -22,6 +23,7 @@ Feature: Draft environment
 
   @draft @app-government-frontend
   Scenario: Check visiting a specialist document served by government-frontend
+    Given I force a varnish cache miss
     When I try to login as a user
     And I attempt to visit a CMA case
     Then I should see "Competition and Markets Authority"
@@ -29,6 +31,7 @@ Feature: Draft environment
 
   @draft @app-manuals-frontend
   Scenario: Check visiting a manual served by manuals-frontend
+    Given I force a varnish cache miss
     When I try to login as a user
     And I attempt to visit a manual
     Then I should see "Content design"

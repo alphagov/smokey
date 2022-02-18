@@ -11,14 +11,14 @@ Feature: Benchmarking
     And I should get a "Location" header of "https://www.gov.uk/government/organisations/attorney-generals-office"
     And the elapsed time should be less than 2 seconds
 
-  @notintegration @aws
+  @aws
   Scenario: Check the licence finder home page loads quickly
     Given I am benchmarking
     And I am testing through the full stack
+    And I force a varnish cache miss
     When I visit "/licence-finder"
     Then the elapsed time should be less than 2 seconds
 
-  @notintegration
   Scenario: Check requesting a PDF takes a reasonable amount of time
     Given I am testing "licensing" internally
       And I am benchmarking
