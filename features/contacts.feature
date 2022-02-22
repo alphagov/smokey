@@ -1,4 +1,4 @@
-@aws
+@aws @replatforming @app-contacts
 Feature: Contacts
 
   Background:

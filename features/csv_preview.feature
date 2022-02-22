@@ -1,3 +1,4 @@
+@replatforming @app-whitehall
 Feature: CSV preview
   Tests to check CSV previews in whitehall.
 

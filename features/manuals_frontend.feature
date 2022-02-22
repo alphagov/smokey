@@ -1,4 +1,4 @@
-@app-manuals-frontend
+@app-manuals-frontend @replatforming
 Feature: Manuals Frontend
 
   Background:

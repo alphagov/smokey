@@ -1,4 +1,4 @@
-@app-licensing
+@app-licensing @replatforming
 Feature: Licensing
   Tests for the Licensify app.
 

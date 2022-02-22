@@ -1,4 +1,4 @@
-@app-collections
+@app-collections @replatforming
 Feature: Collections
 
   Background:

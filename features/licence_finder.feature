@@ -1,4 +1,4 @@
-@app-licencefinder
+@app-licencefinder @replatforming
 Feature: Licence Finder
 
   Background:

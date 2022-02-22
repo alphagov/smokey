@@ -1,3 +1,4 @@
+@replatforming @app-asset-manager
 Feature: Assets
   Tests for assets and asset-manager, including draft assets which are behind
   signon.
