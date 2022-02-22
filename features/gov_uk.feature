@@ -1,3 +1,4 @@
+@replatforming
 Feature: Core GOV.UK behaviour
   Tests for core URL and link behaviour on GOV.UK.
 

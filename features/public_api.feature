@@ -1,3 +1,4 @@
+@replatforming
 Feature: Public API
 
   Background:

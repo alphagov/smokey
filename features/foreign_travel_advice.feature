@@ -1,3 +1,4 @@
+@replatforming
 Feature: Foreign Travel Advice
 
   Background:

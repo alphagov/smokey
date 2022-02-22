@@ -1,3 +1,4 @@
+@replatforming @app-feedback
 Feature: Feedback
 
   Background:

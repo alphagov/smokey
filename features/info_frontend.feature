@@ -1,4 +1,4 @@
-@app-info-frontend
+@app-info-frontend @replatforming
 Feature: Info Frontend
 
   Background:

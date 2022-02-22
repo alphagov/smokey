@@ -1,4 +1,4 @@
-@aws @app-government-frontend
+@aws @app-government-frontend @replatforming
 Feature: Government Frontend
 
   Background:

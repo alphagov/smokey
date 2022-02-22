@@ -1,4 +1,4 @@
-@app-publisher @replatforming
+@app-publisher
 Feature: (Mainstream) Publisher
 
   @notstaging @notproduction
