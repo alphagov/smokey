@@ -25,6 +25,7 @@ Feature: Feedback
     Then I see the feedback confirmation message
     And a request is sent to the feedback app
 
+  @not-replatforming
   Scenario: Check feedback component behaviour
     When I visit "<url>"
     And I confirm it is rendered by "<application>"
