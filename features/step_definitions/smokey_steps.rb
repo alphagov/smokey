@@ -228,10 +228,10 @@ end
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
   if @response
     uri = URI(@response['location'])
-    expect(uri.path).to eq(location_path)
+    expect(normalise_path(uri.path)).to eq(location_path)
   else
     uri = URI(page.current_url)
-    expect(uri.path).to eq(location_path)
+    expect(normalise_path(uri.path)).to eq(location_path)
   end
 end
 
@@ -331,4 +331,9 @@ def get_status_code
   $proxy.new_har
   yield
   $proxy.har.entries.first.response.status
+end
+
+def normalise_path(path_str)
+  return path_str if path_str == "/"
+  path_str.chomp('/') # strip trailing slash
 end
