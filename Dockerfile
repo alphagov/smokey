@@ -8,21 +8,17 @@ RUN mkdir $APP_HOME
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE 1
 
-# Install Google Chrome
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-RUN apt-get update && apt-get install -y google-chrome-stable && apt-get clean
+# Install Chromium and ChromiumDriver
+RUN apt-get update -qq && apt-get install -y chromium chromium-driver && apt-get clean
 
 WORKDIR $APP_HOME
 ADD Gemfile* $APP_HOME/
 ADD .ruby-version $APP_HOME/
 RUN bundle install
-ADD Rakefile $APP_HOME
-RUN bundle exec rake webdrivers:chromedriver:update
 
 ADD . $APP_HOME
 
-# Allow root user to run Chrome in Docker
+# Allow root user to run Chromium in Docker
 ENV NO_SANDBOX 1
 
 # Remove Cucumber advert

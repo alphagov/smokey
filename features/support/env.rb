@@ -7,7 +7,6 @@ require 'ptools'
 require 'plek'
 require 'selenium-webdriver'
 require 'uri'
-require 'webdrivers'
 
 # Set up environment
 case ENV["ENVIRONMENT"]
