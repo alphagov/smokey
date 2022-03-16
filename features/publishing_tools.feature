@@ -6,7 +6,7 @@ Feature: Publishing Tools
     And I try to login as a user
     And I go to the "collections-publisher" landing page
     Then I should see "Collections Publisher"
-    And I should see "Sign out"
+    And I should see "Log out"
     And I should see "Mainstream browse pages"
     And I should see "Add a mainstream browse page"
 
