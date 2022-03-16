@@ -1,4 +1,4 @@
-@app-signon
+@app-signon @replatforming
 Feature: Signon
   Tests for signon, the GOV.UK single sign-on service.
 
