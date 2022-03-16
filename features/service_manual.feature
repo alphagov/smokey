@@ -1,3 +1,4 @@
+@replatforming
 Feature: Service Manual
 
   Background:

@@ -1,4 +1,4 @@
-@app-authenticating-proxy
+@app-authenticating-proxy @replatforming
 Feature: Draft environment
   Tests for the draft environment, which is used to preview content before it is
   put live on GOV.UK. Accessing the draft environment requires a valid signon
