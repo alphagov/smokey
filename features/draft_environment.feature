@@ -29,8 +29,8 @@ Feature: Draft environment
     Then I should see "Competition and Markets Authority"
     And the page should contain the draft watermark
 
-  @draft @app-manuals-frontend
-  Scenario: Check visiting a manual served by manuals-frontend
+  @draft @app-government-frontend
+  Scenario: Check visiting a manual served by government-frontend
     Given I force a varnish cache miss
     When I try to login as a user
     And I attempt to visit a manual

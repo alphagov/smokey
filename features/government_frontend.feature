@@ -140,3 +140,9 @@ Feature: Government Frontend
           | Make a neighbourhood plan                                     | /government/get-involved/take-part/make-a-neighbourhood-plan                                              |
           | Create a community library                                    | /government/get-involved/take-part/create-a-community-library                                             |
           | Become a councillor                                           | /government/get-involved/take-part/become-a-councillor                                                    |
+
+  Scenario: Check manuals load
+    Then I should be able to visit:
+      | Path                                       |
+      | /guidance/content-design/planning-content  |
+      | /hmrc-internal-manuals/pensions-tax-manual |
