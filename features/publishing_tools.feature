@@ -10,6 +10,7 @@ Feature: Publishing Tools
     And I should see "Mainstream browse pages"
     And I should see "Add a mainstream browse page"
 
+  @app-contacts-admin
   Scenario: Can log in to contacts-admin
     When I go to the "contacts-admin" landing page
     And I try to login as a user
@@ -19,6 +20,7 @@ Feature: Publishing Tools
     And I should see "Contacts"
     And I should see "Add contact"
 
+  @app-content-tagger
   Scenario: Can log in to content-tagger
     When I go to the "content-tagger" landing page
     And I try to login as a user
@@ -36,6 +38,7 @@ Feature: Publishing Tools
     And I should see "Log out"
     And I should see "Documents"
 
+  @app-imminence
   Scenario: Can log in to imminence
     When I go to the "imminence" landing page
     And I try to login as a user
@@ -63,6 +66,7 @@ Feature: Publishing Tools
     And I should see "Your manuals"
     And I should see "New manual"
 
+  @app-maslow
   Scenario: Can log in to maslow
     When I go to the "maslow" landing page
     And I try to login as a user
@@ -99,6 +103,7 @@ Feature: Publishing Tools
     And I should see "Dashboard"
     And I should see "Request a new URL redirect or short URL"
 
+  @app-specialist-publisher
   Scenario: Can log in to specialist-publisher
     When I go to the "specialist-publisher" landing page
     And I try to login as a user
@@ -117,6 +122,7 @@ Feature: Publishing Tools
     And I should see "Sign out"
     And I should see "All countries"
 
+  @app-whitehall-admin
   Scenario: Can log in to whitehall
     When I go to the "whitehall-admin" landing page
     And I try to login as a user
