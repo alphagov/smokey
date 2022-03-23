@@ -1,4 +1,4 @@
-@replatforming
+@replatforming @app-service-manual-frontend
 Feature: Service Manual
 
   Background:
