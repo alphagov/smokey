@@ -1,5 +1,5 @@
 When /^I input malicious code in the (.*) field$/ do |field|
-  page.execute_script('$("form").attr("novalidate", "novalidate")')
+  page.execute_script("document.querySelector('.contact-form').setAttribute('novalidate', 'novalidate')")
   find("#email").set("<script>alert(document.cookie)</script>")
   click_button("Send message")
 end
