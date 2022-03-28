@@ -1,4 +1,4 @@
-@aws @local-network
+@local-network
 Feature: WAF
   Tests to ensure expected WAF rules are in place
 

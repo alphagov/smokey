@@ -1,4 +1,4 @@
-@aws @app-smartanswers @replatforming
+@app-smartanswers @replatforming
 Feature: Smart Answers
 
   Background:
