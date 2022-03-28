@@ -2,5 +2,3 @@ default: -t "not @benchmarking" -t "not @pending" -t "not @local-network" -t "no
 integration: -t "not @pending" -t "not @notintegration" --publish-quiet
 staging: -t "not @pending" -t "not @notstaging" --publish-quiet
 production: -t "not @pending" -t "not @notproduction" --publish-quiet
-staging_aws: -t "not @pending" -t "not @notstaging" --publish-quiet
-production_aws: -t "not @pending" -t "not @notproduction" --publish-quiet
