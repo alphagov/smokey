@@ -5,7 +5,9 @@ Feature: Draft environment
   session. Access to the draft stack should be denied without a valid signon
   session.
 
-  @draft
+  Background:
+    Given I am testing "draft-origin"
+
   Scenario: Check visiting a draft page requires a signon session
     When I attempt to go to a case study
     Then I should be prompted to log in
@@ -13,7 +15,7 @@ Feature: Draft environment
     Then I should be on the case study page
     And the page should contain the draft watermark
 
-  @draft @app-government-frontend
+  @app-government-frontend
   Scenario: Check visiting a page served by government-frontend
     Given I force a varnish cache miss
     When I try to login as a user
@@ -21,7 +23,7 @@ Feature: Draft environment
     Then I should see "Case study"
     And the page should contain the draft watermark
 
-  @draft @app-government-frontend
+  @app-government-frontend
   Scenario: Check visiting a specialist document served by government-frontend
     Given I force a varnish cache miss
     When I try to login as a user
@@ -29,7 +31,7 @@ Feature: Draft environment
     Then I should see "Competition and Markets Authority"
     And the page should contain the draft watermark
 
-  @draft @app-manuals-frontend
+  @app-manuals-frontend
   Scenario: Check visiting a manual served by manuals-frontend
     Given I force a varnish cache miss
     When I try to login as a user

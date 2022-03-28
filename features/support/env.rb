@@ -27,7 +27,6 @@ else
 end
 
 # Set up basic URLs
-ENV["GOVUK_DRAFT_WEBSITE_ROOT"] ||= Plek.new.external_url_for("draft-origin")
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 
 # Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't

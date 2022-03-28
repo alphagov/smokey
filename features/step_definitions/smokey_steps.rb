@@ -6,6 +6,8 @@ Given /^I am testing "(.*)"$/ do |host|
   else
     @host = application_external_url(host)
   end
+
+  Capybara.app_host = @host
 end
 
 Given /^I am testing "(.*)" internally/ do |host|
@@ -14,10 +16,13 @@ Given /^I am testing "(.*)" internally/ do |host|
   else
     @host = application_internal_url(host)
   end
+
+  Capybara.app_host = @host
 end
 
 Given /^I am testing through the full stack$/ do
   @host = Plek.new.website_root
+  Capybara.app_host = @host
   @bypass_varnish = false
   @bypass_varnish_for_search = false
   @authenticated = true
