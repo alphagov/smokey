@@ -1,4 +1,3 @@
-@benchmarking
 Feature: Benchmarking
   Tests to check the loading times for various pages on GOV.UK.
 
