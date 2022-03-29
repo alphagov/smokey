@@ -1,4 +1,4 @@
-@app-publishing-api @aws
+@app-publishing-api
 Feature: Publishing Tools
   @app-collections-publisher
   Scenario: Can log in to collections-publisher

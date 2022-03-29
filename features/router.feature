@@ -1,4 +1,4 @@
-@aws @replatforming @app-router
+@replatforming @app-router
 Feature: Router
 
   Background:

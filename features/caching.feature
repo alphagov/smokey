@@ -1,4 +1,4 @@
-@aws @replatforming
+@replatforming
 Feature: Caching
   Tests that pages are correctly cached
 

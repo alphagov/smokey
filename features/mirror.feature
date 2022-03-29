@@ -1,4 +1,4 @@
-@aws @local-network
+@local-network
 Feature: Mirror
     Tests for the GOV.UK mirrors that serve content if origin is unavailable.
 

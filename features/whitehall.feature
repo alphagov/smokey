@@ -1,4 +1,4 @@
-@aws @replatforming @app-whitehall
+@replatforming @app-whitehall
 Feature: Whitehall
   Tests for the whitehall application that powers some pages under
   www.gov.uk/government and www.gov.uk/world.
