@@ -41,31 +41,6 @@ Feature: Government Frontend
       | /government/publications/development-scheme/practice-guide-72-development-schemes                     |
       | /government/get-involved                                                                              |
 
-  Scenario: Check service sign-in offers both Government Gateway and GOV.UK Verify
-    When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
-    Then I should see "How do you want to sign in?"
-    And I should see a radio button for "sign-in-with-government-gateway"
-    And I should see a radio button for "sign-in-with-gov-uk-verify"
-    And I should see a radio button for "register-for-self-assessment"
-    And I should see a continue button
-
-  @pending
-  Scenario: Check service sign-in redirects correctly to Government Gateway
-    When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
-    When I choose "Sign in with Government Gateway"
-    Then I should be redirected to "https://www.tax.service.gov.uk/gg/sign-in?continue=/account"
-
-  @pending
-  Scenario: Check service sign-in redirects correctly to GOV.UK Verify
-    When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
-    When I choose "Sign in with GOV.UK Verify"
-    Then I should be redirected to "https://www.signin.service.gov.uk/start"
-
-  Scenario: Check service sign-in redirects correctly to registration page
-    When I visit "/log-in-file-self-assessment-tax-return/sign-in/prove-identity"
-    When I choose "Register for Self Assessment"
-    Then I should be redirected to "/register-for-self-assessment"
-
   Scenario: Ensure the Get Involved page loads
     When I request "/government/get-involved"
     Then I should get a 200 status code
