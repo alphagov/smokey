@@ -138,6 +138,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sentry-ruby (5.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sentry-ruby-core (= 5.2.1)
+    sentry-ruby-core (5.2.1)
+      concurrent-ruby
     sys-uname (1.2.2)
       ffi (~> 1.1)
     thor (1.1.0)
@@ -169,6 +174,7 @@ DEPENDENCIES
   rest-client (~> 2)
   rspec (~> 3)
   selenium-webdriver (~> 3)
+  sentry-ruby
 
 BUNDLED WITH
    2.1.4
