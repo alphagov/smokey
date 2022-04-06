@@ -25,4 +25,4 @@ fi
 
 exec /usr/local/bin/govuk_setenv smokey \
     bundle exec cucumber ENVIRONMENT=${ENVIRONMENT} --expand --format json ${PROFILE:-} \
-        -t "not @disabled_in_icinga" --out "$FILE"
+        --out "$FILE"
