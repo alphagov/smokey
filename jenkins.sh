@@ -9,7 +9,6 @@ export ENVIRONMENT=${TARGET_PLATFORM}
 
 FLAGS=(--profile "${TARGET_PLATFORM}")
 FLAGS+=(--strict-undefined)
-FLAGS+=(-t "not @benchmarking")
 
 if [ -n "${TARGET_APPLICATION}" ]; then
   FLAGS+=(-t "@app-${TARGET_APPLICATION}")

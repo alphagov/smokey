@@ -31,4 +31,4 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 # Users of the image are expected to override the default CMD and set env vars
 # ENVIRONMENT, AUTH_USERNAME, AUTH_PASSWORD, and a profile flag.
 
-CMD ["bundle", "exec", "cucumber", "--strict-undefined", "-t 'not @benchmarking'"]
+CMD ["bundle", "exec", "cucumber", "--strict-undefined"]
