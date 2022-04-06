@@ -25,19 +25,17 @@ The tests require additional configuration to run successfully on a local machin
 ENVIRONMENT=integration \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
-AUTH_USERNAME="<username>" \
-AUTH_PASSWORD="<password>" \
 bundle exec cucumber
 ```
 
 You can use the following environment variables to configure the tests:
 
 * `ENVIRONMENT`: used to set environment variables for [Plek](https://github.com/alphagov/plek)
-* `AUTH_USERNAME`: the HTTP Basic auth username (required for Integration)
-* `AUTH_PASSWORD`: the HTTP Basic auth password (required for Integration)
 * `SIGNON_EMAIL`: email address of a user with a Signon account in the environment the tests are being run in
 * `SIGNON_PASSWORD`: password of a user with a Signon account in the environment the tests are being run in
 * `RATE_LIMIT_TOKEN`: a token used to bypass the default rate limiting
+
+**Note: you will need to be connected to the VPN to test against Integration or Staging.**
 
 ## Layout
 

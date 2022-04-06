@@ -25,7 +25,6 @@ Given /^I am testing through the full stack$/ do
   Capybara.app_host = @host
   @bypass_varnish = false
   @bypass_varnish_for_search = false
-  @authenticated = true
 end
 
 Given /^I force a varnish cache miss$/ do
@@ -34,10 +33,6 @@ end
 
 Given /^I force a varnish cache miss for search$/ do
   @bypass_varnish_for_search = true
-end
-
-Given /^I am not an authenticated user$/ do
-  @authenticated = false
 end
 
 Given /^I am an authenticated API client$/ do
