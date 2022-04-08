@@ -40,10 +40,6 @@ Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
 
-Given /^I have the smokey run identifier$/ do
-  $smokey_run_id ||= SecureRandom.hex
-end
-
 And /^I consent to cookies$/ do
   visit_path "/"
   click_button "Accept"
@@ -320,10 +316,4 @@ def cache_hits_value(response)
   else
     raise "Couldn't find X-Cache-Hits header in response"
   end
-end
-
-def get_status_code
-  $proxy.new_har
-  yield
-  $proxy.har.entries.first.response.status
 end
