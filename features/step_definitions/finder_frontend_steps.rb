@@ -26,10 +26,6 @@ And /^I should see an? (open|closed) facet titled "(.*?)" with non-blank values$
   expect(blank_labels).to be_empty
 end
 
-Then(/^I should see "([^"]*)" in the result\-info class$/) do |malicious_code|
-   expect(page).to have_css(".result-info", text: malicious_code)
-end
-
 When /^I search for "(.*)"$/ do |term|
   visit_path "/search?q=#{term}"
 end
