@@ -36,10 +36,6 @@ Given /^I force a varnish cache miss for search$/ do
   @bypass_varnish_for_search = true
 end
 
-Given /^I am not an authenticated user$/ do
-  @authenticated = false
-end
-
 Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
@@ -122,12 +118,6 @@ end
 When /^I request "([^"]*)" from the "([^"]*)" application$/ do |path, application|
   application_host = application_external_url(application)
   @response = get_request("#{application_host}#{path}", default_request_options)
-end
-
-When /^I visit "(.*)" (\d+) times$/ do |path, count|
-  count.to_i.times {
-    @response = get_request("#{@host}#{path}", default_request_options)
-  }
 end
 
 When(/^multiple new users visit "(.*?)"$/) do |path|
