@@ -55,16 +55,6 @@ if ENV["ACCOUNT_AUTH_USERNAME"] && ENV["ACCOUNT_AUTH_PASSWORD"]
   )
 end
 
-# Blacklist YouTube to prevent cross-site errors
-proxy.blacklist(/^https:\/\/www\.youtube\.com/i, 200)
-proxy.blacklist(/^https:\/\/s\.ytimg\.com/i, 200)
-
-# To avoid sending events to Google Analytics
-proxy.blacklist(/^https:\/\/www\.google\-analytics\.com/i, 200)
-
-# Licensify admin doesn't have favicon.ico so block requests to prevent errors
-proxy.blacklist(/^https:\/\/licensify-admin(.*)\.publishing\.service\.gov\.uk\/favicon\.ico$/i, 200)
-
 # Use Chrome in headless mode
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
@@ -94,7 +84,3 @@ Capybara.javascript_driver = :headless_chrome
 # Only raise for severe JavaScript errors and filter our 404s and CORS messages
 Capybara::Chromedriver::Logger.raise_js_errors = true
 Capybara::Chromedriver::Logger.filter_levels = %i(debug info warning)
-Capybara::Chromedriver::Logger.filters = [
-  /Failed to load resource/i,
-  /The target origin provided/i,
-]
