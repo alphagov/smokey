@@ -22,7 +22,7 @@ def uri_escape(s)
 end
 
 def default_request_options
-  { auth: @authenticated, cache_bust: @bypass_varnish, search_cache_bust: @bypass_varnish_for_search, client_auth: @authenticated_as_client }
+  { cache_bust: @bypass_varnish, search_cache_bust: @bypass_varnish_for_search, client_auth: @authenticated_as_client }
 end
 
 # Make a POST.
@@ -58,7 +58,6 @@ end
 
 def do_http_request(url, method = :get, options = {}, &block)
   defaults = {
-    :auth => true,
     :verify_ssl => true,
   }
   options = defaults.merge(options)
@@ -81,10 +80,6 @@ def do_http_request(url, method = :get, options = {}, &block)
   elsif options[:search_cache_bust]
     url = cache_bust(url, param: 'c')
   end
-  if options[:auth]
-    user     = ENV['AUTH_USERNAME']
-    password = ENV['AUTH_PASSWORD']
-  end
   if options[:client_auth]
     headers["Authorization"] = "Bearer #{ENV['BEARER_TOKEN']}"
     headers["Accept"] = "application/json"
@@ -103,8 +98,6 @@ def do_http_request(url, method = :get, options = {}, &block)
   request_options = {
     url: url,
     method: method,
-    user: user,
-    password: password,
     headers: headers.merge(options[:headers] || {}),
     timeout: 10,
     payload: options[:payload],
@@ -112,7 +105,7 @@ def do_http_request(url, method = :get, options = {}, &block)
   }
   RestClient::Request.new(request_options).execute &block
 rescue RestClient::Unauthorized => e
-  raise "Unable to fetch '#{url}' due to '#{e.message}'. Maybe you need to set AUTH_USERNAME and AUTH_PASSWORD?"
+  raise "Unable to fetch '#{url}' due to '#{e.message}'."
 rescue RestClient::Exception => e
   if options[:return_response_on_error]
     e.response

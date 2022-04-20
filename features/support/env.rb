@@ -46,12 +46,8 @@ if ENV["RATE_LIMIT_TOKEN"]
   proxy.header({ "Rate-Limit-Token" => ENV["RATE_LIMIT_TOKEN"] })
 end
 
-if ENV["AUTH_USERNAME"] && ENV["AUTH_PASSWORD"]
-  proxy.basic_authentication(
-    URI.parse(ENV["GOVUK_WEBSITE_ROOT"]).host,
-    ENV["AUTH_USERNAME"],
-    ENV["AUTH_PASSWORD"],
-  )
+
+if ENV["ACCOUNT_AUTH_USERNAME"] && ENV["ACCOUNT_AUTH_PASSWORD"]
   proxy.basic_authentication(
     "www.account.staging.publishing.service.gov.uk",
     ENV["ACCOUNT_AUTH_USERNAME"],
