@@ -41,15 +41,6 @@ proxy = server.create_proxy
 # Make the proxy available to the tests
 $proxy = proxy
 
-# Add request headers
-if ENV["ACCOUNT_AUTH_USERNAME"] && ENV["ACCOUNT_AUTH_PASSWORD"]
-  proxy.basic_authentication(
-    "www.account.staging.publishing.service.gov.uk",
-    ENV["ACCOUNT_AUTH_USERNAME"],
-    ENV["ACCOUNT_AUTH_PASSWORD"],
-  )
-end
-
 # Use Chrome in headless mode
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
