@@ -45,7 +45,9 @@ $proxy = proxy
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     acceptInsecureCerts: true,
-    loggingPrefs: { browser: "ALL" },
+    'goog:loggingPrefs': {
+      browser: "ALL",
+    },
     proxy: { type: :manual, ssl: "#{proxy.host}:#{proxy.port}" }
   )
 
