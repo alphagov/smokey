@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "browsermob-proxy", "~> 0.3"
 gem "capybara", "~> 3"
 gem "capybara-chromedriver-logger", "~> 0.3"
 gem "capybara-select-2"

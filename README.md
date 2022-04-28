@@ -9,13 +9,9 @@ The tests also run in [a continuous Smokey loop](https://github.com/alphagov/gov
 
 ## Installation
 
-Smokey requires Java to be installed, because of its use of the BrowserUp Proxy.
-
-- On your host Mac, run `brew install adoptopenjdk`.
-
-- If you don't have Homebrew installed, [download the Java JDK from the AdpotOpenJDK website](https://adoptopenjdk.net/).
-
-After that, it's a standard Ruby setup: `bundle install`.
+```
+bundle install
+```
 
 ## Running the tests
 
@@ -43,11 +39,6 @@ files to describe single applications (eg
 [`whitehall`](https://github.com/alphagov/whitehall),
 [`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
-We configure Selenium with a BrowserUp Proxy. The proxy allows us to capture and check for asynchronous requests made by JavaScript in our app e.g. for analytics. It relates to the following files:
-
-* `bin/browserup-proxy`: a runner script
-* `lib/*`: JARs for BrowserUp Proxy and its dependencies
-
 This repo also contains several scripts to support external systems running the tests and checking their output.
 
 * `tests_json_output.sh`: used to run the Smokey loop and output JSON to a temporary file
@@ -57,6 +48,5 @@ This repo also contains several scripts to support external systems running the 
 
 ## Further documentation
 
-- [troubleshooting](docs/troubleshooting.md)
 - [writing-tests](docs/writing-tests.md)
 - [pr-template](.github/pull_request_template.md)
