@@ -68,6 +68,5 @@ end
 
 Then /^a request is sent to the feedback app$/ do
   sought = "/contact/govuk/email-survey-signup"
-  wait_until { found = browser_has_request_with_url_containing sought }
   expect(browser_has_request_with_url_containing sought).to be(true)
 end

@@ -1,15 +1,36 @@
 require 'json'
 
+class WaitUntilTimeout < StandardError; end
+
+def wait_until(&block)
+  max_time_to_try_until = 5 # in seconds
+  time_between_intervals = 0.1 # in seconds
+
+  time_left = max_time_to_try_until
+  loop do
+    raise WaitUntilTimeout if time_left <= 0
+    break if yield
+    sleep(time_between_intervals)
+    time_left -= time_between_intervals
+  end
+
+  true
+end
+
 def browser_has_request_with_url_containing(sought)
-  browser_has_request_containing do |url, _post_data|
-    url.include?(sought)
+  wait_until do
+    browser_has_request_containing do |url, _post_data|
+      url.include?(sought)
+    end
   end
 end
 
 def browser_has_analytics_request_containing(sought)
-  browser_has_request_containing do |url, post_data|
-    url.start_with?("https://www.google-analytics.com") &&
-      (url.include?(sought) || post_data.include?(sought))
+  wait_until do
+    browser_has_request_containing do |url, post_data|
+      url.start_with?("https://www.google-analytics.com") &&
+        (url.include?(sought) || post_data.include?(sought))
+    end
   end
 end
 
