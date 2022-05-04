@@ -1,11 +1,12 @@
 # GOV.UK Smoke Tests
 
-Automated tests that describe high level user journeys which touch multiple
-applications within the GOV.UK stack.
+A suite of [Cucumber](https://cucumber.io/) tests that probe GOV.UK frontend and backend publishing functionality. The tests [use Selenium to manipulate a headless Chrome browser](features/support/env.rb).
 
-The master branch of the tests is frequently run in all environments, triggered by deployments of most GOV.UK applications, CDNs and associated dependencies ([check here](https://github.com/alphagov/govuk-puppet/search?l=HTML%2BERB&q=smokey)).
+The tests are run in two different ways:
 
-The tests also run in [a continuous Smokey loop](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf). We use the Smokey loop to provide Icinga alerts for major features.
+- On demand, to check if a change breaks something. This is done using the [Smokey job in Jenkins](https://github.com/alphagov/govuk-puppet/blob/b103dd3b4adcc8c39343dd85b68f4f5b93e38d9d/modules/govuk_jenkins/manifests/jobs/smokey.pp) when deploying GOV.UK applications, CDN config and associated dependencies ([check here](https://github.com/alphagov/govuk-puppet/search?l=HTML%2BERB&q=smokey)).
+
+- Periodically, to check for transient failures e.g. infra. The tests are run in [a continuous "Smokey Loop"](https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/templates/smokey-loop.conf), with [corresponding alerts in Icinga](https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/manifests/checks/smokey.pp).
 
 ## Technical documentation
 
@@ -42,8 +43,7 @@ bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
 
 ## Layout
 
-The smoke tests are based on [Cucumber](https://cucumber.io/) and [use Selenium to manipulate a headless Chrome browser](features/support/env.rb). We use feature
-files to describe single applications (eg
+We use feature files to describe single applications (eg
 [`whitehall`](https://github.com/alphagov/whitehall),
 [`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
