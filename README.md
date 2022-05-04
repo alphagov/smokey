@@ -1,6 +1,6 @@
 # GOV.UK Smoke Tests
 
-A suite of [Cucumber](https://cucumber.io/) tests that probe GOV.UK frontend and backend publishing functionality. The tests [use Selenium to manipulate a headless Chrome browser](features/support/env.rb).
+A suite of [Cucumber](https://cucumber.io/) tests that probe GOV.UK frontend and backend publishing functionality. We use feature files to describe single applications (eg [`whitehall`](https://github.com/alphagov/whitehall), [`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature). The tests [use Selenium to manipulate a headless Chrome browser](features/support/env.rb).
 
 The tests are run in two different ways:
 
@@ -40,12 +40,6 @@ You can try using your own Signon account, but this won't work if you have Multi
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
 ```
-
-## Layout
-
-We use feature files to describe single applications (eg
-[`whitehall`](https://github.com/alphagov/whitehall),
-[`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
 ## Further documentation
 
