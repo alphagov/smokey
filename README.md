@@ -47,12 +47,6 @@ files to describe single applications (eg
 [`whitehall`](https://github.com/alphagov/whitehall),
 [`frontend`](https://github.com/alphagov/frontend)) or [cross-application behaviour](features/gov_uk.feature).
 
-This repo also contains several scripts to support external systems running the tests and checking their output.
-
-* `tests_json_output.sh`: used to run the Smokey loop and output JSON to a temporary file
-* `nagios_check_cache.py`: used by Icinga to check for pass/fail statuses in the JSON in the temporary file
-* `jenkins.sh`: used by Jenkins to run a one-off Smokey e.g. after a deployment
-
 ## Further documentation
 
 - [deployment](docs/deployment.md)

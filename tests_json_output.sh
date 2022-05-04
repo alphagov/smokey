@@ -1,8 +1,13 @@
 #!/bin/bash
 
-#  This LANG declaration is needed for Gherkin
-#  without it, we get "invalid byte sequence in US-ASCII" errors
-#  https://github.com/cucumber/gherkin#troubleshooting
+# This file is used to run the Continuous Smokey loop.
+# It runs Cucumber and dumps the output in JSON format
+# to a temporary file for later processing by the Python
+# script "nagios_check_cache.py".
+
+# This LANG declaration is needed for Gherkin
+# without it, we get "invalid byte sequence in US-ASCII" errors
+# https://github.com/cucumber/gherkin#troubleshooting
 export LANG=en_US.UTF-8
 
 set -e
