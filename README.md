@@ -50,5 +50,5 @@ We use feature files to describe single applications (eg
 ## Further documentation
 
 - [deployment](docs/deployment.md)
-- [writing-tests](docs/writing-tests.md)
+- [tagging](docs/tagging.md)
 - [pr-template](.github/pull_request_template.md)
