@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
 gem "capybara", "~> 3"
-gem "capybara-chromedriver-logger", "~> 0.3"
 gem "cucumber", "~> 5"
 gem "minitest", "~> 5"
 gem "nokogiri", "~> 1"
