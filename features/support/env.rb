@@ -21,6 +21,9 @@ end
 # Set up basic URLs
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 
+# Set up optional error reporting (using SENTRY_CURRENT_ENV for the environment)
+GovukError.configure
+
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     acceptInsecureCerts: true,
