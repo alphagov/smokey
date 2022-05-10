@@ -19,6 +19,8 @@ After that, it's a standard Ruby setup: `bundle install`.
 
 ## Running the tests
 
+**Note: you will need to be connected to the VPN to test against Integration or Staging.**
+
 The tests require additional configuration to run successfully on a local machine.
 
 ```
@@ -30,11 +32,16 @@ bundle exec cucumber
 
 You can use the following environment variables to configure the tests:
 
-* `ENVIRONMENT`: used to set environment variables for [Plek](https://github.com/alphagov/plek)
-* `SIGNON_EMAIL`: email address of a user with a Signon account in the environment the tests are being run in
-* `SIGNON_PASSWORD`: password of a user with a Signon account in the environment the tests are being run in
+* `ENVIRONMENT`: controls domains returned by [Plek](https://github.com/alphagov/plek) (see [env.rb](https://github.com/alphagov/smokey/blob/19c21ac4be3f67ef994f327670121209c8632c0d/features/support/env.rb#L9-L21))
+* `SIGNON_EMAIL`: email of a Signon user in $ENVIRONMENT
+* `SIGNON_PASSWORD`: password of a Signon user in $ENVIRONMENT
 
-**Note: you will need to be connected to the VPN to test against Integration or Staging.**
+You can try using your own Signon account, but this won't work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in `govuk-secrets/puppet_aws`:
+
+```
+bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]
+bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
+```
 
 ## Layout
 
