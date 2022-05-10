@@ -21,9 +21,9 @@ Feature: Frontend
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
-  @pending
   Scenario: Check homepage sends an event to Google Analytics
     When I visit "/"
+    And I consent to cookies
     Then the page view should be tracked
 
   Scenario: Check 404 page content type and charset

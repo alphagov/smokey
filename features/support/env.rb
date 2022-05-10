@@ -1,4 +1,3 @@
-require 'browsermob/proxy'
 require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
 require 'plek'
@@ -23,27 +22,14 @@ end
 # Set up basic URLs
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 
-# Set up proxy server (used to manipulate HTTP headers etc since Selenium doesn't
-# support this) on a random port between 3222 and 3229
-proxy_port = (3222..3229).to_a.sample
-server = BrowserMob::Proxy::Server.new(
-  "./bin/browserup-proxy",
-  port: proxy_port,
-  log: ENV.fetch("ENABLE_BROWSERMOB_LOGS", false),
-  timeout: 20
-)
-server.start
-proxy = server.create_proxy
-
-# Make the proxy available to the tests
-$proxy = proxy
-
 # Use Chrome in headless mode
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     acceptInsecureCerts: true,
-    loggingPrefs: { browser: "ALL" },
-    proxy: { type: :manual, ssl: "#{proxy.host}:#{proxy.port}" }
+    'goog:loggingPrefs': {
+      browser: "ALL",
+      performance: "ALL"
+    },
   )
 
   options = Selenium::WebDriver::Chrome::Options.new

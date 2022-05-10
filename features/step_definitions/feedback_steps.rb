@@ -68,12 +68,5 @@ end
 
 Then /^a request is sent to the feedback app$/ do
   sought = "/contact/govuk/email-survey-signup"
-  wait_until { found = proxy_has_request_with_url_containing sought }
-  expect(proxy_has_request_with_url_containing sought).to be(true)
-end
-
-def proxy_has_request_with_url_containing(sought)
-  $proxy.har.entries.any? do |e|
-    e.request.url.include? sought
-  end
+  expect(browser_has_request_with_url_containing sought).to be(true)
 end

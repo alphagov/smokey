@@ -1,6 +1,4 @@
 Before do
-  # Clear the request log so that tests only see their requests.
-  $proxy.new_har(capture_binary_content: true)
   $fail_on_js_error = true
 end
 
