@@ -9,6 +9,30 @@ The tests also run in [a continuous Smokey loop](https://github.com/alphagov/gov
 
 ## Installation
 
+### chromedriver
+
+You will need to have the Chrome browser installed on your machine, as well as the `chromedriver` package, which Selenium uses to communicate with Chrome.
+
+```
+brew install chromedriver
+
+# trust chromedriver (in Preferences > Security)
+xattr -d com.apple.quarantine $(which chromedriver)
+```
+
+As your version of Chrome updates, you may need to run `brew upgrade chromedriver`, as the package will only work with a fairly narrow range of Chrome versions.
+
+### Ruby
+
+Install [Rbenv](https://github.com/rbenv/rbenv) and then the required version of Ruby:
+
+```
+rbenv install
+gem install bundler
+```
+
+Finally, install the required gems:
+
 ```
 bundle install
 ```
