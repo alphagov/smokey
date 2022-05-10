@@ -59,7 +59,7 @@ You can use the following environment variables to configure the tests:
 You can try using your own Signon account, but this won't work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in `govuk-secrets/puppet_aws`:
 
 ```
-bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]
+bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
 ```
 
