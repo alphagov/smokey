@@ -8,41 +8,29 @@ After do
   else
     begin
       flush_and_check_errors
-    rescue LogMessage::JsError => e
+    rescue ChromeBrowserLog::JsError => e
       puts "Detected JS error, but ignored it. #{e}"
     end
   end
 end
 
 def flush_and_check_errors
-  errors = extract_errors
-  return if errors.empty?
+  errors = browser_logs(:browser)
+    .select { |log| log.level == 'SEVERE' }
+    .map(&:message)
 
-  formatted_errors = errors.map(&:to_s)
-  error_list = formatted_errors.join("\n")
+  errors.each(&$stderr.puts)
+  return unless errors.any?
 
-  raise LogMessage::JsError, "Got some JS errors during testing:\n\n#{error_list}"
+  raise ChromeBrowserLog::JsError,
+    "Got some JS errors during testing:\n\n#{errors.join("\n")}"
 end
 
-def extract_errors
-  errors = []
-
-  logs(:browser).each do |log|
-    message = LogMessage.new(log)
-    next if should_filter?(message)
-
-    errors << message if message.level == 'SEVERE'
-    $stderr.puts(message.to_s)
-  end
-
-  errors
+class ChromeBrowserLog
+  class JsError < StandardError; end
 end
 
-def should_filter?(message)
-  %i[debug info warning].include?(message.level.downcase.to_sym)
-end
-
-def logs(type)
+def browser_logs(type)
   Capybara
     .current_session
     .driver.browser
