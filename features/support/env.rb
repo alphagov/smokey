@@ -21,7 +21,6 @@ end
 # Set up basic URLs
 Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
 
-# Use Chrome in headless mode
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     acceptInsecureCerts: true,
@@ -38,12 +37,12 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument("--user-agent=Smokey\ Test\ \/\ Ruby")
   options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
 
-  Capybara::Selenium::Driver.new(
-    app,
+  browser_options = {
     browser: :chrome,
-    options: options,
-    desired_capabilities: capabilities
-  )
+    capabilities: [capabilities, options]
+  }
+
+  Capybara::Selenium::Driver.new(app, browser_options)
 end
 
 Capybara.default_driver = :headless_chrome

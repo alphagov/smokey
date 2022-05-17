@@ -30,7 +30,7 @@ When /^I preview an organogram$/ do
 end
 
 And /^I don't get any s3 CSP errors$/ do
-  messages = Capybara.current_session.driver.browser.manage.logs.get(:browser).map(&:message)
+  messages = Capybara.current_session.driver.browser.logs.get(:browser).map(&:message)
   regex = /Refused to connect to 'https:\/\/s3.*because it violates the following Content Security Policy directive: "connect-src/
   messages.each do |message|
     expect(message).to_not match(regex)

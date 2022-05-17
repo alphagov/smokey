@@ -34,7 +34,6 @@ def browser_logs(type)
   Capybara
     .current_session
     .driver.browser
-    .manage
     .logs
     .get(type)
 end

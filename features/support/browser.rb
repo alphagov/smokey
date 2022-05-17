@@ -55,7 +55,7 @@ def browser_has_request_containing
   #
   # https://github.com/dbalatero/capybara-chromedriver-logger/blob/e972c9865ac1955529649566704d5878205f909c/lib/capybara/chromedriver/logger/collector.rb#L49
   @logs += Capybara.current_session.driver
-    .browser.manage.logs.get(:performance)
+    .browser.logs.get(:performance)
     .map { |log| JSON.load(log.message)['message'] }
 
   # The "messages" we're interested in look like this:
