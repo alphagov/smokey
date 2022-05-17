@@ -1,10 +1,4 @@
-# Writing tests
-
-## Alerting in Icinga
-
-All of the Cucumber features in this repo are run in [a continuous Smokey loop](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf). In order to alert on a failing scenario in Icinga, you need to ensure the feature is [listed in the Puppet config](https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378).
-
-## Filtering with tags
+# Tagging
 
 `@...` tags should _only_ be used for filtering ([not functionality hooks](https://github.com/alphagov/smokey/pull/903)).
 

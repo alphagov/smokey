@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Used by the Smokey job in Jenkins to do a one-off run
+# of the Cucumber tests, with some flags to restrict the
+# set of tests by environment and (optionally) by app.
+
 set -x
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
