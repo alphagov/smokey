@@ -4,9 +4,9 @@ A suite of [Cucumber](https://cucumber.io/) tests that probe GOV.UK frontend and
 
 The tests are run in two different ways:
 
-- On demand, to check if a change breaks something. This is done using the [Smokey job in Jenkins](https://github.com/alphagov/govuk-puppet/blob/b103dd3b4adcc8c39343dd85b68f4f5b93e38d9d/modules/govuk_jenkins/manifests/jobs/smokey.pp) when deploying GOV.UK applications, CDN config and associated dependencies ([check here](https://github.com/alphagov/govuk-puppet/search?l=HTML%2BERB&q=smokey)).
+- On demand, to check if a change breaks something. This is done using the [Smokey job in Jenkins](https://github.com/alphagov/govuk-puppet/blob/b103dd3b4adcc8c39343dd85b68f4f5b93e38d9d/modules/govuk_jenkins/manifests/jobs/smokey.pp) when deploying GOV.UK applications, [Puppet](https://github.com/alphagov/govuk-puppet/blob/27faad21eadd52e8d8b37366eac0d8e1e123adbb/modules/govuk_jenkins/templates/jobs/deploy_puppet.yaml.erb#L44) and other code, such as [CDN config](https://github.com/alphagov/govuk-puppet/blob/0e1f84954831188e22a1a76cedc4463318edf1e8/modules/govuk_jenkins/templates/jobs/deploy_cdn.yaml.erb#L49).
 
-- Periodically, to check for transient failures e.g. infra. The tests are run in [a continuous "Smokey Loop"](https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/templates/smokey-loop.conf), with [corresponding alerts in Icinga](https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/manifests/checks/smokey.pp).
+- Periodically, to check for transient failures e.g. in infrastructure. The tests are run in [a continuous "Smokey Loop"](https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/templates/smokey-loop.conf), with [corresponding alerts in Icinga](https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/manifests/checks/smokey.pp).
 
 ## Technical documentation
 
