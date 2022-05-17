@@ -2,11 +2,13 @@ Before do
   $fail_on_js_error = true
 end
 
+# Check for failures (report to Sentry)
 After do |scenario|
   next unless scenario.exception
   capture_error(scenario, scenario.exception)
 end
 
+# Check for async JS failures
 After do
   errors = browser_logs(:browser)
     .select { |log| log.level == 'SEVERE' }
