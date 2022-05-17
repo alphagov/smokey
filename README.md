@@ -7,43 +7,20 @@ The master branch of the tests is frequently run in all environments, triggered 
 
 The tests also run in [a continuous Smokey loop](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf), using a version of the master branch [deployed by Jenkins each day](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb). We use the Smokey loop to provide Icinga alerts for major features.
 
-## Installation
+## Technical documentation
 
-### chromedriver
+You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-docker) to run the application and its tests with all the necessary dependencies. Follow [the usage instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
 
-You will need to have the Chrome browser installed on your machine, as well as the `chromedriver` package, which Selenium uses to communicate with Chrome.
+**Use GOV.UK Docker to run any commands that follow.**
 
-```
-brew install chromedriver
-
-# trust chromedriver (in Preferences > Security)
-xattr -d com.apple.quarantine $(which chromedriver)
-```
-
-As your version of Chrome updates, you may need to run `brew upgrade chromedriver`, as the package will only work with a fairly narrow range of Chrome versions.
-
-### Ruby
-
-Install [Rbenv](https://github.com/rbenv/rbenv) and then the required version of Ruby:
-
-```
-rbenv install
-gem install bundler
-```
-
-Finally, install the required gems:
-
-```
-bundle install
-```
-
-## Running the tests
+### Running the test suite
 
 **Note: you will need to be connected to the VPN to test against Integration or Staging.**
 
 The tests require additional configuration to run successfully on a local machine.
 
 ```
+env \
 ENVIRONMENT=integration \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
