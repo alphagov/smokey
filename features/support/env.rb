@@ -1,4 +1,3 @@
-require 'capybara/chromedriver/logger'
 require 'capybara/cucumber'
 require 'plek'
 require 'selenium-webdriver'
@@ -49,7 +48,3 @@ end
 
 Capybara.default_driver = :headless_chrome
 Capybara.javascript_driver = :headless_chrome
-
-# Only raise for severe JavaScript errors and filter our 404s and CORS messages
-Capybara::Chromedriver::Logger.raise_js_errors = true
-Capybara::Chromedriver::Logger.filter_levels = %i(debug info warning)

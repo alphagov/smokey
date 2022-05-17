@@ -8,17 +8,33 @@ After do
   else
     begin
       flush_and_check_errors
-    rescue Capybara::Chromedriver::Logger::JsError => e
+    rescue ChromeBrowserLog::JsError => e
       puts "Detected JS error, but ignored it. #{e}"
     end
   end
 end
 
 def flush_and_check_errors
-  # Do this manually rather than using `after_example!` so we can configure
-  # the log destination to be $stderr rather than $stdout. This prevents
-  # unformatted JavaScript errors from making their way into the Smokey loop's
-  # JSON output file and breaking it.
-  collector = Capybara::Chromedriver::Logger::Collector.new(log_destination: $stderr)
-  collector.flush_and_check_errors!
+  errors = browser_logs(:browser)
+    .select { |log| log.level == 'SEVERE' }
+    .map(&:message)
+
+  errors.each(&$stderr.puts)
+  return unless errors.any?
+
+  raise ChromeBrowserLog::JsError,
+    "Got some JS errors during testing:\n\n#{errors.join("\n")}"
+end
+
+class ChromeBrowserLog
+  class JsError < StandardError; end
+end
+
+def browser_logs(type)
+  Capybara
+    .current_session
+    .driver.browser
+    .manage
+    .logs
+    .get(type)
 end
