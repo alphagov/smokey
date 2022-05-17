@@ -9,7 +9,7 @@ After do
     begin
       flush_and_check_errors
     rescue ChromeBrowserLog::JsError => e
-      puts "Detected JS error, but ignored it. #{e}"
+      log "Detected JS error, but ignored it. #{e}"
     end
   end
 end
