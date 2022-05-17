@@ -46,7 +46,19 @@ Capybara.register_driver :headless_chrome do |app|
     capabilities: [capabilities, options]
   }
 
-  Capybara::Selenium::Driver.new(app, browser_options)
+  driver = Capybara::Selenium::Driver.new(app, browser_options)
+
+  if ENV["RATE_LIMIT_TOKEN"]
+    driver.browser.devtools.send_cmd(
+      'Network.enable'
+    )
+    driver.browser.devtools.send_cmd(
+      'Network.setExtraHTTPHeaders',
+      headers: { 'Rate-Limit-Token': ENV["RATE_LIMIT_TOKEN"] }
+    )
+  end
+
+  driver
 end
 
 Capybara.default_driver = :headless_chrome
