@@ -39,9 +39,9 @@ def capture_error(scenario, exception)
     # we want to be the feature (file) to support drilling down.
     message = scenario.location.file + "\n\n" + exception.to_s
 
-    # Adding the scenario supports further drill down within the
-    # scenarios for a particular apps / functionality.
-    scope.set_tags('cucumber.scenario': scenario.name)
+    # Adding the scenario supports further drill down using the
+    # Sentry "tags" view. Substituting " is necessary for search.
+    scope.set_tags('cucumber.scenario': scenario.name.gsub('"', "'"))
 
     # Using the feature (file) as the fingerprint means we only
     # get one issue per feature, keeping the dashboard simple.
