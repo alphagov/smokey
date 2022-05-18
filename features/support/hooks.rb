@@ -15,7 +15,7 @@ After do
     .map(&:message)
 
   errors.each(&$stderr.puts)
-  return unless errors.any?
+  next unless errors.any?
   messages = errors.join("\n")
 
   if $fail_on_js_error
