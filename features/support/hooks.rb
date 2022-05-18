@@ -36,20 +36,17 @@ end
 def capture_error(scenario, exception)
   Sentry.with_scope do |scope|
     # First line of the message becomes the issue title, which
-    # we want to be the feature (file) to support drilling down.
-    message = scenario.location.file + "\n\n" + exception.to_s
+    # we want to be the feature / scenario.
+    message = "#{scenario.location.file} (#{scenario.name})"
+    message += "\n\n" + exception.to_s
 
-    # Adding the scenario supports further drill down within the
-    # scenarios for a particular apps / functionality.
-    scope.set_tags('cucumber.scenario': scenario.name)
-
-    # Using the feature (file) as the fingerprint means we only
-    # get one issue per feature, keeping the dashboard simple.
+    # Using the feature / scenario as the fingerprint means we only
+    # get one issue per scenario, keeping the dashboard simple.
     # The hint is used by govuk_app_config, which will emit stats
     # for the error class, in addition to what we get in Sentry.
     Sentry.capture_message(
       message,
-      fingerprint: [scenario.location.file],
+      fingerprint: [scenario.location.file, scenario.name],
       backtrace: exception.backtrace,
       hint: { exception: exception }
     )
