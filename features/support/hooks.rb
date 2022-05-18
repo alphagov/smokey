@@ -14,7 +14,6 @@ After do
     .select { |log| log.level == 'SEVERE' }
     .map(&:message)
 
-  errors.each(&$stderr.puts)
   next unless errors.any?
   messages = errors.join("\n")
 
