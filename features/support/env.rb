@@ -1,4 +1,5 @@
 require 'capybara/cucumber'
+require 'govuk_app_config/govuk_error'
 require 'plek'
 require 'selenium-webdriver'
 require 'uri'
