@@ -2,8 +2,14 @@ Before do
   $fail_on_js_error = true
 end
 
-# Check for async JS failures
 After do |scenario|
+  # Scenario failed, so report the failure to Sentry
+  if scenario.exception
+    capture_error(scenario, scenario.exception)
+    next
+  end
+
+  # Scenario passed, but could have async JS errors
   errors = browser_logs(:browser)
     .select { |log| log.level == 'SEVERE' }
     .map(&:message)
@@ -13,19 +19,11 @@ After do |scenario|
 
   if $fail_on_js_error
     capture_error(scenario, StandardError.new(messages))
+    # This will change the scenario to be a failure
     raise "Detected JS errors:\n\n#{messages}"
   else
     log "Detected JS errors, but ignored them:\n\n#{messages}"
   end
-end
-
-# Check for failures (report to Sentry)
-#
-# Needs to be defined *after* the async JS hook so that it runs
-# *first*. Otherwise we'll report the same exception twice.
-After do |scenario|
-  next unless scenario.exception
-  capture_error(scenario, scenario.exception)
 end
 
 def browser_logs(type)
