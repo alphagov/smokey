@@ -33,14 +33,12 @@ You can use the following environment variables to configure the tests:
 * `ENVIRONMENT`: controls domains returned by [Plek](https://github.com/alphagov/plek) (see [env.rb](https://github.com/alphagov/smokey/blob/19c21ac4be3f67ef994f327670121209c8632c0d/features/support/env.rb#L9-L21))
 * `SIGNON_EMAIL`: email of a Signon user in $ENVIRONMENT
 * `SIGNON_PASSWORD`: password of a Signon user in $ENVIRONMENT
-* `RATE_LIMIT_TOKEN`: (optional) a token used to bypass rate limiting if present on apps.
 
 You can try using your own Signon account, but this won't work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in `govuk-secrets/puppet_aws`:
 
 ```
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
-bundle exec rake 'eyaml:decrypt_value[integration,smokey_rate_limit_token]'
 ```
 
 ## Further documentation
