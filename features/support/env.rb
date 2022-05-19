@@ -37,6 +37,7 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument("--headless")
   options.add_argument("--disable-gpu")
+  options.add_argument("--disable-web-security")
   options.add_argument("--disable-xss-auditor")
   options.add_argument("--user-agent=Smokey\ Test\ \/\ Ruby")
   options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
