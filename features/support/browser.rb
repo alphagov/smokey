@@ -35,7 +35,7 @@ def browser_has_analytics_request_containing(sought)
 end
 
 def browser_has_request_containing
-  # Each log looks like this:
+  # Most logs look like this:
   #
   # #<Selenium::WebDriver::LogEntry:0x000000012b5d7ba0
   #   @level="INFO",
@@ -43,8 +43,15 @@ def browser_has_request_containing
   #   @message="{\"message\":{...}}"
   # >
   #
-  logs = performance_logs
-    .map { |log| JSON.load(log.message)['message'] }
+  # Some log messages are just plain strings, such as SEVERE
+  # error logs. These should appear in the main "browser" logs
+  # so we can safely ignore them here, where we only care about
+  # the requests that were sent.
+  logs = performance_logs.map do |log|
+    JSON.load(log.message)['message']
+  rescue JSON::ParserError
+    {}
+  end
 
   # The "messages" we're interested in look like this:
   #
