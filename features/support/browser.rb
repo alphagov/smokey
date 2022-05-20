@@ -49,11 +49,6 @@ def browser_has_request_containing
   #   @message="{\"message\":{...}}"
   # >
   #
-  # This is the same technique used by the Capybara Log Collector,
-  # but that does a ".get(:browser)", which isn't affected by the
-  # call we're making here.
-  #
-  # https://github.com/dbalatero/capybara-chromedriver-logger/blob/e972c9865ac1955529649566704d5878205f909c/lib/capybara/chromedriver/logger/collector.rb#L49
   @logs += Capybara.current_session.driver
     .browser.logs.get(:performance)
     .map { |log| JSON.load(log.message)['message'] }
