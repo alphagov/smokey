@@ -35,12 +35,6 @@ def browser_has_analytics_request_containing(sought)
 end
 
 def browser_has_request_containing
-  @logs ||= []
-
-  # Calling ".get" retrieves and then wipes the logs so far, so we
-  # need to cache them in case this method is called multiple times,
-  # where there may also be more logs available.
-  #
   # Each log looks like this:
   #
   # #<Selenium::WebDriver::LogEntry:0x000000012b5d7ba0
@@ -49,8 +43,7 @@ def browser_has_request_containing
   #   @message="{\"message\":{...}}"
   # >
   #
-  @logs += Capybara.current_session.driver
-    .browser.logs.get(:performance)
+  logs = performance_logs
     .map { |log| JSON.load(log.message)['message'] }
 
   # The "messages" we're interested in look like this:
@@ -73,10 +66,27 @@ def browser_has_request_containing
   # }
   #
   # See https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-requestWillBeSent
-  @logs.any? do |log|
+  logs.any? do |log|
     post_data = log.dig("params", "request", "postData") || ""
 
     log["method"] == "Network.requestWillBeSent" &&
       yield(log["params"]["request"]["url"], post_data)
   end
+end
+
+def performance_logs
+  @performance_logs ||= []
+  @performance_logs += flush_chrome_logs_for_type(:performance)
+  @performance_logs
+end
+
+def browser_logs
+  @browser_logs ||= []
+  @browser_logs += flush_chrome_logs_for_type(:browser)
+  @browser_logs
+end
+
+def flush_chrome_logs_for_type(type)
+  # Calling ".get" retrieves and then wipes the logs so far.
+  Capybara.current_session.driver.browser.logs.get(type)
 end

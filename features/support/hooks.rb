@@ -10,7 +10,7 @@ After do |scenario|
   end
 
   # Scenario passed, but could have async JS errors
-  errors = browser_logs(:browser)
+  errors = browser_logs
     .select { |log| log.level == 'SEVERE' }
     .map(&:message)
 
@@ -24,14 +24,6 @@ After do |scenario|
   else
     log "Detected JS errors, but ignored them:\n\n#{messages}"
   end
-end
-
-def browser_logs(type)
-  Capybara
-    .current_session
-    .driver.browser
-    .logs
-    .get(type)
 end
 
 def capture_error(scenario, exception)
