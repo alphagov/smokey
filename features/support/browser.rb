@@ -86,6 +86,16 @@ def browser_logs
   @browser_logs
 end
 
+def flush_chrome_logs
+  # Clear out any unseen logs
+  flush_chrome_logs_for_type(:performance)
+  flush_chrome_logs_for_type(:browser)
+
+  # Clear out any existing logs
+  @performance_logs = []
+  @browser_logs = []
+end
+
 def flush_chrome_logs_for_type(type)
   # Calling ".get" retrieves and then wipes the logs so far.
   Capybara.current_session.driver.browser.logs.get(type)

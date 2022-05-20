@@ -1,5 +1,6 @@
 Before do
   $fail_on_js_error = true
+  flush_chrome_logs
 end
 
 After do |scenario|
