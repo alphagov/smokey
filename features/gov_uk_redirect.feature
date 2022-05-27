@@ -1,4 +1,5 @@
 Feature: Redirect of gov.uk to www.gov.uk
+
   Scenario: Check redirect from bare domain to www.gov.uk is working for HTTP
     When I visit "http://gov.uk/" without following redirects
     Then I should get a 301 status code

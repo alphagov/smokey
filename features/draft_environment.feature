@@ -23,6 +23,17 @@ Feature: Draft environment
     Then I should see "Case study"
     And the page should contain the draft watermark
 
+  # TODO: REMOVE this test as it does not meet the eligibility
+  # criteria in docs/writing-tests.md.
+  #
+  # - Covers site-wide config: N (already covered)
+  # - Targets data transfer: N (already covered)
+  # - Second critical check: N (arbitrary page)
+  #
+  # Data transfer with the draft Content Store and site-wide
+  # Varnish config (authentication) is already covered by
+  # "Check visiting a draft page requires a signon session".
+  #
   @app-government-frontend
   Scenario: Check visiting a specialist document served by government-frontend
     Given I force a varnish cache miss
@@ -31,6 +42,18 @@ Feature: Draft environment
     Then I should see "Competition and Markets Authority"
     And the page should contain the draft watermark
 
+  # TODO: REMOVE this test as it does not meet the eligibility
+  # criteria in docs/writing-tests.md.
+  #
+  # - Covers site-wide config: N (already covered)
+  # - Targets data transfer: N (already covered)
+  # - Second critical check: N (arbitrary page)
+  #
+  # Data transfer with the draft Content Store and site-wide
+  # Varnish config (authentication) is already covered by
+  # "Check visiting a draft page requires a signon session"
+  # and "Check visiting a page served by government-frontend".
+  #
   @app-government-frontend
   Scenario: Check visiting a manual served by government-frontend
     Given I force a varnish cache miss
