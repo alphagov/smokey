@@ -40,6 +40,8 @@ Feature: Government Frontend
       | /government/statistical-data-sets/effort-statistics-february-2017                                     |
       | /government/publications/development-scheme/practice-guide-72-development-schemes                     |
       | /government/get-involved                                                                              |
+      | /guidance/content-design/planning-content  |
+      | /hmrc-internal-manuals/pensions-tax-manual |
 
   Scenario: Ensure the Get Involved page loads
     When I request "/government/get-involved"
