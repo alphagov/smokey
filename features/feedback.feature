@@ -72,11 +72,6 @@ Feature: Feedback
       | url                     | application   |
       | /licence-finder/sectors | licencefinder |
 
-    @app-manuals-frontend
-    Examples:
-      | url                      | application      |
-      | /guidance/content-design | manuals-frontend |
-
     @app-service-manual-frontend
     Examples:
       | url             | application             |
