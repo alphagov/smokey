@@ -20,10 +20,6 @@ Given /^I am testing "(.*)" internally/ do |host|
   Capybara.app_host = @host
 end
 
-Given /^I force a varnish cache miss$/ do
-  @bypass_varnish = true
-end
-
 Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end

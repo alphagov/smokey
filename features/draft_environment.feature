@@ -17,7 +17,6 @@ Feature: Draft environment
 
   @app-government-frontend
   Scenario: Check visiting a page served by government-frontend
-    Given I force a varnish cache miss
     When I try to login as a user
     When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
     Then I should see "Case study"

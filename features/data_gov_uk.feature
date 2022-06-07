@@ -4,21 +4,18 @@ Feature: Data.gov.uk
   @notintegration @notstaging
   Scenario: Check home page loads correctly
     Given I am testing "https://data.gov.uk"
-    And I force a varnish cache miss
     When I request "/"
     Then I should see "Find open data"
 
   @notintegration @notstaging
   Scenario: Check search works
     Given I am testing "https://data.gov.uk"
-    And I force a varnish cache miss
     When I search for "data" in datasets
     Then I should see some dataset results
 
   @notintegration @notstaging
   Scenario: Check RDF API loads
     Given I am testing "https://data.gov.uk"
-    And I force a varnish cache miss
     When I request "/dataset/lidar-composite-dtm-2017-1m.rdf"
     Then I should get a 200 status code
 
@@ -41,7 +38,6 @@ Feature: Data.gov.uk
     When I search for all datasets
     And I save the dataset count
     Given I am testing "https://data.gov.uk"
-    And I force a varnish cache miss
     When I search for "" in datasets
     Then I should see a similar dataset count
 

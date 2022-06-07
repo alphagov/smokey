@@ -2,9 +2,6 @@
 Feature: Core GOV.UK behaviour
   Tests for core URL and link behaviour on GOV.UK.
 
-  Background:
-    Given I force a varnish cache miss
-
   # TODO: EXPORT this test as it does not meet the eligibility
   # criteria in docs/writing-tests.md.
   #

@@ -1,9 +1,6 @@
 @replatforming @app-feedback
 Feature: Feedback
 
-  Background:
-    Given I force a varnish cache miss
-
   # TODO: RENAME to clarify this is testing data transfer with
   # Content Store (as the prime example for this app).
   #

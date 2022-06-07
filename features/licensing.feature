@@ -3,8 +3,7 @@ Feature: Licensing
   Tests for the Licensify app.
 
   Scenario: Check licensing app is present
-    Given I force a varnish cache miss
-    And I don't care about JavaScript errors
+    Given I don't care about JavaScript errors
     Then I should be able to visit:
       | Path                                                              |
       | /apply-for-a-licence/test-licence/westminster/apply-1             |

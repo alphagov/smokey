@@ -1,9 +1,6 @@
 @replatforming @app-frontend
 Feature: Frontend
 
-  Background:
-    Given I force a varnish cache miss
-
   Scenario: Check robots.txt
     When I request "/robots.txt"
     Then I should see "User-agent:"

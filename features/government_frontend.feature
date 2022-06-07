@@ -1,9 +1,6 @@
 @app-government-frontend @replatforming
 Feature: Government Frontend
 
-  Background:
-    Given I force a varnish cache miss
-
   Scenario: Ensure static content is rendered
     When I visit "/government/get-involved"
     Then I should see "Get involved"
