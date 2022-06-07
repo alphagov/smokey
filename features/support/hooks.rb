@@ -4,7 +4,7 @@ Before do
   # "visit '/path'" will visit GOV.UK pages
   Capybara.app_host = @host
   # Cache bust by default so we check origin
-  @bypass_varnish = true
+  @bypass_caching = true
 
   $fail_on_js_error = true
   flush_chrome_logs

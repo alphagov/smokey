@@ -22,7 +22,7 @@ def uri_escape(s)
 end
 
 def default_request_options
-  { cache_bust: @bypass_varnish, client_auth: @authenticated_as_client }
+  { cache_bust: @bypass_caching, client_auth: @authenticated_as_client }
 end
 
 # Make a POST.
