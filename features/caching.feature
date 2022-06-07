@@ -2,9 +2,6 @@
 Feature: Caching
   Tests that pages are correctly cached
 
-  Background:
-    Given I am testing through the full stack
-
   # TODO: RENAME to clarify this is testing caching behaviour
   # for POST requests.
   #

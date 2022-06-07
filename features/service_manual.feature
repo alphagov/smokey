@@ -2,8 +2,7 @@
 Feature: Service Manual
 
   Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
+    Given I force a varnish cache miss
 
   Scenario: Check Service Manual loads correctly
     When I visit "/service-manual"

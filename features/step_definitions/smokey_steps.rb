@@ -20,12 +20,6 @@ Given /^I am testing "(.*)" internally/ do |host|
   Capybara.app_host = @host
 end
 
-Given /^I am testing through the full stack$/ do
-  @host = Plek.new.website_root
-  Capybara.app_host = @host
-  @bypass_varnish = false
-end
-
 Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
 end

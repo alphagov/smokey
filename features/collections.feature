@@ -2,8 +2,7 @@
 Feature: Collections
 
   Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
+    Given I force a varnish cache miss
 
   # TODO: RENAME to clarify this is testing data transfer
   # with Content Store (as the prime example for the app).

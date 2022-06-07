@@ -7,14 +7,13 @@ Feature: A/B Testing
 
   Background:
     Given I consent to cookies
-    And I am testing through the full stack
 
   Scenario: Check we end up in all buckets
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the A/B test
 
   Scenario: Check that an A/B test works
-    And I do not have any A/B testing cookies set
+    Given I do not have any A/B testing cookies set
     When I visit "/help/ab-testing"
     Then I am assigned to a test bucket
     And I can see the bucket I am assigned to

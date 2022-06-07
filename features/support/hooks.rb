@@ -1,4 +1,11 @@
 Before do
+  # Manual HTTP requests will go to GOV.UK
+  @host = Plek.new.website_root
+  # "visit '/path'" will visit GOV.UK pages
+  Capybara.app_host = @host
+
+  @bypass_varnish = false
+
   $fail_on_js_error = true
   flush_chrome_logs
 end
