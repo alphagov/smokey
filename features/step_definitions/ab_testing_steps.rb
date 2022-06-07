@@ -1,11 +1,13 @@
 Given(/^I do not have any A\/B testing cookies set$/) do
-  Capybara.current_session.driver.browser.manage.all_cookies.each do |cookie|
-    refute_equal(
-      "ABTest-Example",
-      cookie[:name],
-      "There should be no A/B cookies set"
-    )
-  end
+  all_cookies = Capybara
+    .current_session
+    .driver
+    .browser
+    .manage
+    .all_cookies
+    .map { |cookie| cookie[:name] }
+
+  expect(all_cookies).to_not include("ABTest-Example")
 end
 
 Then(/^we have shown them all versions of the A\/B test$/) do
@@ -21,18 +23,14 @@ Then(/^I am assigned to a test bucket$/) do
     .manage
     .cookie_named("ABTest-Example")
 
+  expect(["A", "B"]).to include(ab_cookie[:value])
+  expect(ab_cookie[:expires]).to_not be_nil
   @ab_cookie_value = ab_cookie[:value]
-
-  assert @ab_cookie_value == "A" || @ab_cookie_value == "B",
-    "Expected A/B cookie to have value 'A' or 'B' but got '#{@ab_cookie_value}'"
-
-  refute_nil ab_cookie[:expires], "A/B cookie has no expiry time"
 end
 
 Then(/^I can see the bucket I am assigned to$/) do
   bucket = ab_bucket(page.body)
-  assert bucket == "A" || bucket == "B",
-    "Expected A/B bucket to be 'A' or 'B', but got '#{bucket}'"
+  expect(["A", "B"]).to include(bucket)
 
   # Store bucket so that subsequent responses can be compared to the original
   @original_bucket = bucket
