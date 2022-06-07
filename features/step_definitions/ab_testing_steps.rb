@@ -1,10 +1,3 @@
-Given(/^there is an A\/B test set up$/) do
-  # Empty step.
-  # We assume that there is always an A/B test set up on the example A/B test
-  # page. If this is not true, the A/B smoke tests will fail, so we should fix
-  # or delete them as appropriate.
-end
-
 Given(/^I do not have any A\/B testing cookies set$/) do
   Capybara.current_session.driver.browser.manage.all_cookies.each do |cookie|
     refute_equal(
