@@ -6,8 +6,7 @@ Feature: A/B Testing
   may be broken.
 
   Background:
-    Given there is an A/B test set up
-    And I consent to cookies
+    Given I consent to cookies
     And I am testing through the full stack
 
   Scenario: Check we end up in all buckets
