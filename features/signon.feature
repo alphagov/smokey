@@ -2,7 +2,7 @@
 Feature: Signon
   Tests for signon, the GOV.UK single sign-on service.
 
-  Scenario: Check logging in works
+  Scenario: Check log in to signon
     When I try to login as a user
     Then I should see "Your applications"
 

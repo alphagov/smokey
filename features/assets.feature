@@ -4,7 +4,7 @@ Feature: Assets
   signon.
 
   @local-network
-  Scenario: Check an asset can be loaded
+  Scenario: Check assets can be managed via the API
     Given I am testing "asset-manager" internally
     And I am an authenticated API client
     When I request "/assets/513a0efbed915d425e000002"

@@ -1,41 +1,41 @@
 @replatforming @app-frontend
 Feature: Frontend
 
-  Scenario: Check robots.txt
+  Scenario: Check robots.txt loads
     When I request "/robots.txt"
     Then I should see "User-agent:"
 
-  Scenario: Check help page loads correctly
+  Scenario: Check help page loads
     When I visit "/help"
     Then I should see "Help using GOV.UK"
 
-  Scenario: Check homepage content type and charset
+  Scenario: Check homepage loads
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
-  Scenario: Check homepage sends an event to Google Analytics
+  Scenario: Check the client can talk to Google Analytics
     When I visit "/"
     And I consent to cookies
     Then the page view should be tracked
 
-  Scenario: Check 404 page content type and charset
+  Scenario: Check 404 page loads
     When I visit a non-existent page
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
-  Scenario: Check licences load
+  Scenario: Check the frontend can talk to Licensing
     When I visit "/busking-licence"
     Then I should see "Busking licence"
      And I should see an input field for postcode
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
-  Scenario: Check local transactions load
+  Scenario: Check the frontend can talk to Mapit
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
     When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
     Then I should see "Camden"
 
-  Scenario: Check electoral pages load
+  Scenario: Check the frontend can talk to Elections API
     When I visit "/contact-electoral-registration-office"
     Then I should see "Electoral Registration Office"
     When I visit "/contact-electoral-registration-office?postcode=sw1a+1aa"
@@ -43,7 +43,7 @@ Feature: Frontend
     When I visit "/contact-electoral-registration-office?postcode=WV148TU"
     Then I should see "Choose your address"
 
-  Scenario: Check "find my nearest" returns results
+  Scenario: Check the frontend can talk to Imminence
     When I visit "/ukonline-centre-internet-access-computer-training"
     And I should see "Online Centres Network"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"

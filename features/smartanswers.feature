@@ -1,7 +1,7 @@
 @app-smartanswers @replatforming
 Feature: Smart Answers
 
-  Scenario: Check stepping through a smart answer
+  Scenario: Check the app is routable for a Smart Answer
     Then I should be able to visit:
     | Path                                        |
     | /vat-payment-deadlines                      |

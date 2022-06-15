@@ -16,7 +16,7 @@ Feature: Draft environment
     And the page should contain the draft watermark
 
   @app-government-frontend
-  Scenario: Check visiting a page served by government-frontend
+  Scenario: Check the frontend can talk to draft Content Store (for Government Frontend)
     When I try to login as a user
     When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
     Then I should see "Case study"
