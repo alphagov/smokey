@@ -19,9 +19,6 @@ else
   raise "ENVIRONMENT should be one of integration, staging, production"
 end
 
-# Set up basic URLs
-Capybara.app_host = ENV["GOVUK_WEBSITE_ROOT"]
-
 # Set up error reporting (using SENTRY_CURRENT_ENV for the environment)
 GovukError.configure
 

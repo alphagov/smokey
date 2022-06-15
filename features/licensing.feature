@@ -3,10 +3,7 @@ Feature: Licensing
   Tests for the Licensify app.
 
   Scenario: Check licensing app is present
-    Given I am testing "licensing" internally
-      And I am testing through the full stack
-      And I force a varnish cache miss
-      And I don't care about JavaScript errors
+    Given I don't care about JavaScript errors
     Then I should be able to visit:
       | Path                                                              |
       | /apply-for-a-licence/test-licence/westminster/apply-1             |
@@ -15,6 +12,6 @@ Feature: Licensing
 
   @notreplatforming
   Scenario: Check signing in to licensify-admin
-     When I try to login as a user
-      And I login to Licensify
-     Then I should see "Sign Out"
+    When I try to login as a user
+    And I login to Licensify
+    Then I should see "Sign Out"

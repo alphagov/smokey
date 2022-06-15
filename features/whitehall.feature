@@ -3,10 +3,6 @@ Feature: Whitehall
   Tests for the whitehall application that powers some pages under
   www.gov.uk/government and www.gov.uk/world.
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   # TODO: RENAME to clarify this is testing data transfer with
   # Content Store (as the prime example for this app).
   #

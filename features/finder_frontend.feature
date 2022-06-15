@@ -3,9 +3,7 @@ Feature: Finder Frontend
   These are pages that let you search within a set of similar looking documents.
 
   Background:
-    Given I am testing through the full stack
-    And I consent to cookies
-    And I force a varnish cache miss
+    Given I consent to cookies
 
   # TODO: RENAME to clarify this is testing data transfer with
   # Content Store (as the prime example for this app).

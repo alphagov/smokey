@@ -14,7 +14,6 @@ Feature: Assets
   #
   Scenario: Check assets with an xls extension are served correctly
     Given I am testing "assets"
-    And I force a varnish cache miss
     When I request "/media/580768d940f0b64fbe000022/Target_incomes_calculator.xls"
     Then I should get a "Content-Type" header of "application/vnd.ms-excel"
 

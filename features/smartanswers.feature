@@ -1,10 +1,6 @@
 @app-smartanswers @replatforming
 Feature: Smart Answers
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   Scenario: Check stepping through a smart answer
     Then I should be able to visit:
     | Path                                        |

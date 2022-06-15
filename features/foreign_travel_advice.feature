@@ -1,10 +1,6 @@
 @replatforming
 Feature: Foreign Travel Advice
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   Scenario: Check the index page loads correctly
     When I visit "/foreign-travel-advice"
     Then I should see "Foreign travel advice"
