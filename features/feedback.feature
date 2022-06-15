@@ -5,15 +5,43 @@ Feature: Feedback
     Given I am testing through the full stack
     And I force a varnish cache miss
 
+  # TODO: RENAME to clarify this is testing data transfer with
+  # Content Store (as the prime example for this app).
+  #
   Scenario: Check the "Contact GOV.UK" page loads correctly
     When I visit "/contact/govuk"
     Then I should see "Contact GOV.UK"
 
+  # TODO: EXPORT this test as it does not meet the elgibility
+  # criteria in docs/writing-tests.md.
+  #
+  # - Covers site-wide config: N (not applicable)
+  # - Targets data transfer: N (already covered)
+  # - Second critical check: N (not tested in app)
+  #
+  # Data transfer with Content Store is already covered by
+  # "Check the "Contact GOV.UK" page loads correctly".
+  #
+  # Should be tested in Feedback [^1].
+  #
+  # [^1]: https://github.com/alphagov/feedback/blob/d2e8d8286fffec6b6093eecd5ed2d38f2c245e9e/app/models/contact_ticket.rb#L16
+  #
   Scenario: Check malicious code does not execute
     When I visit "/contact/govuk"
     And I input malicious code in the email field
     Then I see the code returned in the page
 
+  # TODO: REMOVE this test as it does not meet the eligibility
+  # criteria in docs/writing-tests.md.
+  #
+  # - Covers site-wide config: N (not applicable)
+  # - Targets data transfer: N (already covered)
+  # - Second critical check: N (arbitrary page)
+  #
+  # The URL is redirect and is rendered by Government Frontend.
+  # Data transfer for this app with Content Store is already
+  # covered by "Ensure static content is rendered".
+  #
   Scenario: Check the FoI page loads correctly
     When I visit "/contact/foi"
     Then I should see "How to make a freedom of information (FOI) request"
@@ -25,6 +53,9 @@ Feature: Feedback
     Then I see the feedback confirmation message
     And a request is sent to the feedback app
 
+  # TODO: RENAME to clarify this is testing data transfer with
+  # Static (as the prime example for each app listed below).
+  #
   Scenario: Check feedback component behaviour
     When I visit "<url>"
     And I confirm it is rendered by "<application>"
