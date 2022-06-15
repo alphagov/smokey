@@ -31,21 +31,6 @@ Feature: Feedback
     And I input malicious code in the email field
     Then I see the code returned in the page
 
-  # TODO: REMOVE this test as it does not meet the eligibility
-  # criteria in docs/writing-tests.md.
-  #
-  # - Covers site-wide config: N (not applicable)
-  # - Targets data transfer: N (already covered)
-  # - Second critical check: N (arbitrary page)
-  #
-  # The URL is redirect and is rendered by Government Frontend.
-  # Data transfer for this app with Content Store is already
-  # covered by "Ensure static content is rendered".
-  #
-  Scenario: Check the FoI page loads correctly
-    When I visit "/contact/foi"
-    Then I should see "How to make a freedom of information (FOI) request"
-
   Scenario: Check "is this page useful?" email survey
     When I visit "/"
     And I click to say the page is not useful

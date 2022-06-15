@@ -1,8 +1,3 @@
-Then /^I should see the Government activity section on the homepage$/ do
-  visit_path "/"
-  assert page.first('.homepage-section__government-activity')
-end
-
 When(/^I request an attachment$/) do
   @attachment_path = '/government/uploads/system/uploads/attachment_data/file/618167/government_dietary_recommendations.pdf'
   step %Q(I request "#{@attachment_path}")

@@ -24,15 +24,10 @@ Given /^I am testing through the full stack$/ do
   @host = Plek.new.website_root
   Capybara.app_host = @host
   @bypass_varnish = false
-  @bypass_varnish_for_search = false
 end
 
 Given /^I force a varnish cache miss$/ do
   @bypass_varnish = true
-end
-
-Given /^I force a varnish cache miss for search$/ do
-  @bypass_varnish_for_search = true
 end
 
 Given /^I am an authenticated API client$/ do
@@ -110,11 +105,6 @@ When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
   visit_path "#{application_host}#{path}"
 end
 
-When /^I request "([^"]*)" from the "([^"]*)" application$/ do |path, application|
-  application_host = application_external_url(application)
-  @response = get_request("#{application_host}#{path}", default_request_options)
-end
-
 When(/^multiple new users visit "(.*?)"$/) do |path|
   @responses = []
   20.times do
@@ -144,17 +134,6 @@ def should_see(text)
   expect(@response.body).to have_content(text)
 end
 
-Then /^I should see that postcodes are stripped from analytics data$/ do
-  name = "govuk:static-analytics:strip-postcodes"
-  if @response
-    tags = Nokogiri::HTML.parse(@response.body).css("meta[name='#{name}']")
-    fail "Missing #{name} meta tag" if tags.nil? or tags.empty?
-  else
-    tags = Nokogiri::HTML.parse(page.body).css("meta[name='#{name}']")
-    fail "Missing #{name} meta tag" if tags.nil? or tags.empty?
-  end
-end
-
 And /^I don't care about JavaScript errors/ do
   $fail_on_js_error = false
 end
@@ -162,13 +141,6 @@ end
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     visit_path row['Path']
-  end
-end
-
-Then /^I should be redirected when I try to visit:$/ do |table|
-  table.hashes.each do |row|
-    visit_path row['Path']
-    expect(page.current_path).not_to eq(row['Path'])
   end
 end
 
@@ -197,10 +169,6 @@ Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
   else
     raise "Couldn't find header '#{header_name}' in response"
   end
-end
-
-Then /I should get a content length of "(\d+)"/ do |length|
-  expect(@response.net_http_res['content-length'].to_i).to eq(length)
 end
 
 Then /^I should see "(.*)"$/ do |content|
@@ -242,45 +210,8 @@ Then /^I should see Publisher's publication index$/ do
   expect(page).to have_selector("#publication-list-container")
 end
 
-Then /^I should be able to navigate the topic hierarchy$/ do
-  topics = Nokogiri::HTML.parse(page.body).css("nav.topics li a")
-  random_path_selection(anchor_tags: topics).each do |path|
-    visit_path path
-
-    subtopics = Nokogiri::HTML.parse(page.body).css("nav.topics li a")
-    random_path_selection(anchor_tags: subtopics).each do |path|
-      visit_path path
-    end
-  end
-end
-
-Then /^I should be able to navigate the browse pages$/ do
-  categories = Nokogiri::HTML.parse(page.body).css(".browse-panes ul li a")
-  random_path_selection(anchor_tags: categories).each do |path|
-    visit_path path
-
-    subcategories = Nokogiri::HTML.parse(page.body).css(".pane-inner ul li a")
-    random_path_selection(anchor_tags: subcategories).each do |path|
-      visit_path path
-    end
-  end
-end
-
 Then /^JSON is returned$/ do
   expect(JSON.parse(@response.body).class).to eq(Hash)
-end
-
-Then /^valid XML should be returned$/ do
-  xml_doc = Nokogiri::XML(@response.body) do |config|
-    config.strict
-  end
-  expect(xml_doc.class).to eq(Nokogiri::XML::Document)
-end
-
-def random_path_selection(opts={})
-  size = opts[:size] || 3
-  anchor_tags = opts[:anchor_tags] || []
-  anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(size)
 end
 
 When /^I see links to pages per topic$/ do
