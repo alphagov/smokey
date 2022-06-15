@@ -5,10 +5,7 @@ Feature: Finder Frontend
   Background:
     Given I consent to cookies
 
-  # TODO: RENAME to clarify this is testing data transfer with
-  # Content Store (as the prime example for this app).
-  #
-  Scenario: Check people page loads correctly
+  Scenario: Check the frontend can talk to Content Store
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"
     And I should see an input field to search
@@ -21,7 +18,7 @@ Feature: Finder Frontend
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Content Store is already covered by
-  # "Check the "Contact GOV.UK" page loads correctly".
+  # "Check the frontend can talk to Content Store".
   #
   # Was and should be tested in Finder Frontend [^1].
   #
@@ -40,22 +37,13 @@ Feature: Finder Frontend
     | <script>alert(123)</script> | news-and-communications |
     | <script>alert(123)</script> | all                     |
 
-  # TODO: RENAME to clarify this is testing data transfer with
-  # Email Alert API (as the prime example for the app).
-  #
-  # Note: this scenario covers additional selection functionality
-  # compared to others, hence making it the prime example.
-  #
-  Scenario: Email signup from the statistics finder
+  Scenario: Check the frontend can talk to Email Alert API
     When I visit "/search/research-and-statistics"
     And I click on the link "Get emails"
     And I choose the checkbox "Statistics (published)" and click on "Continue"
     Then I should see "How often do you want to get emails?"
 
-  # TODO: RENAME to clarify this is testing data transfer
-  # with Search API (as the prime example for this app).
-  #
-  Scenario Outline: Check search results and analytics
+  Scenario Outline: Check the frontend can talk to Search API
     When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique
@@ -80,7 +68,7 @@ Feature: Finder Frontend
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Content Store is already covered by
-  # "Check the "Contact GOV.UK" page loads correctly".
+  # "Check the frontend can talk to Content Store".
   #
   # Should be tested in Finder Frontend [^1].
   #

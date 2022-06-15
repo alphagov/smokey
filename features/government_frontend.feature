@@ -54,10 +54,7 @@ Feature: Government Frontend
     When I click the next closing response link
     Then I should see the next closing consultation
 
-  # TODO: RENAME to clarify this is testing data transfer with
-  # Search API (as the prime example for this app).
-  #
-  Scenario: Ensure we can see three consultations that were recently opened
+  Scenario: Check the frontend can talk to Search API
     When I visit "/government/get-involved"
     Then I should see "Recently opened"
     And it should be populated with three open consultations
