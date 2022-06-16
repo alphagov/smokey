@@ -24,3 +24,12 @@ Feature: Origin
   Scenario: Check pages are rendered using UTF-8
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
+
+  @app-authenticating-proxy @replatforming
+  Scenario: Check visiting a draft page requires a signon session
+    Given I am testing "draft-origin"
+    When I attempt to go to a case study
+    Then I should be prompted to log in
+    When I log in using valid credentials
+    Then I should be on the case study page
+    And the page should contain the draft watermark

@@ -6,6 +6,14 @@ Feature: Government Frontend
     Then I should see "Get involved"
     And I should see "Find out how you can engage with government directly, and take part locally, nationally or internationally."
 
+  @app-authenticating-proxy
+  Scenario: Check the frontend can talk to draft Content Store
+    Given I am testing "draft-origin"
+    When I try to login as a user
+    When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
+    Then I should see "Case study"
+    And the page should contain the draft watermark
+
   # TODO: EXPORT this test as it does not meet the eligibility
   # criteria in docs/writing-tests.md.
   #
