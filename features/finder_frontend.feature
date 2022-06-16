@@ -1,7 +1,5 @@
 @app-finder-frontend @replatforming
 Feature: Finder Frontend
-  These are pages that let you search within a set of similar looking documents.
-
   Background:
     Given I consent to cookies
 

@@ -1,8 +1,5 @@
 @app-content-data-admin
 Feature: Content Data Admin
-  Tests for the Content Data Admin application, which provides
-  publishers with data about the content they manage
-
   Scenario: Check log in to content-data-admin
     When I go to the "content-data-admin" landing page
     And I try to login as a user
