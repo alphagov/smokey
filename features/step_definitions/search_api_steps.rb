@@ -7,9 +7,7 @@ Then /^it should contain a link to at least one sitemap file$/ do
   expect(@sitemap_links.size).to be >= 1
 end
 
-Then /^I should be able to get all the referenced sitemap files$/ do
-  @sitemap_links.each do |link|
-    # doing a HEAD request because the referenced files are fairly large.
-    head_request(link.text, default_request_options)
-  end
+Then /^I should be able to get the referenced sitemap files$/ do
+  # doing a HEAD request because the referenced files are fairly large.
+  head_request(@sitemap_links.first.text, default_request_options)
 end
