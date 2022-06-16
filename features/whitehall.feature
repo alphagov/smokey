@@ -15,3 +15,15 @@ Feature: Whitehall
   Scenario: Check the frontend can talk to Asset Manager
     When I visit "/government/uploads/system/uploads/attachment_data/file/214962/passport-impact-indicat.csv/preview"
     Then JavaScript should run without any errors
+
+  Scenario: Check the feedback component loads
+    When I visit "/world"
+    And I confirm it is rendered by "whitehall"
+    And I click to report a problem with the page
+    Then I see the report a problem form
+    When I close the open feedback form
+    And I click to say the page is not useful
+    Then I see the email survey signup form
+    When I close the open feedback form
+    And I click to say the page is useful
+    Then I see the feedback confirmation message

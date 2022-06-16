@@ -77,3 +77,15 @@ Feature: Finder Frontend
   Scenario: Check malicious code does not execute
     When I search for "<script>alert(document.cookie)</script>"
     Then I see the code returned in the page
+
+  Scenario: Check the feedback component loads
+    When I visit "/search/news-and-communications"
+    And I confirm it is rendered by "finder-frontend"
+    And I click to report a problem with the page
+    Then I see the report a problem form
+    When I close the open feedback form
+    And I click to say the page is not useful
+    Then I see the email survey signup form
+    When I close the open feedback form
+    And I click to say the page is useful
+    Then I see the feedback confirmation message
