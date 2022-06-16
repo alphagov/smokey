@@ -11,7 +11,7 @@ Feature: Frontend
 
   Scenario: Check homepage loads
     When I request "/"
-    Then I should get a "Content-Type" header of "text/html; charset=utf-8"
+    Then I should see "Welcome to GOV.UK"
 
   Scenario: Check the client can talk to Google Analytics
     When I visit "/"
@@ -20,7 +20,7 @@ Feature: Frontend
 
   Scenario: Check 404 page loads
     When I visit a non-existent page
-    Then I should get a "Content-Type" header of "text/html; charset=utf-8"
+    Then I should see "Page not found"
 
   Scenario: Check the frontend can talk to Licensing
     When I visit "/busking-licence"
