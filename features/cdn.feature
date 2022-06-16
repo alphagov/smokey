@@ -1,4 +1,28 @@
-Feature: Redirect of gov.uk to www.gov.uk
+Feature: CDN
+  Scenario: Check all A/B test variants work
+    Given I consent to cookies
+    When multiple new users visit "/help/ab-testing"
+    Then we have shown them all versions of the A/B test
+
+  Scenario: Check an A/B test is persistent
+    Given I consent to cookies
+    And I do not have any A/B testing cookies set
+    When I visit "/help/ab-testing"
+    Then I am assigned to a test bucket
+    And I can see the bucket I am assigned to
+    And the bucket is reported to Google Analytics
+    And I stay on the same bucket when I keep visiting "/help/ab-testing"
+
+  @replatforming
+  Scenario: Check caching behaviour for POST requests
+    When I try to post to "/find-local-council" with "postcode=WC2B+6SE" without following redirects
+    Then I should not hit the cache
+    Then I should see "camden"
+
+  @replatforming
+  Scenario: Check caching behaviour for GET requests
+    When I request "/"
+    Then I should hit the cache
 
   Scenario: Check redirect from bare domain to www.gov.uk is working for HTTP
     Given I am testing "http://gov.uk"
