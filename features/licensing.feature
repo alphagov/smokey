@@ -2,7 +2,7 @@
 Feature: Licensing
   Tests for the Licensify app.
 
-  Scenario: Check licensing app is present
+  Scenario: Check licensing pages load
     Given I don't care about JavaScript errors
     Then I should be able to visit:
       | Path                                                              |
@@ -11,7 +11,7 @@ Feature: Licensing
       | /apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1         |
 
   @notreplatforming
-  Scenario: Check signing in to licensify-admin
+  Scenario: Check log in to licensify-admin
     When I try to login as a user
     And I login to Licensify
     Then I should see "Sign Out"

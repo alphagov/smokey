@@ -1,7 +1,7 @@
 @app-government-frontend @replatforming
 Feature: Government Frontend
 
-  Scenario: Ensure static content is rendered
+  Scenario: Check the frontend can talk to Content Store
     When I visit "/government/get-involved"
     Then I should see "Get involved"
     And I should see "Find out how you can engage with government directly, and take part locally, nationally or internationally."
@@ -14,8 +14,8 @@ Feature: Government Frontend
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Content Store is already covered by
-  # "Ensure static content is rendered". These links are not a
-  # critical feature of GOV.UK.
+  # "Check the frontend can talk to Content Store". These links
+  # are not a critical feature of GOV.UK.
   #
   # Should be tested in app [^1].
   #
@@ -40,7 +40,7 @@ Feature: Government Frontend
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Search API is already covered by
-  # "Ensure we can see three consultations that were recently opened".
+  # "Check the frontend can talk to Search API".
   #
   # Should be tested in app [^1], but only partially tested [^2].
   #
@@ -54,10 +54,7 @@ Feature: Government Frontend
     When I click the next closing response link
     Then I should see the next closing consultation
 
-  # TODO: RENAME to clarify this is testing data transfer with
-  # Search API (as the prime example for this app).
-  #
-  Scenario: Ensure we can see three consultations that were recently opened
+  Scenario: Check the frontend can talk to Search API
     When I visit "/government/get-involved"
     Then I should see "Recently opened"
     And it should be populated with three open consultations
@@ -70,7 +67,7 @@ Feature: Government Frontend
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Search API is already covered by
-  # "Ensure we can see three consultations that were recently opened".
+  # "Check the frontend can talk to Search API".
   #
   # Should be tested in app [^1], but only partially tested [^2].
   #
@@ -90,7 +87,7 @@ Feature: Government Frontend
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Content Store is already covered by
-  # "Ensure static content is rendered".
+  # "Check the frontend can talk to Content Store".
   #
   # This test also fails frequently due to the unconventional
   # test approach of actually clicking the links [^1].

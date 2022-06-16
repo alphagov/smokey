@@ -1,10 +1,7 @@
 @replatforming @app-feedback
 Feature: Feedback
 
-  # TODO: RENAME to clarify this is testing data transfer with
-  # Content Store (as the prime example for this app).
-  #
-  Scenario: Check the "Contact GOV.UK" page loads correctly
+  Scenario: Check the frontend can talk to Content Store
     When I visit "/contact/govuk"
     Then I should see "Contact GOV.UK"
 
@@ -16,7 +13,7 @@ Feature: Feedback
   # - Second critical check: N (not tested in app)
   #
   # Data transfer with Content Store is already covered by
-  # "Check the "Contact GOV.UK" page loads correctly".
+  # "Check the frontend can talk to Content Store".
   #
   # Should be tested in Feedback [^1].
   #
@@ -34,10 +31,7 @@ Feature: Feedback
     Then I see the feedback confirmation message
     And a request is sent to the feedback app
 
-  # TODO: RENAME to clarify this is testing data transfer with
-  # Static (as the prime example for each app listed below).
-  #
-  Scenario: Check feedback component behaviour
+  Scenario: Check the feedback component loads
     When I visit "<url>"
     And I confirm it is rendered by "<application>"
     And I click to report a problem with the page

@@ -1,7 +1,7 @@
 Feature: Transition
   Tests for the transition management tools, including the transition app.
 
-  Scenario: Check logging in to the transition app works
+  Scenario: Check log in to transition
     When I go to the "transition" landing page
       And I try to login as a user
       And I go to the "transition" landing page

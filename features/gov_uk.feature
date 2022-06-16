@@ -11,7 +11,7 @@ Feature: Core GOV.UK behaviour
   #
   # This page is rendered by Frontend. Data transfer for this
   # app with Static is already covered by
-  # "Check feedback component behaviour".
+  # "Check the frontend can talk to Static".
   #
   # Should be tested in Static [^1].
   #
