@@ -1,10 +1,6 @@
 @replatforming @app-frontend
 Feature: Frontend
 
-  Scenario: Check robots.txt loads
-    When I request "/robots.txt"
-    Then I should see "User-agent:"
-
   Scenario: Check help page loads
     When I visit "/help"
     Then I should see "Help using GOV.UK"
@@ -17,10 +13,6 @@ Feature: Frontend
     When I visit "/"
     And I consent to cookies
     Then the page view should be tracked
-
-  Scenario: Check 404 page loads
-    When I visit a non-existent page
-    Then I should see "Page not found"
 
   Scenario: Check the frontend can talk to Licensing
     When I visit "/busking-licence"
@@ -48,7 +40,3 @@ Feature: Frontend
     Then I should see "Online Centres Network"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should see "Holborn Library"
-
-  Scenario: Check redirects work
-    When I visit "/workplacepensions"
-    Then I should be at a location path of "/workplace-pensions"
