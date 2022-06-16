@@ -31,7 +31,7 @@ Feature: Feedback
     Then I see the feedback confirmation message
     And a request is sent to the feedback app
 
-  Scenario: Check the frontend can talk to Static
+  Scenario: Check the feedback component loads
     When I visit "<url>"
     And I confirm it is rendered by "<application>"
     And I click to report a problem with the page
