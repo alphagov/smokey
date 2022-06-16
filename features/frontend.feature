@@ -40,3 +40,9 @@ Feature: Frontend
     Then I should see "Online Centres Network"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should see "Holborn Library"
+
+  Scenario: Check the travel advice index page loads
+    When I visit "/foreign-travel-advice"
+    Then I should see "Foreign travel advice"
+    And I should see "Afghanistan"
+    And I should see "Luxembourg"

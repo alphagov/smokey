@@ -14,6 +14,12 @@ Feature: Government Frontend
     Then I should see "Case study"
     And the page should contain the draft watermark
 
+  Scenario: Check the frontend can talk to Email Alert API
+    When I visit "/foreign-travel-advice/turkey"
+    And I click on the link "Get email alerts"
+    And I click on the button "Continue"
+    Then I should see "How often do you want to get emails?"
+
   # TODO: EXPORT this test as it does not meet the eligibility
   # criteria in docs/writing-tests.md.
   #
@@ -132,3 +138,8 @@ Feature: Government Frontend
       | Make a neighbourhood plan                                     | /government/get-involved/take-part/make-a-neighbourhood-plan                                              |
       | Create a community library                                    | /government/get-involved/take-part/create-a-community-library                                             |
       | Become a councillor                                           | /government/get-involved/take-part/become-a-councillor                                                    |
+
+  Scenario: Check a travel advice country page loads
+    When I visit "/foreign-travel-advice/luxembourg"
+    Then I should see "Luxembourg"
+    And I should see "Summary"
