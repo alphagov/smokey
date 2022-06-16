@@ -11,3 +11,7 @@ Feature: Whitehall
     When I request an attachment
     Then I should be redirected to the asset host
     And the attachment should be served successfully
+
+  Scenario: Check the frontend can talk to Asset Manager
+    When I visit "/government/uploads/system/uploads/attachment_data/file/214962/passport-impact-indicat.csv/preview"
+    Then JavaScript should run without any errors

@@ -1,6 +1,4 @@
-Feature: Benchmarking
-  Tests to check the loading times for various pages on GOV.UK.
-
+Feature: Bouncer
   @local-network
   Scenario: Check redirects work for transitioned sites
     Given I am testing "bouncer" internally
