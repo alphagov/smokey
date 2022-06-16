@@ -122,7 +122,7 @@ Feature: Publishing Tools
     And I should see "Log out"
     And I should see "All countries"
 
-  @app-whitehall-admin
+  @app-whitehall
   Scenario: Can log in to whitehall
     When I go to the "whitehall-admin" landing page
     And I try to login as a user
