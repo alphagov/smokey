@@ -41,7 +41,19 @@ In contrast, the tests in this repo provide coverage at a higher level. We shoul
 
 ## Adding new tests
 
-We use feature files to describe single applications (e.g. [`whitehall`](https://github.com/alphagov/whitehall), [`frontend`](https://github.com/alphagov/frontend)), as well as [cross-application behaviour](https://github.com/alphagov/smokey/blob/main/features/gov_uk.feature).
+Scenarios should be organised by the "component" they are testing:
+
+- **`<app>.feature`** should contain tests that target a feature of that app e.g.
+
+  - "[Email signup from foreign travel advice](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/foreign_travel_advice.feature#L15)" is targeting Government Frontend, so should be in `government_frontend.feature`.
+
+  - "[Can log in to collections-publisher](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/publishing_tools.feature#L4)" is targeting Collections Publisher, so should be in `collections_publisher.feature`.
+
+- **`<layer>.feature`** should contain tests that target an infrastructure layer e.g.
+
+  - "[Check redirect from bare domain to www.gov.uk is working for HTTP](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/gov_uk_redirect.feature#L3)" is [targeting site-wide behaviour of our CDN](https://github.com/alphagov/govuk-cdn-config/blob/8ca5780ec513c0c17f64304c26bbd3de18c5138d/vcl_templates/tldredirect.vcl.erb#L46), so should be in `cdn.feature`.
+
+  - "[Check visiting a draft page requires a signon session](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/draft_environment.feature#L11)" is targeting site-wide behaviour of our (draft) origin, so should be in `origin.feature`.
 
 Try to use existing step definitions e.g. [`When I visit "/some/path"`](https://github.com/alphagov/smokey/blob/b656e65ef6853d65de3e24a7e884911054c8bf7d/features/step_definitions/smokey_steps.rb#L70-L72). If a more specific step is required, name the `_steps.rb` file after the feature file i.e. `myfeature_steps.rb`.
 
