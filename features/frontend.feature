@@ -25,7 +25,7 @@ Feature: Frontend
   Scenario: Check the frontend can talk to Licensing
     When I visit "/busking-licence"
     Then I should see "Busking licence"
-     And I should see an input field for postcode
+    And I should see an input field for postcode
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
@@ -45,7 +45,7 @@ Feature: Frontend
 
   Scenario: Check the frontend can talk to Imminence
     When I visit "/ukonline-centre-internet-access-computer-training"
-    And I should see "Online Centres Network"
+    Then I should see "Online Centres Network"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should see "Holborn Library"
 
