@@ -47,12 +47,12 @@ Feature: Finder Frontend
     When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique
-    Then search analytics for "<keywords>" are reported
+    And search analytics for "<keywords>" are reported
     When I go to the next page
     Then the "contentsClicked" event is reported
     When I click result 1
     Then the "navFinderLinkClicked" event for result Search.1 is reported
-    Then the "UX" event for result click is reported
+    And the "UX" event for result click is reported
 
     Examples:
     | keywords         |

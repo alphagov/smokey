@@ -4,7 +4,7 @@ Feature: Collections
   Scenario: Check the frontend can talk to Content Store
     When I visit "/browse/driving"
     And I should see "Teaching people to drive"
-    When I click on the section "Teaching people to drive"
+    And I click on the section "Teaching people to drive"
     Then I should see "Apply to become a driving instructor"
 
   Scenario: Check the frontend can talk to Search API

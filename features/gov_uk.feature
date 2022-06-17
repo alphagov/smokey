@@ -20,3 +20,7 @@ Feature: Core GOV.UK behaviour
   Scenario: Check the crown logo links to GOV.UK homepage
     When I visit "/"
     Then the logo should link to the homepage
+
+  Scenario: Check pages are rendered using UTF-8
+    When I request "/"
+    Then I should get a "Content-Type" header of "text/html; charset=utf-8"

@@ -102,7 +102,7 @@ Feature: Government Frontend
     Then I should see "Take part"
     And I should see "<Title>"
     When I click on the link "<Title>"
-    And I should be at a location path of "<Path>"
+    Then I should be at a location path of "<Path>"
 
     Examples:
       | Title                                                         | Path                                                                                                      |
