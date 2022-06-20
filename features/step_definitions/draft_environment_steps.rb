@@ -24,3 +24,9 @@ end
 Then /^the page should contain the draft watermark$/ do
   expect(page).to have_css('body.draft')
 end
+
+Then /^I should see the draft image asset$/ do
+  image_src = page.find('img')['src']
+  expect(image_src).to have_content('draft-assets')
+  expect(image_src).to have_content('.jpg')
+end
