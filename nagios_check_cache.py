@@ -151,7 +151,9 @@ def argument_sanity_checks(json_file):
         log_result_and_exit(3, "UNKNOWN: %s is older than 30m" % json_file)
 
 
-def ensure_log_directory_exists(log_dir):
+def ensure_log_directory_exists(logfile):
+    log_dir = os.path.dirname(logfile)
+
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
@@ -167,7 +169,7 @@ def main():
     #  set some variables
     smokey_json = json.loads(open(json_file).read())
     logfile = smokey_log_dir + feature_name + '.log'
-    ensure_log_directory_exists(smokey_log_dir)
+    ensure_log_directory_exists(logfile)
     # Parse the json into valuble information
     feature_test_run = FeatureTestRun(feature_name, smokey_json, logfile)
     # We didn't even find this feature in the steps!
