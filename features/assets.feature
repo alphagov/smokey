@@ -15,7 +15,6 @@ Feature: Assets
     When I request "/media/580768d940f0b64fbe000022/Target_incomes_calculator.xls"
     Then I should get a "Content-Type" header of "application/vnd.ms-excel"
 
-  @app-authenticating-proxy
   Scenario: Check draft assets require authentication
     Given I am testing "draft-assets"
     When I visit "/media/123/filename.extension"
