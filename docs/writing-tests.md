@@ -43,11 +43,11 @@ In contrast, the tests in this repo provide coverage at a higher level. We shoul
 
 Scenarios should be organised by the "component" they are testing:
 
-- **`<app>.feature`** should contain tests that target a feature of that app e.g.
+- **`apps/<app>.feature`** should contain tests that target a feature of \<app\> e.g.
 
-  - "[Email signup from foreign travel advice](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/foreign_travel_advice.feature#L15)" is targeting Government Frontend, so should be in `government_frontend.feature`.
+  - "[Email signup from foreign travel advice](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/foreign_travel_advice.feature#L15)" is targeting Government Frontend, so should be in `apps/government_frontend.feature`.
 
-  - "[Can log in to collections-publisher](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/publishing_tools.feature#L4)" is targeting Collections Publisher, so should be in `collections_publisher.feature`.
+  - "[Can log in to collections-publisher](https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/publishing_tools.feature#L4)" is targeting Collections Publisher, so should be in `apps/collections_publisher.feature`.
 
 - **`<layer>.feature`** should contain tests that target an infrastructure layer e.g.
 
