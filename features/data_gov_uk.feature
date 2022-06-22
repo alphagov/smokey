@@ -28,6 +28,7 @@ Feature: Data.gov.uk
   @notintegration @notstaging
   Scenario: Check CKAN action api's search works
     Given I am testing "ckan"
+    And I try not to bypass caching
     When I request "/api/action/package_search?q=data"
     Then I should get a 200 status code
     And JSON is returned

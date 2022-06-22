@@ -25,6 +25,10 @@ Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end
 
+Given /^I try not to bypass caching$/ do
+  @bypass_caching = false
+end
+
 And /^I consent to cookies$/ do
   visit_path "/"
   click_button "Accept"
