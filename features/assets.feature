@@ -1,8 +1,5 @@
 @replatforming @app-asset-manager
 Feature: Assets
-  Tests for assets and asset-manager, including draft assets which are behind
-  signon.
-
   @local-network
   Scenario: Check assets can be managed via the API
     Given I am testing "asset-manager" internally

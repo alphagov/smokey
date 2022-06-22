@@ -1,7 +1,5 @@
 @app-licensing @replatforming
 Feature: Licensing
-  Tests for the Licensify app.
-
   Scenario: Check licensing pages load
     Given I don't care about JavaScript errors
     Then I should be able to visit:

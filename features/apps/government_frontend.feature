@@ -6,6 +6,20 @@ Feature: Government Frontend
     Then I should see "Get involved"
     And I should see "Find out how you can engage with government directly, and take part locally, nationally or internationally."
 
+  @app-authenticating-proxy
+  Scenario: Check the frontend can talk to draft Content Store
+    Given I am testing "draft-origin"
+    When I try to login as a user
+    When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
+    Then I should see "Case study"
+    And the page should contain the draft watermark
+
+  Scenario: Check the frontend can talk to Email Alert API
+    When I visit "/foreign-travel-advice/turkey"
+    And I click on the link "Get email alerts"
+    And I click on the button "Continue"
+    Then I should see "How often do you want to get emails?"
+
   # TODO: EXPORT this test as it does not meet the eligibility
   # criteria in docs/writing-tests.md.
   #
@@ -124,3 +138,20 @@ Feature: Government Frontend
       | Make a neighbourhood plan                                     | /government/get-involved/take-part/make-a-neighbourhood-plan                                              |
       | Create a community library                                    | /government/get-involved/take-part/create-a-community-library                                             |
       | Become a councillor                                           | /government/get-involved/take-part/become-a-councillor                                                    |
+
+  Scenario: Check a travel advice country page loads
+    When I visit "/foreign-travel-advice/luxembourg"
+    Then I should see "Luxembourg"
+    And I should see "Summary"
+
+  Scenario: Check the feedback component loads
+    When I visit "/help/about-govuk"
+    And I confirm it is rendered by "government-frontend"
+    And I click to report a problem with the page
+    Then I see the report a problem form
+    When I close the open feedback form
+    And I click to say the page is not useful
+    Then I see the email survey signup form
+    When I close the open feedback form
+    And I click to say the page is useful
+    Then I see the feedback confirmation message

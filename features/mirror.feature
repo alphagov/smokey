@@ -1,7 +1,5 @@
 @local-network
 Feature: Mirror
-    Tests for the GOV.UK mirrors that serve content if origin is unavailable.
-
     @notintegration @notstaging
     Scenario: Check homepage is served by all the mirrors
       Given S3 mirrors
