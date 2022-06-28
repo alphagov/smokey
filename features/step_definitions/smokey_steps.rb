@@ -61,11 +61,6 @@ When /^I visit "(.*)"$/ do |path_or_url|
   visit_path path_or_url
 end
 
-Then /^I confirm it is rendered by "(.*)"$/ do |application|
-  meta = page.find("meta[name='govuk:rendering-application']", visible: false)
-  expect(meta[:content]).to eq(application)
-end
-
 When /^I visit the "([^"]+)" finder with keywords (.*)$/ do |finder, keywords|
   path = "/search/#{finder}?keywords=#{keywords}"
   visit_path path

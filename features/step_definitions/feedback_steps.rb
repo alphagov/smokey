@@ -1,14 +1,3 @@
-Then /^I can operate the feedback component$/ do
-    step "I click to report a problem with the page"
-    step "I see the report a problem form"
-    step "I close the open feedback form"
-    step "I click to say the page is not useful"
-    step "I see the email survey signup form"
-    step "I close the open feedback form"
-    step "I click to say the page is useful"
-    step "I see the feedback confirmation message"
-end
-
 When /^I input malicious code in the (.*) field$/ do |field|
   page.execute_script("document.querySelector('.contact-form').setAttribute('novalidate', 'novalidate')")
   find("#email").set("<script>alert(document.cookie)</script>")
