@@ -191,11 +191,6 @@ When /^I try to post to "(.*)" with "(.*)" without following redirects$/ do |pat
   @response = post_request "#{@host}#{path}", :payload => "#{payload}", dont_follow_redirects: true
 end
 
-Then /^the logo should link to the homepage$/ do
-  logo = Nokogiri::HTML.parse(page.body).at_css('.govuk-header__link')
-  expect(logo.attributes['href'].value).to eq(ENV['GOVUK_WEBSITE_ROOT'])
-end
-
 Then /^I should see Publisher's publication index$/ do
   expect(page).to have_selector("#publication-list-container")
 end
