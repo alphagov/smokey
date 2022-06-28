@@ -26,7 +26,7 @@ After do |scenario|
   messages = errors.join("\n")
 
   if $fail_on_js_error
-    capture_error(scenario, StandardError.new(messages))
+    capture_error(scenario, StandardError.new(messages), js:true)
     # This will change the scenario to be a failure
     raise "Detected JS errors:\n\n#{messages}"
   else
@@ -34,7 +34,7 @@ After do |scenario|
   end
 end
 
-def capture_error(scenario, exception)
+def capture_error(scenario, exception, js: false)
   Sentry.with_scope do |scope|
     # First line of the message becomes the issue title, which
     # we want to be the feature (file) to support drilling down.
@@ -43,6 +43,7 @@ def capture_error(scenario, exception)
     # Adding the scenario supports further drill down using the
     # Sentry "tags" view. Substituting " is necessary for search.
     scope.set_tags('cucumber.scenario': scenario.name.gsub('"', "'"))
+    scope.set_tags('cucumber.js_error': js)
 
     # Using the feature (file) as the fingerprint means we only
     # get one issue per feature, keeping the dashboard simple.
