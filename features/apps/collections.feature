@@ -11,6 +11,7 @@ Feature: Collections
     When I visit "/government/organisations/hm-revenue-customs/services-information"
     Then I see links to pages per topic
 
+  @app-email-alert-frontend
   Scenario: Check the frontend can talk to Email Alert API
     When I visit "/education"
     Then I should see "Get emails for this topic"

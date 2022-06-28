@@ -35,6 +35,7 @@ Feature: Finder Frontend
     | <script>alert(123)</script> | news-and-communications |
     | <script>alert(123)</script> | all                     |
 
+  @app-email-alert-frontend
   Scenario: Check the frontend can talk to Email Alert API
     When I visit "/search/research-and-statistics"
     And I click on the link "Get emails"
