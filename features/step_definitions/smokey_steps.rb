@@ -61,11 +61,6 @@ When /^I visit "(.*)"$/ do |path_or_url|
   visit_path path_or_url
 end
 
-Then /^I confirm it is rendered by "(.*)"$/ do |application|
-  meta = page.find("meta[name='govuk:rendering-application']", visible: false)
-  expect(meta[:content]).to eq(application)
-end
-
 When /^I visit the "([^"]+)" finder with keywords (.*)$/ do |finder, keywords|
   path = "/search/#{finder}?keywords=#{keywords}"
   visit_path path
@@ -194,11 +189,6 @@ end
 
 When /^I try to post to "(.*)" with "(.*)" without following redirects$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}", dont_follow_redirects: true
-end
-
-Then /^the logo should link to the homepage$/ do
-  logo = Nokogiri::HTML.parse(page.body).at_css('.govuk-header__link')
-  expect(logo.attributes['href'].value).to eq(ENV['GOVUK_WEBSITE_ROOT'])
 end
 
 Then /^I should see Publisher's publication index$/ do

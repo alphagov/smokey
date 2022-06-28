@@ -143,15 +143,3 @@ Feature: Government Frontend
     When I visit "/foreign-travel-advice/luxembourg"
     Then I should see "Luxembourg"
     And I should see "Summary"
-
-  Scenario: Check the feedback component loads
-    When I visit "/help/about-govuk"
-    And I confirm it is rendered by "government-frontend"
-    And I click to report a problem with the page
-    Then I see the report a problem form
-    When I close the open feedback form
-    And I click to say the page is not useful
-    Then I see the email survey signup form
-    When I close the open feedback form
-    And I click to say the page is useful
-    Then I see the feedback confirmation message
