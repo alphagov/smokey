@@ -14,6 +14,7 @@ Feature: Government Frontend
     Then I should see "Case study"
     And the page should contain the draft watermark
 
+  @app-email-alert-frontend
   Scenario: Check the frontend can talk to Email Alert API
     When I visit "/foreign-travel-advice/turkey"
     And I click on the link "Get email alerts"
