@@ -1,9 +1,3 @@
-When /^I input malicious code in the (.*) field$/ do |field|
-  page.execute_script("document.querySelector('.contact-form').setAttribute('novalidate', 'novalidate')")
-  find("#email").set("<script>alert(document.cookie)</script>")
-  click_button("Send message")
-end
-
 When /^I click to report a problem with the page$/ do
   within(".gem-c-feedback") do
     click_on("Report a problem with this page")
