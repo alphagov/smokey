@@ -56,10 +56,6 @@ Then /^I see the feedback confirmation message$/ do
   expect(page).to have_content("Thank you for your feedback")
 end
 
-Then /^I see the code returned in the page$/ do
-  expect(page).to have_selector("input[value='<script>alert(document.cookie)</script>']")
-end
-
 Then /^a request is sent to the feedback app$/ do
   sought = "/contact/govuk/email-survey-signup"
   expect(browser_has_request_with_url_containing sought).to be(true)
