@@ -1,15 +1,15 @@
-ARG base_image=ruby:2.7.6
+ARG base_image=ghcr.io/alphagov/govuk-ruby-base:2.7.6
 FROM ${base_image}
-RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y build-essential \
-  libpq-dev libxml2-dev libxslt1-dev dumb-init default-jre
-
-ENV APP_HOME /smokey
-RUN mkdir $APP_HOME
 
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE 1
 
-# Install Chromium and ChromiumDriver
-RUN apt-get update -qq && apt-get install -y chromium chromium-driver && apt-get clean
+# Install dependencies, Chrimium and ChromiumDriver
+RUN install_packages build-essential \
+  libpq-dev libxml2-dev libxslt1-dev dumb-init default-jre \
+  chromium chromium-driver
+
+ENV APP_HOME /smokey
+RUN mkdir $APP_HOME
 
 WORKDIR $APP_HOME
 ADD Gemfile* $APP_HOME/
