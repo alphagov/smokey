@@ -22,7 +22,6 @@ You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-do
 
 The tests require additional configuration to run successfully on a local machine.
 
-
 ```
 env \
 ENVIRONMENT=integration \
