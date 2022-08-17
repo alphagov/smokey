@@ -1,4 +1,4 @@
-@replatforming
+@app-content-store @replatforming
 Feature: Content Store
   Scenario: Check the app is routable
     When I request "/api/content/help"
