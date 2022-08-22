@@ -65,7 +65,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
     ffi (1.15.5)
-    govuk_app_config (4.7.1)
+    govuk_app_config (4.8.0)
       logstasher (~> 2.1)
       prometheus_exporter (~> 2.0)
       puma (~> 5.6)
