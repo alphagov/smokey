@@ -6,7 +6,7 @@ Feature: Government Frontend
     Then I should see "Get involved"
     And I should see "Find out how you can engage with government directly, and take part locally, nationally or internationally."
 
-  @app-authenticating-proxy
+  @app-authenticating-proxy @notreplatforming
   Scenario: Check the frontend can talk to draft Content Store
     Given I am testing "draft-origin"
     When I try to login as a user
