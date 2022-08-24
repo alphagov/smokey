@@ -1,6 +1,6 @@
 @app-publisher @replatforming
 Feature: Publisher
-  @app-publishing-api
+  @app-publishing-api @notreplatforming
   Scenario: Can log in to publisher
     When I go to the "publisher" landing page
     And I try to login as a user

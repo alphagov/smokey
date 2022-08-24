@@ -25,7 +25,7 @@ Feature: Origin
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
 
-  @app-authenticating-proxy @replatforming
+  @app-authenticating-proxy @notreplatforming
   Scenario: Check visiting a draft page requires a signon session
     Given I am testing "draft-origin"
     When I attempt to go to a case study
