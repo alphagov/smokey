@@ -2,7 +2,7 @@
 Feature: Whitehall
   Scenario: Check the frontend can talk to Content Store
     When I request "/government/ministers"
-    Then I should see "Ministers by department"
+    Then I should either see "Ministers by department" or "This page is being updated."
 
   @app-asset-manager
   Scenario: Check whitehall assets are redirected to and served from the asset host
