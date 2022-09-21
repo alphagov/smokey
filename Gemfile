@@ -9,7 +9,7 @@ gem "plek", "~> 4"
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"
 gem "selenium-webdriver", "~> 4"
-gem "selenium-devtools"
+gem "selenium-devtools", "0.103.0"
 
 group :development do
   gem "pry-byebug", "~> 3"
