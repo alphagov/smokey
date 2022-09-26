@@ -8,5 +8,4 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - run: env ENVIRONMENT="integration" SIGNON_EMAIL="unused" SIGNON_PASSWORD="unused" RATE_LIMIT_TOKEN="unused" bundle exec cucumber features/apps/smokey.feature
-        # RATE_LIMIT_TOKEN must be set (to any value) for this test to work properly
+      - run: env ENVIRONMENT="integration" SIGNON_EMAIL="unused" SIGNON_PASSWORD="unused" bundle exec cucumber features/apps/smokey.feature
