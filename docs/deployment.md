@@ -2,7 +2,7 @@
 
 ## Before you merge
 
-This app doesn't have CI setup, and it would be misleading to do so: the behaviour of the tests changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.
+This app only has minimal CI set up, running a single check to ensure that Smokey is able to make requests. It would be misleading to run all of the tests on CI because their behaviour changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.
 
 Example steps to test in Integration:
 
