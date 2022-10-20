@@ -21,7 +21,7 @@ Feature: Frontend
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
-  Scenario: Check the frontend can talk to Mapit
+  Scenario: Check the frontend can talk to Locations API
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
     When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
@@ -46,4 +46,3 @@ Feature: Frontend
     Then I should see "Foreign travel advice"
     And I should see "Afghanistan"
     And I should see "Luxembourg"
-
