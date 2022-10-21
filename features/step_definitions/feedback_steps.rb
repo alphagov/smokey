@@ -17,7 +17,7 @@ end
 
 When /^I close the open feedback form$/ do
   within(".gem-c-feedback") do
-    click_on("Close")
+    click_on("Cancel")
   end
 end
 
