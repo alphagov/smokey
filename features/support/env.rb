@@ -32,32 +32,17 @@ Capybara.register_driver :headless_chrome do |app|
   )
 
   options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument("--headless")
-  options.add_argument("--disable-gpu")
+  options.headless!
   options.add_argument("--disable-web-security")
   options.add_argument("--disable-xss-auditor")
   options.add_argument("--user-agent=Smokey\ Test\ \/\ Ruby")
   options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
 
-  browser_options = {
+  Capybara::Selenium::Driver.new(
+    app,
     browser: :chrome,
-    capabilities: [capabilities, options]
-  }
-
-  driver = Capybara::Selenium::Driver.new(app, browser_options)
-
-  driver.browser.devtools.send_cmd(
-    'Network.enable'
+    capabilities: [capabilities, options],
   )
-  
-  if ENV["RATE_LIMIT_TOKEN"]
-    driver.browser.devtools.send_cmd(
-      'Network.setExtraHTTPHeaders',
-      headers: { 'Rate-Limit-Token': ENV["RATE_LIMIT_TOKEN"] }
-    )
-  end
-
-  driver
 end
 
 Capybara.default_driver = :headless_chrome
