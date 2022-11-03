@@ -17,6 +17,12 @@ def try_get_request(url, options = {})
   }
 end
 
+def create_request(url, options = {})
+  do_http_request(url, :get, options) { |response, request, result|
+    request
+  }
+end
+
 def uri_escape(s)
   CGI.escape(s)
 end

@@ -90,6 +90,27 @@ When /^I request "(.*)" from Bouncer directly$/ do |url|
   @response = try_get_request(bouncer_url, host_header: request_host)
 end
 
+$original_env_var = ENV["RATE_LIMIT_TOKEN"] # retain original value so we can reset it after the tests
+Given /^the 'RATE_LIMIT_TOKEN' ENV variable is set$/ do
+  ENV["RATE_LIMIT_TOKEN"] = "foo"
+end
+
+Given /^the 'RATE_LIMIT_TOKEN' ENV variable is NOT set$/ do
+  ENV.delete("RATE_LIMIT_TOKEN")
+end
+
+Then /^any request I make should include the 'Rate-Limit-Token' header$/ do
+  request = create_request("https://www.gov.uk")
+  ENV["RATE_LIMIT_TOKEN"] = $original_env_var
+  expect(request.headers["Rate-Limit-Token"]).to eq("foo")
+end
+
+Then /^any request I make should NOT include the 'Rate-Limit-Token' header$/ do
+  request = create_request("https://www.gov.uk")
+  ENV["RATE_LIMIT_TOKEN"] = $original_env_var
+  expect(request.headers["Rate-Limit-Token"]).to be_nil
+end
+
 def should_visit(path)
   @response = get_request("#{@host}#{path}", default_request_options)
   expect(@response.code).to eq(200)
