@@ -1,3 +1,4 @@
+@app-transition
 Feature: Transition
   Scenario: Check log in to transition
     When I go to the "transition" landing page
