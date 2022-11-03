@@ -156,7 +156,7 @@ GEM
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)
     rubyzip (2.3.2)
-    selenium-devtools (0.105.0)
+    selenium-devtools (0.107.0)
       selenium-webdriver (~> 4.2)
     selenium-webdriver (4.5.0)
       childprocess (>= 0.5, < 5.0)

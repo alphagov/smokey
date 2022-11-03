@@ -17,6 +17,12 @@ def try_get_request(url, options = {})
   }
 end
 
+def create_request(url, options = {})
+  do_http_request(url, :get, options) { |response, request, result|
+    request
+  }
+end
+
 def uri_escape(s)
   CGI.escape(s)
 end
@@ -87,6 +93,9 @@ def do_http_request(url, method = :get, options = {}, &block)
   end
   if options[:cookies]
     headers["Cookie"] = options[:cookies].map { |k, v| "#{k}=#{v}" }.join("; ")
+  end
+  if ENV["RATE_LIMIT_TOKEN"]
+    headers["Rate-Limit-Token"] = ENV["RATE_LIMIT_TOKEN"]
   end
 
   request_options = {
