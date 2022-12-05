@@ -51,3 +51,7 @@ bundle exec rake 'eyaml:decrypt_value[integration,smokey_rate_limit_token]'
 - [tagging](docs/tagging.md)
 - [writing tests](docs/writing-tests.md)
 - [pr-template](.github/pull_request_template.md)
+
+## Licence
+
+[MIT License](LICENCE)
