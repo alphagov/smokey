@@ -1,6 +1,6 @@
 @replatforming @app-asset-manager
 Feature: Assets
-  @local-network @notreplatforming
+  @local-network
   Scenario: Check assets can be managed via the API
     Given I am testing "asset-manager" internally
     And I am an authenticated API client
