@@ -24,7 +24,7 @@ GovukError.configure
 
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    acceptInsecureCerts: true,
+    acceptInsecureCerts: ENV.key?("CHROME_ACCEPT_INSECURE_CERTS"),
     'goog:loggingPrefs': {
       browser: "ALL",
       performance: "ALL"
