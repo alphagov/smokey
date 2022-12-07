@@ -19,7 +19,7 @@ else
   raise "ENVIRONMENT should be one of integration, staging, production"
 end
 
-# Set up error reporting (using SENTRY_CURRENT_ENV for the environment)
+# Set up error reporting (using SENTRY_CURRENT_ENV for the environment).
 GovukError.configure
 
 Capybara.register_driver :headless_chrome do |app|
@@ -27,7 +27,7 @@ Capybara.register_driver :headless_chrome do |app|
     acceptInsecureCerts: ENV.key?("CHROME_ACCEPT_INSECURE_CERTS"),
     'goog:loggingPrefs': {
       browser: "ALL",
-      performance: "ALL"
+      performance: "ALL",
     },
   )
 
@@ -41,10 +41,18 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument("--user-agent='Smokey Test / Ruby'")
   options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
 
+  service = Selenium::WebDriver::Service.chrome(
+    args: {
+      verbose: ENV.key?("CHROMEDRIVER_VERBOSE"),
+      log_path: ENV.fetch("CHROMEDRIVER_LOG_FILE", "/tmp/chromedriver.log"),
+    },
+  )
+
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
     capabilities: [capabilities, options],
+    service: service,
   )
 end
 
