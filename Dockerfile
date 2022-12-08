@@ -34,8 +34,6 @@ RUN chrome_ver=$(google-chrome --version | grep -Po '\d+\.\d+\.\d+') && \
 WORKDIR $APP_HOME
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 COPY --from=builder $APP_HOME ./
-# Chrome expects ~/.local/ to be writable.
-RUN ln -s /tmp .local
 
 STOPSIGNAL SIGINT
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
