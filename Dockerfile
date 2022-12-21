@@ -1,7 +1,15 @@
 ARG base_image=ghcr.io/alphagov/govuk-ruby-base:3.1.2
 ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:3.1.2
 
+ARG google_package_keyring=/usr/share/keyrings/google-linux-signing.gpg
+
+
 FROM $builder_image AS builder
+
+WORKDIR /tmp
+ARG google_package_keyring
+ADD https://dl-ssl.google.com/linux/linux_signing_key.pub google.pub
+RUN gpg --dearmor < google.pub > "${google_package_keyring}"
 
 WORKDIR $APP_HOME
 COPY Gemfile* .ruby-version ./
@@ -16,15 +24,14 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV CUCUMBER_PUBLISH_QUIET=true
 
 # Install Google Chrome and the corresponding version of ChromeDriver.
+ARG google_package_keyring
 ARG chromedriver_url=https://chromedriver.storage.googleapis.com/
-ADD https://dl-ssl.google.com/linux/linux_signing_key.pub /tmp/google.pub
+COPY --from=builder $google_package_keyring $google_package_keyring
 RUN arch=$(dpkg --print-architecture) && \
-    keyring=/usr/share/keyrings/google-linux-signing.gpg && \
-    gpg --dearmor < /tmp/google.pub > "${keyring}" && \
-    echo "deb [arch=${arch} signed-by=${keyring}] https://dl.google.com/linux/chrome/deb/ stable main" \
-        > /etc/apt/sources.list.d/google.list && \
-    install_packages dumb-init google-chrome-stable unzip && \
-    rm -fr /tmp/*
+    echo "deb [arch=${arch} signed-by=${google_package_keyring}] https://dl.google.com/linux/chrome/deb/ stable main" \
+        > /etc/apt/sources.list.d/google.list
+RUN install_packages dumb-init google-chrome-stable unzip
+# TODO: support arm64 when available (perhaps by just switching back to ChromiumDriver?).
 RUN chrome_ver=$(google-chrome --version | grep -Po '\d+\.\d+\.\d+') && \
     chromedriver_ver=$(curl -LSfs "${chromedriver_url}LATEST_RELEASE_${chrome_ver}") && \
     curl -LSfs "${chromedriver_url}${chromedriver_ver}/chromedriver_linux64.zip" \
