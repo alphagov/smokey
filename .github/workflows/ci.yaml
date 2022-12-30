@@ -1,11 +1,30 @@
 name: CI
-on: [workflow_dispatch, push, pull_request]
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "Jenkinsfile"
+      - ".git**"
+  pull_request:
+
 jobs:
-  ci:
+  test-ruby:
+    name: Test Ruby
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ruby/setup-ruby@v1
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - run: env ENVIRONMENT="integration" bundle exec cucumber features/apps/smokey.feature
+
+      - name: Run Minitest
+        env:
+          RAILS_ENV: test
+        run: bundle exec rake test
+
