@@ -47,4 +47,4 @@ ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 USER app
 # Users are expected to override the default CMD and set the ENVIRONMENT env
 # var and optionally PROFILE to specify a Cucumber profile.
-CMD ["bundle", "exec", "cucumber", "--strict-undefined"]
+CMD ["cucumber", "--strict-undefined"]
