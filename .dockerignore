@@ -1,5 +1,12 @@
+*.log
 .git
 .github
-bug.log
+Dockerfile
+Jenkinsfile
+README.md
+deploy.sh
 docs
+jenkins.sh
 log
+nagios_check_cache.py
+tests_json_output.sh
