@@ -21,10 +21,10 @@ Feature: Frontend
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
-  Scenario: Check the frontend can talk to Locations API
+  Scenario: Check the frontend can talk to Locations API and Local Links Manager API
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
-    When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
+    When I try to post to "/pay-council-tax" with "postcode=WC2B+6NH"
     Then I should see "Camden"
 
   Scenario: Check the frontend can talk to Elections API
