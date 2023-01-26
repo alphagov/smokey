@@ -6,7 +6,8 @@ end
 Then(/^I should be redirected to the asset host$/) do
   asset_hosts = [
     application_external_url("assets-origin"),
-    application_external_url("assets")
+    application_external_url("assets-eks"),
+    application_external_url("assets"),
   ]
   uri = URI(@response.request.url)
   asset_url = "#{uri.scheme}://#{uri.host}"
