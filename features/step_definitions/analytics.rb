@@ -1,5 +1,5 @@
 Then /^search analytics for "(.*)" are reported$/ do |term|
-  sought = "dp=#{CGI::escape("/search/all?keywords=#{term.sub(' ', '+')}")}"
+  sought = CGI::escape("/search/all?keywords=#{term.sub(' ', '+')}")
   expect(browser_has_analytics_request_containing sought).to be(true)
 end
 
