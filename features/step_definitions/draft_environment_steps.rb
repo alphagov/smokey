@@ -22,6 +22,7 @@ Then /^I should be on the case study page$/ do
 end
 
 Then /^the page should contain the draft watermark$/ do
+  puts page
   expect(page).to have_css('body.draft')
 end
 
