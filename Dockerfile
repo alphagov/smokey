@@ -22,6 +22,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Remove Cucumber advert.
 ENV CUCUMBER_PUBLISH_QUIET=true
+# Use the default glibc malloc.
+ENV LD_PRELOAD=""
 
 # Install Google Chrome and the corresponding version of ChromeDriver.
 ARG google_package_keyring
