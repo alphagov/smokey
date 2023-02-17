@@ -30,3 +30,7 @@ Feature: Government Frontend
     When I visit "/foreign-travel-advice/luxembourg"
     Then I should see "Luxembourg"
     And I should see "Summary"
+
+  Scenario: Check that Service Manuals load
+    When I visit "/service-manual"
+    Then I should see "Service Manual"
