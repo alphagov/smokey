@@ -42,18 +42,16 @@ def capture_error(scenario, exception, js: false)
 
     # Adding the scenario supports further drill down using the
     # Sentry "tags" view. Substituting " is necessary for search.
-    scope.set_tags('cucumber.scenario': scenario.name.gsub('"', "'"))
-    scope.set_tags('cucumber.js_error': js)
-
     # Using the feature (file) as the fingerprint means we only
     # get one issue per feature, keeping the dashboard simple.
-    # The hint is used by govuk_app_config, which will emit stats
-    # for the error class, in addition to what we get in Sentry.
-    Sentry.capture_message(
+    GovukError.notify(
       message,
       fingerprint: [scenario.location.file],
       backtrace: exception.backtrace,
-      hint: { exception: exception }
+      tags: {
+        'cucumber.scenario': scenario.name.gsub('"', "'"),
+        'cucumber.js_error': js
+      }
     )
   end
 end
