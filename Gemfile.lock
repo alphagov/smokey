@@ -157,7 +157,7 @@ GEM
     rubyzip (2.3.2)
     selenium-devtools (0.110.0)
       selenium-webdriver (~> 4.2)
-    selenium-webdriver (4.8.0)
+    selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
