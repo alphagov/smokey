@@ -1,6 +1,5 @@
-@app-sidekiq-monitoring
+@app-sidekiq-monitoring @notreplatforming
 Feature: Sidekiq Monitoring
-  @app-sidekiq-monitoring
   Scenario: Can open sidekiq-monitoring for Asset Manager
     When I go to the sidekiq-monitoring page for "asset-manager"
     Then I should see the dashboard
