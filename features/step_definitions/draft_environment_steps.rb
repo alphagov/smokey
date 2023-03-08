@@ -1,7 +1,3 @@
-When /^I attempt to go to a case study$/ do
-  visit_path "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
-end
-
 When /^I attempt to visit "(.*?)"$/ do |path|
   visit_path path
 end

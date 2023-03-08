@@ -28,7 +28,7 @@ Feature: Origin
   @app-authenticating-proxy
   Scenario: Check visiting a draft page requires a signon session
     Given I am testing "draft-origin"
-    When I attempt to go to a case study
+    When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
     Then I should be prompted to log in
     When I log in using valid credentials
     Then I should be on the case study page
