@@ -1,5 +1,5 @@
-ARG base_image=ghcr.io/alphagov/govuk-ruby-base:3.1.2
-ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:3.1.2
+ARG base_image=ghcr.io/alphagov/govuk-ruby-base:3.2.0
+ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:3.2.0
 
 ARG google_package_keyring=/usr/share/keyrings/google-linux-signing.gpg
 
