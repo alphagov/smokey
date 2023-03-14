@@ -6,7 +6,8 @@
 
 set -x
 
-bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
+bundle config set --local path "${HOME}/bundles/${JOB_NAME}" deployment true
+bundle install
 
 export RESTCLIENT_LOG="log/smokey-rest-client.log"
 export ENVIRONMENT=${TARGET_PLATFORM}
