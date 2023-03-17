@@ -155,7 +155,7 @@ GEM
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
     rubyzip (2.3.2)
-    selenium-devtools (0.110.0)
+    selenium-devtools (0.111.0)
       selenium-webdriver (~> 4.2)
     selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
