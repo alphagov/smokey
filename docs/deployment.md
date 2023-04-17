@@ -1,17 +1,15 @@
 # Deployment
 
-## Before you merge
-
 This app only has minimal CI set up, running a single check to ensure that Smokey is able to make requests. It would be misleading to run all of the tests on CI because their behaviour changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.
 
 Example steps to test in Integration:
 
-- Click "Configure" for the [Smokey job][]
-- Change the "Branch specifier" to the name of your branch
-- Run a new build of the Smokey project and check the results
+- Navigate to the [Deploy GitHub Action](https://github.com/alphagov/smokey/actions/workflows/deploy.yml) tab on the repo
+- Click “Run workflow” and enter the name of the branch under "Commit, tag or branch name to deploy". (NB: leave the "Use workflow from" option set as main)
+- Wait for the ["sync status" in Argo CD](https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey) to update (it will take several minutes)
+- Wait for a Smokey run to be triggered (happens every 10 minutes), or trigger one through GitHub Actions.
+- Check the results from the logs
 
-## After you merge
+If the build passes, you can merge, and Argo CD will automatically update itself back to `main`.
 
-The manual [Smokey job][] (in every Jenkins environment) will pick up changes on `main` automatically.
-
-[Smokey job]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
+If the build fails, then there may be a problem with the PR. You'll have to revert the branch deploy by following the "Run workflow" instructions above, but using "main" instead of the branch name.
