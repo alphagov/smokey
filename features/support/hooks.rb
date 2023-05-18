@@ -42,11 +42,8 @@ def capture_error(scenario, exception, js: false)
 
     # Adding the scenario supports further drill down using the
     # Sentry "tags" view. Substituting " is necessary for search.
-    # Using the feature (file) as the fingerprint means we only
-    # get one issue per feature, keeping the dashboard simple.
     GovukError.notify(
       message,
-      fingerprint: [scenario.location.file],
       backtrace: exception.backtrace,
       tags: {
         'cucumber.scenario': scenario.name.gsub('"', "'"),
