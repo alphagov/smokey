@@ -15,10 +15,10 @@ Feature: Frontend
     Then the page view should be tracked
 
   Scenario: Check the frontend can talk to Licensing
-    When I visit "/busking-licence"
+    When I visit "/find-licences/busking-licence"
     Then I should see "Busking licence"
     And I should see an input field for postcode
-    When I try to post to "/busking-licence" with "postcode=E20+2ST"
+    When I try to post to "/find-licences/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
   Scenario: Check the frontend can talk to Asset Manager
