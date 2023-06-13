@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "capybara", "~> 3"
 gem "cucumber", "~> 8"
-gem "govuk_app_config", "~> 7"
+gem "govuk_app_config", "~> 8"
 gem "minitest", "~> 5"
 gem "nokogiri", "~> 1"
 gem "plek", "~> 5"
