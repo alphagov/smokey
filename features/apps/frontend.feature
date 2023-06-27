@@ -21,6 +21,10 @@ Feature: Frontend
     When I try to post to "/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
+  Scenario: Check the frontend can talk to Asset Manager
+    When I visit "/government/uploads/system/uploads/attachment_data/file/214962/passport-impact-indicat.csv/preview"
+    Then I should see "Passport impact indicators - CSV version" 
+
   Scenario: Check the frontend can talk to Locations API and Local Links Manager API
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
