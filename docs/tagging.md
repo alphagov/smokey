@@ -4,17 +4,23 @@
 
 ## `@app-<app_name>`
 
-The Smokey job in Jenkins [has an option to filter scenarios by application](https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/modules/govuk_jenkins/templates/jobs/smokey.yaml.erb#L34), so that we can avoid running the entire test suite when only some scenarios are relevant to a change. To associate tests with an app, you need to tag the relevant scenarios (or entire feature) with `@app-<app_name>`.
+The Smokey job in Jenkins [has an option to filter scenarios by application](https://github.com/alphagov/govuk-puppet/blob/7f4b168/modules/govuk_jenkins/templates/jobs/smokey.yaml.erb#L34), so that we can avoid running the entire test suite when only some scenarios are relevant to a change. To associate tests with an app, you need to tag the relevant scenarios (or entire feature) with `@app-<app_name>`.
 
-**Important: make sure `<app_name>` matches against [the list of apps for the Deploy_App job](https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/hieradata_aws/common.yaml#L145)**. This is so the filtering will work with [the Continuous Deployment pipeline](https://github.com/alphagov/smokey/pull/675).
+> **Ensure `<app_name>` matches the name of the app's Argo CD application
+> resource under `govukApplications` in
+> [`values-<environment>.yaml`](https://github.com/alphagov/govuk-helm-charts/blob/cda3239/charts/app-config/values-integration.yaml#L45).**
+> If these don't match then the scenario will not block promotion of a release
+> of that app to staging/production.
 
 ## `@not<environment>`
 
-All features should run in **all** environments. Sometimes this isn't possible e.g.
+All features should run in **all** environments. Sometimes this isn't possible, for example where:
 
-- [The actual functionality only exists in Production](https://github.com/alphagov/smokey/blob/83fa09aa2aacec3053d58c52a2cb3af1ca27ba2b/features/mirror.feature). Tag the feature or scenario with `@notintegration` and `@notstaging` so it doesn't run in these environments i.e. its only runs in Production.
-
-- [The functionality is being replatformed](https://github.com/alphagov/smokey/blob/5caf9635f4c4601df69c39075f5438fc3d3f3df0/features/info_frontend.feature#L1). Tag the feature or scenario with `@replatforming` or `@notreplatforming` depending on whether you expect it to work in the new platform.
+- [The actual functionality only exists in
+  Production](https://github.com/alphagov/smokey/blob/83fa09a/features/mirror.feature).
+  Tag the feature or scenario with `@notintegration` and `@notstaging` so it
+  doesn't run in these environments i.e. its only runs in Production.
+- The test creates or modifies content which can't yet be done in production.
 
 ## `@pending`
 
