@@ -35,7 +35,7 @@ RUN arch=$(dpkg --print-architecture) && \
 RUN install_packages dumb-init google-chrome-stable unzip
 # TODO: support arm64 when available (perhaps by just switching back to ChromiumDriver?).
 RUN chrome_ver=$(google-chrome --version | grep -Po '\d+\.\d+\.\d+') && \
-    chromedriver_ver=$(curl -LSfs "${chromedriver_url}LATEST_RELEASE_${chrome_ver}") && \
+    chromedriver_ver=$(curl -LSfs "${chromedriver_url}LATEST_RELEASE_114.0.573") && \
     curl -LSfs "${chromedriver_url}${chromedriver_ver}/chromedriver_linux64.zip" \
         | funzip >/usr/bin/chromedriver && \
     chmod 755 /usr/bin/chromedriver
