@@ -32,10 +32,10 @@ COPY --from=builder $google_package_keyring $google_package_keyring
 RUN arch=$(dpkg --print-architecture) && \
     echo "deb [arch=${arch} signed-by=${google_package_keyring}] https://dl.google.com/linux/chrome/deb/ stable main" \
         > /etc/apt/sources.list.d/google.list
-RUN install_packages dumb-init google-chrome-stable unzip
+RUN install_packages dumb-init google-chrome-stable:114.0.5735.198-1 unzip
 # TODO: support arm64 when available (perhaps by just switching back to ChromiumDriver?).
 RUN chrome_ver=$(google-chrome --version | grep -Po '\d+\.\d+\.\d+') && \
-    chromedriver_ver=$(curl -LSfs "${chromedriver_url}LATEST_RELEASE_114.0.573") && \
+    chromedriver_ver=$(curl -LSfs "${chromedriver_url}LATEST_RELEASE_${chrome_ver}") && \
     curl -LSfs "${chromedriver_url}${chromedriver_ver}/chromedriver_linux64.zip" \
         | funzip >/usr/bin/chromedriver && \
     chmod 755 /usr/bin/chromedriver
