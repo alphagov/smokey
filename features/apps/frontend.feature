@@ -14,7 +14,6 @@ Feature: Frontend
     And I consent to cookies
     Then the page view should be tracked
 
-  @notintegration
   Scenario: Check the frontend can talk to Licensing
     When I visit "/find-licences/busking-licence"
     Then I should see "Busking licence"
