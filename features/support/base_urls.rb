@@ -4,7 +4,6 @@ DEFAULT_PATHS = {
   'contacts' => '/hm-revenue-customs',
   'contacts-admin' => '/admin',
   'imminence' => '/admin',
-  'licensefinder' => '/licence-finder',
   'licensify-admin' => '/login',
   'licensing' => '/apply-for-a-license',
   'maslow' => '/needs',
