@@ -11,7 +11,7 @@ When /^I go to the next page$/ do
 end
 
 When /^I click result (.*)$/ do |num|
-  all(".finder-results li a.gem-c-document-list__item-title")[num.to_i - 1].click
+  all(".finder-results li a.gem-c-document-list__item-title a")[num.to_i - 1].click
 end
 
 Then /^I should see some search results$/ do
