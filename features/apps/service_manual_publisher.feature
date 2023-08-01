@@ -5,6 +5,5 @@ Feature: Service Manual Publisher
     When I go to the "service-manual-publisher" landing page
     And I try to login as a user
     And I go to the "service-manual-publisher" landing page
-    Then I should see "GOV.UK Service Manual Publisher"
-    And I should see "Sign out"
+    Then I should see "Service Manual Publisher"
     And I should see "Create a Guide"

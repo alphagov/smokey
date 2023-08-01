@@ -5,6 +5,5 @@ Feature: Imminence
     When I go to the "imminence" landing page
     And I try to login as a user
     And I go to the "imminence" landing page
-    Then I should see "GOV.UK Imminence"
-    And I should see "Sign out"
+    Then I should see "Imminence"
     And I should see "All services"

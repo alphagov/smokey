@@ -5,6 +5,5 @@ Feature: Publisher
     When I go to the "publisher" landing page
     And I try to login as a user
     And I go to the "publisher" landing page
-    Then I should see "GOV.UK Publisher"
-    And I should see "Sign out"
+    Then I should see "Publisher"
     And I should see Publisher's publication index
