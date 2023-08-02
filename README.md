@@ -26,7 +26,7 @@ instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
 
 **Use GOV.UK Docker to run any commands that follow.**
 
-### Running the test suite from your machine
+### Run the test suite from your machine
 
 > **You will need to be connected to the VPN to test against Integration or
 > Staging.**
@@ -52,12 +52,14 @@ You can use the following environment variables to configure the tests:
 * `RATE_LIMIT_TOKEN`: (optional) a token used to bypass rate limiting if present on apps.
 
 Smokey cannot use a Signon account which has multi-factor authentication
-enabled. To test against integration/staging from your machine, you can fetch
+enabled.
+
+To test against integration/staging from your machine, you can fetch
 the Signon credentials for the Smokey test user:
 
 ```sh
-k get secret smokey-signon-account -oyaml | yq .data.password
-k get secret smokey-signon-account -oyaml | yq .data.email
+k get secret smokey-signon-account -oyaml | yq .data.password | base64 -d
+k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
 ```
 
 ## Further documentation
