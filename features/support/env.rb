@@ -24,7 +24,7 @@ GovukError.configure
 
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
-  options.headless!
+  options.add_argument("--headless")
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--disable-extensions")
   options.add_argument("--disable-gpu")
