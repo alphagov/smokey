@@ -23,14 +23,6 @@ end
 GovukError.configure
 
 Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    acceptInsecureCerts: ENV.key?("CHROME_ACCEPT_INSECURE_CERTS"),
-    'goog:loggingPrefs': {
-      browser: "ALL",
-      performance: "ALL",
-    },
-  )
-
   options = Selenium::WebDriver::Chrome::Options.new
   options.headless!
   options.add_argument("--disable-dev-shm-usage")
@@ -40,6 +32,10 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument("--disable-xss-auditor")
   options.add_argument("--user-agent='Smokey Test / Ruby'")
   options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
+  options.add_argument("--ignore-certificate-errors") if ENV.key?("CHROME_ACCEPT_INSECURE_CERTS")
+  options.add_option(
+    "goog:loggingPrefs", { performance: "ALL", browser: "ALL" }
+  )
 
   service = Selenium::WebDriver::Service.chrome(
     args: {
@@ -51,7 +47,7 @@ Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    capabilities: [capabilities, options],
+    options: options,
     service: service,
   )
 end
