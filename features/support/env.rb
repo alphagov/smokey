@@ -37,12 +37,9 @@ Capybara.register_driver :headless_chrome do |app|
     "goog:loggingPrefs", { performance: "ALL", browser: "ALL" }
   )
 
-  service = Selenium::WebDriver::Service.chrome(
-    args: {
-      verbose: ENV.key?("CHROMEDRIVER_VERBOSE"),
-      log_path: ENV.fetch("CHROMEDRIVER_LOG_FILE", "/tmp/chromedriver.log"),
-    },
-  )
+  service = Selenium::WebDriver::Service.chrome
+  service.args << "--verbose" if ENV.key?("CHROMEDRIVER_VERBOSE")
+  service.log = ENV.fetch("CHROMEDRIVER_LOG_FILE", "/tmp/chromedriver.log")
 
   Capybara::Selenium::Driver.new(
     app,
