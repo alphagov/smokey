@@ -1,9 +1,5 @@
 @replatforming @app-whitehall
 Feature: Whitehall
-  Scenario: Check the frontend can talk to Content Store
-    When I request "/government/ministers"
-    Then I should either see "ministers by department" or "This page is being updated."
-
   @app-asset-manager
   Scenario: Check whitehall assets are redirected to and served from the asset host
     When I request an attachment
