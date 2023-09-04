@@ -6,16 +6,21 @@ automate a headless Chrome browser](features/support/env.rb).
 
 Smokey is run automatically:
 
-- every few minutes via a
-  [cronjob](https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey)
+- every few minutes via a [cronjob][smokey-argo]
 - by the [deployment
   automation](https://argo-workflows.eks.integration.govuk.digital/workflows?limit=100)
   to determine whether to promote a release to the next environment (staging,
   production)
 
+You can also start a Smokey run [from Argo CD][smokey-argo]. Click the three
+dots in the 'smokey' cronjob and choose 'Create Job'. It can take a few seconds
+for the job to appear.
+
 Each test should check that a critical area of GOV.UK is working as expected.
 See the [guidance on what tests belong here and how to write new
 ones](docs/writing-tests.md).
+
+[smokey-argo]: https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey
 
 ## Technical documentation
 
