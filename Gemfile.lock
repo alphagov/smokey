@@ -97,7 +97,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.4)
-    minitest (5.19.0)
+    minitest (5.20.0)
     multi_test (1.1.0)
     netrc (0.11.0)
     nio4r (2.5.9)
