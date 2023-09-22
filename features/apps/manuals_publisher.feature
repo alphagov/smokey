@@ -6,5 +6,5 @@ Feature: Manuals Publisher
     And I try to login as a user
     And I go to the "manuals-publisher" landing page
     Then I should see "Manuals Publisher"
-    And I should see "New manual"
+    And I should see "Create new manual"
 
