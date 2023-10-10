@@ -8,7 +8,7 @@ gem "nokogiri", "~> 1"
 gem "plek", "~> 5"
 gem "rest-client", "~> 2"
 gem "rspec", "~> 3"
-gem "selenium-webdriver", "~> 4"
+gem "selenium-webdriver", "~> 4.14.0"
 gem "selenium-devtools"
 
 group :development do
