@@ -13,7 +13,7 @@ When /^I log in using valid credentials$/ do
 end
 
 Then /^I should be on the case study page$/ do
-  expect(page.current_path).to eq("/government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk")
+  expect(page.current_path).to eq("/government/case-studies/primary-authority-helps-acorn-safeguard-its-business-reputation")
   expect(page).to have_content('Case study')
 end
 

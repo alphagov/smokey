@@ -10,7 +10,7 @@ Feature: Government Frontend
   Scenario: Check the frontend can talk to draft Content Store
     Given I am testing "draft-origin"
     When I try to login as a user
-    When I attempt to visit "government/case-studies/example-case-studies-eu-citizens-rights-in-the-uk"
+    When I attempt to visit "government/case-studies/primary-authority-helps-acorn-safeguard-its-business-reputation"
     Then I should see "Case study"
     And the page should contain the draft watermark
 
