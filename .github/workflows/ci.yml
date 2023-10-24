@@ -8,6 +8,10 @@ jobs:
     permissions:
       security-events: write
 
+  dependency-review:
+    name: Dependency Review scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
+
   ci:
     runs-on: ubuntu-latest
     steps:
