@@ -30,6 +30,7 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument("--disable-gpu")
   options.add_argument("--disable-web-security")
   options.add_argument("--disable-xss-auditor")
+  # Note: the user agent is being used to filter GA4 data from production in govuk_publishing_components
   options.add_argument("--user-agent='Smokey Test / Ruby'")
   options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
   options.add_argument("--ignore-certificate-errors") if ENV.key?("CHROME_ACCEPT_INSECURE_CERTS")

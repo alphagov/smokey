@@ -73,6 +73,7 @@ def do_http_request(url, method = :get, options = {}, &block)
     options = options.merge(cookies: cookies)
   end
 
+  # Note: the user agent is being used to filter GA4 data from production in govuk_publishing_components
   headers = {
     'User-Agent' => 'Smokey Test / Ruby',
     'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
