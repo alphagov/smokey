@@ -32,7 +32,8 @@ COPY --from=builder $google_package_keyring $google_package_keyring
 RUN arch=$(dpkg --print-architecture) && \
     echo "deb [arch=${arch} signed-by=${google_package_keyring}] https://dl.google.com/linux/chrome/deb/ stable main" \
         > /etc/apt/sources.list.d/google.list
-RUN install_packages dumb-init google-chrome-stable unzip
+# TODO: unpin google-chrome-stable once Selenium works with Chrome >=120.
+RUN install_packages dumb-init google-chrome-stable=119.0.6045.199-1 unzip
 RUN npm install @puppeteer/browsers && \
   npx @puppeteer/browsers install chromedriver@stable --path / && \
   mv /chromedriver/*/chromedriver-linux64/chromedriver /usr/bin/chromedriver
