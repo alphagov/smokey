@@ -21,10 +21,6 @@ Feature: Frontend
     When I try to post to "/find-licences/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
-  Scenario: Check the frontend can talk to Asset Manager with government upload path
-    When I visit "/government/uploads/system/uploads/attachment_data/file/214962/passport-impact-indicat.csv/preview"
-    Then I should see "Passport impact indicators - CSV version"
-
   Scenario: Check the frontend can talk to Asset Manager with media path
     When I visit "/media/5a7b9f8ced915d4147621960/passport-impact-indicat.csv/preview"
     Then I should see "Passport impact indicators - CSV version"
