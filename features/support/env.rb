@@ -1,3 +1,4 @@
+require 'capybara'
 require 'capybara/cucumber'
 require 'govuk_app_config/govuk_error'
 require 'plek'
@@ -23,20 +24,16 @@ end
 GovukError.configure
 
 Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument("--headless=new")
-  options.add_argument("--disable-dev-shm-usage")
-  options.add_argument("--disable-extensions")
-  options.add_argument("--disable-gpu")
-  options.add_argument("--disable-web-security")
-  options.add_argument("--disable-xss-auditor")
-  # Note: the user agent is being used to filter GA4 data from production in govuk_publishing_components
-  options.add_argument("--user-agent='Smokey Test / Ruby'")
-  options.add_argument("--no-sandbox") if ENV.key?("NO_SANDBOX")
-  options.add_argument("--ignore-certificate-errors") if ENV.key?("CHROME_ACCEPT_INSECURE_CERTS")
-  options.add_option(
-    "goog:loggingPrefs", { performance: "ALL", browser: "ALL" }
-  )
+  options = Selenium::WebDriver::Chrome::Options.new.tap do |chrome_options|
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument('--remote-debugging-pipe')
+    # Note: the user agent is being used to filter GA4 data from production in govuk_publishing_components
+    chrome_options.add_argument("--user-agent='Smokey Test / Ruby'")
+    chrome_options.add_option(
+      "goog:loggingPrefs", { performance: "ALL", browser: "ALL" }
+    )
+  end
 
   service = Selenium::WebDriver::Service.chrome(
     args: [

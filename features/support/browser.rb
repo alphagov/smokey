@@ -105,5 +105,8 @@ end
 
 def flush_chrome_logs_for_type(type)
   # Calling ".get" retrieves and then wipes the logs so far.
-  Capybara.current_session.driver.browser.logs.get(type)
+  puts "#"*100
+  puts page.driver.browser.capabilities.inspect
+  puts "*"*100
+  page.driver.browser.logs.get(type)
 end
