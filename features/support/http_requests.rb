@@ -28,6 +28,7 @@ def uri_escape(s)
 end
 
 def default_request_options
+  # TODO: this duplicates the `smokey_cachebust` logic in `visiting_pages.rb`
   { cache_bust: @bypass_caching, client_auth: @authenticated_as_client }
 end
 

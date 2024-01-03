@@ -1,6 +1,7 @@
 @app-collections @replatforming
 Feature: Collections
 
+  @bothcdns
   Scenario: Check the frontend can talk to Content Store
     When I visit "/browse/driving"
     And I should see "Teaching people to drive"

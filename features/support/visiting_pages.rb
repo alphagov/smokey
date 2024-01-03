@@ -1,5 +1,15 @@
 require 'base64'
 
+# TODO: replace all `visit_path` occurrences with calls to `do_http_request` (under the hood)
+# so that we can provide custom request headers, which was the whole point of this refactoring
+# exercise.
+# The main motivation is that Selenium webdriver doesn't allow you to provide custom request
+# headers without the use of a proxy like browsermob-proxy. I _really_ don't want to add
+# a proxy just to be able to do that. Someone has already gone to the effort of building
+# a set of utility methods that perform HTTP requests and can have the response code and
+# response body queried, so I'm hoping to consolidate all step definitions to use those
+# utility methods so we no longer have two approaches, and then my change to run tests against
+# the failover CDN will look relatively modest.
 def visit_path(path)
   url_param_joiner = path.match(%r[\?]) ? "&" : "?"
   visit "#{path}#{url_param_joiner}smokey_cachebust=#{rand.to_s}"
