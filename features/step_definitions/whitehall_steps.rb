@@ -9,12 +9,12 @@ Then(/^I should be redirected to the asset host$/) do
     application_external_url("assets-eks"),
     application_external_url("assets"),
   ]
-  uri = URI(@response.request.url)
+  uri = URI(govuk_page.current_url)
   asset_url = "#{uri.scheme}://#{uri.host}"
   assert asset_hosts.include?(asset_url), "Asset host #{asset_url} is not valid"
 end
 
 Then(/^the attachment should be served successfully$/) do
-  expect(@response.request.url).to match(@attachment_path)
+  expect(govuk_page.current_url).to match(@attachment_path)
   expect(govuk_page.status_code).to eq(200)
 end

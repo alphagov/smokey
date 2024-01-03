@@ -29,7 +29,8 @@ class GovukPage
   end
 
   def current_url
-    # TODO: support `@response` version
+    return @response.request.url if @response
+
     @page.current_url
   end
 
