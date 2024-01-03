@@ -144,23 +144,7 @@ Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
 end
 
 Then /^I should see "(.*)"$/ do |content|
-  if @responses
-    @responses.each do |response|
-      expect(response.body).to include(content)
-    end
-  else
-    expect(govuk_page.body).to include(content)
-  end
-end
-
-Then /^I should either see "(.*)" or "(.*)"$/ do |content, other_content|
-  if @responses
-    @responses.each do |response|
-      expect((response.body.include?(content) || response.body.include?(other_content))).to be true
-    end
-  else
-    expect((govuk_page.body.include?(content) || govuk_page.include?(other_content))).to be true
-  end
+  expect(govuk_page.body).to include(content)
 end
 
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
