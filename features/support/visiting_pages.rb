@@ -29,7 +29,7 @@ class GovukPage
   end
 
   def current_url
-    return @response.request.url if @response
+    return (@response['location'].nil? ? @response.request.url : @response['location']) if @response
 
     @page.current_url
   end

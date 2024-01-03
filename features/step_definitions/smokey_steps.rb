@@ -131,17 +131,11 @@ Then /^I should be able to visit:$/ do |table|
 end
 
 Then /^I should get a (\d+) status code$/ do |expected_status|
-  if @response
-    actual_status = govuk_page.status_code
-    url = @response['location']
-  else
-    actual_status = govuk_page.status_code.to_i
-    url = govuk_page.current_url
-  end
+  actual_status = govuk_page.status_code
 
   expect(expected_status.to_i).to(
     eq(actual_status),
-    "#{url}: expected status #{expected_status.to_i} got #{actual_status}"
+    "#{govuk_page.current_url}: expected status #{expected_status.to_i} got #{actual_status}"
   )
 end
 
@@ -178,13 +172,8 @@ Then /^I should either see "(.*)" or "(.*)"$/ do |content, other_content|
 end
 
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
-  if @response
-    uri = URI(@response['location'])
-    expect(uri.path).to eq(location_path)
-  else
-    uri = URI(govuk_page.current_url)
-    expect(uri.path).to eq(location_path)
-  end
+  uri = URI(govuk_page.current_url)
+  expect(uri.path).to eq(location_path)
 end
 
 When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
