@@ -54,7 +54,7 @@ When /^I (try to )?request "(.*)"$/ do |attempt_only, path_or_url|
     "#{@host}#{path_or_url}"
   end
   request_method = attempt_only ? :try_get_request : :get_request
-  @response = send(request_method, url, default_request_options)
+  send(request_method, url, default_request_options)
 end
 
 When /^I visit "(.*)"$/ do |path_or_url|
@@ -71,7 +71,7 @@ When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
 end
 
 When /^I visit a non-existent page$/ do
-  @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
+  get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
 end
 
 When /^I request "(.*)" from Bouncer directly$/ do |url|
@@ -80,7 +80,7 @@ When /^I request "(.*)" from Bouncer directly$/ do |url|
   bouncer_url += "?#{parsed_url.query}" if parsed_url.query
   request_host = parsed_url.host
 
-  @response = try_get_request(bouncer_url, host_header: request_host)
+  try_get_request(bouncer_url, host_header: request_host)
 end
 
 $original_env_var = ENV["RATE_LIMIT_TOKEN"] # retain original value so we can reset it after the tests
@@ -105,7 +105,7 @@ Then /^any request I make should NOT include the 'Rate-Limit-Token' header$/ do
 end
 
 def should_visit(path)
-  @response = get_request("#{@host}#{path}", default_request_options)
+  get_request("#{@host}#{path}", default_request_options)
   expect(govuk_page.status_code).to eq(200)
 end
 
@@ -169,28 +169,11 @@ When /^I see links to pages per topic$/ do
 end
 
 Then /^I should hit the cache$/ do
-  cache_hits = cache_hits_value(@response)
-
-  expect(cache_hits).not_to be nil
-  expect(cache_hits).not_to be("0")
+  expect(govuk_page.header("X-Cache-Hits")).not_to be nil
+  expect(govuk_page.header("X-Cache-Hits")).not_to be("0")
 end
 
 Then /^I should not hit the cache$/ do
-  cache_hits = cache_hits_value(@response)
-
-  expect(cache_hits).not_to be nil
-  expect(cache_hits).to eq("0")
-end
-
-def cache_hits_value(response)
-  header_name = 'X-Cache-Hits'
-  header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
-
-  if response.respond_to? :headers
-    response.headers[header_as_symbol]
-  elsif response['X-Cache-Hits'].present?
-    response[header_name].to_i
-  else
-    raise "Couldn't find X-Cache-Hits header in response"
-  end
+  expect(govuk_page.header("X-Cache-Hits")).not_to be nil
+  expect(govuk_page.header("X-Cache-Hits")).to eq("0")
 end

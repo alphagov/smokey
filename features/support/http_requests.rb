@@ -107,12 +107,12 @@ def do_http_request(url, method = :get, options = {}, &block)
     payload: options[:payload],
     verify_ssl: options[:verify_ssl],
   }
-  RestClient::Request.new(request_options).execute &block
+  @response = RestClient::Request.new(request_options).execute &block
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'."
 rescue RestClient::Exception => e
   if options[:return_response_on_error]
-    e.response
+    @response = e.response
   else
     finished_at = Time.now
     message = ["Unable to fetch '#{url}'"]
