@@ -113,7 +113,7 @@ end
 
 def should_visit(path)
   @response = get_request("#{@host}#{path}", default_request_options)
-  expect(@response.code).to eq(200)
+  expect(govuk_page.status_code).to eq(200)
 end
 
 def should_see(text)
@@ -132,7 +132,7 @@ end
 
 Then /^I should get a (\d+) status code$/ do |expected_status|
   if @response
-    actual_status = @response.code.to_i
+    actual_status = govuk_page.status_code
     url = @response['location']
   else
     actual_status = govuk_page.status_code.to_i

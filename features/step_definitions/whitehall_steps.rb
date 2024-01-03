@@ -16,5 +16,5 @@ end
 
 Then(/^the attachment should be served successfully$/) do
   expect(@response.request.url).to match(@attachment_path)
-  expect(@response.code).to eq(200)
+  expect(govuk_page.status_code).to eq(200)
 end
