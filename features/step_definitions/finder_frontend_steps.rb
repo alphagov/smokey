@@ -1,5 +1,5 @@
 Then /^I should see an input field to search$/ do
-  expect(page.body).to have_field('keywords')
+  expect(govuk_page.body).to have_field('keywords')
 end
 
 When /^I search for "(.*)"$/ do |term|
@@ -15,14 +15,14 @@ When /^I click result (.*)$/ do |num|
 end
 
 Then /^I should see some search results$/ do
-  result_links = page.all(".finder-results li a")
+  result_links = govuk_page.all(".finder-results li a")
   expect(result_links.count).to be >= 1
 end
 
 And /^the search results should be unique$/ do
   results = []
-  page.all(".finder-results li a").each_with_index do |item, idx|
-    results << item.text + page.all(".finder-results li p")[idx].text
+  govuk_page.all(".finder-results li a").each_with_index do |item, idx|
+    results << item.text + govuk_page.all(".finder-results li p")[idx].text
   end
   expect(results.uniq.count).to eq(results.count)
 end

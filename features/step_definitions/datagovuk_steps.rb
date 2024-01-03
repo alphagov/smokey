@@ -3,7 +3,7 @@ When /^I search for "(.*)" in datasets$/ do |term|
 end
 
 Then /^I should see some dataset results$/ do
-  result_links = page.all(".dgu-results__result")
+  result_links = govuk_page.all(".dgu-results__result")
   expect(result_links.count).to be >= 1
 end
 
@@ -12,12 +12,12 @@ When /^I search for all datasets$/ do
 end
 
 When /^I save the dataset count$/ do
-  package_count_form = page.first(".search-form h1")
+  package_count_form = govuk_page.first(".search-form h1")
   @package_count = package_count_form.text.gsub(/[^\d^\.]/, '').to_i
 end
 
 Then /^I should see a similar dataset count$/ do
-  count_span = page.first(".dgu-results__summary")
+  count_span = govuk_page.first(".dgu-results__summary")
   count = count_span.text.gsub(/[^\d^\.]/, '').to_i
 
   # to account for a delay in the sync between CKAN and Find, we only check

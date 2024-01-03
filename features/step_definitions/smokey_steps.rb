@@ -135,8 +135,8 @@ Then /^I should get a (\d+) status code$/ do |expected_status|
     actual_status = @response.code.to_i
     url = @response['location']
   else
-    actual_status = page.status_code.to_i
-    url = page.current_url
+    actual_status = govuk_page.status_code.to_i
+    url = govuk_page.current_url
   end
 
   expect(expected_status.to_i).to(
@@ -165,7 +165,7 @@ Then /^I should see "(.*)"$/ do |content|
   elsif @response
     expect(@response.body).to include(content)
   elsif page
-    expect(page.body).to include(content)
+    expect(govuk_page.body).to include(content)
   end
 end
 
@@ -177,7 +177,7 @@ Then /^I should either see "(.*)" or "(.*)"$/ do |content, other_content|
   elsif @response
     expect((@response.body.include?(content) || @response.body.include?(other_content))).to be true
   elsif page
-    expect((page.body.include?(content) || page.include?(other_content))).to be true
+    expect((govuk_page.body.include?(content) || govuk_page.include?(other_content))).to be true
   end
 end
 
@@ -186,7 +186,7 @@ Then /^I should be at a location path of "(.*)"$/ do |location_path|
     uri = URI(@response['location'])
     expect(uri.path).to eq(location_path)
   else
-    uri = URI(page.current_url)
+    uri = URI(govuk_page.current_url)
     expect(uri.path).to eq(location_path)
   end
 end
@@ -208,7 +208,7 @@ Then /^JSON is returned$/ do
 end
 
 When /^I see links to pages per topic$/ do
-  pages = Nokogiri::HTML.parse(page.body).css(".browse-container a")
+  pages = Nokogiri::HTML.parse(govuk_page.body).css(".browse-container a")
   unless pages.any?
     fail "There are no links on this Services and Information page"
   end

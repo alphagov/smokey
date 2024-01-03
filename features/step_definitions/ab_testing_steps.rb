@@ -29,7 +29,7 @@ Then(/^I am assigned to a test bucket$/) do
 end
 
 Then(/^I can see the bucket I am assigned to$/) do
-  bucket = ab_bucket(page.body)
+  bucket = ab_bucket(govuk_page.body)
   expect(["A", "B"]).to include(bucket)
 
   # Store bucket so that subsequent responses can be compared to the original

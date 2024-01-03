@@ -3,7 +3,7 @@ When /^I try to login as a user$/ do
 
   visit application_external_url("signon")
 
-  if page.has_content?("Sign in")
+  if govuk_page.has_content?("Sign in")
     fill_in "Email", :with => ENV["SIGNON_EMAIL"]
     fill_in "Password", :with => ENV["SIGNON_PASSWORD"]
     click_button "Sign in"
@@ -16,5 +16,5 @@ end
 Then(/^I should be redirected to signon$/) do
   signon_url = application_external_url("signon")
 
-  expect(page.current_url).to match(signon_url)
+  expect(govuk_page.current_url).to match(signon_url)
 end

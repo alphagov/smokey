@@ -10,8 +10,8 @@ Then /^I see the report a problem form$/ do
     expect(page).to have_field("What went wrong?")
 
     # Regression test for scenario where wrong URL is set
-    url_input = page.find("form[action='/contact/govuk/problem_reports'] input[name=url]", visible: false)
-    expect(url_input.value).to eq(page.current_url)
+    url_input = govuk_page.find("form[action='/contact/govuk/problem_reports'] input[name=url]", visible: false)
+    expect(url_input.value).to eq(govuk_page.current_url)
   end
 end
 
@@ -39,8 +39,8 @@ Then /^I see the email survey signup form$/ do
     expect(page).to have_field("Email address")
 
     # Regression test for scenario where wrong URL is set
-    url_input = page.find("form[action='/contact/govuk/email-survey-signup'] input[name='email_survey_signup[survey_source]']", visible: false)
-    full_path = URI(page.current_url).request_uri
+    url_input = govuk_page.find("form[action='/contact/govuk/email-survey-signup'] input[name='email_survey_signup[survey_source]']", visible: false)
+    full_path = URI(govuk_page.current_url).request_uri
     expect(url_input.value).to eq(full_path)
   end
 end

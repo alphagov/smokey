@@ -13,7 +13,7 @@ When /^I log in using valid credentials$/ do
 end
 
 Then /^I should be on the case study page$/ do
-  expect(page.current_path).to eq("/government/case-studies/primary-authority-helps-acorn-safeguard-its-business-reputation")
+  expect(govuk_page.current_path).to eq("/government/case-studies/primary-authority-helps-acorn-safeguard-its-business-reputation")
   expect(page).to have_content('Case study')
 end
 
@@ -22,7 +22,7 @@ Then /^the page should contain the draft watermark$/ do
 end
 
 Then /^I should see the draft image asset$/ do
-  image_src = page.find('img')['src']
+  image_src = govuk_page.find('img')['src']
   expect(image_src).to have_content('draft-assets')
   expect(image_src).to have_content('.jpg')
 end

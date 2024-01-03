@@ -3,5 +3,5 @@ When /^I go to the sidekiq-monitoring page for "(.*)"$/ do |term|
 end
 
 Then /^I should see the dashboard$/ do
-  expect(page.body).to have_text('Dashboard')
+  expect(govuk_page.body).to have_text('Dashboard')
 end
