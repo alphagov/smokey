@@ -6,5 +6,7 @@ def visit_path(path)
 end
 
 def govuk_page
+  return @response if @response
+
   page
 end

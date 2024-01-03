@@ -117,7 +117,7 @@ def should_visit(path)
 end
 
 def should_see(text)
-  expect(@response.body).to have_content(text)
+  expect(govuk_page.body).to have_content(text)
 end
 
 And /^I don't care about JavaScript errors/ do
@@ -162,9 +162,7 @@ Then /^I should see "(.*)"$/ do |content|
     @responses.each do |response|
       expect(response.body).to include(content)
     end
-  elsif @response
-    expect(@response.body).to include(content)
-  elsif page
+  else
     expect(govuk_page.body).to include(content)
   end
 end
@@ -174,9 +172,7 @@ Then /^I should either see "(.*)" or "(.*)"$/ do |content, other_content|
     @responses.each do |response|
       expect((response.body.include?(content) || response.body.include?(other_content))).to be true
     end
-  elsif @response
-    expect((@response.body.include?(content) || @response.body.include?(other_content))).to be true
-  elsif page
+  else
     expect((govuk_page.body.include?(content) || govuk_page.include?(other_content))).to be true
   end
 end
@@ -204,7 +200,7 @@ Then /^I should see Publisher's publication index$/ do
 end
 
 Then /^JSON is returned$/ do
-  expect(JSON.parse(@response.body).class).to eq(Hash)
+  expect(JSON.parse(govuk_page.body).class).to eq(Hash)
 end
 
 When /^I see links to pages per topic$/ do
