@@ -10,6 +10,13 @@ Given(/^I do not have any A\/B testing cookies set$/) do
   expect(all_cookies).to_not include("ABTest-Example")
 end
 
+When(/^multiple new users visit "(.*?)"$/) do |path|
+  @responses = []
+  20.times do
+    @responses << get_request("#{@host}#{path}", default_request_options)
+  end
+end
+
 Then(/^we have shown them all versions of the A\/B test$/) do
   buckets = @responses.map { |r| ab_bucket(r.body) }.to_set
   expect(buckets).to eq(Set.new ["A", "B"])
