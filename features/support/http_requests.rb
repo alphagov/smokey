@@ -106,12 +106,14 @@ def do_http_request(url, method = :get, options = {}, &block)
     timeout: 10,
     payload: options[:payload],
     verify_ssl: options[:verify_ssl],
+    max_redirects: options[:dont_follow_redirects] ? 0 : 10,
   }
   @response = RestClient::Request.new(request_options).execute &block
 rescue RestClient::Unauthorized => e
   raise "Unable to fetch '#{url}' due to '#{e.message}'."
 rescue RestClient::Exception => e
-  if options[:return_response_on_error]
+  if options[:return_response_on_error] ||
+    (options[:dont_follow_redirects] && ["301 Moved Permanently", "302 Found"].include?(e.message))
     @response = e.response
   else
     finished_at = Time.now
@@ -121,13 +123,4 @@ rescue RestClient::Exception => e
     message += ["  Response time in seconds: #{finished_at - started_at}"]
     raise message.join("\n")
   end
-end
-
-def single_http_request(url)
-  started_at = Time.now
-  uri = URI(url)
-
-  http = Net::HTTP.new(uri.host, uri.port)
-  http.use_ssl = uri.scheme == 'https'
-  http.start { |agent| response = agent.get(uri.path) }
 end

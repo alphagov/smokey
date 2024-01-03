@@ -62,7 +62,7 @@ When /^I visit "(.*)"$/ do |path_or_url|
 end
 
 When /^I visit "(.*)" without following redirects$/ do |path|
-  @response = single_http_request("#{@host}#{path}")
+  get_request("#{@host}#{path}", default_request_options.merge(dont_follow_redirects: true, cache_bust: false))
 end
 
 When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
