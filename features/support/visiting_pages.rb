@@ -53,6 +53,19 @@ class GovukPage
     # TODO: support `@response` version
     @page.execute_script(script_contents)
   end
+
+  def header(header_name)
+    # TODO: support `@page` version
+    header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
+
+    if @response.respond_to? :headers
+      @response.headers[header_as_symbol]
+    elsif @response[header_name]
+      @response[header_name]
+    else
+      raise "Couldn't find header '#{header_name}' in response"
+    end
+  end
 end
 
 def govuk_page

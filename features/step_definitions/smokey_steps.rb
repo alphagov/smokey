@@ -140,15 +140,7 @@ Then /^I should get a (\d+) status code$/ do |expected_status|
 end
 
 Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
-  header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
-
-  if @response.respond_to? :headers
-    expect(@response.headers[header_as_symbol]).to eq(header_value)
-  elsif @response[header_name]
-    expect(@response[header_name]).to eq(header_value)
-  else
-    raise "Couldn't find header '#{header_name}' in response"
-  end
+  expect(govuk_page.header(header_name)).to eq(header_value)
 end
 
 Then /^I should see "(.*)"$/ do |content|
