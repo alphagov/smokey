@@ -150,11 +150,7 @@ Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
 end
 
 Then /^I should see "(.*)"$/ do |content|
-  if @responses
-    @responses.each do |response|
-      expect(response.body).to include(content)
-    end
-  elsif @response
+  if @response
     expect(@response.body).to include(content)
   elsif page
     wait_for_any_redirects_to_govuk
