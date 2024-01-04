@@ -1,6 +1,7 @@
 @replatforming @app-feedback
 Feature: Feedback
 
+  @worksonmirror
   Scenario: Check the frontend can talk to Content Store
     When I visit "/contact/govuk"
     Then I should see "Contact GOV.UK"

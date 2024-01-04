@@ -1,12 +1,14 @@
 @app-collections @replatforming
 Feature: Collections
 
+  @worksonmirror
   Scenario: Check the frontend can talk to Content Store
     When I visit "/browse/driving"
     And I should see "Teaching people to drive"
     And I click on the section "Teaching people to drive"
     Then I should see "Apply to become a driving instructor"
 
+  @worksonmirror
   Scenario: Check the frontend can talk to Search API
     When I visit "/government/organisations/hm-revenue-customs/services-information"
     Then I see links to pages per topic

@@ -5,12 +5,12 @@ Feature: Origin
     When I send a GET request to "/robots.txt"
     Then I should get a 403 status code
 
-  @replatforming
+  @replatforming @worksonmirror
   Scenario: Check robots.txt loads
     When I visit "/robots.txt"
     Then I should see "User-agent:"
 
-  @replatforming
+  @replatforming @worksonmirror
   Scenario: Check redirects work
     When I visit "/workplacepensions"
     Then I should be at a location path of "/workplace-pensions"
@@ -20,7 +20,7 @@ Feature: Origin
     When I visit a non-existent page
     Then I should see "Page not found"
 
-  @replatforming
+  @replatforming @worksonmirror
   Scenario: Check pages are rendered using UTF-8
     When I request "/"
     Then I should get a "Content-Type" header of "text/html; charset=utf-8"
