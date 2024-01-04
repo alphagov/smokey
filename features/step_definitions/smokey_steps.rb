@@ -157,6 +157,7 @@ Then /^I should see "(.*)"$/ do |content|
   elsif @response
     expect(@response.body).to include(content)
   elsif page
+    wait_for_any_redirects_to_govuk
     expect(page.body).to include(content)
   end
 end
@@ -166,6 +167,7 @@ Then /^I should be at a location path of "(.*)"$/ do |location_path|
     uri = URI(@response['location'])
     expect(uri.path).to eq(location_path)
   else
+    wait_for_any_redirects_to_govuk
     uri = URI(page.current_url)
     expect(uri.path).to eq(location_path)
   end

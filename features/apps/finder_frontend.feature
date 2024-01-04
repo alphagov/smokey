@@ -1,5 +1,6 @@
 @app-finder-frontend @replatforming
 Feature: Finder Frontend
+  @worksonmirror
   Scenario: Check the frontend can talk to Content Store
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"
