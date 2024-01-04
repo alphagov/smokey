@@ -162,18 +162,6 @@ Then /^I should see "(.*)"$/ do |content|
   end
 end
 
-Then /^I should either see "(.*)" or "(.*)"$/ do |content, other_content|
-  if @responses
-    @responses.each do |response|
-      expect((response.body.include?(content) || response.body.include?(other_content))).to be true
-    end
-  elsif @response
-    expect((@response.body.include?(content) || @response.body.include?(other_content))).to be true
-  elsif page
-    expect((page.body.include?(content) || page.include?(other_content))).to be true
-  end
-end
-
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
   if @response
     uri = URI(@response['location'])
