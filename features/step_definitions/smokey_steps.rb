@@ -70,13 +70,6 @@ When /^I visit "([^"]*)" on the "([^"]*)" application$/ do |path, application|
   visit_path "#{application_host}#{path}"
 end
 
-When(/^multiple new users visit "(.*?)"$/) do |path|
-  @responses = []
-  20.times do
-    @responses << get_request("#{@host}#{path}", default_request_options)
-  end
-end
-
 When /^I visit a non-existent page$/ do
   @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
 end
@@ -166,18 +159,6 @@ Then /^I should see "(.*)"$/ do |content|
     expect(@response.body).to include(content)
   elsif page
     expect(page.body).to include(content)
-  end
-end
-
-Then /^I should either see "(.*)" or "(.*)"$/ do |content, other_content|
-  if @responses
-    @responses.each do |response|
-      expect((response.body.include?(content) || response.body.include?(other_content))).to be true
-    end
-  elsif @response
-    expect((@response.body.include?(content) || @response.body.include?(other_content))).to be true
-  elsif page
-    expect((page.body.include?(content) || page.include?(other_content))).to be true
   end
 end
 
