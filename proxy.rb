@@ -15,6 +15,7 @@ PROFILES = {
       "User-Agent": "Smokey Test / Ruby",
       "Backend-Override": "mirrorS3",
     },
+    spoofAssets: true,
   },
   mirrorS3Replica: {
     host: "www.gov.uk",
@@ -22,6 +23,7 @@ PROFILES = {
       "User-Agent": "Smokey Test / Ruby",
       "Backend-Override": "mirrorS3",
     },
+    spoofAssets: true,
   },
   mirrorGCS: {
     host: "www.gov.uk",
@@ -29,6 +31,7 @@ PROFILES = {
       "User-Agent": "Smokey Test / Ruby",
       "Backend-Override": "mirrorS3",
     },
+    spoofAssets: true,
   },
   failoverCDN: {
     host: ENV["FAILOVER_CDN_HOST"],
@@ -64,27 +67,33 @@ class MyProxy < WEBrick::HTTPServlet::AbstractServlet
   end
 
   def make_http_request(request, response)
-    uri = URI.parse("https://#{PROFILE[:host]}#{request.path}")
-    uri.query = request.query_string
-    req = yield(uri)
-    PROFILE[:headers].each do |header_name, header_value|
-      req[header_name] = header_value
-    end
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
+    if PROFILE[:spoofAssets] && (request.path.match?(/.svg$/) || request.path.match?(/.ico$/) || request.path.match?(/.js$/))
+      # Some assets presumably haven't been copied to the mirror?
+      # If we don't stub this response, we return a 503.
+      response.status = 200
+    else
+      uri = URI.parse("https://#{PROFILE[:host]}#{request.path}")
+      uri.query = request.query_string
+      req = yield(uri)
+      PROFILE[:headers].each do |header_name, header_value|
+        req[header_name] = header_value
+      end
+      req_options = {
+        use_ssl: uri.scheme == "https",
+      }
 
-    resp = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(req)
-    end
+      resp = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(req)
+      end
 
-    response.status = resp.code
-    response.content_type = resp["content-type"]
-    response.body = resp.body
+      response.status = resp.code
+      response.content_type = resp["content-type"]
+      response.body = resp.body
 
-    case resp
-    when Net::HTTPRedirection
-      response["Location"] = URI.parse(resp["location"])
+      case resp
+      when Net::HTTPRedirection
+        response["Location"] = URI.parse(resp["location"])
+      end
     end
   end
 end
