@@ -9,6 +9,7 @@ Feature: Frontend
     When I visit "/"
     Then I should see "Welcome to GOV.UK"
 
+  @notcloudfront
   Scenario: Check the client can talk to Google Analytics
     When I visit "/"
     And I consent to cookies

@@ -1,9 +1,11 @@
 Feature: CDN
+  @notcloudfront
   Scenario: Check all A/B test variants work
     Given I consent to cookies
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the A/B test
 
+  @notcloudfront
   Scenario: Check an A/B test is persistent
     Given I consent to cookies
     And I do not have any A/B testing cookies set

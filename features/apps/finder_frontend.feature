@@ -12,6 +12,7 @@ Feature: Finder Frontend
     And I choose the checkbox "Statistics (published)" and click on "Continue"
     Then I should see "How often do you want to get emails?"
 
+  @notcloudfront
   Scenario Outline: Check the frontend can talk to Search API
     Given I consent to cookies
     When I search for "<keywords>"
