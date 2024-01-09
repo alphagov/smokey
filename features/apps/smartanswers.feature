@@ -10,5 +10,5 @@ Feature: Smart Answers
     | /vat-payment-deadlines/y/2000-01-31/cheque  |
 
   Scenario: Check the frontend can talk to Worldwide API
-    When I request "/check-uk-visa/y"
+    When I visit "/check-uk-visa/y"
     Then I should see a populated country select

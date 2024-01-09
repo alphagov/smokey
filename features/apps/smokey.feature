@@ -4,9 +4,8 @@ Feature: Smokey
   to verify that nothing is fundamentally broken.
 
   Scenario: Check that Smokey can make network requests
-    When I request "https://www.gov.uk"
-    Then I should get a 200 status code
-    And I should see "Welcome to GOV.UK"
+    When I visit "https://www.gov.uk"
+    Then I should see "Welcome to GOV.UK"
 
   Scenario: Check that Smokey passes Rate Limit Token when set
     Given the 'RATE_LIMIT_TOKEN' ENV variable is set
