@@ -80,7 +80,7 @@ When /^I request "(.*)" from Bouncer directly$/ do |url|
   bouncer_url += "?#{parsed_url.query}" if parsed_url.query
   request_host = parsed_url.host
 
-  @response = try_get_request(bouncer_url, host_header: request_host)
+  @response = get_request(bouncer_url, host_header: request_host, return_response_on_error: true)
 end
 
 $original_env_var = ENV["RATE_LIMIT_TOKEN"] # retain original value so we can reset it after the tests
