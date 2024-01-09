@@ -55,6 +55,7 @@ You can use the following environment variables to configure the tests:
 * `SIGNON_EMAIL`: email of a Signon user in $ENVIRONMENT
 * `SIGNON_PASSWORD`: password of a Signon user in $ENVIRONMENT
 * `RATE_LIMIT_TOKEN`: (optional) a token used to bypass rate limiting if present on apps.
+* `PROXY_PROFILE` (optional) name of profile to use in proxy.rb. See [proxy tests](#proxy)
 
 Smokey cannot use a Signon account which has multi-factor authentication
 enabled.
@@ -65,6 +66,33 @@ the Signon credentials for the Smokey test user:
 ```sh
 k get secret smokey-signon-account -oyaml | yq .data.password | base64 -d
 k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
+```
+
+### Proxy tests
+
+The Smokey test suite can be told to run against our primary CDN (Fastly), our failover CDN (Cloudfront), or any one of the GOV.UK mirrors. To do so, you'll need to run the proxy in a separate process, and ensure you specify the `PROXY_PROFILE` environment variable.
+
+Example of running Smokey tests against the main GOV.UK mirror:
+
+```shell
+shell1$ env PROXY_PROFILE=mirrorS3 ruby proxy.rb
+
+shell2$ env PROXY_PROFILE=mirrorS3 ENVIRONMENT=production bundle exec cucumber --tags="@worksonmirror"
+```
+
+Example of running Smokey tests against the failover CDN (NB: the 'secret' Cloudfront value can be [found in govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/pull/69)):
+
+```shell
+shell1$ env PROXY_PROFILE=failoverCDN FAILOVER_CDN_HOST="secret.cloudfront.net" ruby proxy.rb
+
+shell2$ env PROXY_PROFILE=failoverCDN ENVIRONMENT=production bundle exec cucumber --tags="not @notreplatforming and not @notcloudfront"
+```
+
+Debug mode for checking you're setting headers correctly:
+
+```shell
+env PROXY_PROFILE=debug ruby proxy.rb
+# Visit http://127.0.0.1:8080/ to see your request headers
 ```
 
 ## Further documentation
