@@ -118,7 +118,7 @@ GEM
     multi_test (1.1.0)
     mutex_m (0.2.0)
     netrc (0.11.0)
-    nio4r (2.6.1)
+    nio4r (2.7.0)
     nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -328,7 +328,7 @@ GEM
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.1)
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.8)
