@@ -124,13 +124,8 @@ Then /^I should be able to visit:$/ do |table|
 end
 
 Then /^I should get a (\d+) status code$/ do |expected_status|
-  if @response
-    actual_status = @response.code.to_i
-    url = @response['location']
-  else
-    actual_status = page.status_code.to_i
-    url = page.current_url
-  end
+  actual_status = @response.code.to_i
+  url = @response['location']
 
   expect(expected_status.to_i).to(
     eq(actual_status),
