@@ -1,6 +1,7 @@
 require "cgi"
 require "webrick"
 require "net/http"
+require_relative "./features/support/env_vars.rb"
 
 PROFILES = {
   debug: {
@@ -34,14 +35,14 @@ PROFILES = {
     spoofAssets: true,
   },
   failoverCDN: {
-    host: ENV["FAILOVER_CDN_HOST"],
+    host: ENV["GOVUK_WEBSITE_HOST"],
     headers: {
       "User-Agent": "Smokey Test / Ruby",
       "Host": "www.gov.uk",
     },
   },
   primaryCDN: {
-    host: "www.gov.uk",
+    host: ENV["GOVUK_WEBSITE_HOST"],
     headers: {
       "User-Agent": "Smokey Test / Ruby",
     },
