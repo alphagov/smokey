@@ -2,7 +2,7 @@ Feature: Data.gov.uk
   @notintegration @notstaging
   Scenario: Check home page loads correctly
     Given I am testing "https://data.gov.uk"
-    When I request "/"
+    When I visit "/"
     Then I should see "Find open data"
 
   @notintegration @notstaging
@@ -20,7 +20,7 @@ Feature: Data.gov.uk
   @notintegration @notstaging @notreplatforming
   Scenario: Check CKAN loads correctly
     Given I am testing "ckan"
-    When I request "/"
+    When I visit "/"
     Then I should see "Data publisher"
 
   @notintegration @notstaging @notreplatforming

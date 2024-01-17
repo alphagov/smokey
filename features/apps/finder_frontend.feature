@@ -1,8 +1,5 @@
 @app-finder-frontend @replatforming
 Feature: Finder Frontend
-  Background:
-    Given I consent to cookies
-
   Scenario: Check the frontend can talk to Content Store
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"
@@ -16,6 +13,7 @@ Feature: Finder Frontend
     Then I should see "How often do you want to get emails?"
 
   Scenario Outline: Check the frontend can talk to Search API
+    Given I consent to cookies
     When I search for "<keywords>"
     Then I should see some search results
     And the search results should be unique

@@ -7,7 +7,7 @@ Feature: Origin
 
   @replatforming
   Scenario: Check robots.txt loads
-    When I request "/robots.txt"
+    When I visit "/robots.txt"
     Then I should see "User-agent:"
 
   @replatforming

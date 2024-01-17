@@ -6,7 +6,7 @@ Feature: Frontend
     Then I should see "Help using GOV.UK"
 
   Scenario: Check homepage loads
-    When I request "/"
+    When I visit "/"
     Then I should see "Welcome to GOV.UK"
 
   Scenario: Check the client can talk to Google Analytics
