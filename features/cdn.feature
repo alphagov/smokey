@@ -15,13 +15,13 @@ Feature: CDN
     And the bucket is reported to Google Analytics
     And I stay on the same bucket when I keep visiting "/help/ab-testing"
 
-  @replatforming
+  @replatforming @notcloudfront
   Scenario: Check caching behaviour for POST requests
     When I try to post to "/find-local-council" with "postcode=WC2B+6NH" without following redirects
     Then I should not hit the cache
     Then I should see "camden"
 
-  @replatforming
+  @replatforming @notcloudfront
   Scenario: Check caching behaviour for GET requests
     When I request "/"
     Then I should hit the cache
