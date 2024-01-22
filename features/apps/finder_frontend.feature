@@ -1,5 +1,6 @@
 @app-finder-frontend @replatforming
 Feature: Finder Frontend
+  @worksonmirror
   Scenario: Check the frontend can talk to Content Store
     When I visit "/government/people"
     Then I should see "All ministers and senior officials on GOV.UK"
@@ -12,6 +13,7 @@ Feature: Finder Frontend
     And I choose the checkbox "Statistics (published)" and click on "Continue"
     Then I should see "How often do you want to get emails?"
 
+  @notcloudfront
   Scenario Outline: Check the frontend can talk to Search API
     Given I consent to cookies
     When I search for "<keywords>"

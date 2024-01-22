@@ -1,4 +1,4 @@
-@app-search-api
+@app-search-api @worksonmirror
 Feature: Search API
   Scenario: Check the app is routable
     When I visit "/sitemap.xml"

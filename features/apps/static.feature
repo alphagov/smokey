@@ -1,5 +1,6 @@
 Feature: Static
 
+  @notcloudfront
   Scenario: Check the feedback component loads
     When I visit "/help"
     And I click to report a problem with the page

@@ -1,9 +1,11 @@
 Feature: CDN
+  @notcloudfront
   Scenario: Check all A/B test variants work
     Given I consent to cookies
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the A/B test
 
+  @notcloudfront
   Scenario: Check an A/B test is persistent
     Given I consent to cookies
     And I do not have any A/B testing cookies set
@@ -13,13 +15,13 @@ Feature: CDN
     And the bucket is reported to Google Analytics
     And I stay on the same bucket when I keep visiting "/help/ab-testing"
 
-  @replatforming
+  @replatforming @notcloudfront
   Scenario: Check caching behaviour for POST requests
     When I try to post to "/find-local-council" with "postcode=WC2B+6NH" without following redirects
     Then I should not hit the cache
     Then I should see "camden"
 
-  @replatforming
+  @replatforming @notcloudfront
   Scenario: Check caching behaviour for GET requests
     When I request "/"
     Then I should hit the cache

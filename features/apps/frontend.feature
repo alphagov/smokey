@@ -1,14 +1,17 @@
 @replatforming @app-frontend
 Feature: Frontend
 
+  @worksonmirror
   Scenario: Check help page loads
     When I visit "/help"
     Then I should see "Help using GOV.UK"
 
+  @worksonmirror
   Scenario: Check homepage loads
     When I visit "/"
     Then I should see "Welcome to GOV.UK"
 
+  @notcloudfront
   Scenario: Check the client can talk to Google Analytics
     When I visit "/"
     And I consent to cookies
@@ -21,6 +24,7 @@ Feature: Frontend
     When I try to post to "/find-licences/busking-licence" with "postcode=E20+2ST"
     Then I should see "Busking licence"
 
+  @worksonmirror
   Scenario: Check the frontend can talk to Asset Manager with media path
     When I visit "/media/5a7b9f8ced915d4147621960/passport-impact-indicat.csv/preview"
     Then I should see "Passport impact indicators - CSV version"
@@ -45,6 +49,7 @@ Feature: Frontend
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
     Then I should see "Holborn Library"
 
+  @worksonmirror
   Scenario: Check the travel advice index page loads
     When I visit "/foreign-travel-advice"
     Then I should see "Foreign travel advice"

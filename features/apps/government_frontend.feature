@@ -1,6 +1,7 @@
 @app-government-frontend @replatforming
 Feature: Government Frontend
 
+  @worksonmirror
   Scenario: Check the frontend can talk to Content Store
     When I visit "/government/get-involved"
     Then I should see "Get involved"
@@ -21,16 +22,19 @@ Feature: Government Frontend
     And I click on the button "Continue"
     Then I should see "How often do you want to get emails?"
 
+  @worksonmirror
   Scenario: Check the frontend can talk to Search API
     When I visit "/government/get-involved"
     Then I should see "Recently opened"
     And it should be populated with three open consultations
 
+  @worksonmirror
   Scenario: Check a travel advice country page loads
     When I visit "/foreign-travel-advice/luxembourg"
     Then I should see "Luxembourg"
     And I should see "Summary"
 
+  @worksonmirror
   Scenario: Check that Service Manuals load
     When I visit "/service-manual"
     Then I should see "Service Manual"
