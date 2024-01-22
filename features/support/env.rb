@@ -3,6 +3,7 @@ require 'govuk_app_config/govuk_error'
 require 'plek'
 require 'selenium-webdriver'
 require 'uri'
+require_relative "./govuk_proxy_profiles"
 
 # Set up environment
 case ENV["ENVIRONMENT"]
@@ -19,7 +20,10 @@ else
   raise "ENVIRONMENT should be one of integration, staging, production"
 end
 
-ENV["GOVUK_WEBSITE_ROOT"] = "http://127.0.0.1:8080" if ENV.has_key?("PROXY_PROFILE")
+if ENV.has_key?("GOVUK_PROXY_PROFILE")
+  ENV["GOVUK_WEBSITE_ROOT"] = "http://127.0.0.1:8080"
+  GovukProxyProfiles.validate_profile!
+end
 
 # Set up error reporting (using SENTRY_CURRENT_ENV for the environment).
 GovukError.configure
