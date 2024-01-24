@@ -1,4 +1,4 @@
-@replatforming @app-frontend
+@app-frontend
 Feature: Frontend
 
   @worksonmirror

@@ -1,4 +1,4 @@
-@app-info-frontend @replatforming
+@app-info-frontend
 Feature: Info Frontend
 
   Scenario: Check the frontend can talk to Content Store

@@ -1,4 +1,4 @@
-@app-licensing @replatforming
+@app-licensing
 Feature: Licensing
   Scenario: Check licensing pages load
     Given I don't care about JavaScript errors
@@ -8,7 +8,6 @@ Feature: Licensing
       | /apply-for-a-licence/test-licence/westminster/apply-1/form        |
       | /apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1         |
 
-  @notreplatforming
   Scenario: Check log in to licensify-admin
     When I try to login as a user
     And I login to Licensify

@@ -1,4 +1,4 @@
-@replatforming @app-feedback
+@app-feedback
 Feature: Feedback
 
   @worksonmirror

@@ -1,4 +1,4 @@
-@app-finder-frontend @replatforming
+@app-finder-frontend
 Feature: Finder Frontend
   @worksonmirror
   Scenario: Check the frontend can talk to Content Store

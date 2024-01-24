@@ -1,4 +1,4 @@
-@app-collections @replatforming
+@app-collections
 Feature: Collections
 
   @worksonmirror

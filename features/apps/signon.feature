@@ -1,4 +1,4 @@
-@app-signon @replatforming
+@app-signon
 Feature: Signon
   Scenario: Check log in to signon
     When I try to login as a user

@@ -17,13 +17,13 @@ Feature: Data.gov.uk
     When I request "/dataset/lidar-composite-dtm-2017-1m.rdf"
     Then I should get a 200 status code
 
-  @notintegration @notstaging @notreplatforming
+  @notintegration @notstaging
   Scenario: Check CKAN loads correctly
     Given I am testing "ckan"
     When I visit "/"
     Then I should see "Data publisher"
 
-  @notintegration @notstaging @notreplatforming
+  @notintegration @notstaging
   Scenario: Check CKAN action api's search works
     Given I am testing "ckan"
     And I try not to bypass caching
