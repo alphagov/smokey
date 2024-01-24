@@ -39,8 +39,7 @@ instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
 The tests require additional configuration to run successfully on a local
 machine.
 
-```
-env \
+```sh
 ENVIRONMENT=integration \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
@@ -70,28 +69,31 @@ k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
 
 ### Proxy tests
 
-The Smokey test suite can be told to run against our primary CDN (Fastly), our failover CDN (Cloudfront), or any one of the GOV.UK mirrors. To do so, you'll need to run the proxy in a separate process, and ensure you specify the `GOVUK_PROXY_PROFILE` environment variable.
+The Smokey test suite can be told to run against our primary CDN (Fastly), our failover CDN (Cloudfront), or any one of the GOV.UK mirrors. This requires:
 
-Example of running Smokey tests against the main GOV.UK mirror:
+- the `GOVUK_PROXY_PROFILE` environment variable set to `failoverCDN`, `mirrorS3` or `mirrorGCP`
+- govuk_proxy_runner.rb running in a separate process
 
-```shell
-shell1$ env GOVUK_PROXY_PROFILE=mirrorS3 ruby govuk_proxy_runner.rb
+To run Smokey against the GOV.UK S3 mirror:
 
-shell2$ env GOVUK_PROXY_PROFILE=mirrorS3 ENVIRONMENT=production bundle exec cucumber --tags="@worksonmirror"
+```sh
+export GOVUK_PROXY_PROFILE=mirrorS3
+ruby govuk_proxy_runner.rb &
+ENVIRONMENT=production bundle exec cucumber --tags="@worksonmirror"
 ```
 
-Example of running Smokey tests against the failover CDN (NB: the 'secret' Cloudfront value can be [found in govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/pull/69)):
+To run Smokey against the failover CDN, replace `<distribution>` with the CloudFront hostname in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/pull/69) in the following:
 
-```shell
-shell1$ env GOVUK_PROXY_PROFILE=failoverCDN FAILOVER_CDN_HOST="secret.cloudfront.net" ruby govuk_proxy_runner.rb
-
-shell2$ env GOVUK_PROXY_PROFILE=failoverCDN ENVIRONMENT=production bundle exec cucumber --tags="not @notreplatforming and not @notcloudfront"
+```sh
+export GOVUK_PROXY_PROFILE=failoverCDN FAILOVER_CDN_HOST=<distribution>.cloudfront.net
+ruby govuk_proxy_runner.rb &
+ENVIRONMENT=production bundle exec cucumber --tags="not @notcloudfront"
 ```
 
 Debug mode for checking you're setting headers correctly:
 
-```shell
-env GOVUK_PROXY_PROFILE=debug ruby govuk_proxy_runner.rb
+```sh
+GOVUK_PROXY_PROFILE=debug ruby govuk_proxy_runner.rb
 # Visit http://127.0.0.1:8080/ to see your request headers
 ```
 

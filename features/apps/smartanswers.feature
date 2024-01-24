@@ -1,4 +1,4 @@
-@app-smartanswers @replatforming
+@app-smartanswers
 Feature: Smart Answers
 
   Scenario: Check the app is routable for a Smart Answer

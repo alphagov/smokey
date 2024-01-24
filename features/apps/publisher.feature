@@ -1,4 +1,4 @@
-@app-publisher @replatforming
+@app-publisher
 Feature: Publisher
   @app-publishing-api
   Scenario: Can log in to publisher

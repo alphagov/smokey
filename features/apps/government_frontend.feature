@@ -1,4 +1,4 @@
-@app-government-frontend @replatforming
+@app-government-frontend
 Feature: Government Frontend
 
   @worksonmirror

@@ -1,4 +1,4 @@
-@replatforming @app-whitehall
+@app-whitehall
 Feature: Whitehall
   @app-asset-manager
   Scenario: Check whitehall assets are redirected to and served from the asset host
