@@ -18,7 +18,7 @@ module GovukProxyProfiles
       host: "www.gov.uk",
       headers: {
         "User-Agent": "Smokey Test / Ruby",
-        "Backend-Override": "mirrorS3",
+        "Backend-Override": "mirrorS3Replica",
       },
       spoofAssets: true,
     },
@@ -26,7 +26,7 @@ module GovukProxyProfiles
       host: "www.gov.uk",
       headers: {
         "User-Agent": "Smokey Test / Ruby",
-        "Backend-Override": "mirrorS3",
+        "Backend-Override": "mirrorGCS",
       },
       spoofAssets: true,
     },
