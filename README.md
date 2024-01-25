@@ -33,69 +33,89 @@ instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
 
 ### Run the test suite from your machine
 
-> **You will need to be connected to the VPN to test against Integration or
-> Staging.**
+Read "[Environment variables](#environment-variables)" for an explanation of the environment variables used in the examples below.
 
-The tests require additional configuration to run successfully on a local
-machine.
+*Run Smokey against Production*:
 
 ```sh
-ENVIRONMENT=integration \
+export ENVIRONMENT=production
+
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
-bundle exec cucumber
+bundle exec cucumber --tags="not @not$ENVIRONMENT"
 ```
+
+You can test integration or staging by changing the value of `ENVIRONMENT`, but you need to be connected to the VPN.
+
+You can run Smokey against the GOV.UK mirrors. The mirror tests are tagged `@worksonmirror`.
+
+*Run Smokey against the primary mirror*:
+
+```sh
+ENVIRONMENT=production \
+GOVUK_PROXY_PROFILE=mirrorS3 \
+bundle exec cucumber --tags="@worksonmirror"
+```
+
+*Run Smokey against the failover CDN*:
+
+```sh
+ENVIRONMENT=production
+
+FAILOVER_CDN_HOST="<distribution>.cloudfront.net" \
+GOVUK_PROXY_PROFILE=failoverCDN \
+SIGNON_EMAIL="<email-address>" \
+SIGNON_PASSWORD="<password>" \
+bundle exec cucumber --tags="not @not$ENVIRONMENT and not @notcloudfront"
+```
+
+### Run the proxy in isolation
+
+When running Smokey against the failover CDN or mirrors, Smokey automatically proxies all requests through `GovukProxy`.
+To help debug test failures, you can view pages through the proxy in your web browser.
+In each example below, visit <http://127.0.0.1:8080> to see what the proxy is doing.
+
+Proxy to the mirror:
+
+```sh
+GOVUK_PROXY_PROFILE=mirrorS3Replica ruby govuk_proxy_runner.rb
+```
+
+Proxy to the failover CDN:
+
+```sh
+FAILOVER_CDN_HOST="<distribution>.cloudfront.net" GOVUK_PROXY_PROFILE=failoverCDN ruby govuk_proxy_runner.rb
+```
+
+Debug mode (useful for confirming the host and headers you've set in `govuk_proxy_profiles.rb` are being applied):
+
+```sh
+GOVUK_PROXY_PROFILE=debug ruby govuk_proxy_runner.rb
+```
+
+### Environment variables
 
 You can use the following environment variables to configure the tests:
 
 * `ENVIRONMENT`: controls domains returned by
   [Plek](https://github.com/alphagov/plek) (see
-  [env.rb](https://github.com/alphagov/smokey/blob/19c21ac/features/support/env.rb#L9-L21))
-* `SIGNON_EMAIL`: email of a Signon user in $ENVIRONMENT
-* `SIGNON_PASSWORD`: password of a Signon user in $ENVIRONMENT
+  [env.rb](https://github.com/alphagov/smokey/blob/19c21ac/features/support/env.rb#L9-L21)).
+
+* `SIGNON_EMAIL` and `SIGNON_PASSWORD`: credentials for a Signon user in $ENVIRONMENT.
+  Smokey cannot use a Signon account which has multi-factor authentication enabled.
+  To test against integration/staging from your machine, you can fetch the Signon credentials
+  for the Smokey test user:
+
+  ```sh
+  k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
+  k get secret smokey-signon-account -oyaml | yq .data.password | base64 -d
+  ```
+
 * `RATE_LIMIT_TOKEN`: (optional) a token used to bypass rate limiting if present on apps.
-* `GOVUK_PROXY_PROFILE` (optional) name of profile to use in govuk_proxy.rb. See [proxy tests](#proxy)
 
-Smokey cannot use a Signon account which has multi-factor authentication
-enabled.
+* `GOVUK_PROXY_PROFILE` (optional) name of profile to use in govuk_proxy.rb. Must be one of `failoverCDN`, `mirrorS3`, `mirrorS3Replica` or `mirrorGCS`
 
-To test against integration/staging from your machine, you can fetch
-the Signon credentials for the Smokey test user:
-
-```sh
-k get secret smokey-signon-account -oyaml | yq .data.password | base64 -d
-k get secret smokey-signon-account -oyaml | yq .data.email | base64 -d
-```
-
-### Proxy tests
-
-The Smokey test suite can be told to run against our primary CDN (Fastly), our failover CDN (Cloudfront), or any one of the GOV.UK mirrors. This requires:
-
-- the `GOVUK_PROXY_PROFILE` environment variable set to `failoverCDN`, `mirrorS3` or `mirrorGCP`
-- govuk_proxy_runner.rb running in a separate process
-
-To run Smokey against the GOV.UK S3 mirror:
-
-```sh
-export GOVUK_PROXY_PROFILE=mirrorS3
-ruby govuk_proxy_runner.rb &
-ENVIRONMENT=production bundle exec cucumber --tags="@worksonmirror"
-```
-
-To run Smokey against the failover CDN, replace `<distribution>` with the CloudFront hostname in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/pull/69) in the following:
-
-```sh
-export GOVUK_PROXY_PROFILE=failoverCDN FAILOVER_CDN_HOST=<distribution>.cloudfront.net
-ruby govuk_proxy_runner.rb &
-ENVIRONMENT=production bundle exec cucumber --tags="not @notcloudfront"
-```
-
-Debug mode for checking you're setting headers correctly:
-
-```sh
-GOVUK_PROXY_PROFILE=debug ruby govuk_proxy_runner.rb
-# Visit http://127.0.0.1:8080/ to see your request headers
-```
+* `FAILOVER_CDN_HOST` (optional) required if `GOVUK_PROXY_PROFILE=failoverCDN`. Should be of the form `<distribution>.cloudfront.net`. Replace `<distribution>` with the CloudFront hostname in [govuk-dns-tf](https://github.com/alphagov/govuk-dns-tf/pull/69).
 
 ## Further documentation
 
