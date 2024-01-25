@@ -23,6 +23,16 @@ end
 if ENV.has_key?("GOVUK_PROXY_PROFILE")
   ENV["GOVUK_WEBSITE_ROOT"] = "http://127.0.0.1:8080"
   GovukProxyProfiles.validate_profile!
+
+  pid = Process.fork do
+    puts "Starting proxy in background process: pid #{Process.pid}."
+    require_relative "../../govuk_proxy_runner.rb"
+    puts "Proxy exited."
+  end
+
+  at_exit do
+    Process.kill("INT", pid)
+  end
 end
 
 # Set up error reporting (using SENTRY_CURRENT_ENV for the environment).
