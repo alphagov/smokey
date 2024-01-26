@@ -38,7 +38,7 @@ Read "[Environment variables](#environment-variables)" for an explanation of the
 *Run Smokey against Production*:
 
 ```sh
-ENVIRONMENT=production
+ENVIRONMENT=production \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
 bundle exec cucumber --profile=production
