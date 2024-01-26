@@ -38,14 +38,13 @@ Read "[Environment variables](#environment-variables)" for an explanation of the
 *Run Smokey against Production*:
 
 ```sh
-export ENVIRONMENT=production
-
+ENVIRONMENT=production
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
-bundle exec cucumber --tags="not @not$ENVIRONMENT"
+bundle exec cucumber --profile=production
 ```
 
-You can test integration or staging by changing the value of `ENVIRONMENT`, but you need to be connected to the VPN.
+You can test integration or staging by changing the value of the `ENVIRONMENT` variable and `profile` argument (see profiles in [`config/cucumber.yml`](./config/cucumber.yml)), but you need to be connected to the VPN.
 
 You can run Smokey against the GOV.UK mirrors. The mirror tests are tagged `@worksonmirror`.
 
@@ -60,13 +59,12 @@ bundle exec cucumber --tags="@worksonmirror"
 *Run Smokey against the failover CDN*:
 
 ```sh
-ENVIRONMENT=production
-
+ENVIRONMENT=production \
 FAILOVER_CDN_HOST="<distribution>.cloudfront.net" \
 GOVUK_PROXY_PROFILE=failoverCDN \
 SIGNON_EMAIL="<email-address>" \
 SIGNON_PASSWORD="<password>" \
-bundle exec cucumber --tags="not @not$ENVIRONMENT and not @notcloudfront"
+bundle exec cucumber --tags="not @notproduction and not @notcloudfront"
 ```
 
 ### Run the proxy in isolation
