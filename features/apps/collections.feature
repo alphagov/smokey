@@ -10,8 +10,8 @@ Feature: Collections
 
   @worksonmirror
   Scenario: Check the frontend can talk to Search API
-    When I visit "/government/organisations/hm-revenue-customs/services-information"
-    Then I see links to pages per topic
+    When I visit "/world/afghanistan/news"
+    Then I see the links pulled form search_api
 
   @app-email-alert-frontend
   Scenario: Check the frontend can talk to Email Alert API
