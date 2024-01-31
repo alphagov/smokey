@@ -185,10 +185,13 @@ Then /^JSON is returned$/ do
   expect(JSON.parse(@response.body).class).to eq(Hash)
 end
 
-When /^I see links to pages per topic$/ do
-  pages = Nokogiri::HTML.parse(page.body).css(".browse-container a")
-  unless pages.any?
-    fail "There are no links on this Services and Information page"
+When /^I see the links pulled form search_api$/ do
+  latest_section = Nokogiri::HTML.parse(page.body).css("#latest")
+  latest_items_list = latest_section.css(".gem-c-document-list ul")
+  latest_items = latest_items_list.css(".gem-c-document-list__item-metadata")
+
+  unless latest_items.any?
+    fail `There are no "latest" links pulled in from the search api`
   end
 end
 
