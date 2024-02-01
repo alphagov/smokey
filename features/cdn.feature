@@ -51,3 +51,9 @@ Feature: CDN
     Then I should get a 302 status code
     And I should get a "Location" header of "https://www.gov.uk"
     And I should get a "Strict-Transport-Security" header of "max-age=63072000; includeSubDomains; preload"
+
+  Scenario: Check HSTS header is enabled for URls that do not exist
+    Given I am testing "https://www.gov.uk"
+    When I visit "/this-page-should-404" without following redirects
+    Then I should get a 404 status code
+    And I should get a "Strict-Transport-Security" header of "max-age=31536000; preload"
