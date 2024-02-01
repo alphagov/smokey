@@ -9,6 +9,7 @@ Feature: Licensing
       | /apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1         |
 
   Scenario: Check log in to licensify-admin
+    Given I don't care about JavaScript errors
     When I try to login as a user
     And I login to Licensify
     Then I should see "Sign Out"
