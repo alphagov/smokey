@@ -17,9 +17,9 @@ Feature: CDN
 
   @notcloudfront
   Scenario: Check caching behaviour for POST requests
-    When I try to post to "/find-local-council" with "postcode=WC2B+6NH" without following redirects
+    When I try to post to "/find-local-council" with "postcode=E1+8QS" without following redirects
     Then I should not hit the cache
-    Then I should see "camden"
+    Then I should see "tower hamlets"
 
   @notcloudfront
   Scenario: Check caching behaviour for GET requests
