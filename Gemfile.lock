@@ -46,7 +46,7 @@ GEM
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
-    cucumber (9.1.1)
+    cucumber (9.1.2)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.2, >= 9.2.0)
       cucumber-core (~> 12.0)
