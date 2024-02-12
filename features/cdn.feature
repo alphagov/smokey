@@ -19,7 +19,7 @@ Feature: CDN
   Scenario: Check caching behaviour for POST requests
     When I try to post to "/find-local-council" with "postcode=E1+8QS" without following redirects
     Then I should not hit the cache
-    Then I should see "tower hamlets"
+    And I should get a 302 status code
 
   @notcloudfront
   Scenario: Check caching behaviour for GET requests
