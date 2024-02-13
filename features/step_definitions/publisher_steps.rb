@@ -15,3 +15,7 @@ end
 Then /^I should see that the edition has been deleted$/ do
   expect(page).to have_content("Edition deleted")
 end
+
+Then /^I should see Publisher's publication index$/ do
+  expect(page).to have_selector("#publication-list-container")
+end
