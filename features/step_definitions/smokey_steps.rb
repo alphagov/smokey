@@ -177,10 +177,6 @@ When /^I try to post to "(.*)" with "(.*)" without following redirects$/ do |pat
   @response = post_request "#{@host}#{path}", :payload => "#{payload}", dont_follow_redirects: true
 end
 
-Then /^I should see Publisher's publication index$/ do
-  expect(page).to have_selector("#publication-list-container")
-end
-
 Then /^JSON is returned$/ do
   expect(JSON.parse(@response.body).class).to eq(Hash)
 end
