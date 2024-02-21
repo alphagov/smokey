@@ -1,4 +1,4 @@
-@app-licensing
+@app-licensify
 Feature: Licensing
   Scenario: Check licensing pages load
     Given I don't care about JavaScript errors
