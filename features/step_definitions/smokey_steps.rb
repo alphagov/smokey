@@ -43,6 +43,10 @@ And /^I consent to cookies$/ do
   @consent_cookie_value = consent_cookie[:value]
 end
 
+When /^I go to the "imminence" landing page$/ do
+  visit_path application_external_url("places-manager")
+end
+
 When /^I go to the "([^"]*)" landing page$/ do |app_name|
   visit_path application_external_url(app_name)
 end
