@@ -10,6 +10,4 @@ Feature: Feedback
   Scenario: Check "is this page useful?" email survey
     When I visit "/"
     And I click to say the page is not useful
-    And I submit the email survey signup form
-    Then I see the feedback confirmation message
-    And a request is sent to the feedback app
+    Then I see a survey link
