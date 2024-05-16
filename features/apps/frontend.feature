@@ -43,7 +43,7 @@ Feature: Frontend
     When I visit "/contact-electoral-registration-office?postcode=WV148TU"
     Then I should see "Choose your address"
 
-  Scenario: Check the frontend can talk to Imminence
+  Scenario: Check the frontend can talk to Places Manager
     When I visit "/ukonline-centre-internet-access-computer-training"
     Then I should see "Online Centres Network"
     When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
