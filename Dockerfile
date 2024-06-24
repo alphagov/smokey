@@ -4,7 +4,7 @@ ARG builder_image=ghcr.io/alphagov/govuk-ruby-builder:3.3
 ARG google_package_keyring=/usr/share/keyrings/google-linux-signing.gpg
 
 
-FROM $builder_image AS builder
+FROM --platform=$TARGETPLATFORM $builder_image AS builder
 
 WORKDIR /tmp
 ARG google_package_keyring
@@ -17,7 +17,7 @@ RUN bundle install
 COPY . ./
 
 
-FROM $base_image
+FROM --platform=$TARGETPLATFORM $base_image
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Remove Cucumber advert.
