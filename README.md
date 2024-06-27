@@ -2,7 +2,7 @@
 
 Smokey is a suite of [Cucumber](https://cucumber.io/) tests that probe GOV.UK
 frontend and backend publishing functionality. The tests [use Selenium to
-automate a headless Chrome browser](features/support/env.rb).
+automate a headless Chromium browser](features/support/env.rb).
 
 Smokey is run automatically:
 
