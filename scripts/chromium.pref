@@ -1,0 +1,20 @@
+Package: *
+Pin: release a=noble
+Pin-Priority: 500
+
+Package: *
+Pin: origin "deb.debian.org"
+Pin-Priority: 300
+
+# Block the Ubuntu Snap version of Chromium
+Package: chromium*
+Pin: release a=noble
+Pin-Priority: -10
+
+Package: chromium*
+Pin: origin "deb.debian.org"
+Pin-Priority: 700
+
+Package: libsnappy1v5
+Pin: origin "deb.debian.org"
+Pin-Priority: 700

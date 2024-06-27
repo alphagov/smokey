@@ -38,7 +38,7 @@ end
 # Set up error reporting (using SENTRY_CURRENT_ENV for the environment).
 GovukError.configure
 
-Capybara.register_driver :headless_chrome do |app|
+Capybara.register_driver :headless_chromium do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument("--headless=new")
   options.add_argument("--disable-dev-shm-usage")
@@ -69,5 +69,5 @@ Capybara.register_driver :headless_chrome do |app|
   )
 end
 
-Capybara.default_driver = :headless_chrome
-Capybara.javascript_driver = :headless_chrome
+Capybara.default_driver = :headless_chromium
+Capybara.javascript_driver = :headless_chromium
