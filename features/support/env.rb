@@ -61,6 +61,8 @@ Capybara.register_driver :headless_chromium do |app|
     ].compact,
   )
 
+  service.executable_path = "/usr/bin/chromedriver"
+
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
