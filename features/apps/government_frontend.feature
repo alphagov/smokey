@@ -32,7 +32,7 @@ Feature: Government Frontend
   Scenario: Check a travel advice country page loads
     When I visit "/foreign-travel-advice/luxembourg"
     Then I should see "Luxembourg"
-    And I should see "Summary"
+    And I should see "Warnings and insurance"
 
   @worksonmirror
   Scenario: Check that Service Manuals load
