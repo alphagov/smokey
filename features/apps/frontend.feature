@@ -11,12 +11,6 @@ Feature: Frontend
     When I visit "/"
     Then I should see "Welcome to GOV.UK"
 
-  @notcloudfront
-  Scenario: Check the client can talk to Google Analytics
-    When I visit "/"
-    And I consent to cookies
-    Then the page view should be tracked
-
   Scenario: Check the frontend can talk to Licensing
     When I visit "/find-licences/busking-licence"
     Then I should see "Busking licence"

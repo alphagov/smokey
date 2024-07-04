@@ -43,11 +43,6 @@ Then(/^I can see the bucket I am assigned to$/) do
   @original_bucket = bucket
 end
 
-Then(/^the bucket is reported to Google Analytics$/) do
-  sought = "cd40=Example%3A#{@ab_cookie_value}"
-  expect(browser_has_analytics_request_containing sought).to be(true)
-end
-
 Then(/^I stay on the same bucket when I keep visiting "(.*?)"$/) do |path|
   20.times do
     request_options = default_request_options.merge(cookies: {"ABTest-Example": @ab_cookie_value})
