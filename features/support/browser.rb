@@ -25,15 +25,6 @@ def browser_has_request_with_url_containing(sought)
   end
 end
 
-def browser_has_analytics_request_containing(sought)
-  wait_until do
-    browser_has_request_containing do |url, post_data|
-      url.start_with?("https://www.google-analytics.com") &&
-        (url.include?(sought) || post_data.include?(sought))
-    end
-  end
-end
-
 def browser_has_request_containing
   # Most logs look like this:
   #
