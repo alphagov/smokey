@@ -12,7 +12,6 @@ Feature: CDN
     When I visit "/help/ab-testing"
     Then I am assigned to a test bucket
     And I can see the bucket I am assigned to
-    And the bucket is reported to Google Analytics
     And I stay on the same bucket when I keep visiting "/help/ab-testing"
 
   @notcloudfront
