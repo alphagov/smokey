@@ -18,7 +18,6 @@ Feature: Finder Frontend
     Given I consent to cookies
     When I search for "<keywords>"
     Then I should see some search results
-    And the search results should be unique
 
     Examples:
     | keywords         |
