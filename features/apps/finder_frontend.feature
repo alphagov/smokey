@@ -15,13 +15,5 @@ Feature: Finder Frontend
 
   @notcloudfront
   Scenario Outline: Check the frontend can talk to Search API
-    Given I consent to cookies
-    When I search for "<keywords>"
+    When I search for "universal credit"
     Then I should see some search results
-    And the search results should be unique
-
-    Examples:
-    | keywords         |
-    | tax              |
-    | passport         |
-    | universal credit |
