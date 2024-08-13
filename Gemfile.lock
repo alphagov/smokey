@@ -377,7 +377,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.3.3)
+    rexml (3.3.5)
       strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -393,7 +393,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
     rubyzip (2.3.2)
-    selenium-devtools (0.126.0)
+    selenium-devtools (0.127.0)
       selenium-webdriver (~> 4.2)
     selenium-webdriver (4.23.0)
       base64 (~> 0.2)
