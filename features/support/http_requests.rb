@@ -10,13 +10,6 @@ def get_request(url, options = {})
   do_http_request(url, :get, options)
 end
 
-def try_get_request(url, options = {})
-  # Always return the response, even if it's an error code
-  do_http_request(url, :get, options) { |response, request, result|
-    response
-  }
-end
-
 def create_request(url, options = {})
   do_http_request(url, :get, options) { |response, request, result|
     request
