@@ -395,7 +395,7 @@ GEM
     rspec-support (3.13.1)
     rubyzip (2.3.2)
     securerandom (0.3.1)
-    selenium-devtools (0.129.0)
+    selenium-devtools (0.130.0)
       selenium-webdriver (~> 4.2)
     selenium-webdriver (4.26.0)
       base64 (~> 0.2)
