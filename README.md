@@ -1,3 +1,6 @@
+> [!WARNING]
+> This repository is no longer in use. For smoke tests refer to [GOV.UK E2E Tests](https://www.github.com/alphagov/govuk-e2e-tests)
+
 # GOV.UK Smoke Tests
 
 Smokey is a suite of [Cucumber](https://cucumber.io/) tests that probe GOV.UK
